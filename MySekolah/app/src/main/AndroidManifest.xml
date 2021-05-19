@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".NotificationPage"></activity>
+        <activity android:name=".NotificationPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".HomePage" />
         <activity android:name=".MainActivity">
