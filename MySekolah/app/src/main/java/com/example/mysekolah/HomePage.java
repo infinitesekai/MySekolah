@@ -2,7 +2,6 @@ package com.example.mysekolah;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -39,7 +38,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
 
         switch (v.getId()){
             case R.id.enrollmentCard:
-                i= new Intent(getActivity(), PreSchoolApp.class);
+                i= new Intent(getActivity(), SchoolEnroll.class);
                 startActivity(i);
                 break;
             case R.id.CheckChildPerfCard:
