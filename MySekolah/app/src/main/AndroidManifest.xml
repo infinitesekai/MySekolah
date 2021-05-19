@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
+        <activity android:name=".child_performance"></activity>
+        <activity android:name=".PreSchoolApp" />
         <activity android:name=".NotificationPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".HomePage" />

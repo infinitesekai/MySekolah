@@ -84,6 +84,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="8dp"
             app:cardBackgroundColor="@color/lightBlue"
+            android:onClick="methodtoexecute"
             >
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -133,7 +134,8 @@
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="@color/lightPink">
+            app:cardBackgroundColor="@color/lightPink"
+            android:onClick="methodtoexecute">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
