@@ -2,53 +2,23 @@ package com.example.mysekolah;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.app.Dialog;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class child_performance extends AppCompatActivity implements View.OnClickListener{
-
-    public CardView exam,discipline,attendance,personalitytest;
+public class Apply_pending extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_performance);
+        setContentView(R.layout.activity_apply_pending);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
-        attendance=findViewById(R.id.AttendanceCard);
-       // exam=findViewById(R.id.ExamResultCard);
-       // discipline=findViewById(R.id.DisciplineCard);
-       // personalitytest.findViewById(R.id.PersonalityCard);
-
-        attendance.setOnClickListener(this);
-       // exam.setOnClickListener(this);
-       // discipline.setOnClickListener(this);
-       // personalitytest.setOnClickListener(this);
-
-        /*attendance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(child_performance.this, att_select_child.class);
-                startActivity(i);
-            }
-        });*/
-
-
     }
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -73,17 +43,4 @@ public class child_performance extends AppCompatActivity implements View.OnClick
             return false;
         }
     };
-    @Override
-    public void onClick(View v) {
-        Intent i;
-
-        switch (v.getId()) {
-            case R.id.AttendanceCard:
-                i = new Intent(this, att_select_child.class);
-                startActivity(i);
-                break;
-
-        }
-    }
-
 }

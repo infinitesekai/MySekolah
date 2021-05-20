@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
+
         <activity android:name=".PreSchoolForm"></activity>
+        <activity android:name=".Attendance_Table"></activity>
+        <activity android:name=".att_select_child" />
+        <activity android:name=".Attendance_Form" />
+        <activity android:name=".Apply_pending" />
+        <activity android:name=".Apply_fail" />
+        <activity android:name=".Apply_success" />
         <activity android:name=".Enroll_Check_IC" />
         <activity android:name=".child_performance" />
         <activity android:name=".SchoolEnroll" />
