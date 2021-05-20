@@ -36,7 +36,7 @@
         android:layout_height="560dp"
         android:layout_alignParentBottom="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="-66dp"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/bg_round_rec" />
 
 
