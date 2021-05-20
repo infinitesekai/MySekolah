@@ -8,5 +8,6 @@
     <color name="text_color">#656060</color>
     <color name="black">#060606</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="lightgrey">#F6F6F6</color>
     <color name="remarksColor">#5AFF70</color>
 </resources>
