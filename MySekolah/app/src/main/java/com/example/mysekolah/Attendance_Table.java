@@ -12,6 +12,21 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Attendance_Table extends AppCompatActivity {
+    //try mCalendarView to highlight multiple date
+/*
+    calendarView = ((MCalendarView) view.findViewById(R.id.calendar_exp));
+
+    ArrayList<DateData> dates=new ArrayList<>();
+    dates.add(new DateData(2018,04,26));
+    dates.add(new DateData(2018,04,27));
+
+    for(int i=0;i<dates.size();i++) {
+        calendarView.markDate(dates.get(i).getYear(),dates.get(i).getMonth(),dates.get(i).getDay());//mark multiple dates with this code.
+    }
+
+
+    Log.d("marked dates:-",""+calendarView.getMarkedDates());//get all marked dates
+    */
 
     CalendarView calendarView;
     @Override
