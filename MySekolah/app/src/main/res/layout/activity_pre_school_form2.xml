@@ -257,7 +257,7 @@
                             android:id="@+id/etAddressPr"
                             android:layout_width="250dp"
                             android:layout_height="80dp"
-                            android:background="@color/lightgrey"
+                            android:background="@color/lightGrey"
                             android:fontFamily="@font/robotoregular"
                             android:text="AddressView"
                             android:textColor="@color/black"
@@ -294,7 +294,7 @@
                             android:id="@+id/etPosPr"
                             android:layout_width="60dp"
                             android:layout_height="40dp"
-                            android:background="@color/lightgrey"
+                            android:background="@color/lightGrey"
                             android:fontFamily="@font/robotoregular"
                             android:text="43900"
                             android:textColor="@color/black"
@@ -327,7 +327,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
-                        android:background="@color/lightgrey"
+                        android:background="@color/lightGrey"
                         />
                 </LinearLayout>
 
@@ -355,7 +355,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
-                        android:background="@color/lightgrey"
+                        android:background="@color/lightGrey"
                         android:spinnerMode="dropdown" />/>
                 </LinearLayout>
 
@@ -387,7 +387,7 @@
                             android:id="@+id/etTelPr"
                             android:layout_width="150dp"
                             android:layout_height="40dp"
-                            android:background="@color/lightgrey"
+                            android:background="@color/lightGrey"
                             android:fontFamily="@font/robotoregular"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
@@ -423,7 +423,7 @@
                             android:id="@+id/etJobPr"
                             android:layout_width="200dp"
                             android:layout_height="40dp"
-                            android:background="@color/lightgrey"
+                            android:background="@color/lightGrey"
                             android:fontFamily="@font/robotoregular"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
@@ -459,7 +459,7 @@
                             android:id="@+id/etSalaryPr"
                             android:layout_width="150dp"
                             android:layout_height="40dp"
-                            android:background="@color/lightgrey"
+                            android:background="@color/lightGrey"
                             android:fontFamily="@font/robotoregular"
                             android:textColor="@color/black"
                             android:textSize="16dp"

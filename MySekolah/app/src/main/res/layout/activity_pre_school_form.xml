@@ -273,7 +273,7 @@
                         android:id="@+id/etAddress"
                         android:layout_width="250dp"
                         android:layout_height="80dp"
-                        android:background="@color/lightgrey"
+                        android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
                         android:text="AddressView"
                         android:textColor="@color/black"
@@ -310,7 +310,7 @@
                         android:id="@+id/etPos"
                         android:layout_width="60dp"
                         android:layout_height="30dp"
-                        android:background="@color/lightgrey"
+                        android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
                         android:text="43900"
                         android:textColor="@color/black"
@@ -343,7 +343,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/lightgrey"
+                    android:background="@color/lightGrey"
                      />
             </LinearLayout>
 
@@ -371,7 +371,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/lightgrey"
+                    android:background="@color/lightGrey"
                     android:spinnerMode="dropdown" />/>
             </LinearLayout>
 
@@ -403,7 +403,7 @@
                         android:id="@+id/etTel"
                         android:layout_width="150dp"
                         android:layout_height="30dp"
-                        android:background="@color/lightgrey"
+                        android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
                         android:text="0112018982"
                         android:textColor="@color/black"
