@@ -6,52 +6,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_gradient">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/msg_welcome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bg_round_rec">
+        android:layout_height="150dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="266dp"
             android:fontFamily="@font/robotobold"
             android:text="Hi, May"
             android:textColor="@color/white"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="30sp" />
 
+    </FrameLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
+    <FrameLayout
         android:id="@+id/bg_round_rec"
-        android:layout_width="match_parent"
-        android:layout_height="560dp"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
         android:layout_alignParentBottom="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="0dp"
-        android:background="@drawable/bg_round_rec" />
+        android:layout_below="@id/msg_welcome">
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="570dp"
+            android:background="@drawable/bg_round_rec" />
+    </FrameLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/newsCardArea"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/msg_welcome">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/newscard"
             android:layout_width="350dp"
             android:layout_height="128dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginStart="30dp"
             android:elevation="14dp"
             app:cardCornerRadius="8dp"
             app:cardPreventCornerOverlap="false"
@@ -66,20 +66,20 @@
                 android:adjustViewBounds="true"
                 android:background="?attr/selectableItemBackground"
                 android:scaleType="fitXY"
-                android:src="@drawable/upsr" />
+                android:src="@drawable/upsr"
+                android:contentDescription="TODO" />
 
         </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <android.widget.GridLayout
+        android:layout_below="@+id/newsCardArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_margin="15dp"
+        android:columnCount="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/enrollmentCard"
@@ -181,7 +181,8 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </android.widget.GridLayout>
+
 
 
 </RelativeLayout>
