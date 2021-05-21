@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PersonalityTestResult"
+    tools:context=".PersonalityTestHome"
     android:background="@drawable/bg_gradient">
     <FrameLayout
         android:id="@+id/personalityTitle"
@@ -28,11 +28,11 @@
         android:background="@drawable/bg_round_rec" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
-         android:layout_height="match_parent"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_below="@+id/personalityTitle"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <androidx.cardview.widget.CardView
             android:id="@+id/takeTestCard"
             android:layout_width="350dp"
