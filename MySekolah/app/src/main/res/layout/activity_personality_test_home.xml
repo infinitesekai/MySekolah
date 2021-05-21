@@ -9,7 +9,7 @@
     <FrameLayout
         android:id="@+id/personalityTitle"
         android:layout_width="match_parent"
-        android:layout_height="230dp">
+        android:layout_height="170dp">
         <TextView
             android:layout_width="300dp"
             android:layout_height="100dp"
@@ -31,6 +31,7 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_below="@+id/personalityTitle"
+        android:layout_marginTop="60dp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
