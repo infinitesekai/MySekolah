@@ -6,34 +6,18 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.CalendarView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Attendance_Table extends AppCompatActivity {
+public class Academic_Qualification extends AppCompatActivity {
 
-    CalendarView calendarView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendance_table);
+        setContentView(R.layout.activity_academic_qualification);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
-        calendarView=(CalendarView)findViewById(R.id.calendarView);
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                //trying to display highlighted date
-                //alternative: check with database date and make toast to tell present or absent
-
-                String date= (month+1)+"/"+dayOfMonth+"/"+year;
-                Toast.makeText(getApplicationContext(),date,Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
