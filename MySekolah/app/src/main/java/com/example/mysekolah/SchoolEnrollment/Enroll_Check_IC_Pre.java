@@ -1,51 +1,46 @@
-package com.example.mysekolah;
+package com.example.mysekolah.SchoolEnrollment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.example.mysekolah.HomePage;
+import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.ProfilePage;
+import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class att_select_child extends AppCompatActivity {
+public class Enroll_Check_IC_Pre extends AppCompatActivity {
 
-    public CardView child1,child2,child3,child4;
+    Button check;
+    EditText ic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_att_select_child);
-
-        Intent intent = getIntent();
-        String str = intent.getStringExtra("message");
+        setContentView(R.layout.activity_enroll_check_ic);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        child1=findViewById(R.id.Child1Card);
+        check= findViewById(R.id.btnCheck);
 
-        child1.setOnClickListener(new View.OnClickListener() {
+        check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i;
-
-                switch (str){
-                    case ("exam"):
-                        i= new Intent(att_select_child.this, ExamResultForm.class);
-                        startActivity(i);
-                        break;
-                    case ("attendance"):
-                        i= new Intent(att_select_child.this, Attendance_Form.class);
-                        startActivity(i);
-                        break;
-                }
-
+                Intent i= new Intent(Enroll_Check_IC_Pre.this, PreSchoolForm.class);
+                startActivity(i);
             }
         });
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

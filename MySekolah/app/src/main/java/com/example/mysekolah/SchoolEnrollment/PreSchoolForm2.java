@@ -1,4 +1,4 @@
-package com.example.mysekolah;
+package com.example.mysekolah.SchoolEnrollment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +11,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.mysekolah.HomePage;
+import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.ProfilePage;
+import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PreSchoolForm2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    String[] state= {"Johor", "Kedah", "Kelantan", "Malacca", "Negeri Semnilan", "Pahang",
+    String[] statePR= {"Johor", "Kedah", "Kelantan", "Malacca", "Negeri Semnilan", "Pahang",
             "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
             "Putarjaya", "Labuan"};
 
@@ -26,11 +31,11 @@ public class PreSchoolForm2 extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_pre_school_form2);
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spin = (Spinner) findViewById(R.id.spinnerState);
+        Spinner spin = (Spinner) findViewById(R.id.spinnerStatePr);
         spin.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,state);
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,statePR);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);

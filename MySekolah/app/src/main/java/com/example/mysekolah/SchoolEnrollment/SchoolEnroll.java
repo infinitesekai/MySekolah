@@ -1,4 +1,4 @@
-package com.example.mysekolah;
+package com.example.mysekolah.SchoolEnrollment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.mysekolah.HomePage;
+import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.ProfilePage;
+import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SchoolEnroll extends AppCompatActivity implements View.OnClickListener {
@@ -60,13 +65,14 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
         }
     };
 
+
     @Override
     public void onClick(View v) {
         Intent i;
 
         switch (v.getId()) {
             case R.id.preSchoolCard:
-                i = new Intent(this, Enroll_Check_IC.class);
+                i = new Intent(this, EnrollOrStatusPre.class);
                 startActivity(i);
                 break;
 

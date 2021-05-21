@@ -29,12 +29,12 @@ public class child_performance extends AppCompatActivity implements View.OnClick
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         attendance=findViewById(R.id.AttendanceCard);
-       // exam=findViewById(R.id.ExamResultCard);
+        exam=findViewById(R.id.ExamResultCard);
        // discipline=findViewById(R.id.DisciplineCard);
        // personalitytest.findViewById(R.id.PersonalityCard);
 
         attendance.setOnClickListener(this);
-       // exam.setOnClickListener(this);
+        exam.setOnClickListener(this);
        // discipline.setOnClickListener(this);
        // personalitytest.setOnClickListener(this);
 
@@ -76,13 +76,20 @@ public class child_performance extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         Intent i;
+        String examMessage= "exam";
+        String attendanceMessage= "attendance";
 
         switch (v.getId()) {
             case R.id.AttendanceCard:
                 i = new Intent(this, att_select_child.class);
+                i.putExtra("message",attendanceMessage);
                 startActivity(i);
                 break;
-
+            case R.id.ExamResultCard:
+                i = new Intent(this, att_select_child.class);
+                i.putExtra("message",examMessage);
+                startActivity(i);
+                break;
         }
     }
 
