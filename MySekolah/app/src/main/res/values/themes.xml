@@ -18,4 +18,13 @@
         <item name="colorAccent">@android:color/black</item>
     </style>
 
+    <style name="Theme.MySekolah.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MySekolah.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MySekolah.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

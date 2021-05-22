@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".PersonalTestQuestion"></activity>
+        <activity
+            android:name=".ResultPersonalityTest"
+            android:label="@string/title_activity_result_personality_test"
+            android:theme="@style/Theme.MySekolah.NoActionBar"></activity>
+        <activity android:name=".PersonalTestQuestion" />
         <activity android:name=".InstuctionPage" />
         <activity android:name=".PersonalityTestHome" />
         <activity android:name=".PreSchoolForm2" />
