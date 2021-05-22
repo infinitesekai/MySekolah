@@ -4,15 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.mysekolah.HomePage;
 import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.PreSchoolForm3;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
@@ -24,6 +28,9 @@ public class PreSchoolForm2 extends AppCompatActivity implements AdapterView.OnI
             "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
             "Putarjaya", "Labuan"};
 
+    Button next, back;
+    EditText addressPR, postcodePR,telPR, jobPR, salaryPR;
+    boolean isAllFieldsChecked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +38,54 @@ public class PreSchoolForm2 extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_pre_school_form2);
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spin = (Spinner) findViewById(R.id.spinnerStatePr);
-        spin.setOnItemSelectedListener(this);
+        Spinner state_spin = (Spinner) findViewById(R.id.spinnerStatePr);
+        state_spin.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,statePR);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter statePR_aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,statePR);
+        statePR_aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
-        spin.setAdapter(aa);
+        state_spin.setAdapter(statePR_aa);
 
+        next= findViewById(R.id.btnNext);
+        back=findViewById(R.id.btnBack);
+
+        addressPR=findViewById(R.id.etAddressPr);
+        postcodePR= findViewById(R.id.etPosPr);
+        telPR= findViewById(R.id.etTelPr);
+        jobPR= findViewById(R.id.etJobPr);
+        salaryPR= findViewById(R.id.etSalaryPr);
+
+        //next button operation
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                isAllFieldsChecked= CheckAllField();
+
+                if(isAllFieldsChecked) {
+                    Intent i = new Intent(PreSchoolForm2.this, PreSchoolForm3.class);
+                    startActivity(i);
+                }
+            }
+
+
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
     }
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -70,6 +110,31 @@ public class PreSchoolForm2 extends AppCompatActivity implements AdapterView.OnI
             return false;
         }
     };
+
+    private boolean CheckAllField() {
+        if (addressPR.length()==0){
+            addressPR.setError("This field is required");
+            return false;
+        }
+        if(postcodePR.length()==0){
+            postcodePR.setError("This field is required");
+            return false;
+        }
+        if(telPR.length()==0){
+            telPR.setError("This field is required");
+            return false;
+        }
+        if(jobPR.length()==0){
+            jobPR.setError("This field is required");
+            return false;
+        }
+        if(salaryPR.length()==0){
+            salaryPR.setError("This field is required");
+            return false;
+        }
+
+        return true;
+    }
 
     //Performing action onItemSelected and onNothing selected
     @Override
