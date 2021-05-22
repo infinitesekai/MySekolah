@@ -10,4 +10,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lightGrey">#F6F6F6</color>
     <color name="remarksColor">#5AFF70</color>
+    <color name="artisticColor">#E3DCFF</color>
+    <color name="realisticColor">#FCECD3</color>
+    <color name="enterprisingColor">#CEECFE</color>
+    <color name="investigativeColor">#A3EED9</color>
 </resources>
