@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.mysekolah.HomePage;
@@ -31,6 +32,12 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
             "Putarjaya", "Labuan"};
 
     Button next;
+    EditText address,postcode, tel;
+
+
+    // one boolean variable to check whether all the text fields
+    // are filled by the user, properly or not.
+    boolean isAllFieldsChecked = false;
 
 
     @Override
@@ -40,31 +47,42 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
 
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
-        Spinner spin = (Spinner) findViewById(R.id.spinnerState);
-        spin.setOnItemSelectedListener(this);
+        Spinner state_spin = (Spinner) findViewById(R.id.spinnerState);
+        state_spin.setOnItemSelectedListener(this);
 
-        Spinner spin2 = (Spinner) findViewById(R.id.spinnerDistrict);
-        spin.setOnItemSelectedListener(this);
+        Spinner district_spin = (Spinner) findViewById(R.id.spinnerDistrict);
+        district_spin.setOnItemSelectedListener(this);
 
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,state);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter state_aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,state);
+        state_aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
-        spin.setAdapter(aa);
+        state_spin.setAdapter(state_aa);
 
-        ArrayAdapter aa1 = new ArrayAdapter(this,android.R.layout.simple_spinner_item,district);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter district_aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,district);
+        district_aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
-        spin2.setAdapter(aa1);
+        district_spin.setAdapter(district_aa);
 
         next= findViewById(R.id.btnNext);
 
+        address=findViewById(R.id.etAddress);
+        postcode= findViewById(R.id.etPos);
+        tel= findViewById(R.id.etTel);
+
+
+        //next button operation
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(PreSchoolForm.this, PreSchoolForm2.class);
-                startActivity(i);
+
+                isAllFieldsChecked= CheckAllField();
+
+                if(isAllFieldsChecked) {
+                    Intent i = new Intent(PreSchoolForm.this, PreSchoolForm2.class);
+                    startActivity(i);
+                }
             }
         });
 
@@ -72,6 +90,19 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+    }
+
+    private boolean CheckAllField() {
+        if (address.length()==0){
+            address.setError("This field is required");
+            return false;
+        }
+        if(postcode.length()==0){
+            postcode.setError("This field is required");
+            return false;
+        }
+
+        return true;
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
