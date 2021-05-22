@@ -1,41 +1,40 @@
-package com.example.mysekolah;
+package com.example.mysekolah.SchoolEnrollment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
+import com.example.mysekolah.HomePage;
+import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.ProfilePage;
+import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Enroll_Check_IC extends AppCompatActivity {
+public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClickListener {
 
-    Button check;
-    EditText ic;
+    CardView application, checkStatus;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enroll_check_ic);
+        setContentView(R.layout.activity_enrolle_or_status_pre);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        check= findViewById(R.id.btnCheck);
+        application = findViewById(R.id.ApplicationFormCard);
+        checkStatus = findViewById(R.id.CheckStatusCard);
 
-        check.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(Enroll_Check_IC.this, PreSchoolForm.class);
-                startActivity(i);
-            }
-        });
-
+        application.setOnClickListener(this);
+        checkStatus.setOnClickListener(this);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -61,4 +60,17 @@ public class Enroll_Check_IC extends AppCompatActivity {
             return false;
         }
     };
+
+    @Override
+    public void onClick(View v) {
+        Intent i;
+
+        switch (v.getId()) {
+            case R.id.ApplicationFormCard:
+                i = new Intent(this, Enroll_Check_IC_Pre.class);
+                startActivity(i);
+                break;
+
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.mysekolah;
+package com.example.mysekolah.SchoolEnrollment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.mysekolah.HomePage;
+import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.ProfilePage;
+import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
