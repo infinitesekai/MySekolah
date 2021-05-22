@@ -94,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
-                        android:background="@color/lightgrey" />
+                        android:background="@color/lightGrey" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -130,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
-                        android:background="@color/lightgrey" />
+                        android:background="@color/lightGrey" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -166,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
-                        android:background="@color/lightgrey" />
+                        android:background="@color/lightGrey" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -210,7 +210,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
-                        android:background="@color/lightgrey" />
+                        android:background="@color/lightGrey" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -254,7 +254,7 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginStart="12dp"
-                        android:background="@color/lightgrey"
+                        android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
                         android:textColor="@color/black"
                         android:textSize="16dp"

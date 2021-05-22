@@ -280,7 +280,7 @@
                         android:layout_height="80dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="12dp"
-                        android:background="@color/lightgrey"
+                        android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
                         android:text="AddressView"
                         android:textColor="@color/black"
@@ -325,7 +325,7 @@
                         android:layout_height="30dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="12dp"
-                        android:background="@color/lightgrey"
+                        android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
                         android:text="43900"
                         android:textColor="@color/black"
@@ -365,7 +365,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginStart="20dp"
-                    android:background="@color/lightgrey"/>
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/lightGrey"
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -401,9 +404,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginStart="20dp"
-                    android:background="@color/lightgrey"
+                    android:background="@color/lightGrey"
                     android:spinnerMode="dropdown" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -430,7 +432,7 @@
                         android:layout_height="30dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="12dp"
-                        android:background="@color/lightgrey"
+                        android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
                         android:text="0112018982"
                         android:textColor="@color/black"

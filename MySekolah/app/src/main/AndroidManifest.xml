@@ -17,6 +17,13 @@
         <activity android:name=".SchoolEnrollment.EnrollOrStatusPre" />
         <activity android:name=".SchoolEnrollment.PreSchoolForm2" />
         <activity android:name=".SchoolEnrollment.PreSchoolForm" />
+        <activity
+            android:name=".ResultPersonalityTest"
+            android:label="@string/title_activity_result_personality_test"
+            android:theme="@style/Theme.MySekolah.NoActionBar"></activity>
+        <activity android:name=".PersonalTestQuestion" />
+        <activity android:name=".InstuctionPage" />
+        <activity android:name=".PersonalityTestHome" />
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
         <activity android:name=".Attendance_Form" />
