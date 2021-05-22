@@ -20,12 +20,18 @@
             android:fontFamily="@font/robotobold" />
 
     </FrameLayout>
-    <View
-        android:id="@+id/bg_round_rec"
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="620dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_round_rec" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personalityTitle">
+
+        <View
+            android:id="@+id/bg_round_rec"
+            android:layout_width="wrap_content"
+            android:layout_height="620dp"
+            android:background="@drawable/bg_round_rec" />
+    </FrameLayout>
+
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_height="match_parent"
