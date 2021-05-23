@@ -26,7 +26,7 @@
         <activity android:name=".InstuctionPage" />
         <activity android:name=".PersonalityTestHome" />
 
-        <activity android:name=".Signup2"/>
+        <activity android:name=".SignupActivity"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />

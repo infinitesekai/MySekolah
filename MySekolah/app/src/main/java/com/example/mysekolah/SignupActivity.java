@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Signup2 extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     private EditText ic_number,password,repassword;
     private Button signup,signin;
@@ -34,29 +34,31 @@ public class Signup2 extends AppCompatActivity {
                 String ic = ic_number.getText().toString();
                 String pass = password.getText().toString();
                 String repass = repassword.getText().toString();
-
+                if (ic.isEmpty()) return;
+                if (pass.isEmpty()) return;
+                if (repass.isEmpty()) return;
                 if (ic.equals("")||pass.equals("")||repass.equals(""))
-                    Toast.makeText(Signup2.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignupActivity.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
                 else{
                     if(pass.equals(repass)){
                         Boolean checkuser =DB.checkuseric(ic);
                         if(!checkuser){
                             Boolean insert =DB.inserData(ic,pass);
                             if(insert){
-                                Toast.makeText(Signup2.this,"Registered successfully",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this,"Registered successfully",Toast.LENGTH_SHORT).show();
                                 Intent intent =new Intent(getApplicationContext(),HomePage.class);
                                 startActivity(intent);
                             }else{
-                                Toast.makeText(Signup2.this, "Registration failed ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignupActivity.this, "Registration failed ", Toast.LENGTH_SHORT).show();
                             }
 
                         }else{
-                            Toast.makeText(Signup2.this, "User already exist!Please sign in", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignupActivity.this, "User already exist!Please sign in", Toast.LENGTH_SHORT).show();
                         }
 
                     }else
                     {
-                        Toast.makeText(Signup2.this,"Password not matching",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this,"Password not matching",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -65,7 +67,7 @@ public class Signup2 extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
             }
         });

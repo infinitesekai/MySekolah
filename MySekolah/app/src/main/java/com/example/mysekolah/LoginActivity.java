@@ -17,8 +17,10 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText ic_number,password;
-    private Button btnlogin;
+    private Button btnlogin,btnSignUp;
     private DatabaseHelper DB;
+
+
 
 
     @Override
@@ -26,17 +28,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        ic_number =findViewById(R.id.etx_signin_ic);
+        ic_number =findViewById(R.id.etx_ic_number);
         password =findViewById(R.id.etx_password);
         btnlogin =findViewById(R.id.btn_login);
+        btnSignUp=findViewById(R.id.btn_signup);
         DB =new DatabaseHelper(this);
+
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String ic= ic_number.getText().toString();
                 String pass= password.getText().toString();
-
+                if (ic.isEmpty()) return;
+                if (pass.isEmpty()) return;
                 if (ic.equals("")||pass.equals(""))
                     Toast.makeText(LoginActivity.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
                 else{
@@ -47,11 +52,15 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
 
                     }else{
+                        //go to
                         Toast.makeText(LoginActivity.this,"invalid credetials",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
+
+
+
 
     }
 }
