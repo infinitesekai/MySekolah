@@ -22,7 +22,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-        enrollment= (CardView) v.findViewById(R.id.enrollmentCard);
+        enrollment= (CardView) v.findViewById(R.id.parentCard);
         childperform= (CardView) v.findViewById(R.id.CheckChildPerfCard);
 
         enrollment.setOnClickListener(this);
@@ -37,7 +37,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         Intent i;
 
         switch (v.getId()){
-            case R.id.enrollmentCard:
+            case R.id.parentCard:
                 i= new Intent(getActivity(), SchoolEnroll.class);
                 startActivity(i);
                 break;

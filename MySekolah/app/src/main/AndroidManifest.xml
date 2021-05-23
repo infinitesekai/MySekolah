@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".PreSchoolForm2"></activity>
+        <activity android:name=".Signup2"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".PreSchoolForm2" />
         <activity android:name=".PreSchoolForm" />
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
@@ -23,7 +25,8 @@
         <activity android:name=".NotificationPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".HomePage" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".IntroductoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,41 +1,23 @@
 package com.example.mysekolah;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Enroll_Check_IC extends AppCompatActivity {
-
-    Button check;
-    EditText ic;
+public class DisciplineGoodActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enroll_check_ic);
+        setContentView(R.layout.discipline_popup_good);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
-        check= findViewById(R.id.btn_login);
-
-        check.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(Enroll_Check_IC.this, PreSchoolForm.class);
-                startActivity(i);
-            }
-        });
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
