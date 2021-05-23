@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".Tertiary_Info"></activity>
+
+        <activity android:name=".Tertiary_Info"/>
         <activity android:name=".Academic_Qualification" />
-        <activity android:name=".ExamResultTable"></activity>
-        <activity android:name=".PreSchoolForm3"></activity>
+        <activity android:name=".ExamResultTable"/>
+        <activity android:name=".PreSchoolForm3"/>
         <activity android:name=".ExamResultForm" />
         <activity android:name=".SchoolEnrollment.EnrollOrStatusPre" />
         <activity android:name=".SchoolEnrollment.PreSchoolForm2" />
@@ -20,10 +21,13 @@
         <activity
             android:name=".ResultPersonalityTest"
             android:label="@string/title_activity_result_personality_test"
-            android:theme="@style/Theme.MySekolah.NoActionBar"></activity>
+            android:theme="@style/Theme.MySekolah.NoActionBar"/>
         <activity android:name=".PersonalTestQuestion" />
         <activity android:name=".InstuctionPage" />
         <activity android:name=".PersonalityTestHome" />
+
+        <activity android:name=".Signup2"/>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
         <activity android:name=".Attendance_Form" />
@@ -36,7 +40,8 @@
         <activity android:name=".NotificationPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".HomePage" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".IntroductoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
