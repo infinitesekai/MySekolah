@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">"My Sekolah"</string>
+    <string name="title_activity_result_personality_test">"title</string>
+    <string name="hello_blank_fragment">"Notif"</string>
+</resources>

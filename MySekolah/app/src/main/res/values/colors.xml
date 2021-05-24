@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bgDarkblue">#4075FF</color>
+    <color name="bgDarkBlue">#4075FF</color>
     <color name="lightBlue">#CEECFE</color>
     <color name="lightGreen">#E6F3EA</color>
     <color name="lightPink">#FAE3E0</color>
@@ -8,5 +8,13 @@
     <color name="text_color">#656060</color>
     <color name="black">#060606</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="lightGrey">#F6F6F6</color>
     <color name="remarksColor">#5AFF70</color>
+    <color name="red">#CC0000</color>
+    <color name="calenderMarkColor">#FF0000</color>
+    <color name="artisticColor">#E3DCFF</color>
+    <color name="realisticColor">#FCECD3</color>
+    <color name="enterprisingColor">#CEECFE</color>
+    <color name="investigativeColor">#A3EED9</color>
+
 </resources>

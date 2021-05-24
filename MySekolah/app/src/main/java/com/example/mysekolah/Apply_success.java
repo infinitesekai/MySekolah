@@ -2,7 +2,6 @@ package com.example.mysekolah;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.app.Dialog;
@@ -16,39 +15,34 @@ import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class child_performance extends AppCompatActivity implements View.OnClickListener{
-
-    public CardView exam,discipline,attendance,personalitytest;
-
+public class Apply_success extends AppCompatActivity {
+    ImageView successinfo;
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_performance);
+        setContentView(R.layout.activity_apply_success);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        attendance=findViewById(R.id.AttendanceCard);
-        exam=findViewById(R.id.ExamResultCard);
-       // discipline=findViewById(R.id.DisciplineCard);
-       // personalitytest.findViewById(R.id.PersonalityCard);
 
-        attendance.setOnClickListener(this);
-        exam.setOnClickListener(this);
-       // discipline.setOnClickListener(this);
-       // personalitytest.setOnClickListener(this);
+        /*
+        successinfo=findViewById(R.id.infoApproved);
+        dialog=new Dialog(this);
 
-        /*attendance.setOnClickListener(new View.OnClickListener() {
+        successinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(child_performance.this, att_select_child.class);
-                startActivity(i);
+               dialog.setContentView(R.layout.activity_apply_success);
+               dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             }
-        });*/
+        })
 
+
+         */
 
     }
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -73,24 +67,4 @@ public class child_performance extends AppCompatActivity implements View.OnClick
             return false;
         }
     };
-    @Override
-    public void onClick(View v) {
-        Intent i;
-        String examMessage= "exam";
-        String attendanceMessage= "attendance";
-
-        switch (v.getId()) {
-            case R.id.AttendanceCard:
-                i = new Intent(this, att_select_child.class);
-                i.putExtra("message",attendanceMessage);
-                startActivity(i);
-                break;
-            case R.id.ExamResultCard:
-                i = new Intent(this, att_select_child.class);
-                i.putExtra("message",examMessage);
-                startActivity(i);
-                break;
-        }
-    }
-
 }

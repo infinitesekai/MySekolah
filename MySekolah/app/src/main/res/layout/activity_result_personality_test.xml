@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/bg_gradient"
+    tools:context=".ResultPersonalityTest">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:id="@+id/result_title"
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:text="Result"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:layout_margin="35dp"
+                android:fontFamily="@font/robotobold" />
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/result_title"
+            android:layout_alignParentBottom="true">
+
+            <View
+                android:id="@+id/bg_round_rec"
+                android:layout_width="wrap_content"
+                android:layout_height="2000dp"
+                android:background="@drawable/bg_round_rec" />
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/tester_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/result_title"
+            android:layout_marginTop="20dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+                <TextView
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/robotoregular"
+                android:text="Name:"
+                android:textAlignment="center"/>
+
+                <TextView
+                    android:textColor="#000"
+                    android:fontFamily="@font/robotoregular"
+                    android:layout_height="wrap_content"
+                    android:layout_width="120dp"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:text="Siti Binti Adbullah"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/robotoregular"
+                    android:text="Date:"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:textColor="#000"
+                    android:fontFamily="@font/robotoregular"
+                    android:layout_height="wrap_content"
+                    android:layout_width="120dp"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="12/05/2021"/>
+            </LinearLayout>
+        </FrameLayout>
+
+        <TableLayout
+            android:id="@+id/tester_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tester_info"
+            android:stretchColumns="0,1"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:gravity="center"
+            android:background="@drawable/cell_shape">
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/table_column"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="181dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/robotoregular"
+                    android:text="RIASEC"
+                    android:textAlignment="center"
+                    android:textColor="#000" />
+                <TextView
+                    android:textColor="#000"
+                    android:fontFamily="@font/robotoregular"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:text="Total"/>
+            </TableRow>
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:stretchColumns="0,1,2"
+                    android:gravity="center"
+                    android:background="@drawable/cell_shape">
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:id="@+id/table_row1"
+                        android:padding="10dp"
+                        >
+
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="Realistic"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="R"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:textColor="#000"
+                            android:id="@+id/realistic_total"
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="10"
+                            android:textAlignment="center"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:id="@+id/table_row2"
+                        android:padding="10dp"
+                        >
+
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="Investigative"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="I"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:textColor="#000"
+                            android:id="@+id/investigative_total"
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="4"
+                            android:textAlignment="center"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:id="@+id/table_row3"
+                        android:padding="10dp"
+                        >
+
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="Artistic"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="A"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:textColor="#000"
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="13"
+                            android:textAlignment="center"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:id="@+id/table_row4"
+                        android:padding="10dp">
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="Social"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="S"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:textColor="#000"
+                            android:id="@+id/social_total"
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="5"
+                            android:textAlignment="center"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:id="@+id/table_row5"
+                        android:padding="10dp"
+                        >
+
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="Enterprising"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="E"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:textColor="#000"
+                            android:id="@+id/enterprising_total"
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="8"
+                            android:textAlignment="center"/>
+                    </TableRow>
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:id="@+id/table_row6"
+                        android:padding="10dp"
+                        >
+
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="Conventional"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="C"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:textColor="#000"
+                            android:id="@+id/conventional_total"
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="2"
+                            android:textAlignment="center"/>
+                    </TableRow>
+                    <TableLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="0,1"
+                        android:background="@drawable/cell_shape">
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:id="@+id/table_row7"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/robotoregular"
+                            android:text="Total"
+                            android:textAlignment="center" />
+                        <TextView
+                            android:id="@+id/result_total"
+                            android:fontFamily="@font/robotoregular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="41"
+                            android:textAlignment="center" />
+
+                    </TableRow>
+                    </TableLayout>
+                </TableLayout>
+        </TableLayout>
+        <FrameLayout
+            android:id="@+id/rule_test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tester_result"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_width="34dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="30dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_baseline_info_24" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="How to get this result?"
+                    android:padding="10dp"/>
+            </LinearLayout>
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/alph_collection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rule_test">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MY INTEREST CODE"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/robotoregular"/>
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:text="(Take the three letters with the highest scores)"
+                    android:textSize="14sp"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/robotoregular"/>
+
+               <TableLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:stretchColumns="0,1,2"
+                   android:layout_marginStart="70dp"
+                   android:layout_marginEnd="70dp">
+
+                   <TableRow
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+                       <TextView
+                           android:id="@+id/alph_result1"
+                           android:layout_width="10dp"
+                           android:layout_height="wrap_content"
+                           android:text="A"
+                           android:textSize="14sp"
+                           android:padding="10dp"
+                           android:textStyle="bold"
+                           android:textAlignment="center"
+                           android:fontFamily="@font/robotoregular"
+                           android:background="@drawable/cell_alph"/>
+                       <TextView
+                           android:id="@+id/alph_result2"
+                           android:layout_width="10dp"
+                           android:layout_height="wrap_content"
+                           android:text="A"
+                           android:textSize="14sp"
+                           android:padding="10dp"
+                           android:textStyle="bold"
+                           android:textAlignment="center"
+                           android:fontFamily="@font/robotoregular"
+                           android:background="@drawable/cell_alph"
+                           android:layout_marginLeft="10dp"
+                           android:layout_marginRight="10dp"/>
+                       <TextView
+                           android:id="@+id/alph_result3"
+                           android:layout_width="10dp"
+                           android:layout_height="wrap_content"
+                           android:text="A"
+                           android:textSize="14sp"
+                           android:padding="10dp"
+                           android:textStyle="bold"
+                           android:textAlignment="center"
+                           android:fontFamily="@font/robotoregular"
+                           android:background="@drawable/cell_alph"/>
+                   </TableRow>
+               </TableLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/alph_collection"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/result_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:foregroundGravity="center"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/result_1"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:fontFamily="@font/robotoregular"
+                            android:gravity="center"
+                            android:text="Result 1"
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/explanation_1"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/robotoregular"
+                            android:gravity="center"
+                            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. "
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/suggestion_1"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginEnd="8dp"
+                            android:fontFamily="@font/robotoregular"
+                            android:gravity="start"
+                            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. "
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp" />
+                        <TextView
+                            android:id="@+id/career"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="13dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="30dp"
+                            android:background="@drawable/cell_alph"
+                            android:fontFamily="@font/robotoregular"
+                            android:gravity="start"
+                            android:padding="10dp"
+                            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                            android:textColor="@color/text_color"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </FrameLayout>
+
+    </RelativeLayout>
+</ScrollView>

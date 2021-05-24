@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Enroll_Check_IC"
+    tools:context=".SchoolEnrollment.Enroll_Check_IC_Pre"
     android:background="@drawable/bg_gradient">
 
 
