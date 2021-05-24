@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PreSchoolForm3"
+    tools:context=".SchoolEnrollment.PreSchoolForm3"
     android:background="@drawable/bg_gradient">
 
     <TextView
@@ -80,6 +80,7 @@
                         android:textSize="16dp" />
 
                     <ImageButton
+                        android:id="@+id/SchoolTypeInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_help_24"
@@ -196,6 +197,7 @@
                         android:textSize="16dp" />
 
                     <ImageButton
+                        android:id="@+id/SchoolListInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_help_24"
@@ -240,6 +242,7 @@
                         android:textSize="16dp" />
 
                     <ImageButton
+                        android:id="@+id/distanceInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_baseline_help_24"

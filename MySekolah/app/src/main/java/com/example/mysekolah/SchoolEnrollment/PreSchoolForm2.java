@@ -16,7 +16,6 @@ import android.widget.Spinner;
 
 import com.example.mysekolah.HomePage;
 import com.example.mysekolah.NotificationPage;
-import com.example.mysekolah.PreSchoolForm3;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
@@ -55,6 +54,8 @@ public class PreSchoolForm2 extends AppCompatActivity implements AdapterView.OnI
         telPR= findViewById(R.id.etTelPr);
         jobPR= findViewById(R.id.etJobPr);
         salaryPR= findViewById(R.id.etSalaryPr);
+
+
 
         //next button operation
         next.setOnClickListener(new View.OnClickListener() {
