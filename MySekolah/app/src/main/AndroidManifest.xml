@@ -12,7 +12,7 @@
         <activity android:name=".Tertiary_Info"></activity>
         <activity android:name=".Academic_Qualification" />
         <activity android:name=".ExamResultTable"></activity>
-        <activity android:name=".PreSchoolForm3"></activity>
+        <activity android:name=".SchoolEnrollment.PreSchoolForm3"></activity>
         <activity android:name=".ExamResultForm" />
         <activity android:name=".SchoolEnrollment.EnrollOrStatusPre" />
         <activity android:name=".SchoolEnrollment.PreSchoolForm2" />
