@@ -123,7 +123,7 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         }
 
         public Cursor query(String table,String[] columns,String selection,String[] selectionArgs,String groupBy,String having,String orderBy){
-        return mDatabase.query("MySekolahDB.db",null,null,null,null,null,null,null)
+        return mDatabase.query("MySekolahDB.db",null,null,null,null,null,null,null);
         }
 
 
