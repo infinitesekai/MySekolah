@@ -46,6 +46,18 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
             }
     }
 
+    @Override
+    public void onConfigure(SQLiteDatabase db) {
+        super.onConfigure(db);
+        db.enableWriteAheadLogging();
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+        db.disableWriteAheadLogging();
+    }
+
     public void openDatabase() {
         String dbPath = mContext.getDatabasePath(DBNAME).getPath();
         if (mDatabase != null && mDatabase.isOpen()) {
