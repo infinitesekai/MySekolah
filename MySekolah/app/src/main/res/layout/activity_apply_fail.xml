@@ -75,7 +75,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
 
-                    <ImageButton
+                    <ImageView
                         android:onClick="showPopup"
                         android:id="@+id/infoFailed"
                         android:layout_width="25dp"
