@@ -12,9 +12,12 @@
     <color name="remarksColor">#5AFF70</color>
     <color name="red">#CC0000</color>
     <color name="calenderMarkColor">#FF0000</color>
-    <color name="artisticColor">#E3DCFF</color>
-    <color name="realisticColor">#FCECD3</color>
-    <color name="enterprisingColor">#CEECFE</color>
-    <color name="investigativeColor">#A3EED9</color>
+    <color name="blueGrey">#E3DCFF</color>
+    <color name="veryLightPink">#FCECD3</color>
+    <color name="magicMint">#A3EEA7</color>
+    <color name="greyRed">#B8685E</color>
+    <color name="greyBlue">#26768F</color>
+    <color name="greyGreen">#2E8266</color>
+    <color name="greyPurple">#4F4461</color>
 
 </resources>
