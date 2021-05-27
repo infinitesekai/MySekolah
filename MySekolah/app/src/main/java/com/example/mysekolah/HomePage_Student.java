@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.mysekolah.PersonalityCareerTest.PersonalityTestHome;
+
 public class HomePage_Student extends Fragment implements View.OnClickListener {
 
     public CardView academic_qualification, exam_check, personality_check;

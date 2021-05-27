@@ -18,12 +18,12 @@
         <activity android:name=".SchoolEnrollment.PreSchoolForm2" />
         <activity android:name=".SchoolEnrollment.PreSchoolForm" />
         <activity
-            android:name=".ResultPersonalityTest"
+            android:name=".PersonalityCareerTest.ResultPersonalityTest"
             android:label="@string/title_activity_result_personality_test"
             android:theme="@style/Theme.MySekolah.NoActionBar"></activity>
-        <activity android:name=".PersonalTestQuestion" />
+        <activity android:name=".PersonalityCareerTest.PersonalTestQuestion" />
         <activity android:name=".InstuctionPage" />
-        <activity android:name=".PersonalityTestHome" />
+        <activity android:name=".PersonalityCareerTest.PersonalityTestHome" />
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
         <activity android:name=".Attendance_Form" />
@@ -33,7 +33,7 @@
         <activity android:name=".SchoolEnrollment.Enroll_Check_IC_Pre" />
         <activity android:name=".child_performance" />
         <activity android:name=".SchoolEnrollment.SchoolEnroll" />
-        <activity android:name=".NotificationPage" />
+        <activity android:name=".PersonalityCareerTest.NotificationPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".HomePage" />
         <activity android:name=".MainActivity">
