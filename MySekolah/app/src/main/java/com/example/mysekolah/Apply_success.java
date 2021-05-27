@@ -12,36 +12,41 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Apply_success extends AppCompatActivity {
     ImageView successinfo;
     Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_success);
+        dialog=new Dialog(this);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
 
-        /*
-        successinfo=findViewById(R.id.infoApproved);
-        dialog=new Dialog(this);
 
-        successinfo.setOnClickListener(new View.OnClickListener() {
+    }
+
+
+    public void showPopup(View v){
+        TextView close;
+
+        dialog.setContentView(R.layout.popup_approve);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        close=(TextView) dialog.findViewById(R.id.close_success);
+        close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               dialog.setContentView(R.layout.activity_apply_success);
-               dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.dismiss();
             }
-        })
-
-
-         */
-
+        });
+        dialog.show();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

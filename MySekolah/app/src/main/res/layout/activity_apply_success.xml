@@ -76,13 +76,14 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
 
-                    <ImageView
+                    <ImageButton
                         android:id="@+id/infoApproved"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginStart="250dp"
                         android:layout_marginTop="16dp"
-                        app:srcCompat="@drawable/info_icon" />
+                        app:srcCompat="@drawable/info_icon"
+                        android:onClick="showPopup"/>
 
                     <TextView
                         android:id="@+id/refno1"
