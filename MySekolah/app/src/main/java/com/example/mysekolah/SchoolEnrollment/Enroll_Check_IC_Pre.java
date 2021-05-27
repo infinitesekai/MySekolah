@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.DatabaseHelper;
 import com.example.mysekolah.HomePage;
 import com.example.mysekolah.NotificationPage;
@@ -43,8 +44,9 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity {
         ic= findViewById(R.id.editTextIC);
         check= findViewById(R.id.btnCheck);
 
+
         //Check exists database
-        File database= getApplicationContext().getDatabasePath(DatabaseHelper.DBNAME);
+       /* File database= getApplicationContext().getDatabasePath(DatabaseHelper.DBNAME);
         if(false == database.exists()){
             mDBHelper.getReadableDatabase();
             //database.close();
@@ -55,7 +57,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity {
                 Toast.makeText(this, "Copy data error", Toast.LENGTH_LONG).show();
                 return;
             }
-        }
+        }*/
 
 
         check.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +74,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity {
 
     }
 
-    private Boolean copyDatabase(Context context){
+    /*private Boolean copyDatabase(Context context){
         try{
             InputStream inputStream= context.getAssets().open(DatabaseHelper.DBNAME);
             String outFileName= DatabaseHelper.DBLOCATION+ DatabaseHelper.DBNAME;
@@ -91,7 +93,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity {
             e.printStackTrace();
             return false;
         }
-    }
+    }*/
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

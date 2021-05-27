@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.DatabaseHelper;
 import com.example.mysekolah.HomePage;
 import com.example.mysekolah.NotificationPage;
@@ -43,7 +44,7 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
     private boolean isAllFieldsChecked = false;
 
     private TextView ic_child, name_child, gender_child, race_child, religion_child, nationality_child;
-    private DatabaseHelper dbHelper;
+    //private DatabaseHelper dbHelper;
 
 
     @Override
@@ -61,10 +62,14 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
         postcode= findViewById(R.id.etPos);
         tel= findViewById(R.id.etTel);
         next= findViewById(R.id.btnNext);
-        dbHelper= new DatabaseHelper(getApplicationContext());
+        //dbHelper= new DatabaseHelper(getApplicationContext());
+        DatabaseAccess databaseAccess= DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+
 
         String check_IC_child= getIntent().getExtras().getString("ICNo");
-        Residents residents= dbHelper.getResidentbyIC(check_IC_child);
+        //Residents residents= dbHelper.getResidentbyIC(check_IC_child);
+        Residents residents= databaseAccess.getResidentbyIC(check_IC_child);
         ic_child.setText(residents.getICNo());
         name_child.setText(residents.getName());
         gender_child.setText(residents.getGender());

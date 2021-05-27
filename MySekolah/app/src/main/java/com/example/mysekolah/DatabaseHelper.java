@@ -6,22 +6,25 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 
-public class DatabaseHelper  extends SQLiteOpenHelper {
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+
+public class DatabaseHelper  extends SQLiteAssetHelper {
 
     public static final String DBNAME = "MySekolahDB.db";
-    public static final String DBLOCATION = "/data/data/com.example.mysekolah/databases/";
+    //public static final String DBLOCATION = "/data/data/com.example.mysekolah/databases/";
     public static final String TABLE_NAME1= "Resident";
-    private Context mContext;
-    private SQLiteDatabase mDatabase;
+    //private Context mContext;
+    //private SQLiteDatabase mDatabase;
+    private static final int DATABASE_VERSION = 1;
 
     public DatabaseHelper(Context context) {
-        super(context, DBNAME, null, 2);
-        this.mContext = context;
+        super(context, DBNAME, null, DATABASE_VERSION);
+        //this.mContext = context;
     }
 
 
 
-    @Override
+    /*@Override
     public void onCreate(SQLiteDatabase db) {
        super.onOpen(db);
        db.disableWriteAheadLogging();
@@ -45,9 +48,9 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         if(mDatabase!=null) {
             mDatabase.close();
         }
-    }
+    }*/
 
-    public Residents getResidentbyIC(String IC) {
+   /* public Residents getResidentbyIC(String IC) {
 
         Residents residents= null;
         openDatabase();
@@ -58,5 +61,5 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
         cursor.close();
         closeDatabase();
         return residents;
-    }
+    }*/
 }
