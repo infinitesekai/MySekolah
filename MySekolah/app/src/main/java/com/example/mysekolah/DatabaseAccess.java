@@ -34,8 +34,8 @@ public class DatabaseAccess {
 
     public Residents getResidentbyIC(String IC) {
 
-        Residents residents=null;
-        Cursor cursor = database.rawQuery("SELECT * FROM Resident WHERE ICNo = ? ", new String[] {IC}, null);
+        Residents residents= null;
+        Cursor cursor = database.rawQuery("SELECT * FROM Resident WHERE ICNo = ? ", new String[] {IC});
         //if(cursor!=null){
             if(cursor.moveToFirst()) {
                 residents = new Residents(cursor.getString(0), cursor.getString(1), cursor.getString(2)

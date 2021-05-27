@@ -9,6 +9,7 @@ public class Residents {
     private String religion;
     private String nationality;
 
+
     public Residents(String ICNo, String name, String gender,String races, String religion, String nationality) {
         this.ICNo = ICNo;
         this.name = name;
