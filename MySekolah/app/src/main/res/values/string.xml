@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="app_name">"My Sekolah"</string>
-    <string name="title_activity_result_personality_test">"title</string>
-    <string name="hello_blank_fragment">"Notif"</string>
+    <string name="app_name">My Sekolah</string>
+    <string name="title_activity_result_personality_test">title</string>
+    <string name="hello_blank_fragment">Notif</string>
+    <string name="academic_check">Academic Qualification</string>
+    <string name="exam_check">Check Exam Result</string>
+    <string name="personality_test">Personality and Career Test</string>
+    <string name="student_home">Student</string>
+    <string name="parent_home">Parent</string>
 </resources>
