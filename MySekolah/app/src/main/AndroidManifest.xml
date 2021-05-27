@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mysekolah">
-
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera2.full"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,10 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".Tertiary_Info"></activity>
+        <activity android:name=".Check_in"></activity>
+        <activity android:name=".Tertiary_Info" />
         <activity android:name=".Academic_Qualification" />
-        <activity android:name=".ExamResultTable"></activity>
-        <activity android:name=".SchoolEnrollment.PreSchoolForm3"></activity>
+        <activity android:name=".ExamResultTable" />
+        <activity android:name=".SchoolEnrollment.PreSchoolForm3" />
         <activity android:name=".ExamResultForm" />
         <activity android:name=".SchoolEnrollment.EnrollOrStatusPre" />
         <activity android:name=".SchoolEnrollment.PreSchoolForm2" />
@@ -20,7 +22,7 @@
         <activity
             android:name=".ResultPersonalityTest"
             android:label="@string/title_activity_result_personality_test"
-            android:theme="@style/Theme.MySekolah.NoActionBar"></activity>
+            android:theme="@style/Theme.MySekolah.NoActionBar" />
         <activity android:name=".PersonalTestQuestion" />
         <activity android:name=".InstuctionPage" />
         <activity android:name=".PersonalityTestHome" />
@@ -43,6 +45,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="barcode" />
     </application>
 
 </manifest>
