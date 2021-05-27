@@ -9,11 +9,11 @@
     <FrameLayout
         android:id="@+id/personalityTitle"
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:text="Personality and Career Test"
+            android:layout_height="wrap_content"
+            android:text="@string/test_title"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:layout_margin="35dp"
@@ -44,7 +44,7 @@
             android:elevation="20dp"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/lightBlue"
+            app:cardBackgroundColor="@color/greyBlue"
             app:cardCornerRadius="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,9 +73,9 @@
                     android:layout_marginEnd="88dp"
                     android:layout_marginBottom="7dp"
                     android:fontFamily="@font/robotobold"
-                    android:text="Take Test"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:text="@string/taking_test"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toTopOf="@+id/img_test"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/img_test"
@@ -89,8 +89,9 @@
                     android:layout_marginTop="17dp"
                     android:layout_marginEnd="28dp"
                     android:layout_marginBottom="31dp"
-                    android:text="Which Career Pathway is right for you?"
-                    android:textSize="15sp"
+                    android:text="@string/test_desc"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/img_test"
@@ -109,7 +110,7 @@
             android:elevation="20dp"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/lightGreen"
+            app:cardBackgroundColor="@color/greyGreen"
             app:cardCornerRadius="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -142,8 +143,8 @@
                     android:layout_marginBottom="50dp"
                     android:fontFamily="@font/robotobold"
                     android:text="Check Past Result"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/image_view1"
