@@ -1,54 +1,42 @@
-package com.example.mysekolah;
+package com.example.mysekolah.SchoolEnrollment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
+import com.example.mysekolah.Apply_success;
+import com.example.mysekolah.HomePage;
+import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.ProfilePage;
+import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class child_performance extends AppCompatActivity implements View.OnClickListener{
+public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClickListener {
 
-    public CardView exam,discipline,attendance,personalitytest;
+    CardView application, checkStatus;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_performance);
+        setContentView(R.layout.activity_enrolle_or_status_pre);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        attendance=findViewById(R.id.AttendanceCard);
-        exam=findViewById(R.id.ExamResultCard);
-       // discipline=findViewById(R.id.DisciplineCard);
-       // personalitytest.findViewById(R.id.PersonalityCard);
+        application = findViewById(R.id.ApplicationFormCard);
+        checkStatus = findViewById(R.id.CheckStatusCard);
 
-        attendance.setOnClickListener(this);
-        exam.setOnClickListener(this);
-       // discipline.setOnClickListener(this);
-       // personalitytest.setOnClickListener(this);
-
-        /*attendance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(child_performance.this, att_select_child.class);
-                startActivity(i);
-            }
-        });*/
-
-
+        application.setOnClickListener(this);
+        checkStatus.setOnClickListener(this);
     }
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -73,24 +61,22 @@ public class child_performance extends AppCompatActivity implements View.OnClick
             return false;
         }
     };
+
     @Override
     public void onClick(View v) {
         Intent i;
-        String examMessage= "exam";
-        String attendanceMessage= "attendance";
 
         switch (v.getId()) {
-            case R.id.AttendanceCard:
-                i = new Intent(this, att_select_child.class);
-                i.putExtra("message",attendanceMessage);
+            case R.id.ApplicationFormCard:
+                i = new Intent(this, Enroll_Check_IC_Pre.class);
                 startActivity(i);
                 break;
-            case R.id.ExamResultCard:
-                i = new Intent(this, att_select_child.class);
-                i.putExtra("message",examMessage);
+
+            case R.id.CheckStatusCard:
+                i = new Intent(this, Apply_success.class);
                 startActivity(i);
                 break;
+
         }
     }
-
 }

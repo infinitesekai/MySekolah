@@ -5,50 +5,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class child_performance extends AppCompatActivity implements View.OnClickListener{
+public class Tertiary_Info extends AppCompatActivity implements View.OnClickListener{
 
-    public CardView exam,discipline,attendance,personalitytest;
-
+    public CardView moe,upu,matrix,stpm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_performance);
+        setContentView(R.layout.activity_tertiary_info);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        attendance=findViewById(R.id.AttendanceCard);
-        exam=findViewById(R.id.ExamResultCard);
-       // discipline=findViewById(R.id.DisciplineCard);
-       // personalitytest.findViewById(R.id.PersonalityCard);
+        moe=findViewById(R.id.MoECard);
+        upu=findViewById(R.id.upuCard);
+        matrix=findViewById(R.id.matriculationCard);
+        stpm.findViewById(R.id.stpmCard);
 
-        attendance.setOnClickListener(this);
-        exam.setOnClickListener(this);
-       // discipline.setOnClickListener(this);
-       // personalitytest.setOnClickListener(this);
-
-        /*attendance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(child_performance.this, att_select_child.class);
-                startActivity(i);
-            }
-        });*/
-
-
+        moe.setOnClickListener(this);
+        upu.setOnClickListener(this);
+        matrix.setOnClickListener(this);
+        stpm.setOnClickListener(this);
     }
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -73,24 +58,38 @@ public class child_performance extends AppCompatActivity implements View.OnClick
             return false;
         }
     };
+
     @Override
     public void onClick(View v) {
         Intent i;
-        String examMessage= "exam";
-        String attendanceMessage= "attendance";
 
         switch (v.getId()) {
-            case R.id.AttendanceCard:
-                i = new Intent(this, att_select_child.class);
-                i.putExtra("message",attendanceMessage);
+            case R.id.MoECard:
+                i=new Intent(Intent.ACTION_VIEW);//startActivity(i);
+                i.setData(Uri.parse("https://www.moe.gov.my/en/?view=featured"));
                 startActivity(i);
                 break;
-            case R.id.ExamResultCard:
-                i = new Intent(this, att_select_child.class);
-                i.putExtra("message",examMessage);
+
+            case R.id.upuCard:
+            i=new Intent(Intent.ACTION_VIEW);//startActivity(i);
+            i.setData(Uri.parse("https://upu.mohe.gov.my/"));
+            startActivity(i);
+            break;
+
+            case R.id.matriculationCard:
+                i=new Intent(Intent.ACTION_VIEW);//startActivity(i);
+                i.setData(Uri.parse("https://matrikulasi.moe.gov.my/system/permohonan/index.cfm"));
                 startActivity(i);
                 break;
+
+            case R.id.stpmCard:
+                i=new Intent(Intent.ACTION_VIEW);//startActivity(i);
+                i.setData(Uri.parse("https://www.mpm.edu.my/en/"));
+                startActivity(i);
+                break;
+
         }
     }
+
 
 }

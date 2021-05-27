@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".child_performance"
-    android:background="@drawable/bg_gradient">
-
+    tools:context=".Tertiary_Info"  android:background="@drawable/bg_gradient">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +17,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="266dp"
             android:fontFamily="@font/robotobold"
-            android:text="Children Performance"
+            android:text="Tertiary Education Info"
             android:textColor="@color/white"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +40,7 @@
         android:background="@drawable/bg_round_rec" />
 
 
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,8 +52,10 @@
         app:layout_constraintStart_toStartOf="parent"
         >
 
+
+
         <androidx.cardview.widget.CardView
-            android:id="@+id/ExamResultCard"
+            android:id="@+id/MoECard"
             android:layout_width="150dp"
             android:layout_height="128dp"
             android:layout_margin="20dp"
@@ -71,14 +72,14 @@
 
 
                 <TextView
-                    android:id="@+id/examtext"
+                    android:id="@+id/moetext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="50dp"
                     android:fontFamily="@font/robotobold"
                     android:gravity="center_horizontal"
-                    android:text="Exam Result"
+                    android:text="MoE Official"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
@@ -93,7 +94,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/DisciplineCard"
+            android:id="@+id/upuCard"
             android:layout_width="150dp"
             android:layout_height="128dp"
             android:layout_margin="20dp"
@@ -108,14 +109,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/disciplinetext"
+                    android:id="@+id/uputext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="50dp"
                     android:fontFamily="@font/robotobold"
                     android:gravity="center_horizontal"
-                    android:text="Discipline"
+                    android:text="UPU (MoHE)"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
@@ -143,7 +144,7 @@
         >
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/AttendanceCard"
+            android:id="@+id/matriculationCard"
             android:layout_width="150dp"
             android:layout_height="128dp"
             android:layout_margin="20dp"
@@ -160,14 +161,14 @@
 
 
                 <TextView
-                    android:id="@+id/attendancetext"
+                    android:id="@+id/matriculationtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginBottom="52dp"
                     android:fontFamily="@font/robotobold"
                     android:gravity="center_horizontal"
-                    android:text="Attendance"
+                    android:text="Matriculation"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
@@ -182,7 +183,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/PersonalityCard"
+            android:id="@+id/stpmCard"
             android:layout_width="150dp"
             android:layout_height="128dp"
             android:layout_margin="20dp"
@@ -197,14 +198,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/personalitytext"
+                    android:id="@+id/stpmtext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginBottom="36dp"
+                    android:layout_marginBottom="52dp"
                     android:fontFamily="@font/robotobold"
                     android:gravity="center_horizontal"
-                    android:text="Personality and Career Test Result"
+                    android:text="STPM (UPU)"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
@@ -212,29 +213,13 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
-        android:layout_marginLeft="225dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/perfpic"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/status" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <FrameLayout
@@ -243,6 +228,7 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="44dp" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
