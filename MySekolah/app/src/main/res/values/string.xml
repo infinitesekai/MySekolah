@@ -9,4 +9,7 @@
     <string name="personality_test">Personality and Career Test</string>
     <string name="student_home">Student</string>
     <string name="parent_home">Parent</string>
+    <string name="test_title">Personality and Career Test</string>
+    <string name="taking_test">Take Test</string>
+    <string name="test_desc">Which Career Pathway is right for you?</string>
 </resources>
