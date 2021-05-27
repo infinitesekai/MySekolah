@@ -47,7 +47,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity {
         File database= getApplicationContext().getDatabasePath(DatabaseHelper.DBNAME);
         if(false == database.exists()){
             mDBHelper.getReadableDatabase();
-            database.close();
+            //database.close();
             //Copy db
             if (copyDatabase(this)){
                 Toast.makeText(this, "Copy databse sucess", Toast.LENGTH_LONG).show();
