@@ -20,17 +20,17 @@
             android:fontFamily="@font/robotobold" />
 
     </FrameLayout>
-    <View
+    <FrameLayout
         android:id="@+id/bg_round_rec"
-        android:layout_width="wrap_content"
-        android:layout_height="560dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_round_rec" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="581dp"
+        android:layout_below="@+id/personalityTitle"
+        android:background="@drawable/bg_round_rec">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_below="@+id/personalityTitle"
         android:layout_marginTop="60dp"
         android:orientation="vertical">
 
@@ -160,6 +160,7 @@
             tools:layout_editor_absoluteY="44dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+    </FrameLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
