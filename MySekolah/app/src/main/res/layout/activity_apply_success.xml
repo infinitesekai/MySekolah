@@ -82,7 +82,8 @@
                         android:layout_height="25dp"
                         android:layout_marginStart="250dp"
                         android:layout_marginTop="16dp"
-                        app:srcCompat="@drawable/info_icon" />
+                        app:srcCompat="@drawable/info_icon"
+                        android:onClick="showPopup"/>
 
                     <TextView
                         android:id="@+id/refno1"

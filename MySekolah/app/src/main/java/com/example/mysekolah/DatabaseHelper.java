@@ -28,14 +28,10 @@ public class DatabaseHelper  extends SQLiteAssetHelper {
     public void onCreate(SQLiteDatabase db) {
        super.onOpen(db);
        db.disableWriteAheadLogging();
-
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
-
     public void openDatabase() {
         String dbPath = mContext.getDatabasePath(DBNAME).getPath();
         if(mDatabase != null && mDatabase.isOpen()) {
@@ -43,7 +39,6 @@ public class DatabaseHelper  extends SQLiteAssetHelper {
         }
         mDatabase = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READWRITE);
     }
-
     public void closeDatabase() {
         if(mDatabase!=null) {
             mDatabase.close();
@@ -51,7 +46,6 @@ public class DatabaseHelper  extends SQLiteAssetHelper {
     }*/
 
    /* public Residents getResidentbyIC(String IC) {
-
         Residents residents= null;
         openDatabase();
         Cursor cursor = mDatabase.rawQuery("SELECT * FROM " + TABLE_NAME1 +" WHERE ICNo = ? ", new String[] {String.valueOf(IC)});

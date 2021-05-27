@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.mysekolah.Apply_success;
 import com.example.mysekolah.HomePage;
 import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
@@ -68,6 +69,11 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.ApplicationFormCard:
                 i = new Intent(this, Enroll_Check_IC_Pre.class);
+                startActivity(i);
+                break;
+
+            case R.id.CheckStatusCard:
+                i = new Intent(this, Apply_success.class);
                 startActivity(i);
                 break;
 
