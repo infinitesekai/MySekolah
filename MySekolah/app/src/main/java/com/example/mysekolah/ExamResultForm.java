@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.example.mysekolah.PersonalityCareerTest.NotificationPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ExamResultForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {

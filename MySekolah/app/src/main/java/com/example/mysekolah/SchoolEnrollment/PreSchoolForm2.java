@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.mysekolah.HomePage;
-import com.example.mysekolah.PersonalityCareerTest.NotificationPage;
+import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;

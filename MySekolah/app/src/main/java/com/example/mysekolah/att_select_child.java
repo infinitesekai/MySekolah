@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.mysekolah.PersonalityCareerTest.NotificationPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class att_select_child extends AppCompatActivity {

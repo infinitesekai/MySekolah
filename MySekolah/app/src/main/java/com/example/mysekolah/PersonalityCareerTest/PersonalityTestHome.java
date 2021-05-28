@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.mysekolah.InstuctionPage;
 import com.example.mysekolah.R;
 
 public class PersonalityTestHome extends AppCompatActivity implements View.OnClickListener {

@@ -1,4 +1,4 @@
-package com.example.mysekolah.PersonalityCareerTest;
+package com.example.mysekolah;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mysekolah.PersonalityCareerTest.NotificationPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Apply_success extends AppCompatActivity {

@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.view.View;
 
-import com.example.mysekolah.PersonalityCareerTest.NotificationPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Attendance_Form extends AppCompatActivity implements

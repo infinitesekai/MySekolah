@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.mysekolah.PersonalityCareerTest.NotificationPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Apply_pending extends AppCompatActivity {
