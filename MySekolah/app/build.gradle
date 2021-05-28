@@ -45,6 +45,8 @@ dependencies {
     implementation 'com.google.mlkit:barcode-scanning:16.1.2'
     //'sun.bob:mcalendarview:1.0.0'
 
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
+
 
     // CameraX core library using the camera2 implementation
     def camerax_version = "1.0.0"
