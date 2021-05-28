@@ -36,6 +36,7 @@ public class ResultPersonalityTest extends AppCompatActivity {
         cardView = findViewById(R.id.result_card);
     }
 
+    //expand and show less 
     public void showmore(View view){
         if (expandable_view.getVisibility() == View.GONE){
             imageView.setImageResource(R.drawable.arrow_up);
