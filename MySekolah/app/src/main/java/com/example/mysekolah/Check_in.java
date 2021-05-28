@@ -11,6 +11,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
@@ -22,11 +23,14 @@ import android.media.Image;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Size;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.barhopper.deeplearning.BarcodeDetectorClientOptions;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.barcode.Barcode;
@@ -56,6 +60,9 @@ public class Check_in extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_in);
 
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
         previewView=findViewById(R.id.preview);
         this.getWindow().setFlags(1024,1024);
 
@@ -84,6 +91,31 @@ public class Check_in extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
 
     }
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Fragment selectedFragment = null;
+
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    selectedFragment = new HomePage_Student();
+                    break;
+                case R.id.nav_notif:
+                    selectedFragment = new NotificationPage();
+                    break;
+                case R.id.nav_profile:
+                    selectedFragment = new ProfilePage();
+                    break;
+                case R.id.nav_search:
+                    selectedFragment = new SearchPage();
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return false;
+        }
+    };
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull @NotNull String[] permissions, @NonNull @NotNull int[] grantResults) {

@@ -44,7 +44,8 @@ public class bottom_dialog extends BottomSheetDialogFragment {
         button_visit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent("android.intent.action.view");
+                //Intent i=new Intent("android.intent.action.view");
+                Intent i=new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(fetchedurl));
                 startActivity(i);
             }
