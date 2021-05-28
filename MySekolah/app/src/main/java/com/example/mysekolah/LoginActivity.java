@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         ic_number =findViewById(R.id.etx_ic_number);
         password =findViewById(R.id.etx_password);
         btnlogin =findViewById(R.id.btn_login);
-        btnSignUp=findViewById(R.id.btn_signup);
+        btnSignUp=findViewById(R.id.btn_sign_up);
         DB =new DatabaseHelper(this);
 
 
@@ -60,7 +60,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,SignupActivity.class));
+            }
+        });
 
 
     }
