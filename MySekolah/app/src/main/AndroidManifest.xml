@@ -20,12 +20,12 @@
         <activity android:name=".SchoolEnrollment.PreSchoolForm2" />
         <activity android:name=".SchoolEnrollment.PreSchoolForm" />
         <activity
-            android:name=".ResultPersonalityTest"
+            android:name=".PersonalityCareerTest.ResultPersonalityTest"
             android:label="@string/title_activity_result_personality_test"
-            android:theme="@style/Theme.MySekolah.NoActionBar" />
-        <activity android:name=".PersonalTestQuestion" />
-        <activity android:name=".InstuctionPage" />
-        <activity android:name=".PersonalityTestHome" />
+            android:theme="@style/Theme.MySekolah.NoActionBar"></activity>
+        <activity android:name=".PersonalityCareerTest.PersonalTestQuestion" />
+        <activity android:name=".PersonalityCareerTest.InstuctionPage" />
+        <activity android:name=".PersonalityCareerTest.PersonalityTestHome" />
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
         <activity android:name=".Attendance_Form" />
@@ -45,10 +45,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="com.google.mlkit.vision.DEPENDENCIES"
-            android:value="barcode" />
     </application>
 
 </manifest>

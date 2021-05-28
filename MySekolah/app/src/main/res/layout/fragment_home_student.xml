@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/bg_gradient">
 
     <RelativeLayout
@@ -40,7 +40,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="581dp"
-                android:layout_below="@+id/msg_welcome"
                 android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
@@ -70,15 +69,14 @@
 
                 <android.widget.GridLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/newsCardArea"
+                    android:layout_height="wrap_content"
                     android:layout_margin="15dp"
                     android:columnCount="2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/enrollmentCard"
+                        android:id="@+id/academic_qualification"
                         android:layout_width="150dp"
                         android:layout_height="128dp"
                         android:layout_margin="20dp"
@@ -87,7 +85,7 @@
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:onClick="methodtoexecute"
-                        app:cardBackgroundColor="@color/lightBlue"
+                        app:cardBackgroundColor="@color/greyBlue"
                         app:cardCornerRadius="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,11 +94,12 @@
 
                             <ImageView
                                 android:id="@+id/image_view1"
-                                android:layout_width="40dp"
-                                android:layout_height="50dp"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
                                 android:layout_marginStart="88dp"
+                                android:layout_marginTop="10dp"
                                 android:layout_marginEnd="10dp"
-                                android:src="@drawable/school"
+                                android:src="@drawable/medal_white"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="1.0"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -113,9 +112,9 @@
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/robotobold"
                                 android:gravity="start"
-                                android:text="Enrolment Government School"
+                                android:text="@string/academic_check"
                                 android:textAllCaps="true"
-                                android:textColor="@color/black"
+                                android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -127,9 +126,8 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
-
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/CheckChildPerfCard"
+                        android:id="@+id/exam_check"
                         android:layout_width="150dp"
                         android:layout_height="128dp"
                         android:layout_margin="20dp"
@@ -138,7 +136,7 @@
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:onClick="methodtoexecute"
-                        app:cardBackgroundColor="@color/lightPink"
+                        app:cardBackgroundColor="@color/greyRed"
                         app:cardCornerRadius="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -151,7 +149,7 @@
                                 android:layout_height="50dp"
                                 android:layout_marginStart="88dp"
                                 android:layout_marginEnd="10dp"
-                                android:src="@drawable/schoolbag"
+                                android:src="@drawable/test_white"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="1.0"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -164,9 +162,9 @@
                                 android:layout_marginStart="10dp"
                                 android:fontFamily="@font/robotobold"
                                 android:gravity="start"
-                                android:text="Check Children Performance"
+                                android:text="@string/exam_check"
                                 android:textAllCaps="true"
-                                android:textColor="@color/black"
+                                android:textColor="@color/white"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -176,10 +174,65 @@
                                 app:layout_constraintTop_toBottomOf="@+id/image_view2" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/personality_test"
+                        android:layout_width="150dp"
+                        android:layout_height="128dp"
+                        android:layout_margin="20dp"
+                        android:clickable="true"
+                        android:elevation="12dp"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:onClick="methodtoexecute"
+                        app:cardBackgroundColor="@color/greyGreen"
+                        app:cardCornerRadius="8dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/image_view3"
+                                android:layout_width="40dp"
+                                android:layout_height="50dp"
+                                android:layout_marginStart="88dp"
+                                android:layout_marginEnd="10dp"
+                                android:src="@drawable/file_signature_white"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/robotobold"
+                                android:gravity="start"
+                                android:text="@string/personality_test"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/image_view3" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
                 </android.widget.GridLayout>
             </androidx.appcompat.widget.LinearLayoutCompat>
-
         </FrameLayout>
-    </RelativeLayout>
 
+<!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--            android:id="@+id/bottom_navigation"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:background="@color/cardview_light_background"-->
+<!--            app:menu="@menu/bottom_navigation" />-->
+    </RelativeLayout>
 </ScrollView>

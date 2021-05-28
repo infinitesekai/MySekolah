@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
     android:background="@drawable/bg_gradient"
-    tools:context=".ResultPersonalityTest">
+    tools:context=".PersonalityCareerTest.ResultPersonalityTest">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

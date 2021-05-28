@@ -4,20 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InstuctionPage"
+    tools:context=".PersonalityCareerTest.InstuctionPage"
     android:background="@drawable/bg_gradient">
 
     <FrameLayout
         android:id="@+id/title_instruction"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="35dp"
             android:layout_marginEnd="161dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/robotobold"
             android:text="Instruction"
             android:textColor="@color/white"
@@ -38,7 +39,7 @@
             app:cardCornerRadius="8dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -94,9 +95,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="125dp"
-                    android:background="@color/black"
+                    android:background="@drawable/rounded_botton"
                     android:text="Start"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -109,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/cardview_light_background"
-        app:menu="@menu/bottom_navigation"/>
+        app:menu="@menu/bottom_navigation" />
 
 
 </RelativeLayout>
