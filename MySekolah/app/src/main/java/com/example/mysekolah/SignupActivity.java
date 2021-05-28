@@ -21,7 +21,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup2);
 
-        ic_number =findViewById(R.id.etx_ic_number);
+        ic_number =findViewById(R.id.etx_signin_ic);
         password =findViewById(R.id.etx_signuppassword);
         repassword =findViewById(R.id.etx_signuprepassword);
         signup =findViewById(R.id.btn_signup);
@@ -67,7 +67,7 @@ public class SignupActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
             }
         });

@@ -49,8 +49,9 @@ public class LoginActivity extends AppCompatActivity {
                     if(checkicpass==true){
                         Toast.makeText(LoginActivity.this,"Sign in successfully",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
-
+                        finish();
                     }else{
                         //go to
                         Toast.makeText(LoginActivity.this,"invalid credetials",Toast.LENGTH_SHORT).show();
