@@ -38,10 +38,10 @@
         <activity android:name=".SchoolEnrollment.Enroll_Check_IC_Pre" />
         <activity android:name=".child_performance" />
         <activity android:name=".SchoolEnrollment.SchoolEnroll" />
-        <activity android:name=".NotificationPage" />
-        <activity android:name=".ProfilePage" />
-        <activity android:name=".HomePage" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".SignupActivity"/>
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".IntroductoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

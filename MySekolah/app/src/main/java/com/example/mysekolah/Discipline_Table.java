@@ -1,39 +1,23 @@
 package com.example.mysekolah;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class SchoolEnroll extends AppCompatActivity implements View.OnClickListener {
-
-
-    CardView preschool, primary, secondary;
+public class Discipline_Table extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_school_enroll);
+        setContentView(R.layout.activity_discipline_table);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
-        preschool = findViewById(R.id.preSchoolCard);
-        primary = findViewById(R.id.priSchoolCard);
-        secondary = findViewById(R.id.secSchoolCard);
-
-        preschool.setOnClickListener(this);
-        primary.setOnClickListener(this);
-        secondary.setOnClickListener(this);
-
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,17 +43,4 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
             return false;
         }
     };
-
-    @Override
-    public void onClick(View v) {
-        Intent i;
-
-        switch (v.getId()) {
-            case R.id.preSchoolCard:
-                i = new Intent(this, Enroll_Check_IC.class);
-                startActivity(i);
-                break;
-
-        }
-    }
 }

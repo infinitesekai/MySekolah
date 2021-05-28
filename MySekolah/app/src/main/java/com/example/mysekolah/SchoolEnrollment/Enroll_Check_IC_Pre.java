@@ -32,7 +32,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity {
 
         mDBHelper= new DatabaseHelper(this);
         ic= findViewById(R.id.editTextIC);
-        check= findViewById(R.id.btnCheck);
+        check= findViewById(R.id.btn_check);
 
 
         //Check exists database

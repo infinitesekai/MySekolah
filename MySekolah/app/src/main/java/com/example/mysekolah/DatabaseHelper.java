@@ -1,59 +1,64 @@
 package com.example.mysekolah;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
 
-import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
+import androidx.annotation.Nullable;
 
-public class DatabaseHelper  extends SQLiteAssetHelper {
-
-    public static final String DBNAME = "MySekolahDB.db";
-    //public static final String DBLOCATION = "/data/data/com.example.mysekolah/databases/";
-    public static final String TABLE_NAME1= "Resident";
-    //private Context mContext;
-    //private SQLiteDatabase mDatabase;
-    private static final int DATABASE_VERSION = 1;
-
-    public DatabaseHelper(Context context) {
-        super(context, DBNAME, null, DATABASE_VERSION);
-        //this.mContext = context;
+public class DatabaseHelper extends SQLiteOpenHelper {
+    public static final String DBNAME ="Login.db";
+    public DatabaseHelper(@Nullable Context context) {
+        super(context, DBNAME, null, 1);
     }
-
-
-
-    /*@Override
-    public void onCreate(SQLiteDatabase db) {
-       super.onOpen(db);
-       db.disableWriteAheadLogging();
-    }
+    //To create table on database
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    }
-    public void openDatabase() {
-        String dbPath = mContext.getDatabasePath(DBNAME).getPath();
-        if(mDatabase != null && mDatabase.isOpen()) {
-            return;
-        }
-        mDatabase = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READWRITE);
-    }
-    public void closeDatabase() {
-        if(mDatabase!=null) {
-            mDatabase.close();
-        }
-    }*/
+    public void onCreate(SQLiteDatabase MyDB) {
+        MyDB.execSQL("CREATE TABLE USERS(ic_number TEXT primary key,password TEXT)");
 
-   /* public Residents getResidentbyIC(String IC) {
-        Residents residents= null;
-        openDatabase();
-        Cursor cursor = mDatabase.rawQuery("SELECT * FROM " + TABLE_NAME1 +" WHERE ICNo = ? ", new String[] {String.valueOf(IC)});
-        cursor.moveToFirst();
-        residents = new Residents(cursor.getString(0), cursor.getString(1), cursor.getString(2)
-                                ,cursor.getString(5), cursor.getString(6), cursor.getString(7));
-        cursor.close();
-        closeDatabase();
-        return residents;
-    }*/
-}
+    }
+    //drop the table if already exist
+    @Override
+    public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
+        MyDB.execSQL("DROP TABLE IF EXISTS USERS");
+
+    }
+    //to insert data
+    public Boolean inserData(String ic_number,String password){
+        SQLiteDatabase MyDB =this.getWritableDatabase();
+        ContentValues contentValues =new ContentValues();
+        contentValues.put("ic_number",ic_number);
+        contentValues.put("password",password);
+        long result =MyDB.insert("users",null,contentValues);
+
+        if(result==1) return false;
+        else
+            return true;
+    }
+    //to check the ic_number
+    public Boolean checkuseric(String ic_number) {
+
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("SELECT * from users where ic_number= ?", new String[]{ic_number});
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+
+    }
+        //to check the password
+        public Boolean checkusericpassword(String ic_number, String password){
+        SQLiteDatabase MyDB =this.getWritableDatabase();
+        Cursor cursor =MyDB.rawQuery("SELECT * FROM users WHERE ic_number = ? and password =?",new String[]{ic_number,password});
+        if(cursor.getCount()>0)
+            return true;
+
+        else return false;
+
+        }
+
+
+
+    }
