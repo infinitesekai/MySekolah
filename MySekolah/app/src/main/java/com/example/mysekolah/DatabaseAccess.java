@@ -64,4 +64,8 @@ public class DatabaseAccess {
         cursor.close();
         return districts;
     }
+
+    public Cursor DisplayExamResult(){
+        return database.rawQuery("SELECT * FROM Result ", null);
+    }
 }
