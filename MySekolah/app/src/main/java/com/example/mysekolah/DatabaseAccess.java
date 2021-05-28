@@ -5,6 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.cottacush.android.currencyedittext.CurrencyEditText;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseAccess {
 
     private SQLiteOpenHelper openHelper;
@@ -43,5 +48,20 @@ public class DatabaseAccess {
             }
         cursor.close();
         return residents;
+    }
+
+    // Get all spinner district values
+    public List<String> getAllDistrict(String state){
+        List<String> districts= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT * FROM Places WHERE State = ?", new String[] {state});
+        if(cursor.moveToFirst()){
+            do{
+                districts.add(cursor.getString(1));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return districts;
     }
 }

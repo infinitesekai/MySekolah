@@ -14,12 +14,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage;
 import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class PreSchoolForm2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -112,6 +115,32 @@ public class PreSchoolForm2 extends AppCompatActivity implements AdapterView.OnI
         }
     };
 
+    private void loadSpinnerData(String selectedState) {
+
+        Spinner district_spin = (Spinner) findViewById(R.id.spinnerDistrictPr);
+        district_spin.setOnItemSelectedListener(this);
+
+        // database handler
+        DatabaseAccess db= DatabaseAccess.getInstance(this);
+
+        // Spinner Drop down elements
+        List<String> districts= db.getAllDistrict(selectedState);
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, districts);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        district_spin.setAdapter(dataAdapter);
+
+
+
+    }
+
     private boolean CheckAllField() {
         if (addressPR.length()==0){
             addressPR.setError("This field is required");
@@ -140,6 +169,13 @@ public class PreSchoolForm2 extends AppCompatActivity implements AdapterView.OnI
     //Performing action onItemSelected and onNothing selected
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getId()== R.id.spinnerStatePr){
+            String selectedStatePr = parent.getItemAtPosition(position).toString();
+            loadSpinnerData(selectedStatePr);
+
+        }else if (parent.getId()==R.id.spinnerDistrictPr){
+            String selectedDistrictPr = parent.getItemAtPosition(position).toString();
+        }
 
     }
 

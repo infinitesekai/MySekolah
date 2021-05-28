@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -24,15 +25,17 @@ import com.example.mysekolah.Residents;
 import com.example.mysekolah.SearchPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private String[] state= {"Johor", "Kedah", "Kelantan", "Malacca", "Negeri Semnilan", "Pahang",
             "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
             "Putarjaya", "Labuan"};
 
-    private String[] district= {"Johor", "Kedah", "Kelantan", "Malacca", "Negeri Semnilan", "Pahang",
+   /* private String[] district= {"Johor", "Kedah", "Kelantan", "Malacca", "Negeri Semnilan", "Pahang",
             "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
-            "Putarjaya", "Labuan"};
+            "Putarjaya", "Labuan"};*/
 
     private Button next;
     private EditText address,postcode, tel;
@@ -82,8 +85,6 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
         Spinner state_spin = (Spinner) findViewById(R.id.spinnerState);
         state_spin.setOnItemSelectedListener(this);
 
-        Spinner district_spin = (Spinner) findViewById(R.id.spinnerDistrict);
-        district_spin.setOnItemSelectedListener(this);
 
 
         //Creating the ArrayAdapter instance having the country list
@@ -92,10 +93,7 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
         //Setting the ArrayAdapter data on the Spinner
         state_spin.setAdapter(state_aa);
 
-        ArrayAdapter district_aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,district);
-        district_aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        district_spin.setAdapter(district_aa);
+
 
 
         //next button operation
@@ -115,6 +113,32 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+    }
+
+    private void loadSpinnerData(String selectedState) {
+
+        Spinner district_spin = (Spinner) findViewById(R.id.spinnerDistrict);
+        district_spin.setOnItemSelectedListener(this);
+
+        // database handler
+        DatabaseAccess db= DatabaseAccess.getInstance(this);
+
+        // Spinner Drop down elements
+        List<String> districts= db.getAllDistrict(selectedState);
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, districts);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        district_spin.setAdapter(dataAdapter);
+
+
 
     }
 
@@ -158,6 +182,13 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
     //Performing action onItemSelected and onNothing selected
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getId()== R.id.spinnerState){
+            String selectedState = parent.getItemAtPosition(position).toString();
+            loadSpinnerData(selectedState);
+
+        }else if (parent.getId()==R.id.spinnerDistrict){
+            String selectedDistrict = parent.getItemAtPosition(position).toString();
+        }
 
     }
 
