@@ -28,7 +28,7 @@ public class Academic_Qualification extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new HomePage();
+                    selectedFragment = new HomePage_Student();
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
