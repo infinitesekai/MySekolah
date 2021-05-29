@@ -15,9 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".Discipline_Result"></activity>
+        <activity android:name=".Export_Qualification"></activity>
+        <activity android:name=".Discipline_Result" />
         <activity android:name=".Discipline_Form" />
-
         <activity android:name=".sign_up_role" />
         <activity android:name=".Sign_Up" />
         <activity android:name=".Login_page" />
@@ -52,7 +52,7 @@
         <activity android:name=".NotificationPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".HomePage" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Introductory_Page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
