@@ -61,7 +61,7 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
                 startActivity(i);
                 break;
            case R.id.check_in:
-                i=new Intent(getActivity(), Check_in.class);
+                i=new Intent(getActivity(), Check_in_scan.class);
                 startActivity(i);
                break;
 

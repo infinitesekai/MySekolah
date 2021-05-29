@@ -235,7 +235,7 @@
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:onClick="methodtoexecute"
-                        app:cardBackgroundColor="@color/magicMint"
+                        app:cardBackgroundColor="@color/greyOrange"
                         app:cardCornerRadius="8dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout

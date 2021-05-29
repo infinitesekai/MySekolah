@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mysekolah">
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera2.full"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera2.full" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".Check_in"></activity>
+        <activity android:name=".Discipline_Result"></activity>
+        <activity android:name=".Discipline_Form" />
+
+        <activity android:name=".sign_up_role" />
+        <activity android:name=".Sign_Up" />
+        <activity android:name=".Login_page" />
+        <activity android:name=".Check_in_scan" />
+        <activity android:name=".Check_in" />
         <activity android:name=".Tertiary_Info" />
         <activity android:name=".Academic_Qualification" />
         <activity android:name=".ExamResultTable" />
@@ -23,9 +34,11 @@
         <activity
             android:name=".PersonalityCareerTest.ResultPersonalityTest"
             android:label="@string/title_activity_result_personality_test"
-            android:theme="@style/Theme.MySekolah.NoActionBar"></activity>
+            android:theme="@style/Theme.MySekolah.NoActionBar" />
         <activity android:name=".PersonalityCareerTest.PersonalTestQuestion" />
-        <activity android:name=".PersonalityCareerTest.InstuctionPage" />
+        <activity
+            android:name=".PersonalityCareerTest.InstuctionPage"
+            android:theme="@style/Theme.MySekolah.PopMe" />
         <activity android:name=".PersonalityCareerTest.PersonalityTestHome" />
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
@@ -39,7 +52,8 @@
         <activity android:name=".NotificationPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".HomePage" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".Introductory_Page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

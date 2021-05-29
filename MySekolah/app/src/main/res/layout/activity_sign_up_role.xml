@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".sign_up_role"
+    android:background="@drawable/bg_gradient"
+    android:scrollbarSize="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bg_round_rec">
+
+        <TextView
+            android:id="@+id/tx_signupas"
+            android:layout_width="236dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="266dp"
+            android:fontFamily="@font/robotobold"
+            android:text="Sign up as"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.757" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/bg_round_rec"
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/bg_round_rec" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/parentCard"
+            android:layout_width="314dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="253dp"
+            android:layout_marginEnd="68dp"
+            android:layout_marginBottom="45dp"
+            android:clickable="true"
+            android:elevation="12dp"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+
+            app:cardBackgroundColor="@color/lightBlue"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/studentCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.525"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tx_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="160dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/robotobold"
+                android:text="parent"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/img_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_view2"
+
+                />
+
+            <ImageView
+                android:id="@+id/img_parent"
+                android:layout_width="169dp"
+                android:layout_height="165dp"
+                app:srcCompat="@drawable/parent_charac" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/studentCard"
+            android:layout_width="314dp"
+            android:layout_height="169dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="73dp"
+            android:layout_marginBottom="131dp"
+            app:cardBackgroundColor="#D7F6B4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/parentCard">
+
+            <ImageView
+                android:id="@+id/img_student"
+                android:layout_width="117dp"
+                android:layout_height="211dp"
+                app:srcCompat="@drawable/student_charac" />
+
+            <TextView
+                android:id="@+id/tx_student"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="160dp"
+                android:layout_marginTop="55dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Student"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_view2"
+                />
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
