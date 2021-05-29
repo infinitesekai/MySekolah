@@ -123,10 +123,14 @@
                android:id="@+id/result_grid"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_alignParentLeft="true"
+               android:textAlignment="center"
+               android:gravity="center"
                android:fastScrollAlwaysVisible="true"
                android:fastScrollEnabled="true"
                android:numColumns= "3"
+               android:columnWidth="50dp"
+               android:stretchMode="columnWidth"
+               android:horizontalSpacing="10dp"
             >
 
            </GridView>
