@@ -39,26 +39,26 @@ public class Academic_Qualification extends AppCompatActivity {
 
         String current_IC = getIntent().getExtras().getString("ICNo");
         Residents residents = databaseAccess.getResidentbyIC(current_IC);
-        //Qualification qualification_record=databaseAccess.DisplayQualification(current_IC);
+       /// Qualification qualification_record=databaseAccess.DisplayQualification(current_IC);
 
         ic.setText(residents.getICNo());
         name.setText(residents.getName());
 
-       // ic.setText(qualification_record.getICNo());
-       // name.setText(qualification_record.getName());
+//       ic.setText(qualification_record.getICNo());
+//        name.setText(qualification_record.getName());
 
 
 
-        //Qualification qualification_record = databaseAccess.DisplayQualification(current_IC);
-        /*
-           preschool.setText(qualification_record.getPreSchool());
-            pre_year.setText(qualification_record.getPreYear());
-            primary_school.setText(qualification_record.getPrimarySchool());
-            primary_year.setText(qualification_record.getPrimaryYear());
-        secondary_school.setText(qualification_record.getSecondarySchool());
-        secondary_year.setText(qualification_record.getSecondaryYear());
-            qualification.setText(qualification_record.getqualification());
-            qualification_year.setText(qualification_record.getqualificationYear());*/
+//        Qualification qualification_record = databaseAccess.DisplayQualification(current_IC);
+
+//           preschool.setText(qualification_record.getPreSchool());
+//            pre_year.setText(qualification_record.getPreYear());
+//            primary_school.setText(qualification_record.getPrimarySchool());
+//            primary_year.setText(qualification_record.getPrimaryYear());
+//        secondary_school.setText(qualification_record.getSecondarySchool());
+//        secondary_year.setText(qualification_record.getSecondaryYear());
+//            qualification.setText(qualification_record.getqualification());
+//            qualification_year.setText(qualification_record.getqualificationYear());
 
         databaseAccess.close();
 
