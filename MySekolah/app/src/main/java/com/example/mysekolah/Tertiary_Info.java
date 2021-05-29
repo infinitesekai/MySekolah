@@ -27,7 +27,7 @@ public class Tertiary_Info extends AppCompatActivity implements View.OnClickList
         moe=findViewById(R.id.MoECard);
         upu=findViewById(R.id.upuCard);
         matrix=findViewById(R.id.matriculationCard);
-        stpm.findViewById(R.id.stpmCard);
+        stpm=findViewById(R.id.stpmCard);
 
         moe.setOnClickListener(this);
         upu.setOnClickListener(this);
@@ -43,7 +43,7 @@ public class Tertiary_Info extends AppCompatActivity implements View.OnClickList
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new HomePage();
+                    selectedFragment = new HomePage_Student();
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();

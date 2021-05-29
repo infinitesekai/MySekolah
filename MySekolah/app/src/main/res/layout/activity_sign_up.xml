@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sign_Up"
+    android:background="@drawable/bg_gradient"
+    android:scrollbarSize="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bg_round_rec">
+
+        <TextView
+            android:id="@+id/tx_signupas"
+            android:layout_width="345dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="266dp"
+            android:fontFamily="@font/robotobold"
+            android:text="Create an accout"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.757" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/bg_round_rec"
+        android:layout_width="match_parent"
+        android:layout_height="560dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/bg_round_rec" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/etx_signuprepassword"
+            style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="116dp"
+            android:layout_marginBottom="36dp"
+            android:ems="10"
+            android:hint="Repassword"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/btn_signup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etx_signuppassword"
+            app:layout_constraintVertical_bias="0.357" />
+
+        <ImageView
+            android:id="@+id/img_signinic"
+            android:layout_width="32dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="320dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/img_setpassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/etx_signin_ic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.852"
+            app:srcCompat="@drawable/user" />
+
+        <ImageView
+            android:id="@+id/img_setpassword"
+            android:layout_width="32dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/img_setpassword2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/etx_signuppassword"
+            app:layout_constraintTop_toBottomOf="@+id/img_signinic"
+            app:srcCompat="@drawable/login" />
+
+        <ImageView
+            android:id="@+id/img_setpassword2"
+            android:layout_width="32dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="250dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/etx_signuprepassword"
+            app:layout_constraintTop_toBottomOf="@+id/img_setpassword"
+            app:srcCompat="@drawable/login" />
+
+        <EditText
+            android:id="@+id/etx_signin_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="300dp"
+            android:layout_marginEnd="116dp"
+            android:layout_marginBottom="50dp"
+            android:backgroundTint="#7997B9"
+            android:ems="10"
+            android:hint="IC number"
+            android:inputType="numberSigned"
+            android:shadowColor="#ECE6E6"
+            app:layout_constraintBottom_toTopOf="@+id/etx_signuppassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etx_signuppassword"
+            style="@android:style/Widget.DeviceDefault.AutoCompleteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="116dp"
+            android:layout_marginBottom="69dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/btn_signup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etx_signin_ic" />
+
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="125dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="123dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="163dp"
+            android:layout_marginBottom="150dp"
+            android:background="@color/black"
+            android:text="Sign up"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etx_signuppassword" />
+
+        <Button
+            android:id="@+id/btn_signin"
+            android:layout_width="294dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="123dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="163dp"
+            android:layout_marginBottom="57dp"
+            android:background="@color/black"
+            android:text="existing user?Sign in now"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_signup" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
