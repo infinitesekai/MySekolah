@@ -68,4 +68,17 @@ public class DatabaseAccess {
     public Cursor DisplayExamResult(){
         return database.rawQuery("SELECT * FROM Result ", null);
     }
+
+    public  Qualification DisplayQualification(String IC){
+        Qualification qualifications= null;
+        Cursor cursor = database.rawQuery("SELECT ICNo,Name,PreSchool,PreYear,PrimarySchool,PrimaryYear,SecondarySchool,SecondaryYear,qualification,qualificationYear FROM Qualification join Resident on Qualification.ICNo=Resident.ICNo WHERE ICNo = ? ", new String[] {IC});
+        if(cursor.moveToFirst()) {
+            qualifications = new Qualification(cursor.getString(0),cursor.getString(1), cursor.getString(2)
+                    , cursor.getString(3), cursor.getString(4), cursor.getString(5)
+                    , cursor.getString(6), cursor.getString(7), cursor.getString(8),
+                    cursor.getString(9));
+        }
+        cursor.close();
+        return qualifications;
+    }
 }
