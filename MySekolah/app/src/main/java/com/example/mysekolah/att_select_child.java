@@ -42,6 +42,10 @@ public class att_select_child extends AppCompatActivity {
                         i= new Intent(att_select_child.this, Attendance_Form.class);
                         startActivity(i);
                         break;
+                    case ("discipline"):
+                        i= new Intent(att_select_child.this, Discipline_Form.class);
+                        startActivity(i);
+                        break;
                 }
 
             }

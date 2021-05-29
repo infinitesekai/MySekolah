@@ -46,7 +46,7 @@ public class Discipline_Form extends AppCompatActivity implements
         showbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(Discipline_Form.this, Attendance_Table.class);
+                Intent i= new Intent(Discipline_Form.this, Discipline_Result.class);
                 startActivity(i);
             }
         });
