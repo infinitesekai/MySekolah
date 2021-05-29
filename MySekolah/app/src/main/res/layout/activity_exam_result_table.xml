@@ -127,7 +127,6 @@
                android:fastScrollAlwaysVisible="true"
                android:fastScrollEnabled="true"
                android:numColumns= "3"
-               android:horizontalSpacing="100dp"
             >
 
            </GridView>
