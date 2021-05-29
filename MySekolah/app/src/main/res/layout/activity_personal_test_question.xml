@@ -9,10 +9,10 @@
     <FrameLayout
         android:id="@+id/personalityTitle"
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="wrap_content">
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Test Started"
             android:textColor="@color/white"
             android:textSize="30sp"
@@ -22,16 +22,9 @@
     </FrameLayout>
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/personalityTitle">
-
-        <View
-            android:id="@+id/bg_round_rec"
-            android:layout_width="wrap_content"
-            android:layout_height="620dp"
-            android:background="@drawable/bg_round_rec" />
-    </FrameLayout>
-
+        android:layout_height="match_parent"
+        android:layout_below="@+id/personalityTitle"
+        android:background="@drawable/bg_round_rec">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_height="match_parent"
@@ -132,8 +125,7 @@
 
         </LinearLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
