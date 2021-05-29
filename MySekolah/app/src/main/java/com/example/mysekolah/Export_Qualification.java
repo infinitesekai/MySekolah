@@ -84,7 +84,7 @@ public class Export_Qualification extends AppCompatActivity {
                 " \n" +
                 "  <tr>\n" +
                 "    <td>No IC</td>\n" +
-                "    <td>"+ic+ "</td>\n" +
+                "    <td >"+ic+ "</td>\n" +
                 "  </tr>\n" +
                 "  <tr>\n" +
                 "    <td>Pre-School</td>\n" +
@@ -114,6 +114,9 @@ public class Export_Qualification extends AppCompatActivity {
         webView.loadDataWithBaseURL(null,HTML,"text/html","utf-8",null);
 
         databaseAccess.close();
+
+
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -145,14 +148,14 @@ public class Export_Qualification extends AppCompatActivity {
         Context context=Export_Qualification.this;
         PrintManager printManager=(PrintManager)Export_Qualification.this.getSystemService(context.PRINT_SERVICE);
 
-     /*   PrintDocumentAdapter adapter=null;
+       PrintDocumentAdapter adapter=null;
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.P){
-            adapter=webView.createPrintDocumentAdapter();
+            adapter=webView.createPrintDocumentAdapter();//deprecated but still functional
         }
         String JobName=getString(R.string.app_name) +"Document";
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.P){
             PrintJob printJob=printManager.print(JobName,adapter,new PrintAttributes.Builder().build());
-        }*/
+        }
 
 
 
