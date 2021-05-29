@@ -5,14 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -30,13 +26,13 @@ public class child_performance extends AppCompatActivity implements View.OnClick
 
         attendance=findViewById(R.id.AttendanceCard);
         exam=findViewById(R.id.ExamResultCard);
-       // discipline=findViewById(R.id.DisciplineCard);
-       // personalitytest.findViewById(R.id.PersonalityCard);
+       //discipline=findViewById(R.id.DisciplineCard);
+        //personalitytest.findViewById(R.id.PersonalityCard);
 
         attendance.setOnClickListener(this);
         exam.setOnClickListener(this);
-       // discipline.setOnClickListener(this);
-       // personalitytest.setOnClickListener(this);
+        //discipline.setOnClickListener(this);
+        //personalitytest.setOnClickListener(this);
 
         /*attendance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +86,11 @@ public class child_performance extends AppCompatActivity implements View.OnClick
                 i.putExtra("message",examMessage);
                 startActivity(i);
                 break;
+
+
+
+
+
         }
     }
 
