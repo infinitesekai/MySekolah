@@ -86,6 +86,10 @@ public class Export_Qualification extends AppCompatActivity {
                 "    <td>No IC</td>\n" +
                 "    <td >"+ic+ "</td>\n" +
                 "  </tr>\n" +
+                        "  <tr>\n" +
+                        "    <td>Name</td>\n" +
+                        "    <td >"+name+ "</td>\n" +
+                        "  </tr>\n" +
                 "  <tr>\n" +
                 "    <td>Pre-School</td>\n" +
                 "    <td>"+preschool+"</td>\n" +
