@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mysekolah">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -7,6 +8,10 @@
     <uses-feature android:name="android.hardware.camera2.full" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29"
+        tools:ignore="ScopedStorage"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,8 +19,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MySekolah">
-        <activity android:name=".Export_Qualification"></activity>
+        android:theme="@style/Theme.MySekolah"
+        android:requestLegacyExternalStorage="true"
+        >
+        <activity android:name=".ExportExamResult"></activity>
+        <activity android:name=".Export_Qualification" />
         <activity android:name=".Discipline_Result" />
         <activity android:name=".Discipline_Form" />
         <activity android:name=".sign_up_role" />
@@ -60,6 +68,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_path" />
+        </provider>
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@ public class Qualification {
     private String qualificationYear;
 
     public Qualification (String ICNo,String Name,String PreSchool,String PreYear,String PrimarySchool,String PrimaryYear,String SecondarySchool,String SecondaryYear,String qualification,String qualificationYear){
-       this.ICNo=ICNo;
+        this.ICNo=ICNo;
         this.Name=Name;
         this.PreSchool=PreSchool;
         this.PreYear=PreYear;

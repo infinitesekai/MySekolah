@@ -65,8 +65,61 @@ public class DatabaseAccess {
         return districts;
     }
 
-    public Cursor DisplayExamResult(){
-        return database.rawQuery("SELECT * FROM Result ", null);
+    public List<ExamResult> DisplayExamResult(String ic,String school, String year, String test){
+
+        List<ExamResult> resultList= new ArrayList<ExamResult>();
+
+        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+
+        if (cursor.moveToFirst()){
+            do{
+                ExamResult result= new ExamResult();
+
+                result.setSubject(cursor.getString(0));
+                result.setMark(cursor.getString(1));
+                result.setGrade(cursor.getString(2));
+
+
+                String subject= cursor.getString(0);
+                String mark= cursor.getString(1);
+                String grade= cursor.getString(2);
+
+                ExamResultTable.resultList.add(subject);
+                ExamResultTable.resultList.add(mark);
+                ExamResultTable.resultList.add(grade);
+
+
+            }while (cursor.moveToNext());
+        }
+        return resultList;
+    }
+
+    public List<ExamResult> ExportExamResult(String ic,String school, String year, String test){
+
+        List<ExamResult> resultList= new ArrayList<ExamResult>();
+
+        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+
+        if (cursor.moveToFirst()){
+            do{
+                ExamResult result= new ExamResult();
+
+                result.setSubject(cursor.getString(0));
+                result.setMark(cursor.getString(1));
+                result.setGrade(cursor.getString(2));
+
+
+                String subject= cursor.getString(0);
+                String mark= cursor.getString(1);
+                String grade= cursor.getString(2);
+
+                ExportExamResult.resultList.add(subject);
+                ExportExamResult.resultList.add(mark);
+                ExportExamResult.resultList.add(grade);
+
+            }while (cursor.moveToNext());
+        }
+        return resultList;
     }
 
 
