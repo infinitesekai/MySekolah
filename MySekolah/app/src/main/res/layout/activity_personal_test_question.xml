@@ -21,7 +21,7 @@
 
     </FrameLayout>
     <FrameLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/personalityTitle"
         android:background="@drawable/bg_round_rec">
@@ -37,17 +37,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Question "
-                android:layout_marginStart="150dp"
-                android:textSize="22sp"/>
+
             <TextView
                 android:id="@+id/txt_numbering"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1"
+                android:gravity="center"
+                android:text="@string/question"
                 android:textSize="22sp"/>
         </LinearLayout>
 
@@ -56,7 +52,7 @@
             android:id="@+id/txt_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="I like to work on cars"
+            android:text="@string/question"
             android:textAlignment="center"
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
@@ -65,25 +61,30 @@
 
         <RadioGroup
             android:id="@+id/radio_group"
-            android:layout_width="415dp"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:padding="15dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioBtn_agree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Agree "
-                android:layout_marginStart="85dp"
+                android:text="Option1"
+                android:padding="15dp"
+                android:layout_gravity="center"
                 android:textSize="18sp"/>
 
             <RadioButton
                 android:id="@+id/radioBtn_disagree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Disagree"
-                android:layout_marginStart="70dp"
+                android:text="Option2"
+                android:padding="15dp"
+                android:layout_gravity="center"
                 android:textSize="18sp"/>
 
         </RadioGroup>
@@ -100,20 +101,12 @@
                 android:layout_marginRight="20dp"
                 android:text="Back"/>
 
-            <TextView
-                android:id="@+id/current_question"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="/"/>
+
             <TextView
                 android:id="@+id/total_question"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="41"/>
+                android:text="@string/question_no"/>
 
             <Button
                 android:id="@+id/btn_next"

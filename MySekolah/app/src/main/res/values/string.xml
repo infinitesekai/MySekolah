@@ -14,5 +14,7 @@
     <string name="test_desc">Which Career Pathway is right for you?</string>
     <string name="tertiary_info">Tertiary Education Information</string>
     <string name="check_in">Attendance Check-in</string>
-    <string name="question">Question</string>
+    <string name="question">Question </string>
+    <string name="question_no">no/total</string>
+    <string name="starting">0</string>
 </resources>
