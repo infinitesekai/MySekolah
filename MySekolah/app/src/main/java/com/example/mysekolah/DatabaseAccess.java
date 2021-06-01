@@ -1,9 +1,11 @@
 package com.example.mysekolah;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.cottacush.android.currencyedittext.CurrencyEditText;
 import com.example.mysekolah.PersonalityCareerTest.Question;
@@ -12,9 +14,9 @@ import com.example.mysekolah.PersonalityCareerTest.QuestionContract;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseAccess {
+public class DatabaseAccess<instance> {
 
-    private SQLiteOpenHelper openHelper;
+    private final SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
     private static DatabaseAccess instance;
 
@@ -72,16 +74,30 @@ public class DatabaseAccess {
     }
 
     //GET THE PERSONALITY TEST
+
+//    private void addQuestion(Question question) {
+//        ContentValues cv = new ContentValues();
+//        cv.put(QuestionContract.QuestionsTable.COLUMN_QUESTION, question.getQuestion());
+//        cv.put(QuestionContract.QuestionsTable.COLUMN_OPTION1, question.getOption1());
+//        cv.put(QuestionContract.QuestionsTable.COLUMN_OPTION2, question.getOption2());
+////        cv.put(QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE, question.getAnswerChoice());
+//        database.insert(QuestionContract.QuestionsTable.TABLE_NAME, null, cv);
+//    }
+
+
     public List<Question> getAllQuestions() {
         List<Question> questionList = new ArrayList<>();
         database = openHelper.getReadableDatabase();
         Cursor c = database.rawQuery("SELECT * FROM " + QuestionContract.QuestionsTable.TABLE_NAME, null);
         if (c.moveToFirst()) {
             do {
-                Question question = new Question();
-                question.setQuestion(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_QUESTION)));
-                question.setOption1(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION1)));
-                question.setOption2(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION2)));
+                Question question = new Question(
+                        c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_QUESTION)),
+                        c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION1)),
+                        c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION2)));
+//                question.setQuestion(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_QUESTION)));
+//                question.setOption1(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION1)));
+//                question.setOption2(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION2)));
 //                question.setAnswerChoice(c.getInt(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE)));
                 questionList.add(question);
             } while (c.moveToNext());
