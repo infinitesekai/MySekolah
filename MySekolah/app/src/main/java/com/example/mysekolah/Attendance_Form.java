@@ -16,6 +16,7 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Attendance_Form extends AppCompatActivity
        {
@@ -105,6 +106,7 @@ public class Attendance_Form extends AppCompatActivity
                 i.putExtra("Year", selectedYear);
                 i.putExtra("School", selectedSchool);
                 i.putExtra("Month", selectedMonth);
+                i.putExtra("IntMonth", Arrays.asList(month).indexOf(selectedMonth));
                 startActivity(i);
             }
         });

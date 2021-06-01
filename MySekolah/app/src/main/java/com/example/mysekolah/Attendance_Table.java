@@ -54,26 +54,31 @@ public class Attendance_Table extends AppCompatActivity {
         String school= getIntent().getExtras().getString("School");
         String year= getIntent().getExtras().getString("Year");
         String month= getIntent().getExtras().getString("Month");
+        int intmonth= getIntent().getExtras().getInt("IntMonth");
+
 
         dateView=findViewById(R.id.dateView);
 
         calendarView=(CalendarView)findViewById(R.id.calendarView);
 
-//        int intday = 1;
-//        int intmonth =Integer.valueOf(month);
-//        int intyear =Integer.valueOf(year);
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(Calendar.YEAR, intyear);
-//        calendar.set(Calendar.MONTH, intmonth); calendar.set(Calendar.DAY_OF_MONTH, intday);
-//        long milliTime = calendar.getTimeInMillis();
-//        calendarView.setDate (milliTime, true, true);
+        int intday = 1;
+        int intyear =Integer.valueOf(year);
+
+
+
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, intyear);
+        calendar.set(Calendar.MONTH, intmonth); calendar.set(Calendar.DAY_OF_MONTH, intday);
+        long milliTime = calendar.getTimeInMillis();
+        calendarView.setDate (milliTime, true, true);
 
         AbsentDateList= new ArrayList<String>();
         //adapter= new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,absentDateList);
 
 
         databaseAccess.DisplayAbsentDate(ic,school,year,month);
-//        databaseAccess.ShowAbsentDate(ic,school);
+
 
 
 
