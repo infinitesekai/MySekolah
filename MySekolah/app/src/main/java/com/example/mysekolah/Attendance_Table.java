@@ -106,10 +106,10 @@ public class Attendance_Table extends AppCompatActivity {
 
                         if (AbsentDateList.contains(String.valueOf(dayOfMonth))) {
                             dateView.setText("Absent on " + date);
-                           // Toast.makeText(getApplicationContext(), "Absent on " + date, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Absent on " + date, Toast.LENGTH_SHORT).show();
                         } else {
                             dateView.setText("Present on " + date);
-                            //Toast.makeText(getApplicationContext(), "Present on " + date, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Present on " + date, Toast.LENGTH_SHORT).show();
                         }
                     }
 
