@@ -45,7 +45,7 @@ public class Attendance_Table extends AppCompatActivity {
                 //trying to display highlighted date
                 //alternative: check with database date and make toast to tell present or absent
 
-                String date= (month+1)+"/"+dayOfMonth+"/"+year;
+                String date= dayOfMonth+"/"+(month+1)+"/"+year;
                 Toast.makeText(getApplicationContext(),date,Toast.LENGTH_SHORT).show();
             }
         });
