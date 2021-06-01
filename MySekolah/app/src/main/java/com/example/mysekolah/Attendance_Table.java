@@ -97,16 +97,21 @@ public class Attendance_Table extends AppCompatActivity {
                 }
                 else {
 
-                        if (AbsentDateList.contains(String.valueOf(dayOfMonth)))
-                        {
+                    if(year !=intyear || month!=intmonth){
+                        dateView.setText("Not selected month.");
+                         Toast.makeText(getApplicationContext(), "Attendance checking only available for selected month. Please select again.", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else {
+
+                        if (AbsentDateList.contains(String.valueOf(dayOfMonth))) {
                             dateView.setText("Absent on " + date);
-                            Toast.makeText(getApplicationContext(), "Absent on " + date, Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
+                           // Toast.makeText(getApplicationContext(), "Absent on " + date, Toast.LENGTH_SHORT).show();
+                        } else {
                             dateView.setText("Present on " + date);
-                            Toast.makeText(getApplicationContext(), "Present on " + date, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Present on " + date, Toast.LENGTH_SHORT).show();
                         }
+                    }
 
                 }
 

@@ -215,7 +215,7 @@
             android:textColor="@color/white"
             android:text="Show"
             android:layout_marginLeft="150dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
