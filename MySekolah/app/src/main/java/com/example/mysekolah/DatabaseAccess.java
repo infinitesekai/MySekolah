@@ -136,4 +136,32 @@ public class DatabaseAccess {
         cursor.close();
         return qualifications;
     }
+
+
+
+    //SELECT AbsenceDate FROM Attendance JOIN School ON Attendance.ScCode=School.ScCode WHERE ICNo="160807-10-9088" AND School.ScName="KINDERGARDEN SALAK TINGGI" AND Year="2021" AND Month="May";
+    public List<String> DisplayAbsentDate(String ic,String school, String year, String month){
+
+        List<String> absentDateList= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT AbsenceDate FROM Attendance JOIN School ON Attendance.ScCode=School.ScCode WHERE ICNo=? AND School.ScName=? AND Year=? AND Month=?", new String[]{ic,school,year,month});
+
+        if (cursor.moveToFirst()){
+            do{
+                String date=cursor.getString(0);
+
+
+                Attendance_Table.absentDateList.add(date);
+
+            }while (cursor.moveToNext());
+        }
+        return absentDateList;
+    }
+
+
+
 }
+
+
+
+
