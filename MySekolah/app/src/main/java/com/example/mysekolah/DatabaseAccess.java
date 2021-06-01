@@ -65,6 +65,21 @@ public class DatabaseAccess {
         return districts;
     }
 
+    // Get all spinner school list values
+    public List<String> getAllSchoolList(String district, String schoolLevel){
+        List<String> schools= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=?", new String[] {district,schoolLevel});
+        if(cursor.moveToFirst()){
+            do{
+                schools.add(cursor.getString(0));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return schools;
+    }
+
     public List<ExamResult> DisplayExamResult(String ic,String school, String year, String test){
 
         List<ExamResult> resultList= new ArrayList<ExamResult>();

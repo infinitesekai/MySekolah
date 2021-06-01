@@ -426,7 +426,8 @@
                             android:background="@color/lightGrey"
                             android:fontFamily="@font/robotoregular"
                             android:textColor="@color/black"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:inputType="number"/>
 
                 </LinearLayout>
 
@@ -494,7 +495,8 @@
                         android:fontFamily="@font/robotobold"
                         android:text="Salary:"
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        />
 
 
 

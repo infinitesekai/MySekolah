@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,15 +28,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class PreSchoolForm extends AppCompatActivity{
 
-    private String[] state= {"Johor", "Kedah", "Kelantan", "Malacca", "Negeri Semnilan", "Pahang",
+    private String[] state= {"Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan", "Pahang",
             "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
             "Putarjaya", "Labuan"};
 
-   /* private String[] district= {"Johor", "Kedah", "Kelantan", "Malacca", "Negeri Semnilan", "Pahang",
-            "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
-            "Putarjaya", "Labuan"};*/
+
 
     private Button next;
     private EditText address,postcode, tel;
@@ -45,14 +44,23 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
     // are filled by the user, properly or not.
     private boolean isAllFieldsChecked = false;
 
-    private TextView ic_child, name_child, gender_child, race_child, religion_child, nationality_child;
-    //private DatabaseHelper dbHelper;
+    private TextView ic_child, name_child, gender_child, race_child, religion_child, nationality_child, pageTitle;
+
+
+    String schoolLevel;
+
+    String selectedState="";
+    String selectedDistrict="";
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_school_form);
+
+
+        schoolLevel=getIntent().getStringExtra("SchoolLevel");
 
         ic_child= findViewById(R.id.tvIC);
         name_child= findViewById(R.id.tvName);
@@ -64,13 +72,16 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
         postcode= findViewById(R.id.etPos);
         tel= findViewById(R.id.etTel);
         next= findViewById(R.id.btnNext);
-        //dbHelper= new DatabaseHelper(getApplicationContext());
+        pageTitle=findViewById(R.id.pageTitle);
+
+
+
+        //Database
         DatabaseAccess databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
 
         String check_IC_child= getIntent().getExtras().getString("ICNo");
-        //Residents residents= dbHelper.getResidentbyIC(check_IC_child);
         Residents residents= databaseAccess.getResidentbyIC(check_IC_child);
         ic_child.setText(residents.getICNo());
         name_child.setText(residents.getName());
@@ -83,15 +94,31 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         Spinner state_spin = (Spinner) findViewById(R.id.spinnerState);
-        state_spin.setOnItemSelectedListener(this);
-
-
-
+        //state_spin.setOnItemSelectedListener(this);
         //Creating the ArrayAdapter instance having the country list
         ArrayAdapter state_aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,state);
         state_aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         state_spin.setAdapter(state_aa);
+
+        state_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                selectedState=state_spin.getSelectedItem().toString();
+                loadSpinnerData(selectedState);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+
+            }
+
+        });
+
+        Log.d("Selected State", selectedState);
+        Log.d("Selected District", selectedDistrict);
+        Log.d("SchoolLevel", schoolLevel);
 
 
 
@@ -105,6 +132,9 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
 
                 if(isAllFieldsChecked) {
                     Intent i = new Intent(PreSchoolForm.this, PreSchoolForm2.class);
+                    i.putExtra("SchoolLevel", schoolLevel);
+                    i.putExtra("SelectedState", selectedState);
+                    i.putExtra("SelectedDistrict", selectedDistrict);
                     startActivity(i);
                 }
             }
@@ -119,7 +149,7 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
     private void loadSpinnerData(String selectedState) {
 
         Spinner district_spin = (Spinner) findViewById(R.id.spinnerDistrict);
-        district_spin.setOnItemSelectedListener(this);
+        //district_spin.setOnItemSelectedListener(this);
 
         // database handler
         DatabaseAccess db= DatabaseAccess.getInstance(this);
@@ -138,6 +168,20 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
         // attaching data adapter to spinner
         district_spin.setAdapter(dataAdapter);
 
+
+        district_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                selectedDistrict= district_spin.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+
+            }
+
+        });
 
 
     }
@@ -180,7 +224,7 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
     };
 
     //Performing action onItemSelected and onNothing selected
-    @Override
+   /* @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId()== R.id.spinnerState){
             String selectedState = parent.getItemAtPosition(position).toString();
@@ -195,5 +239,5 @@ public class PreSchoolForm extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
+    }*/
 }
