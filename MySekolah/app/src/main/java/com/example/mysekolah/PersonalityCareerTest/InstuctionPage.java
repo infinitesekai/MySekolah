@@ -26,9 +26,7 @@ public class InstuctionPage extends Activity {
         start_test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InstuctionPage.this, PersonalTestQuestion.class);
-                startActivity(intent);
-                finish();
+                start_test();
             }
         });
 
@@ -44,7 +42,10 @@ public class InstuctionPage extends Activity {
         params.x = 0;
         params.y = -20;
         getWindow().setAttributes(params);
+    }
 
-
+    private void start_test(){
+        Intent intent = new Intent(InstuctionPage.this, PersonalTestQuestion.class);
+        startActivity(intent);
     }
 }
