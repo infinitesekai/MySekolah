@@ -20,7 +20,7 @@ public class Attendance_Table extends AppCompatActivity {
     private TextView dateView;
     DatabaseAccess databaseAccess;
 
-    public static ArrayList<String> absentDateList;
+    public static ArrayList<String> AbsentDateList;
    // private ArrayAdapter<String> adapter;
     //try mCalendarView to highlight multiple date
 /*
@@ -68,7 +68,7 @@ public class Attendance_Table extends AppCompatActivity {
 //        long milliTime = calendar.getTimeInMillis();
 //        calendarView.setDate (milliTime, true, true);
 
-        absentDateList= new ArrayList<String>();
+        AbsentDateList= new ArrayList<String>();
         //adapter= new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,absentDateList);
 
 
@@ -91,8 +91,8 @@ public class Attendance_Table extends AppCompatActivity {
                     dateView.setText("Weekend on " + date);
                 }
                 else {
-                    for (int i = 0; i < absentDateList.size(); i++) {
-                        if (String.valueOf(dayOfMonth) == absentDateList.get(i))
+
+                        if (AbsentDateList.contains(String.valueOf(dayOfMonth)))
                         {
                             dateView.setText("Absent on " + date);
                             Toast.makeText(getApplicationContext(), "Absent on " + date, Toast.LENGTH_SHORT).show();
@@ -102,7 +102,7 @@ public class Attendance_Table extends AppCompatActivity {
                             dateView.setText("Present on " + date);
                             Toast.makeText(getApplicationContext(), "Present on " + date, Toast.LENGTH_SHORT).show();
                         }
-                    }
+
                 }
 
             }

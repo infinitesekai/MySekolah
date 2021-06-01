@@ -50,7 +50,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="120dp"
+        android:layout_marginLeft="100dp"
         android:src="@drawable/ellipse" />
 
     <TextView
@@ -61,7 +61,7 @@
         android:layout_marginTop="15dp"
         android:layout_weight="1"
         android:text="Choose a date"
-        android:textSize="20dp"
+        android:textSize="18dp"
         />
 </LinearLayout>
 </LinearLayout>
