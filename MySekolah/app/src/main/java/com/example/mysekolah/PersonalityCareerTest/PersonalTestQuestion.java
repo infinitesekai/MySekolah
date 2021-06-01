@@ -24,7 +24,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
     private TextView tvQuestion, tvQuestionCount, tvQuestionNoGuide;
     private RadioGroup rbGroup;
     private RadioButton rb1, rb2;
-    private Button buttonNext;
+    private Button buttonBack, buttonNext;
 
     private List<Question>questionList;
     private int questionCounter;
@@ -46,6 +46,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
         rb1 = findViewById(R.id.radioBtn_agree);
         rb2 = findViewById(R.id.radioBtn_disagree);
         buttonNext = findViewById(R.id.btn_next);
+        buttonBack = findViewById(R.id.btn_back);
 
         // database handler
         DatabaseAccess dbAccess= new DatabaseAccess(this);
@@ -61,12 +62,16 @@ public class PersonalTestQuestion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!answered){
+
+                    if (rb1.isChecked() || rb2.isChecked()){
+                        checkAnswer();
+                    } else{
                     Toast.makeText(
                             PersonalTestQuestion.this,
                             "Please select an option",
                             Toast.LENGTH_SHORT
                     ).show();
-                } else {
+                }}else {
                     showNextQuestion();
                 }
             }
@@ -85,10 +90,14 @@ public class PersonalTestQuestion extends AppCompatActivity {
             questionCounter++;
             tvQuestionCount.setText("Question "+ questionCounter);
             tvQuestionNoGuide.setText(questionCounter + " / " + questionCountTotal);
-            answered = true;
+            answered = false;
         } else {
             finishQuiz();
         }
+    }
+
+    private void checkAnswer(){
+        answered = true;
     }
 
     private void finishQuiz() {
