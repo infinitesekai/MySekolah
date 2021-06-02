@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,6 +27,7 @@ public class Attendance_Form extends AppCompatActivity
     String[] month={"January","February","March","April","May","June","July","August","September","October","November","December"};
    // String[] month={"1","2","3","4","5","6","7","8","9","10","11","12"};
     Button showbtn;
+    TextView ictv,nametv;
 
            String selectedSchool="";
            String selectedYear="";
@@ -38,6 +40,16 @@ public class Attendance_Form extends AppCompatActivity
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+
+        String ic= getIntent().getExtras().getString("ICNo");
+        String name =getIntent().getExtras().getString("childName");
+
+        ictv=findViewById(R.id.tvIC);
+        nametv=findViewById(R.id.tvName);
+
+        ictv.setText(ic);
+        nametv.setText(name);
 
         Spinner school_spin = (Spinner) findViewById(R.id.school_spinner);
         Spinner year_spin = (Spinner) findViewById(R.id.year_spinner);
@@ -92,7 +104,9 @@ public class Attendance_Form extends AppCompatActivity
             }
         });
 
-        String ic= getIntent().getExtras().getString("ICNo");
+
+
+
 
 
 
