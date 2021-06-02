@@ -1,9 +1,12 @@
 //package com.example.mysekolah;
 package com.example.mysekolah.SchoolEnrollment;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -30,7 +33,8 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
 
     EditText distance;
     ImageButton schoolTypeInfo, schoolListInfo, distanceInfo;
-    Button next, back;
+    Button submit, back;
+    //AlertDialog.Builder builder;
 
     boolean isAllFieldsChecked = false;
 
@@ -50,8 +54,9 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_school_form3);
 
-        next= findViewById(R.id.btnNext);
+        submit= findViewById(R.id.btnSubmit);
         back=findViewById(R.id.btnBack);
+        distance=findViewById(R.id.etDistance);
         schoolTypeInfo=findViewById(R.id.SchoolTypeInfo);
         distanceInfo=findViewById(R.id.distanceInfo);
         schoolListInfo=findViewById(R.id.SchoolListInfo);
@@ -92,17 +97,36 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
 
         });
 
-        //next button operation
-        next.setOnClickListener(new View.OnClickListener() {
+        //confirm button operation
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 isAllFieldsChecked= CheckAllField();
 
                 if(isAllFieldsChecked) {
-                    Intent i = new Intent(PreSchoolForm2.this, PreSchoolForm3.class);
-                    i.putExtra("SchoolLevel", schoolLevel);
-                    startActivity(i);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(PreSchoolForm3.this);
+                    alertDialogBuilder.setMessage("Do you want to submit this application?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                    //inset data into database here
+                                    Intent i= new Intent(PreSchoolForm3.this, BackHomePage.class);
+                                    startActivity(i);
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Action for no
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alertDialog= alertDialogBuilder.create();
+                    alertDialog.show();
                 }
             }
 
@@ -247,5 +271,15 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
             return false;
         }
         return true;
+    }
+
+    public class BackHomePage extends FragmentActivity {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            if (savedInstanceState == null){
+                getSupportFragmentManager().beginTransaction()
+                        .add(android.R.id.content, new com.example.mysekolah.HomePage()).commit();}
+        }
     }
 }
