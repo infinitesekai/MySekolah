@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +16,7 @@ import android.widget.Toast;
 import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.R;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.PrimitiveIterator;
 
 public class PersonalTestQuestion extends AppCompatActivity {
 
@@ -26,7 +25,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
     private RadioButton rb1, rb2;
     private Button buttonBack, buttonNext;
 
-    private List<Question>questionList;
+    private List<Question> questionList;
     private int questionCounter;
     private int questionCountTotal;
     private Question currentQuestion;
@@ -34,6 +33,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
     //check if the question is answered or not
     private boolean answered;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,58 +49,89 @@ public class PersonalTestQuestion extends AppCompatActivity {
         buttonBack = findViewById(R.id.btn_back);
 
         // database handler
-        DatabaseAccess dbAccess= new DatabaseAccess(this);
+        DatabaseAccess dbAccess = new DatabaseAccess(this);
         questionList = dbAccess.getAllQuestions();
 
+        //get the total number of the question that we have
         questionCountTotal = questionList.size();
+
+        //random the questions in the question collection
 //        Collections.shuffle(questionList);
 
-        System.out.println("This will be printed: " + questionCountTotal);
         showNextQuestion();
 
+        //when clicking the button next
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!answered){
-
-                    if (rb1.isChecked() || rb2.isChecked()){
+                if (!answered) {
+                    if (rb1.isChecked() || rb2.isChecked()) {
                         checkAnswer();
-                    } else{
-                    Toast.makeText(
-                            PersonalTestQuestion.this,
-                            "Please select an option",
-                            Toast.LENGTH_SHORT
-                    ).show();
-                }}else {
+                        rbGroup.clearCheck();
+                        questionCounter++;
+                        showNextQuestion();
+                    } else {
+                        Toast.makeText(
+                                PersonalTestQuestion.this,
+                                "Please select an option",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    }
+                }
+            }
+        });
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint({"SetTextI18n"})
+            @Override
+            public void onClick(View v) {
+                if(questionCounter>0) {
+
+                    questionCounter--;
                     showNextQuestion();
+                     // here you decrement
+                }
+                else {
+                    // you're at the first question => no previous one
                 }
             }
         });
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n"})
     private void showNextQuestion() {
 
-        rbGroup.clearCheck();
+        if ((questionCounter-1)>=0){
+            buttonBack.setBackgroundResource(R.drawable.rounded_btn_black);
+            buttonBack.setTextColor(Color.WHITE);
+        }
+        else{
+            buttonBack.setBackgroundResource(R.drawable.rounded_btn_grey);
+            buttonBack.setTextColor(Color.BLACK);
+        }
+
+        //if still have questions to answer
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
             tvQuestion.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
-            questionCounter++;
-            tvQuestionCount.setText("Question "+ questionCounter);
-            tvQuestionNoGuide.setText(questionCounter + " / " + questionCountTotal);
+            tvQuestionCount.setText("Question " + (questionCounter+1));
+            tvQuestionNoGuide.setText((questionCounter+1) + " / " + questionCountTotal);
             answered = false;
-        } else {
-            finishQuiz();
+        }
+        else {
+            submitQuiz();
         }
     }
 
-    private void checkAnswer(){
+    //make sure the user choose an option
+    private void checkAnswer() {
         answered = true;
     }
 
-    private void finishQuiz() {
-        finish();
+    private void submitQuiz() {
+        Intent i = new Intent(PersonalTestQuestion.this, Submission.class);
+        startActivity(i);
     }
 }
