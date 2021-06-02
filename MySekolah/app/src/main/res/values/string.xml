@@ -17,4 +17,7 @@
     <string name="question">Question </string>
     <string name="question_no">no/total</string>
     <string name="starting">0</string>
+    <string name="submission_test">Are you sure you want to submit your test?</string>
+    <string name="sub_cancel">Cancel</string>
+    <string name="sub_confirm">Submit</string>
 </resources>
