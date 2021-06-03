@@ -80,7 +80,7 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
     //校验用户是否允许成为user
     public ArrayList checkuseric(String ic) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String querySql = "select icNo, name,gender,races,religion，nationality from Resident where icNo = '" + ic +"';";
+        String querySql = "select ICNo,Name,Gender,Races,Religion,Nationality from Resident where ICNo = '" + ic +"';";
         Cursor cursor = db.rawQuery(querySql, null);
         ArrayList<User> userArrayList = new ArrayList<User>();
         while(cursor.moveToNext()) {
@@ -108,7 +108,7 @@ public class DatabaseHelper  extends SQLiteOpenHelper {
     public boolean inserData(String ic, String pass, int role, String name, String phone, String address) {
         SQLiteDatabase db = this.getWritableDatabase();
 //        String insertSql = "insert into User(icNo, Name, Role, Password) value('" + ic +"','"+ name + "','" + role +"','"+ pass +"')";
-        String insertSql = "insert into User(icNo,name, Role, Password, phoneNo, address) select '" + ic+ "','" + name + "','" + role +"','" + pass + "','" + phone + "','" + address +"' where not exists (select * from User where icNo = '"+ ic +"');";
+        String insertSql = "insert into User(ICNo,Name, Role, Password, PhoneNo, Address) select '" + ic+ "','" + name + "','" + role +"','" + pass + "','" + phone + "','" + address +"' where not exists (select * from User where icNo = '"+ ic +"');";
 
         try {
             db.execSQL(insertSql);
