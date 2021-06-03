@@ -53,7 +53,8 @@ public class Export_Qualification extends AppCompatActivity {
         qualification=qualification_record.getqualification();
         qualification_year=qualification_record.getqualificationYear();
 
-
+        //use webview for export
+        //write simple html for table format
                 String HTML="<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
@@ -147,6 +148,7 @@ public class Export_Qualification extends AppCompatActivity {
         }
     };
 
+    //create PDF function
     @RequiresApi(api = Build.VERSION_CODES.P)
     public void createPDF(View view){
         Context context=Export_Qualification.this;
