@@ -21,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClickListener {
 
     CardView application, checkStatus;
+    String schoolLevel;
 
 
     @Override
@@ -36,6 +37,9 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
 
         application.setOnClickListener(this);
         checkStatus.setOnClickListener(this);
+
+        schoolLevel=getIntent().getStringExtra("SchoolLevel");
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -69,6 +73,7 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.ApplicationFormCard:
                 i = new Intent(this, Enroll_Check_IC_Pre.class);
+                i.putExtra("SchoolLevel", schoolLevel);
                 startActivity(i);
                 break;
 

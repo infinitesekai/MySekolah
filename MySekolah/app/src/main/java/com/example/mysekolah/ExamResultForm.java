@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,12 +16,16 @@ import android.widget.Spinner;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ExamResultForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ExamResultForm extends AppCompatActivity {
 
-    String[] school = { "Kindergarten Aman", "SK Kota Warisan", "SMK Sri Sepang"};
+    String[] school = { "KINDERGARDEN SALAK TINGGI", "SK Kota Warisan", "SMK Sri Sepang"};
     String[] year={"2015","2016","2017","2018","2019","2020","2021"};
     String[] test= {"Test 1", "Test 2", "Test 3", "Test 4"};
     Button showbtn;
+    String selectedSchool="";
+    String selectedYear="";
+    String selectedTerm="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +39,9 @@ public class ExamResultForm extends AppCompatActivity implements AdapterView.OnI
         Spinner year_spin = (Spinner) findViewById(R.id.tvraces);
         Spinner test_spin = (Spinner) findViewById(R.id.tvnationality);
 
-        school_spin.setOnItemSelectedListener(this);
-        year_spin.setOnItemSelectedListener(this);
-        test_spin.setOnItemSelectedListener(this);
+
+
+
 
         ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,school);
         schoolaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -50,12 +55,67 @@ public class ExamResultForm extends AppCompatActivity implements AdapterView.OnI
         testaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         test_spin.setAdapter(testaa);
 
+
+
+
+        school_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                selectedSchool=school_spin.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+
+            }
+
+        });
+
+        year_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                selectedYear=year_spin.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+
+            }
+
+        });
+
+        test_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                selectedTerm=test_spin.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+
+            }
+
+        });
+
+
         showbtn=findViewById(R.id.btnshow);
+
+        //ic
+        String ic= getIntent().getExtras().getString("ICNo");
 
         showbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(ExamResultForm.this, ExamResultTable.class);
+                i.putExtra("ICNo", ic);
+                i.putExtra("Year", selectedYear);
+                i.putExtra("School", selectedSchool);
+                i.putExtra("Test", selectedTerm);
                 startActivity(i);
             }
         });
@@ -85,13 +145,5 @@ public class ExamResultForm extends AppCompatActivity implements AdapterView.OnI
         }
     };
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }

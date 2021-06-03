@@ -16,6 +16,7 @@ import com.example.mysekolah.PersonalityCareerTest.PersonalityTestHome;
 public class HomePage_Student extends Fragment implements View.OnClickListener {
 
     public CardView academic_qualification, exam_check, personality_check,tertiary_info,check_in;
+    public String tempic="041005-10-6789";
 
     @Override
     @Nullable
@@ -36,6 +37,9 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
         check_in.setOnClickListener(this);
         tertiary_info.setOnClickListener(this);
 
+
+
+
         return v;
     }
 
@@ -46,6 +50,7 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.academic_qualification:
                 i= new Intent(getActivity(), Academic_Qualification.class);
+                i.putExtra("ICNo", tempic);
                 startActivity(i);
                 break;
             case R.id.exam_check:

@@ -65,7 +65,90 @@ public class DatabaseAccess {
         return districts;
     }
 
-    public Cursor DisplayExamResult(){
-        return database.rawQuery("SELECT * FROM Result ", null);
+    // Get all spinner school list values
+    public List<String> getAllSchoolList(String district, String schoolLevel){
+        List<String> schools= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=?", new String[] {district,schoolLevel});
+        if(cursor.moveToFirst()){
+            do{
+                schools.add(cursor.getString(0));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return schools;
+    }
+
+    public List<ExamResult> DisplayExamResult(String ic,String school, String year, String test){
+
+        List<ExamResult> resultList= new ArrayList<ExamResult>();
+
+        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+
+        if (cursor.moveToFirst()){
+            do{
+                ExamResult result= new ExamResult();
+
+                result.setSubject(cursor.getString(0));
+                result.setMark(cursor.getString(1));
+                result.setGrade(cursor.getString(2));
+
+
+                String subject= cursor.getString(0);
+                String mark= cursor.getString(1);
+                String grade= cursor.getString(2);
+
+                ExamResultTable.resultList.add(subject);
+                ExamResultTable.resultList.add(mark);
+                ExamResultTable.resultList.add(grade);
+
+
+            }while (cursor.moveToNext());
+        }
+        return resultList;
+    }
+
+    public List<ExamResult> ExportExamResult(String ic,String school, String year, String test){
+
+        List<ExamResult> resultList= new ArrayList<ExamResult>();
+
+        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+
+        if (cursor.moveToFirst()){
+            do{
+                ExamResult result= new ExamResult();
+
+                result.setSubject(cursor.getString(0));
+                result.setMark(cursor.getString(1));
+                result.setGrade(cursor.getString(2));
+
+
+                String subject= cursor.getString(0);
+                String mark= cursor.getString(1);
+                String grade= cursor.getString(2);
+
+                ExportExamResult.resultList.add(subject);
+                ExportExamResult.resultList.add(mark);
+                ExportExamResult.resultList.add(grade);
+
+            }while (cursor.moveToNext());
+        }
+        return resultList;
+    }
+
+
+    // SELECT Qualification.ICNo,Name,PreSchool,PreYear,PrimarySchool,PrimaryYear,SecondarySchool,SecondaryYear,qualification,qualificationYear FROM (Qualification join Resident on Qualification.ICNo=Resident.ICNo)WHERE Qualification.ICNo = "041005-10-6789";
+    public  Qualification DisplayQualification(String IC){
+        Qualification qualifications= null;
+        Cursor cursor = database.rawQuery("SELECT Qualification.ICNo,Name,PreSchool,PreYear,PrimarySchool,PrimaryYear,SecondarySchool,SecondaryYear,qualification,qualificationYear FROM Qualification join Resident on Qualification.ICNo=Resident.ICNo WHERE Qualification.ICNo = ?", new String[] {IC});
+        if(cursor.moveToFirst()) {
+            qualifications = new Qualification(cursor.getString(0),cursor.getString(1), cursor.getString(2)
+                    , cursor.getString(3), cursor.getString(4), cursor.getString(5)
+                    , cursor.getString(6), cursor.getString(7), cursor.getString(8),
+                    cursor.getString(9));
+        }
+        cursor.close();
+        return qualifications;
     }
 }

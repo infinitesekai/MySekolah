@@ -19,11 +19,12 @@ import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Enroll_Check_IC_Pre extends AppCompatActivity {
+public class Enroll_Check_IC_Pre extends AppCompatActivity  {
 
     private Button check;
     private EditText ic;
     private DatabaseHelper mDBHelper;
+    String schoolLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,8 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity {
         mDBHelper= new DatabaseHelper(this);
         ic= findViewById(R.id.editTextIC);
         check= findViewById(R.id.btnCheck);
+
+        schoolLevel=getIntent().getStringExtra("SchoolLevel");
 
 
         //Check exists database
@@ -55,6 +58,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(Enroll_Check_IC_Pre.this, PreSchoolForm.class);
                 i.putExtra("ICNo", ic.getText().toString());
+                i.putExtra("SchoolLevel", schoolLevel);
                 startActivity(i);
             }
         });
@@ -108,4 +112,6 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity {
             return false;
         }
     };
+
+
 }

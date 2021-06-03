@@ -436,7 +436,7 @@
                         android:layout_marginTop="12dp"
                         android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
-                        android:text="0112018982"
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 

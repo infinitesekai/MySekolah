@@ -53,7 +53,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/robotoregular"
-                    android:text="Please key in your child's identity card number. (Without - or SPACE)"
+                    android:text="Please key in your child's identity card number. (With -)"
                     android:textColor="@color/text_color"
                     android:textSize="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +88,8 @@
                     android:inputType="textPersonName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView5"
+                    />
 
                 <Button
                     android:id="@+id/btnCheck"
