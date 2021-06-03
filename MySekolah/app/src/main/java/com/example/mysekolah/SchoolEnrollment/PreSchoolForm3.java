@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -113,8 +114,9 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
                                 public void onClick(DialogInterface dialog, int which) {
                                     finish();
                                     //inset data into database here
-                                    Intent i= new Intent(PreSchoolForm3.this, BackHomePage.class);
-                                    startActivity(i);
+                                   Fragment fragment= new HomePage();
+                                    FragmentManager fragmentManager = getSupportFragmentManager();
+                                    fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -279,7 +281,7 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
             super.onCreate(savedInstanceState);
             if (savedInstanceState == null){
                 getSupportFragmentManager().beginTransaction()
-                        .add(android.R.id.content, new com.example.mysekolah.HomePage()).commit();}
+                        .add(android.R.id.content, new HomePage()).commit();}
         }
     }
 }
