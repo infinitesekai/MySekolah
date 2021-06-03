@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.cottacush.android.currencyedittext.CurrencyEditText;
 
@@ -151,4 +152,125 @@ public class DatabaseAccess {
         cursor.close();
         return qualifications;
     }
+
+
+
+    //SELECT AbsenceDate FROM Attendance JOIN School ON Attendance.ScCode=School.ScCode WHERE ICNo="160807-10-9088" AND School.ScName="KINDERGARDEN SALAK TINGGI" AND Year="2021" AND Month="May";
+    public List<String> DisplayAbsentDate(String ic,String school, String year, String month){
+
+        List<String> AbsentDateList= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT AbsenceDate FROM Attendance JOIN School ON Attendance.ScCode=School.ScCode WHERE ICNo=? AND School.ScName=? AND Year=? AND Month=?", new String[]{ic,school,year,month});
+
+        if (cursor.moveToFirst()){
+            do{
+                String date=cursor.getString(0);
+
+
+                Attendance_Table.AbsentDateList.add(date);
+
+            }while (cursor.moveToNext());
+        }
+        return AbsentDateList;
+    }
+
+    public ArrayList checkuseric(String ic) {
+        //SQLiteDatabase db = this.getWritableDatabase();
+        String querySql = "select ICNo,Name,Gender,Races,Religion,Nationality from Resident where ICNo = '" + ic +"';";
+        Cursor cursor = database.rawQuery(querySql, null);
+        ArrayList<User> userArrayList = new ArrayList<User>();
+        while(cursor.moveToNext()) {
+            //光标移动成功
+            String icno = cursor.getString(0);
+            String name = cursor.getString(1);
+            String gender = cursor.getString(2);
+            String races = cursor.getString(3);
+            String religion = cursor.getString(4);
+            String nation = cursor.getString(5);
+            User user = new User();
+            user.setICNo(icno);
+            user.setName(name);
+            user.setRace(races);
+            user.setReligion(religion);
+            user.setNation(nation);
+            user.setGender(gender);
+            userArrayList.add(user);
+        }
+        cursor.close();
+        return userArrayList;
+    }
+
+    //新增用户
+    public boolean inserData(String ic, String pass, int role, String name, String phone, String address) {
+        //SQLiteDatabase db = this.getWritableDatabase();
+//        String insertSql = "insert into User(icNo, Name, Role, Password) value('" + ic +"','"+ name + "','" + role +"','"+ pass +"')";
+        String insertSql = "insert into User(ICNo,Name, Role, Password, PhoneNo, Address) select '" + ic+ "','" + name + "','" + role +"','" + pass + "','" + phone + "','" + address +"' where not exists (select * from User where icNo = '"+ ic +"');";
+
+        try {
+            database.execSQL(insertSql);
+        } catch (RuntimeException e) {
+            Log.d("1122334455",e.getLocalizedMessage());
+            return false;
+        }  finally {
+            database.close();//add
+        }
+        return true;
+    }
+
+    //校验用户名密码
+    public User checkusericpassword(String ic, String pwd) {
+       // SQLiteDatabase db = this.getWritableDatabase();
+        String queryUser = "Select u.icNo, u.role,u.name, u.gender,u.job,u.salary,u.address,u.phoneno, r.races, r.religion, r.gender, r.nationality, u.bdate from User u, Resident r  where u.icNo = '"+ ic +"' and u.Password = '" + pwd +"'";
+        Cursor cursor =  database.rawQuery(queryUser, null);
+        User user = new User();
+        if (cursor.getCount() > 0) {
+            cursor.moveToNext();
+            String icno = cursor.getString(0);
+            int role = cursor.getInt(1);
+            String name = cursor.getString(2);
+            String gender = cursor.getString(3);
+            String job = cursor.getString(4);
+            String salary = cursor.getString(5);
+            String address = cursor.getString(6);
+            String phone = cursor.getString(7);
+            String races = cursor.getString(8);
+            String religion = cursor.getString(9);
+            String gender2 = cursor.getString(10);
+            String nation = cursor.getString(11);
+            String bdate = cursor.getString(12);
+            user.setICNo(icno);
+            user.setRole(role);
+            user.setName(name);
+            user.setGender(gender2);
+            user.setJob(job);
+            user.setSalary(salary);
+            user.setAddress(address);
+            user.setPhoneNo(phone);
+            user.setRace(races);
+            user.setReligion(religion);
+            user.setNation(nation);
+            user.setBdate(bdate);
+        }
+        cursor.close();
+        return user;
+    }
+
+    //更新user信息
+    public boolean updateUser(User user) {
+        //SQLiteDatabase db = this.getWritableDatabase();
+        String update_user = "update User set Bdate ='"+ user.getBdate() +"', salary='"+ user.getSalary() +
+                "',job='"+ user.getJob() +"',address='"+ user.getAddress() +
+                "',phoneno='" + user.getPhoneNo() +"' where icNo = '" + user.getICNo() +"'";
+        try {
+            database.execSQL(update_user);
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
+
 }
+
+
+
+

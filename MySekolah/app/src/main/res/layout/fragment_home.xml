@@ -16,6 +16,7 @@
             android:layout_height="180dp">
 
             <TextView
+                android:id="@+id/user_name"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -39,9 +40,9 @@
                 android:id="@+id/newsCardArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="581dp"
                 android:layout_below="@+id/msg_welcome"
                 android:layout_marginTop="30dp"
+                android:minHeight="581dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -177,6 +178,7 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
                 </android.widget.GridLayout>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </FrameLayout>

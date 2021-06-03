@@ -35,9 +35,9 @@ public class ExamResultForm extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        Spinner school_spin = (Spinner) findViewById(R.id.school_spinner);
-        Spinner year_spin = (Spinner) findViewById(R.id.year_spinner);
-        Spinner test_spin = (Spinner) findViewById(R.id.Term_spinner);
+        Spinner school_spin = (Spinner) findViewById(R.id.tvgender);
+        Spinner year_spin = (Spinner) findViewById(R.id.tvraces);
+        Spinner test_spin = (Spinner) findViewById(R.id.tvnationality);
 
 
 

@@ -28,8 +28,8 @@ public class Discipline_Form extends AppCompatActivity implements
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        Spinner school_spin = (Spinner) findViewById(R.id.school_spinner);
-        Spinner year_spin = (Spinner) findViewById(R.id.year_spinner);
+        Spinner school_spin = (Spinner) findViewById(R.id.tvgender);
+        Spinner year_spin = (Spinner) findViewById(R.id.tvraces);
         school_spin.setOnItemSelectedListener(this);
         year_spin.setOnItemSelectedListener(this);
 

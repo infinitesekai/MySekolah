@@ -104,7 +104,7 @@
             android:backgroundTint="#7997B9"
             android:ems="10"
             android:hint="IC number"
-            android:inputType="numberSigned"
+            android:inputType="text"
             android:shadowColor="#ECE6E6"
             app:layout_constraintBottom_toTopOf="@+id/etx_password"
             app:layout_constraintEnd_toStartOf="@+id/img_login_ic"
