@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class Login_page extends AppCompatActivity {
     private EditText ic_number,password;
     private Button btnlogin,btnSignUp;
-    private DatabaseHelper DB;
+   // private DatabaseHelper DB;
     private User currentUser;
 
     @Override
@@ -27,7 +27,9 @@ public class Login_page extends AppCompatActivity {
         password =findViewById(R.id.etx_password);
         btnlogin =findViewById(R.id.btn_login);
         btnSignUp=findViewById(R.id.btn_sign_up);
-        DB = new DatabaseHelper(this);
+       // DB = new DatabaseHelper(this);
+        DatabaseAccess DB = DatabaseAccess.getInstance(this);
+        DB.open();
 
 
         //temp link to main page

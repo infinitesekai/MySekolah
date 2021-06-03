@@ -42,14 +42,14 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
     private ArrayList<String> nations = new ArrayList<String>();
 
     private User currentUser;
-    private DatabaseHelper DB;
+    //private DatabaseHelper DB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         currentUser = (User) getIntent().getSerializableExtra("user");
-        DB = new DatabaseHelper(this);
+       // DB = new DatabaseHelper(this);
         initViews();
         prepareData();
         setAdapter();
@@ -78,6 +78,10 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
         addressEdit.setText(currentUser.getAddress());
         phoneEdit.setText(currentUser.getPhoneNo());
         dateBtn.setText(currentUser.getBdate());
+
+        DatabaseAccess DB = DatabaseAccess.getInstance(this);
+        DB.open();
+
         //日期点击事件
         dateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +111,8 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
 
             @Override
             public void onClick(View view) {
+
+
                 String job = jobEdit.getText().toString();
                 String salary = salaryEdit.getText().toString();
                 String address = addressEdit.getText().toString();

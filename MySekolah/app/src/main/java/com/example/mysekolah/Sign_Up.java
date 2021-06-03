@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class Sign_Up extends AppCompatActivity {
     private EditText ic_number,password,repassword,name,address,phoneno;
     private Button signup,signin;
-    private DatabaseHelper DB;
+    //private DatabaseHelper DB;
     private int role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,11 @@ public class Sign_Up extends AppCompatActivity {
         phoneno =findViewById(R.id.etx_signup_phoneno);
         signup =findViewById(R.id.btn_signup);
         signin =findViewById(R.id.btn_signin);
-        DB = new DatabaseHelper(this);
+       // DB = new DatabaseHelper(this);
         role = getIntent().getIntExtra("role", 0);//取值
+
+        DatabaseAccess DB = DatabaseAccess.getInstance(this);
+        DB.open();
 
        // android:onClick="methodtoexecute"
         //remember to add this back to xml

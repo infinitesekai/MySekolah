@@ -8,29 +8,28 @@
     <uses-feature android:name="android.hardware.camera2.full" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="29"
-        tools:ignore="ScopedStorage"/>
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MySekolah"
-        android:requestLegacyExternalStorage="true"
-        >
-        <activity android:name=".ExportExamResult"></activity>
+        android:theme="@style/Theme.MySekolah">
+        <activity android:name=".ExportExamResult" />
         <activity android:name=".Export_Qualification" />
         <activity android:name=".Discipline_Result" />
         <activity android:name=".Discipline_Form" />
         <activity android:name=".sign_up_role" />
         <activity android:name=".Sign_Up" />
         <activity android:name=".Login_page" />
-        <activity android:name=".EditProfile_Activity"/>
+        <activity android:name=".EditProfile_Activity" />
         <activity android:name=".Check_in_scan" />
         <activity android:name=".Check_in" />
         <activity android:name=".Tertiary_Info" />
@@ -62,7 +61,7 @@
         <activity android:name=".NotificationPage" />
         <activity android:name=".ProfilePage" />
         <activity android:name=".HomePage" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Introductory_Page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
