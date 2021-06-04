@@ -86,7 +86,8 @@
                     android:layout_gravity="center"
                     android:padding="15dp"
                     android:text="Option1"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:buttonTint="@color/bgDarkBlue"/>
 
                 <RadioButton
                     android:id="@+id/radioBtn_disagree"
@@ -95,7 +96,8 @@
                     android:layout_gravity="center"
                     android:padding="15dp"
                     android:text="Option2"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:buttonTint="@color/bgDarkBlue"/>
 
             </RadioGroup>
 
