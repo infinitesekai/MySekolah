@@ -26,34 +26,30 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    if(lastfragment!=R.id.nav_home) {
                         selectedFragment = new HomePage();
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
                         selectedFragment.setArguments(bundle);
                         lastfragment = R.id.nav_home;
-                    }
+
                     break;
                 case R.id.nav_notif:
-                    if(lastfragment!=R.id.nav_notif) {
                         selectedFragment = new NotificationPage();
                         lastfragment = R.id.nav_notif;
-                    }
+
                     break;
                 case R.id.nav_profile:
-                    if(lastfragment!=R.id.nav_profile) {
                         selectedFragment = (ProfilePage)new ProfilePage();
-                        Bundle bundle = new Bundle();
+                        bundle = new Bundle();
                         bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
                         selectedFragment.setArguments(bundle);
                         lastfragment = R.id.nav_profile;
-                    }
+
                     break;
                 case R.id.nav_search:
-                    if(lastfragment!=R.id.nav_search) {
                         selectedFragment = new SearchPage();
                         lastfragment = R.id.nav_search;
-                    }
+
                     break;
             }
 
