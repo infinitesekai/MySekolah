@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.R;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PersonalTestQuestion extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
         questionCountTotal = questionList.size();
 
         //random the questions in the question collection
-//        Collections.shuffle(questionList);
+        Collections.shuffle(questionList);
 
         showNextQuestion();
 
