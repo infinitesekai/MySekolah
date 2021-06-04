@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mysekolah">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -42,6 +43,125 @@
             android:name=".PersonalityCareerTest.InstuctionPage"
             android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
         <activity android:name=".PersonalityCareerTest.PersonalityTestHome" />
+        <activity android:name=".PersonalityCareerTest.LoadingDialog"
+            tools:ignore="Instantiatable" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
         <activity android:name=".Attendance_Form" />
