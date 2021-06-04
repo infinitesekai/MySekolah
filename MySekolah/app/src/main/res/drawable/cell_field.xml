@@ -4,9 +4,9 @@
         <shape
             android:shape="rectangle">
             <!-- Set the border color of your layout here -->
-            <stroke android:width="3dp" android:color="@color/bgDarkBlue" />
-            <solid android:color="@color/white" />
-            <corners android:radius="8dp"/>
+            <stroke android:width="3dp" android:color="@color/white" />
+            <solid android:color="@color/transparent" />
+            <corners android:radius="50dp"/>
         </shape>
     </item>
 </layer-list>
