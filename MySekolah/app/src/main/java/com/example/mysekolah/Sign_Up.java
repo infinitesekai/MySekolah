@@ -59,7 +59,7 @@ public class Sign_Up extends AppCompatActivity {
                     Toast.makeText(Sign_Up.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
                 } else{
                     if(pass.equals(repass)){
-                        ArrayList<User> userList = DB.checkuseric(ic);//存在才可以添加用户
+                        ArrayList<User> userList = DB.checkuseric(ic, nameStr);//存在才可以添加用户
                         Boolean checkuser = true;
                         User currentUser = null;
                         if (userList.size() == 0) {

@@ -174,9 +174,9 @@ public class DatabaseAccess {
         return AbsentDateList;
     }
 
-    public ArrayList checkuseric(String ic) {
+    public ArrayList checkuseric(String ic, String nameStr) {
         //SQLiteDatabase db = this.getWritableDatabase();
-        String querySql = "select ICNo,Name,Gender,Races,Religion,Nationality from Resident where ICNo = '" + ic +"';";
+        String querySql = "select ICNo,Name,Gender,Races,Religion,Nationality from Resident where ICNo = '" + ic +"' and name = '" + nameStr +"';";
         Cursor cursor = database.rawQuery(querySql, null);
         ArrayList<User> userArrayList = new ArrayList<User>();
         while(cursor.moveToNext()) {
