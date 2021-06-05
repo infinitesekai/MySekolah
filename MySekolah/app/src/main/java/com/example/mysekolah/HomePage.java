@@ -27,6 +27,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         TextView nameText = v.findViewById(R.id.user_name);
         Bundle bundle = getArguments();
+
         currentUser = (User) bundle.getSerializable("user");
         nameText.setText("Hi," + currentUser.getName());
         enrollment= (CardView) v.findViewById(R.id.enrollmentCard);

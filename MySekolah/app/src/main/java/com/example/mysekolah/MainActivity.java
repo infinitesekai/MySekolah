@@ -26,30 +26,31 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    if (currentUser.getRole() == 1) {
                         selectedFragment = new HomePage();
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
-                        selectedFragment.setArguments(bundle);
-                        lastfragment = R.id.nav_home;
-
+                    } else {
+                        selectedFragment = new HomePage_Student();
+                    }
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
-                        selectedFragment = new NotificationPage();
-                        lastfragment = R.id.nav_notif;
+                    selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
 
                     break;
                 case R.id.nav_profile:
-                        selectedFragment = (ProfilePage)new ProfilePage();
-                        bundle = new Bundle();
-                        bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
-                        selectedFragment.setArguments(bundle);
-                        lastfragment = R.id.nav_profile;
-
+                    selectedFragment = (ProfilePage)new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
-                        selectedFragment = new SearchPage();
-                        lastfragment = R.id.nav_search;
-
+                    selectedFragment = new SearchPage();
+                    lastfragment = R.id.nav_search;
                     break;
             }
 
@@ -72,18 +73,23 @@ public class MainActivity extends AppCompatActivity {
                 bottomNav.setSelectedItemId(bottomNav.getMenu().getItem(lastfragment).getItemId());
             }
         },100);
-        if (currentUser.getRole() == 0) {
+        /*
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+        if (currentUser.getRole() == 1) {
             Fragment fragment = new HomePage();
+            fragment.setArguments(bundle);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, fragment);
             transaction.commit();
         } else {
             Fragment fragment = new HomePage_Student();
+            fragment.setArguments(bundle);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, fragment);
             transaction.commit();
         }
-
+        */
 
         /*
         btn_student_home = findViewById(R.id.student_home);
