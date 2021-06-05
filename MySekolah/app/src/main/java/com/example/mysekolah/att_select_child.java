@@ -15,6 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class att_select_child extends AppCompatActivity {
 
     public CardView child1,child2,child3,child4;
+    private User currentUser;
+    private int lastfragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,9 @@ public class att_select_child extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
         child1=findViewById(R.id.Child1Card);
 
@@ -64,15 +69,25 @@ public class att_select_child extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;

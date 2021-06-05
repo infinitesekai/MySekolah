@@ -31,7 +31,6 @@
         <activity android:name=".Login_page" />
         <activity android:name=".EditProfile_Activity" />
         <activity android:name=".Check_in_scan" />
-        <activity android:name=".Check_in" />
         <activity android:name=".Tertiary_Info" />
         <activity android:name=".Academic_Qualification" />
         <activity android:name=".ExamResultTable" />

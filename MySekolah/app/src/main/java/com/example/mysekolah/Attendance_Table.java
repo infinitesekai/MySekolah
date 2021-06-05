@@ -21,6 +21,8 @@ public class Attendance_Table extends AppCompatActivity {
     DatabaseAccess databaseAccess;
 
     public static ArrayList<String> AbsentDateList;
+    private User currentUser;
+    private int lastfragment;
    // private ArrayAdapter<String> adapter;
     //try mCalendarView to highlight multiple date
 /*
@@ -46,6 +48,9 @@ public class Attendance_Table extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
@@ -131,15 +136,25 @@ public class Attendance_Table extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;
