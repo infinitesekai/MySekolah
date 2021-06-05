@@ -57,7 +57,8 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.academic_qualification:
                 i= new Intent(getActivity(), Academic_Qualification.class);
-                i.putExtra("ICNo", tempic);
+                i.putExtra("user",currentUser);
+                i.putExtra("ICNo", currentUser.getICNo());
                 startActivity(i);
                 break;
             case R.id.exam_check:
@@ -70,10 +71,12 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tertiary_info:
                 i=new Intent(getActivity(), Tertiary_Info.class);
+                i.putExtra("user",currentUser);
                 startActivity(i);
                 break;
            case R.id.check_in:
                 i=new Intent(getActivity(), Check_in_scan.class);
+               i.putExtra("user",currentUser);
                 startActivity(i);
                break;
 

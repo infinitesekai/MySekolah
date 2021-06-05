@@ -114,7 +114,7 @@ public class Check_in_scan extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new HomePage();
+                    selectedFragment = new HomePage_Student();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);

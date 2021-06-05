@@ -126,6 +126,7 @@ public class Attendance_Form extends AppCompatActivity
                 i.putExtra("School", selectedSchool);
                 i.putExtra("Month", selectedMonth);
                 i.putExtra("IntMonth", Arrays.asList(month).indexOf(selectedMonth));
+                i.putExtra("user",currentUser);
                 startActivity(i);
             }
         });

@@ -83,6 +83,7 @@ public class Academic_Qualification extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(Academic_Qualification.this, Export_Qualification.class);
+                i.putExtra("user",currentUser);
                 i.putExtra("ICNo", current_IC);
                 startActivity(i);
             }
@@ -104,7 +105,7 @@ public class Academic_Qualification extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new HomePage();
+                    selectedFragment = new HomePage_Student();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
                     selectedFragment.setArguments(bundle);
