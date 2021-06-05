@@ -23,10 +23,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class Academic_Qualification extends AppCompatActivity {
     private TextView ic, name, preschool, pre_year, primary_school, primary_year, secondary_school, secondary_year, qualification, qualification_year;
     private Button btnexport;
+    private User currentUser;
+    private int lastfragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_academic_qualification);
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -61,12 +66,12 @@ public class Academic_Qualification extends AppCompatActivity {
 
 //        Qualification qualification_record = databaseAccess.DisplayQualification(current_IC);
 
-           preschool.setText(qualification_record.getPreSchool());
+            preschool.setText(qualification_record.getPreSchool());
             pre_year.setText(qualification_record.getPreYear());
             primary_school.setText(qualification_record.getPrimarySchool());
             primary_year.setText(qualification_record.getPrimaryYear());
-        secondary_school.setText(qualification_record.getSecondarySchool());
-        secondary_year.setText(qualification_record.getSecondaryYear());
+            secondary_school.setText(qualification_record.getSecondarySchool());
+            secondary_year.setText(qualification_record.getSecondaryYear());
             qualification.setText(qualification_record.getqualification());
             qualification_year.setText(qualification_record.getqualificationYear());
 
@@ -99,16 +104,26 @@ public class Academic_Qualification extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new HomePage_Student();
+                    selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;

@@ -14,7 +14,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class SchoolEnroll extends AppCompatActivity implements View.OnClickListener {
 
-
+    private User currentUser;
+    private int lastfragment;
     CardView preschool, primary, secondary;
 
     @Override
@@ -24,6 +25,9 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
         preschool = findViewById(R.id.preSchoolCard);
         primary = findViewById(R.id.priSchoolCard);
@@ -45,15 +49,25 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;
@@ -67,6 +81,7 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.preSchoolCard:
                 i = new Intent(this, Enroll_Check_IC.class);
+                i.putExtra("currentUser",currentUser);
                 startActivity(i);
                 break;
 

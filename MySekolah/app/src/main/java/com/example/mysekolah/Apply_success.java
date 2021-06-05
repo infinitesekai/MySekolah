@@ -18,12 +18,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class Apply_success extends AppCompatActivity {
     ImageView successinfo;
     Dialog dialog;
+    private User currentUser;
+    private int lastfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_success);
         dialog=new Dialog(this);
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -57,15 +62,25 @@ public class Apply_success extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;

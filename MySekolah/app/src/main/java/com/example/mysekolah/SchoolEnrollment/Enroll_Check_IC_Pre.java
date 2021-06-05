@@ -38,6 +38,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
         schoolLevel=getIntent().getStringExtra("SchoolLevel");
 
 
+
         //Check exists database
        /* File database= getApplicationContext().getDatabasePath(DatabaseHelper.DBNAME);
         if(false == database.exists()){
