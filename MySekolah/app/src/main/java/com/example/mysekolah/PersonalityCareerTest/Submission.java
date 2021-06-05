@@ -19,10 +19,24 @@ import java.util.List;
 public class Submission extends Activity implements View.OnClickListener{
 
     Button btn_cancel, btn_submit;
+    int R_counter;
+    int I_counter;
+    int A_counter;
+    int S_counter;
+    int E_counter;
+    int C_counter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
+
+        R_counter=getIntent().getExtras().getInt("R_counter");
+        I_counter=getIntent().getExtras().getInt("I_counter");
+        A_counter=getIntent().getExtras().getInt("A_counter");
+        S_counter=getIntent().getExtras().getInt("S_counter");
+        E_counter=getIntent().getExtras().getInt("E_counter");
+        C_counter=getIntent().getExtras().getInt("C_counter");
+
 
         btn_cancel = findViewById(R.id.btn_cancel);
         btn_submit = findViewById(R.id.btn_submit);
@@ -64,6 +78,12 @@ public class Submission extends Activity implements View.OnClickListener{
                     @Override
                     public void run() {
                         loadingDialog.dismissDialog();
+                        intent.putExtra("R_counter",R_counter);
+                        intent.putExtra("I_counter",I_counter);
+                        intent.putExtra("A_counter",A_counter);
+                        intent.putExtra("S_counter",S_counter);
+                        intent.putExtra("E_counter",E_counter);
+                        intent.putExtra("C_counter",C_counter);
                         startActivity(intent);
                     }
                 }, loading_time);

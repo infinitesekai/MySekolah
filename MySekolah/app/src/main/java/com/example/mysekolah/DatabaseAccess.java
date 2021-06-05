@@ -305,4 +305,52 @@ public class DatabaseAccess<instance> {
         c.close();
         return questionList;
     }
+
+    public String getCategory(String quesNo){
+        String category="";
+        Cursor cursor= database.rawQuery("select category from Question_List where ques_ID=?", new String[]{quesNo});
+        if(cursor.moveToFirst()) {
+            category=new String(cursor.getString(0));
+
+        }
+        cursor.close();
+        return  category;
+    }
+
+//    update Question_List set answer=1 where ques_ID=1;
+    public boolean updateAnswer(String answer,String quesNo) {
+        //SQLiteDatabase db = this.getWritableDatabase();
+        String update_answer = "update Question_List set answer ='" + answer +"' where ques_ID='" +quesNo+"'";
+        try {
+            database.execSQL(update_answer);
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
+
+//    public void updateAnswer(String answer,String quesNo) {
+//        //SQLiteDatabase db = this.getWritableDatabase();
+//        String update_answer = "update Question_List set answer =" + answer +" where ques_ID=" +quesNo;
+//        try {
+//            database.execSQL(update_answer);
+//        } catch (RuntimeException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+
+    public String getAnswer(String quesNo){
+        String answer="";
+        Cursor cursor= database.rawQuery("select answer from Question_List where ques_ID=?", new String[]{quesNo});
+        if(cursor.moveToFirst()) {
+            answer=new String(cursor.getString(0));
+
+        }
+        cursor.close();
+        return  answer;
+    }
+
+
+
 }

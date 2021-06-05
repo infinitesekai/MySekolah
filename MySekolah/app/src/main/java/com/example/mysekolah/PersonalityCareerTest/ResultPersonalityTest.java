@@ -29,11 +29,41 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
     ImageView imageView, imageView2, imageView3;
     CardView cardView, cardView2, cardView3;
     Button result_quit, result_export;
+    TextView Rvalue;
+    TextView Ivalue;
+    TextView Avalue;
+    TextView Svalue;
+    TextView Evalue;
+    TextView Cvalue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_personality_test);
+
+        int R_counter=getIntent().getExtras().getInt("R_counter");
+        int I_counter=getIntent().getExtras().getInt("I_counter");
+        int A_counter=getIntent().getExtras().getInt("A_counter");
+        int S_counter=getIntent().getExtras().getInt("S_counter");
+        int E_counter=getIntent().getExtras().getInt("E_counter");
+        int C_counter=getIntent().getExtras().getInt("C_counter");
+//        int R_counter=getIntent().getExtras().getInt("R_counter");
+        Rvalue=findViewById(R.id.first_total);
+        Rvalue.setText(String.valueOf(R_counter));
+        Ivalue=findViewById(R.id.second_total);
+        Ivalue.setText(String.valueOf(I_counter));
+        Avalue=findViewById(R.id.third_total);
+        Avalue.setText(String.valueOf(A_counter));
+        Svalue=findViewById(R.id.forth_total);
+        Svalue.setText(String.valueOf(S_counter));
+        Evalue=findViewById(R.id.fifth_total);
+        Evalue.setText(String.valueOf(E_counter));
+        Cvalue=findViewById(R.id.sixth_total);
+        Cvalue.setText(String.valueOf(C_counter));
+
+
+
+
 
         expandable_view = findViewById(R.id.expandable_view);
         expandable_view2 = findViewById(R.id.expandable_view2);
