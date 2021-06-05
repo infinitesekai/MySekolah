@@ -1,5 +1,7 @@
 package com.example.mysekolah.PersonalityCareerTest;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mysekolah.R;
@@ -14,17 +16,19 @@ import androidx.cardview.widget.CardView;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mysekolah.databinding.ActivityResultPersonalityTestBinding;
 
-public class ResultPersonalityTest extends AppCompatActivity {
+public class ResultPersonalityTest extends AppCompatActivity implements View.OnClickListener {
 
     LinearLayout expandable_view, expandable_view2, expandable_view3;
     ImageView imageView, imageView2, imageView3;
     CardView cardView, cardView2, cardView3;
+    Button result_quit, result_export;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,12 @@ public class ResultPersonalityTest extends AppCompatActivity {
         cardView = findViewById(R.id.result_card);
         cardView2 = findViewById(R.id.result_card2);
         cardView3 = findViewById(R.id.result_card3);
+
+        result_quit = findViewById(R.id.result_quit);
+        result_export = findViewById(R.id.result_export);
+
+        result_export.setOnClickListener(this);
+        result_quit.setOnClickListener(this);
 
     }
 
@@ -81,4 +91,19 @@ public class ResultPersonalityTest extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public void onClick(View v) {
+        Intent intent;
+
+        switch (v.getId()){
+            case R.id.result_quit:
+                intent = new Intent(this, PersonalityTestHome.class);
+                startActivity(intent);
+                break;
+            case R.id.result_export:
+
+                break;
+        }
+    }
 }

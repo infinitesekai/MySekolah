@@ -507,8 +507,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp"
                         android:gravity="center"
-                        android:orientation="vertical"
-                        android:paddingBottom="100dp">
+                        android:orientation="vertical">
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/result_card"
@@ -813,14 +812,30 @@
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                             </androidx.cardview.widget.CardView>
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/export"
-                            android:textColor="@color/white"
-                            android:background="@drawable/rounded_btn_black"/>
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </FrameLayout>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="60dp">
+                    <Button
+                        android:id="@+id/result_quit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/quit"
+                        android:textColor="@color/white"
+                        android:layout_marginRight="60dp"
+                        android:background="@drawable/rounded_btn_black"/>
+                    <Button
+                        android:id="@+id/result_export"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/export"
+                        android:textColor="@color/white"
+                        android:background="@drawable/rounded_btn_black"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </LinearLayout>
         </FrameLayout>
     </RelativeLayout>

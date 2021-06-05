@@ -49,8 +49,8 @@ public class PersonalTestQuestion extends AppCompatActivity {
         rbGroup = findViewById(R.id.radio_group);
         rb1 = findViewById(R.id.radioBtn_agree);
         rb2 = findViewById(R.id.radioBtn_disagree);
-        rb1.setChecked(Update("option1"));
-        rb2.setChecked(Update("option2"));
+//        rb1.setChecked(Update("option1"));
+//        rb2.setChecked(Update("option2"));
 
         buttonNext = findViewById(R.id.btn_next);
         buttonBack = findViewById(R.id.btn_back);
@@ -166,16 +166,16 @@ public class PersonalTestQuestion extends AppCompatActivity {
     }
 
 
-    private void SaveIntoPref(String key, boolean value){
-        SharedPreferences sp = getSharedPreferences("option", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putBoolean(key, value);
-        editor.apply();
-    }
-
-    private boolean Update(String key){
-        SharedPreferences sp = getSharedPreferences("option", MODE_PRIVATE);
-        return sp.getBoolean(key, false);
-    }
+//    private void SaveIntoPref(String key, boolean value){
+//        SharedPreferences sp = getSharedPreferences("option", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sp.edit();
+//        editor.putBoolean(key, value);
+//        editor.apply();
+//    }
+//
+//    private boolean Update(String key){
+//        SharedPreferences sp = getSharedPreferences("option", MODE_PRIVATE);
+//        return sp.getBoolean(key, false);
+//    }
 
 }

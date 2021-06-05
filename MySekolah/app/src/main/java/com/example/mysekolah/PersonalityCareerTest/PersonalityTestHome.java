@@ -43,4 +43,5 @@ public class PersonalityTestHome extends AppCompatActivity implements View.OnCli
                 break;
         }
     }
+
 }
