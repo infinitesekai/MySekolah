@@ -47,11 +47,11 @@ public class Apply_List extends AppCompatActivity {
 
         list_item=new ArrayList<String>();
         String icParent=currentUser.getICNo();
-
         databaseAccess.getApplicationList(icParent);
-//        databaseAccess.getApplicationList(currentUser.getICNo());
 
-        viewApplication();
+        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_item);
+        apply_list.setAdapter(adapter);
+
 
         apply_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -66,16 +66,19 @@ public class Apply_List extends AppCompatActivity {
                         i.putExtra("user",currentUser);
                         i.putExtra("childname", childName);
                         startActivity(i);
+                        break;
                     case ("2"):
                         i= new Intent(Apply_List.this, Apply_success.class);
                         i.putExtra("user",currentUser);
                         i.putExtra("childname", childName);
                         startActivity(i);
+                        break;
                     case ("3"):
                         i= new Intent(Apply_List.this, Apply_fail.class);
                         i.putExtra("user",currentUser);
                         i.putExtra("childname", childName);
                         startActivity(i);
+                        break;
 
                 }
 
@@ -83,37 +86,14 @@ public class Apply_List extends AppCompatActivity {
         });
 
 
-
+        databaseAccess.close();
 
 
 
 
     }
 
-    private void viewApplication() {
-       // Cursor cursor=databaseAccess.getApplicationList(currentUser.getICNo());
 
-//        if(cursor.getCount()==0)
-//            Toast.makeText(this,"No application",Toast.LENGTH_SHORT).show();
-//
-//        else{
-//            while(cursor.moveToFirst()){
-//                list_item.add(cursor.getString(0));
-//            }
-
-//        if (cursor.moveToFirst()){
-//            do{
-//                list_item.add(cursor.getString(0));
-//
-//            }while (cursor.moveToNext());
-//        }
-
-
-
-            adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_item);
-            apply_list.setAdapter(adapter);
-//        }
-    }
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

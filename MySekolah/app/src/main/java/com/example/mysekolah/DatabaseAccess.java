@@ -270,22 +270,11 @@ public class DatabaseAccess {
         return true;
     }
 
-//    public Cursor getApplicationList(String parentIC){
-//        String query="SELECT nameChild FROM Application WHERE icPr="+ parentIC;
-//
-//        Cursor cursor= database.rawQuery(query,null);
-//
-//        return cursor;
-//
-//    }
 
     public List<String> getApplicationList(String parentIC){
 
         List<String> list_item= new ArrayList<String>();
 
-//        String query="SELECT nameChild FROM Application WHERE icPr="+ parentIC;
-//        String query="SELECT nameChild FROM Application WHERE icPr=\"800918-14-6778\"";
-//               Cursor cursor= database.rawQuery(query,null);
         Cursor cursor= database.rawQuery("SELECT nameChild FROM Application WHERE icPr=?", new String[]{parentIC});
 
 
@@ -303,9 +292,12 @@ public class DatabaseAccess {
     }
 
     public String getStatus(String childName){
-        String status;
+        String status="";
         Cursor cursor= database.rawQuery("SELECT status FROM Application WHERE nameChild=?", new String[]{childName});
-        status = cursor.getString(0);
+        if(cursor.moveToFirst()) {
+            status=new String(cursor.getString(0));
+
+        }
         cursor.close();
         return status;
     }

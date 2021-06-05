@@ -19,6 +19,9 @@ public class Apply_pending extends AppCompatActivity {
     private User currentUser;
     private int lastfragment;
     private String childname;
+    TextView icno,name,school;
+    StatusInfo info;
+    DatabaseAccess databaseAccess;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,22 @@ public class Apply_pending extends AppCompatActivity {
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
         childname=getIntent().getStringExtra("childname");
+
+        icno=findViewById(R.id.icNoPending);
+        name=findViewById(R.id.namePending);
+        school=findViewById(R.id.schoolPending);
+
+        databaseAccess= DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+
+        info=databaseAccess.getStatusInfo(childname);
+        icno.setText(info.getICNo());
+        name.setText(info.getName());
+        school.setText(info.getSchool());
+
+        databaseAccess.close();
+
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
