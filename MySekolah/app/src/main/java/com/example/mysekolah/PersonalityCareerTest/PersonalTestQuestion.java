@@ -191,7 +191,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
                     // decrease the current question counter to back to the previous question
                     questionCounter--;
                     previousAns=dbAccess.getAnswer(String.valueOf(questionCounter));
-                    if(!previousAns.equals("1"))
+                    if(previousAns.equals("1"))
                             minusCounter(questionCounter);
 
                     showNextQuestion();
