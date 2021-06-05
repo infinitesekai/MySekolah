@@ -4,8 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.mysekolah.AppicationFormSubmit;
 import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage;
 import com.example.mysekolah.NotificationPage;
@@ -159,8 +156,9 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
                                             districtChild,telChild,icPr,namePr,genderPr,racePr,religionPr,nationalityPr,addressPr,postcodePr,statePr,districtPr,telPr,jobPr,
                                             salaryPr,selectedSchoolType,selectedSchoolState,selectedSchoolDistrict,selectedSchool,distanceForm,"1");
                                    if(insert){
-                                        Toast.makeText(PreSchoolForm3.this, "Application Form submitted succesfully", Toast.LENGTH_LONG).show();
-                                        Intent i = new Intent(PreSchoolForm3.this, AppicationFormSubmit.class);
+                                        Toast.makeText(PreSchoolForm3.this, "Application Form submitted successfully", Toast.LENGTH_LONG).show();
+                                        Intent i = new Intent(PreSchoolForm3.this, ApplicationFormSubmit.class);
+                                        i.putExtra("user", currentUser);
                                         startActivity(i);
 
                                         finish();}
