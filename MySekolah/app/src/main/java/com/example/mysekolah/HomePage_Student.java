@@ -62,7 +62,9 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
                 startActivity(i);
                 break;
             case R.id.exam_check:
-                i = new Intent(getActivity(), ExamResultTable.class);
+                i = new Intent(getActivity(), ExamResultForm.class);
+                i.putExtra("user",currentUser);
+                i.putExtra("ICNo", currentUser.getICNo());
                 startActivity(i);
                 break;
             case R.id.personality_test:
