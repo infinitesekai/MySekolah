@@ -66,11 +66,29 @@ public class DatabaseAccess {
         return districts;
     }
 
+    // Get all spinner type of school values
+    public List<String> getAllSchoolType(String schoolLevel){
+        List<String> schoolType= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT Type FROM SChool WHERE EduLevel=?", new String[] {schoolLevel});
+        if(cursor.moveToFirst()){
+            do{
+                schoolType.add(cursor.getString(0));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return schoolType;
+    }
+
+
+
+
     // Get all spinner school list values
-    public List<String> getAllSchoolList(String district, String schoolLevel){
+    public List<String> getAllSchoolList(String district, String schoolLevel, String schoolType){
         List<String> schools= new ArrayList<String>();
 
-        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=?", new String[] {district,schoolLevel});
+        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=? and Type=?", new String[] {district,schoolLevel,schoolType});
         if(cursor.moveToFirst()){
             do{
                 schools.add(cursor.getString(0));
@@ -265,6 +283,33 @@ public class DatabaseAccess {
             database.execSQL(update_user);
         } catch (RuntimeException e) {
             return false;
+        }
+        return true;
+    }
+
+
+    public boolean insertSchoolApplication(String icChild, String nameChild, String genderChild, String raceChild, String religionChild, String nationalityChild, String addressChild,
+                                           String postcodeChild, String stateChild, String districtChild, String telChild, String icPr, String namePr, String genderPr,
+                                           String racePr, String religionPr, String nationalityPr, String addressPr, String postcodePr, String statePr, String districtPr,
+                                           String telPr, String jobPr, String salaryPr, String typeOfSchool, String stateSchool, String districtSchool, String schoolName, String distance, String status) {
+
+        String insertSql= "INSERT INTO Application \n"+
+                          "(icChild, namechild, genderChild, raceChild, religionChild, nationalityChild, addressChild, \n" +
+                "postcodeChild, stateChild, districtChild, telchild, icPr, namePr, genderPr, racePr, religionPr, nationalityPr, \n" +
+                "addressPr, postcodePr, statePr, districtPr, telPr, jobPr, salaryPr, typeOfSchool, stateSchool, districtSchool, \n" +
+                "schoolName, distance, status) \n"+
+                "VALUES \n"+
+                "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+        try {
+            database.execSQL(insertSql, new String [] {icChild,nameChild, genderChild, raceChild, religionChild, nationalityChild, addressChild, postcodeChild, stateChild, districtChild, telChild,icPr,  namePr, genderPr,
+                    racePr, religionPr, nationalityPr, addressPr, postcodePr, statePr,  districtPr,
+                    telPr, jobPr, salaryPr, typeOfSchool, stateSchool, districtSchool, schoolName,  distance, status});
+        } catch (RuntimeException e) {
+            Log.d("Insertion failed",e.getLocalizedMessage());
+            return false;
+        }  finally {
+            database.close();//add
         }
         return true;
     }
