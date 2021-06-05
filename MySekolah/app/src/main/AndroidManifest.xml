@@ -38,7 +38,8 @@
             android:name=".PersonalityCareerTest.ResultPersonalityTest"
             android:label="@string/title_activity_result_personality_test"
             android:theme="@style/Theme.MySekolah.NoActionBar" />
-        <activity android:name=".PersonalityCareerTest.PersonalTestQuestion" />
+        <activity android:name=".PersonalityCareerTest.PersonalTestQuestion"
+            android:launchMode="singleInstance"/>
         <activity
             android:name=".PersonalityCareerTest.InstuctionPage"
             android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
