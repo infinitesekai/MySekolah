@@ -14,6 +14,8 @@ import android.widget.Button;
 
 import com.example.mysekolah.R;
 
+import java.util.List;
+
 public class Submission extends Activity implements View.OnClickListener{
 
     Button btn_cancel, btn_submit;
@@ -50,8 +52,7 @@ public class Submission extends Activity implements View.OnClickListener{
 
         switch (v.getId()){
             case R.id.btn_cancel:
-                intent = new Intent(this, PersonalTestQuestion.class);
-                startActivity(intent);
+                finish();
                 break;
             case R.id.btn_submit:
 

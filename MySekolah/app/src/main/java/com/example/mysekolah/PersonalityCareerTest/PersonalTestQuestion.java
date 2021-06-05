@@ -59,6 +59,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
         //random the questions in the question collection
         Collections.shuffle(questionList);
 
+        //show the first question
         showNextQuestion();
 
         //when clicking the button next
