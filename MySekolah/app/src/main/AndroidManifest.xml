@@ -23,6 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
         <activity android:name=".Apply_List"></activity>
+        <activity android:name=".SchoolEnrollment.ApplicationFormSubmit"></activity>
         <activity android:name=".ExportExamResult" />
         <activity android:name=".Export_Qualification" />
         <activity android:name=".Discipline_Result" />

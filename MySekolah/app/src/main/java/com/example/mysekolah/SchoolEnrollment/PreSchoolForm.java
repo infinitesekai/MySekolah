@@ -24,6 +24,7 @@ import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.Residents;
 import com.example.mysekolah.SearchPage;
+import com.example.mysekolah.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class PreSchoolForm extends AppCompatActivity{
     private EditText address,postcode, tel;
 
 
+
     // one boolean variable to check whether all the text fields
     // are filled by the user, properly or not.
     private boolean isAllFieldsChecked = false;
@@ -48,6 +50,8 @@ public class PreSchoolForm extends AppCompatActivity{
 
 
     String schoolLevel;
+    private User currentUser;
+    private int lastfragment;
 
     String selectedState="";
     String selectedDistrict="";
@@ -61,6 +65,8 @@ public class PreSchoolForm extends AppCompatActivity{
 
 
         schoolLevel=getIntent().getStringExtra("SchoolLevel");
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
         ic_child= findViewById(R.id.tvIC);
         name_child= findViewById(R.id.tvName);
@@ -92,6 +98,9 @@ public class PreSchoolForm extends AppCompatActivity{
 
 
 
+
+
+
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         Spinner state_spin = (Spinner) findViewById(R.id.spinnerState);
         //state_spin.setOnItemSelectedListener(this);
@@ -116,11 +125,6 @@ public class PreSchoolForm extends AppCompatActivity{
 
         });
 
-        Log.d("Selected State", selectedState);
-        Log.d("Selected District", selectedDistrict);
-        Log.d("SchoolLevel", schoolLevel);
-
-
 
 
         //next button operation
@@ -128,13 +132,34 @@ public class PreSchoolForm extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
+                //get the form value
+                String icChild= ic_child.getText().toString();
+                String nameChild= name_child.getText().toString();
+                String genderChild= gender_child.getText().toString();
+                String raceChild= race_child.getText().toString();
+                String religionChild= religion_child.getText().toString();
+                String nationalityChild= nationality_child.getText().toString();
+                String addressChild= address.getText().toString();
+                String postcodeChild= postcode.getText().toString();
+                String telChild= tel.getText().toString();
+
                 isAllFieldsChecked= CheckAllField();
 
                 if(isAllFieldsChecked) {
                     Intent i = new Intent(PreSchoolForm.this, PreSchoolForm2.class);
                     i.putExtra("SchoolLevel", schoolLevel);
-                    i.putExtra("SelectedState", selectedState);
-                    i.putExtra("SelectedDistrict", selectedDistrict);
+                    i.putExtra("icChild", icChild);
+                    i.putExtra("nameChild", nameChild);
+                    i.putExtra("genderChild", genderChild);
+                    i.putExtra("raceChild", raceChild);
+                    i.putExtra("religionChild", religionChild);
+                    i.putExtra("nationalityChild", nationalityChild);
+                    i.putExtra("addressChild", addressChild);
+                    i.putExtra("postcodeChild", postcodeChild);
+                    i.putExtra("telChild", telChild);
+                    i.putExtra("stateChild", selectedState);
+                    i.putExtra("districtChild", selectedDistrict);
+                    i.putExtra("user", currentUser);
                     startActivity(i);
                 }
             }
@@ -208,36 +233,29 @@ public class PreSchoolForm extends AppCompatActivity{
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;
         }
     };
 
-    //Performing action onItemSelected and onNothing selected
-   /* @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getId()== R.id.spinnerState){
-            String selectedState = parent.getItemAtPosition(position).toString();
-            loadSpinnerData(selectedState);
-
-        }else if (parent.getId()==R.id.spinnerDistrict){
-            String selectedDistrict = parent.getItemAtPosition(position).toString();
-        }
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }*/
 }

@@ -284,7 +284,6 @@
                         android:layout_marginTop="12dp"
                         android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
-                        android:text="AddressView"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
@@ -329,7 +328,6 @@
                         android:layout_marginTop="12dp"
                         android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
-                        android:text="43900"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 

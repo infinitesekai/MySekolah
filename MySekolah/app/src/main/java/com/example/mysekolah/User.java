@@ -22,7 +22,7 @@ public class User implements Serializable {//实现这个接口才可以在inten
     public User() {
     }
 
-    public User(String userID, String ICNo, String name, int role, String password, String gender, String bDate, String job, String salary, String address, String phoneNo) {
+    public User(String userID, String ICNo, String name, int role, String password, String gender, String bDate, String job, String salary, String address, String phoneNo, String religion) {
         this.userID = userID;
         this.ICNo = ICNo;
         this.name = name;
@@ -34,6 +34,7 @@ public class User implements Serializable {//实现这个接口才可以在inten
         this.salary = salary;
         this.address = address;
         this.phoneNo = phoneNo;
+        this.religion= religion;
     }
     public String userID() {
         return userID ;
