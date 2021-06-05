@@ -36,10 +36,17 @@ public class att_select_child extends AppCompatActivity {
                 switch (str){
                     case ("exam"):
                         i= new Intent(att_select_child.this, ExamResultForm.class);
+                        i.putExtra("ICNo", "160807-10-9088");
                         startActivity(i);
                         break;
                     case ("attendance"):
                         i= new Intent(att_select_child.this, Attendance_Form.class);
+                        i.putExtra("ICNo", "160807-10-9088");
+                        i.putExtra("childName","LIM KOK WENG");
+                        startActivity(i);
+                        break;
+                    case ("discipline"):
+                        i= new Intent(att_select_child.this, Discipline_Form.class);
                         startActivity(i);
                         break;
                 }

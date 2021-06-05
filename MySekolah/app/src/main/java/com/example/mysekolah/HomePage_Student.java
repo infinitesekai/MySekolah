@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,12 +17,19 @@ import com.example.mysekolah.PersonalityCareerTest.PersonalityTestHome;
 public class HomePage_Student extends Fragment implements View.OnClickListener {
 
     public CardView academic_qualification, exam_check, personality_check,tertiary_info,check_in;
+    public String tempic="041005-10-6789";
+    private User currentUser;
 
     @Override
     @Nullable
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_home_student, container, false);
+        TextView nameText = v.findViewById(R.id.student_home_name);
+        Bundle bundle = getArguments();
+
+        currentUser = (User) bundle.getSerializable("user");
+        nameText.setText("Hi," + currentUser.getName());
 
         academic_qualification = (CardView)v.findViewById(R.id.academic_qualification);
         exam_check = (CardView)v.findViewById(R.id.exam_check);
@@ -36,6 +44,9 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
         check_in.setOnClickListener(this);
         tertiary_info.setOnClickListener(this);
 
+
+
+
         return v;
     }
 
@@ -46,6 +57,7 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.academic_qualification:
                 i= new Intent(getActivity(), Academic_Qualification.class);
+                i.putExtra("ICNo", tempic);
                 startActivity(i);
                 break;
             case R.id.exam_check:

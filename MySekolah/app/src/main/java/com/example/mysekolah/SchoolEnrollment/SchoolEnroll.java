@@ -73,8 +73,18 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.preSchoolCard:
                 i = new Intent(this, EnrollOrStatusPre.class);
+                i.putExtra("SchoolLevel", "PreSchool");
                 startActivity(i);
                 break;
+            case R.id.secSchoolCard:
+                i = new Intent(this, EnrollOrStatusPre.class);
+                i.putExtra("SchoolLevel", "Secondary");
+                startActivity(i);
+            case R.id.priSchoolCard:
+                i = new Intent(this, EnrollOrStatusPre.class);
+                i.putExtra("SchoolLevel", "Primary");
+                startActivity(i);
+
 
         }
     }

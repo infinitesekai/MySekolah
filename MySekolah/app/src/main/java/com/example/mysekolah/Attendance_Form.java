@@ -12,16 +12,26 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Attendance_Form extends AppCompatActivity implements
-        AdapterView.OnItemSelectedListener
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Attendance_Form extends AppCompatActivity
        {
 
-    String[] school = { "Kindergarten Aman", "SK Kota Warisan", "SMK Sri Sepang"};
-    String[] year={"2015","2016","2017","2018","2019","2020","2021"};
+    String[] school = { "KINDERGARDEN SALAK TINGGI", "SK Kota Warisan", "SMK Sri Sepang"};
+    String[] year={"2019","2020","2021"};
+    String[] month={"January","February","March","April","May","June","July","August","September","October","November","December"};
+   // String[] month={"1","2","3","4","5","6","7","8","9","10","11","12"};
     Button showbtn;
+    TextView ictv,nametv;
+
+           String selectedSchool="";
+           String selectedYear="";
+           String selectedMonth="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +41,20 @@ public class Attendance_Form extends AppCompatActivity implements
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+
+        String ic= getIntent().getExtras().getString("ICNo");
+        String name =getIntent().getExtras().getString("childName");
+
+        ictv=findViewById(R.id.tvIC);
+        nametv=findViewById(R.id.tvName);
+
+        ictv.setText(ic);
+        nametv.setText(name);
+
         Spinner school_spin = (Spinner) findViewById(R.id.school_spinner);
         Spinner year_spin = (Spinner) findViewById(R.id.year_spinner);
-        school_spin.setOnItemSelectedListener(this);
-        year_spin.setOnItemSelectedListener(this);
+        Spinner month_spin = (Spinner) findViewById(R.id.month_spinner);
+
 
         ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,school);
         schoolaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -44,12 +64,63 @@ public class Attendance_Form extends AppCompatActivity implements
         yearaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         year_spin.setAdapter(yearaa);
 
+        ArrayAdapter monthaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,month);
+        monthaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        month_spin.setAdapter(monthaa);
+
+        school_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedSchool=school_spin.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        year_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedYear=year_spin.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        month_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedMonth=month_spin.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+
+
+
         showbtn=findViewById(R.id.btnshow);
 
         showbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(Attendance_Form.this, Attendance_Table.class);
+                i.putExtra("ICNo", ic);
+                i.putExtra("Year", selectedYear);
+                i.putExtra("School", selectedSchool);
+                i.putExtra("Month", selectedMonth);
+                i.putExtra("IntMonth", Arrays.asList(month).indexOf(selectedMonth));
                 startActivity(i);
             }
         });
@@ -82,13 +153,5 @@ public class Attendance_Form extends AppCompatActivity implements
         }
     };
 
-           @Override
-           public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
-               //Toast.makeText(getApplicationContext(),school[position] , Toast.LENGTH_LONG).show();
-           }
-           @Override
-           public void onNothingSelected(AdapterView<?> arg0) {
-               // TODO Auto-generated method stub
-           }
 }

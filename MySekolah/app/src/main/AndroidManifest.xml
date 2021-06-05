@@ -8,11 +8,17 @@
     <uses-feature android:name="android.hardware.camera2.full" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
@@ -20,10 +26,14 @@
             android:name=".PersonalityCareerTest.Submission"
             android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
         <activity android:name=".Discipline_Result" />
+        <activity android:name=".ExportExamResult" />
+        <activity android:name=".Export_Qualification" />
+        <activity android:name=".Discipline_Result" />
         <activity android:name=".Discipline_Form" />
         <activity android:name=".sign_up_role" />
         <activity android:name=".Sign_Up" />
         <activity android:name=".Login_page" />
+        <activity android:name=".EditProfile_Activity" />
         <activity android:name=".Check_in_scan" />
         <activity android:name=".Check_in" />
         <activity android:name=".Tertiary_Info" />
@@ -43,125 +53,6 @@
             android:name=".PersonalityCareerTest.InstuctionPage"
             android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
         <activity android:name=".PersonalityCareerTest.PersonalityTestHome" />
-        <activity android:name=".PersonalityCareerTest.LoadingDialog"
-            tools:ignore="Instantiatable" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
         <activity android:name=".Attendance_Form" />
@@ -182,6 +73,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_path" />
+        </provider>
     </application>
 
 </manifest>

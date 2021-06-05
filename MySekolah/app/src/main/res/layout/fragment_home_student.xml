@@ -16,6 +16,7 @@
             android:layout_height="180dp">
 
             <TextView
+                android:id="@+id/student_home_name"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"

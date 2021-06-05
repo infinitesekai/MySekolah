@@ -153,7 +153,7 @@ public class Check_in extends AppCompatActivity {
         private FragmentManager fragmentManager;
         private bottom_dialog bd;
 
-        public MyImageAnalyser(androidx.fragment.app.FragmentManager fragmentManager) {
+        public MyImageAnalyser(FragmentManager fragmentManager) {
             this.fragmentManager = fragmentManager;
             bd = new bottom_dialog();
         }

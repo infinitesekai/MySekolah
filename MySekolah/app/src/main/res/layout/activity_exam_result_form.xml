@@ -144,7 +144,7 @@
                 android:textSize="16dp" />
 
             <Spinner
-                android:id="@+id/school_spinner"
+                android:id="@+id/tvgender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -172,7 +172,7 @@
 
 
             <Spinner
-                android:id="@+id/year_spinner"
+                android:id="@+id/tvraces"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -199,7 +199,7 @@
 
 
             <Spinner
-                android:id="@+id/Term_spinner"
+                android:id="@+id/tvnationality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -216,7 +216,7 @@
             android:textColor="@color/white"
             android:text="Show"
             android:layout_marginLeft="150dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="40dp"
             />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
