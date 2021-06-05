@@ -283,8 +283,11 @@ public class DatabaseAccess {
 
         List<String> list_item= new ArrayList<String>();
 
-        String query="SELECT nameChild FROM Application WHERE icPr="+ parentIC;
-               Cursor cursor= database.rawQuery(query,null);
+//        String query="SELECT nameChild FROM Application WHERE icPr="+ parentIC;
+//        String query="SELECT nameChild FROM Application WHERE icPr=\"800918-14-6778\"";
+//               Cursor cursor= database.rawQuery(query,null);
+        Cursor cursor= database.rawQuery("SELECT nameChild FROM Application WHERE icPr=?", new String[]{parentIC});
+
 
 
         if (cursor.moveToFirst()){

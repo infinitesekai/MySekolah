@@ -46,7 +46,10 @@ public class Apply_List extends AppCompatActivity {
         apply_list=findViewById(R.id.apply_list);
 
         list_item=new ArrayList<String>();
-        databaseAccess.getApplicationList(currentUser.getICNo());
+        String icParent=currentUser.getICNo();
+
+        databaseAccess.getApplicationList(icParent);
+//        databaseAccess.getApplicationList(currentUser.getICNo());
 
         viewApplication();
 
@@ -58,17 +61,17 @@ public class Apply_List extends AppCompatActivity {
                 Intent i;
 
                 switch (status){
-                    case "1":
+                    case ("1"):
                         i= new Intent(Apply_List.this, Apply_pending.class);
                         i.putExtra("user",currentUser);
                         i.putExtra("childname", childName);
                         startActivity(i);
-                    case "2":
+                    case ("2"):
                         i= new Intent(Apply_List.this, Apply_success.class);
                         i.putExtra("user",currentUser);
                         i.putExtra("childname", childName);
                         startActivity(i);
-                    case "3":
+                    case ("3"):
                         i= new Intent(Apply_List.this, Apply_fail.class);
                         i.putExtra("user",currentUser);
                         i.putExtra("childname", childName);
