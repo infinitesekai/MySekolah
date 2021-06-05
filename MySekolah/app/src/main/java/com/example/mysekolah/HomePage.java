@@ -46,10 +46,12 @@ public class HomePage extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.enrollmentCard:
                 i= new Intent(getActivity(), SchoolEnroll.class);
+                i.putExtra("user", currentUser);
                 startActivity(i);
                 break;
             case R.id.CheckChildPerfCard:
                 i = new Intent(getActivity(), child_performance.class);
+                i.putExtra("user", currentUser);
                 startActivity(i);
                 break;
 
