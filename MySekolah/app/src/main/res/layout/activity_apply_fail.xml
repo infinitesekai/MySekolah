@@ -87,18 +87,19 @@
                         app:srcCompat="@drawable/info_icon" />
 
                     <TextView
-                        android:id="@+id/refno2"
+                        android:id="@+id/icno2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="70dp"
                         android:layout_marginStart="16dp"
+                        android:layout_marginTop="70dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="Ref. No:"
+                        android:text="IC No:"
                         android:textColor="@color/text_color"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:translationX="10dp" />
 
                     <TextView
-                        android:id="@+id/refNoFailed"
+                        android:id="@+id/icNoFailed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="70dp"

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.SimpleCursorAdapter;
 
 import com.cottacush.android.currencyedittext.CurrencyEditText;
 
@@ -267,6 +268,55 @@ public class DatabaseAccess {
             return false;
         }
         return true;
+    }
+
+//    public Cursor getApplicationList(String parentIC){
+//        String query="SELECT nameChild FROM Application WHERE icPr="+ parentIC;
+//
+//        Cursor cursor= database.rawQuery(query,null);
+//
+//        return cursor;
+//
+//    }
+
+    public List<String> getApplicationList(String parentIC){
+
+        List<String> list_item= new ArrayList<String>();
+
+        String query="SELECT nameChild FROM Application WHERE icPr="+ parentIC;
+               Cursor cursor= database.rawQuery(query,null);
+
+
+        if (cursor.moveToFirst()){
+            do{
+                String child=cursor.getString(0);
+
+
+                Apply_List.list_item.add(child);
+
+            }while (cursor.moveToNext());
+        }
+        return list_item;
+    }
+
+    public String getStatus(String childName){
+        String status;
+        Cursor cursor= database.rawQuery("SELECT status FROM Application WHERE nameChild=?", new String[]{childName});
+        status = cursor.getString(0);
+        cursor.close();
+        return status;
+    }
+
+    public StatusInfo getStatusInfo(String childname) {
+
+        StatusInfo info= null;
+        Cursor cursor = database.rawQuery("SELECT icChild,nameChild,schoolName FROM Application WHERE nameChild = ? ", new String[] {childname});
+        //if(cursor!=null){
+        if(cursor.moveToFirst()) {
+            info = new  StatusInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+        }
+        cursor.close();
+        return info;
     }
 
 }

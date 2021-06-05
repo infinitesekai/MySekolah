@@ -57,6 +57,8 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent i= new Intent(Enroll_Check_IC_Pre.this, PreSchoolForm.class);
                 i.putExtra("ICNo", ic.getText().toString());
                 i.putExtra("SchoolLevel", schoolLevel);

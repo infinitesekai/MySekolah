@@ -18,6 +18,7 @@ public class Apply_pending extends AppCompatActivity {
     Dialog dialog;
     private User currentUser;
     private int lastfragment;
+    private String childname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,7 @@ public class Apply_pending extends AppCompatActivity {
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
+        childname=getIntent().getStringExtra("childname");
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);

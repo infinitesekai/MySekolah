@@ -86,18 +86,19 @@
                         android:onClick="showPopup"/>
 
                     <TextView
-                        android:id="@+id/refno1"
+                        android:id="@+id/icno1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="70dp"
                         android:layout_marginStart="16dp"
+                        android:layout_marginTop="70dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="Ref. No:"
+                        android:text="IC No:"
                         android:textColor="@color/text_color"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:translationX="10dp" />
 
                     <TextView
-                        android:id="@+id/refNoApproved"
+                        android:id="@+id/icNoApproved"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="70dp"

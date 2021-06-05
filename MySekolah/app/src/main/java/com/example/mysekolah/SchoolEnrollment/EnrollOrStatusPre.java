@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.mysekolah.Apply_List;
 import com.example.mysekolah.Apply_fail;
 import com.example.mysekolah.Apply_pending;
 import com.example.mysekolah.Apply_success;
@@ -96,7 +97,7 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.CheckStatusCard:
-                i = new Intent(this, Apply_pending.class);
+                i = new Intent(this, Apply_List.class);
                 i.putExtra("user",currentUser);
                 startActivity(i);
                 break;
