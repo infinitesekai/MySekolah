@@ -50,7 +50,7 @@ public class Attendance_Form extends AppCompatActivity
         DatabaseAccess databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
-        String ic= getIntent().getExtras().getString("ICNo");
+        String ic= getIntent().getExtras().getString("icChild");
         String name =getIntent().getExtras().getString("childName");
 
         ictv=findViewById(R.id.tvIC);

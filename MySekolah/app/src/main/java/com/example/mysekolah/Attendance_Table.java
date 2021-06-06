@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -85,8 +86,6 @@ public class Attendance_Table extends AppCompatActivity {
         databaseAccess.DisplayAbsentDate(ic,school,year,month);
 
 
-
-
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -102,9 +101,15 @@ public class Attendance_Table extends AppCompatActivity {
                 }
                 else {
 
-                    if(year !=intyear || month!=intmonth){
-                        dateView.setText("Not selected month.");
+//                    if(year !=intyear || month!=intmonth ){
+                    if(year <intyear || month<intmonth ){
+                        dateView.setText("Not selected month");
                          Toast.makeText(getApplicationContext(), "Attendance checking only available for selected month. Please select again.", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else if(year >intyear || month>intmonth ){
+                        dateView.setText("Future date");
+                        Toast.makeText(getApplicationContext(), "Attendance checking only available for history. Please select again.", Toast.LENGTH_SHORT).show();
 
                     }
                     else {
