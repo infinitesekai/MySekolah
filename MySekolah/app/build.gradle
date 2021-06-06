@@ -64,6 +64,7 @@ dependencies {
     implementation "androidx.camera:camera-extensions:1.0.0-alpha24"
 
 
+
     def lottieVersion = "3.7.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 

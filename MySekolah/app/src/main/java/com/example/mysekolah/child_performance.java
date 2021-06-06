@@ -94,17 +94,20 @@ public class child_performance extends AppCompatActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.AttendanceCard:
                 i = new Intent(this, att_select_child.class);
+                i.putExtra("user",currentUser);
                 i.putExtra("message",attendanceMessage);
                 startActivity(i);
                 break;
             case R.id.ExamResultCard:
                 i = new Intent(this, att_select_child.class);
+                i.putExtra("user",currentUser);
                 i.putExtra("message",examMessage);
                 startActivity(i);
                 break;
 
             case R.id.DisciplineCard:
                 i = new Intent(this, att_select_child.class);
+                i.putExtra("user",currentUser);
                 i.putExtra("message",disciplineMessage);
                 startActivity(i);
                 break;

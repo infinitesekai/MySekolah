@@ -144,7 +144,7 @@
                 android:textSize="16dp" />
 
             <Spinner
-                android:id="@+id/tvgender"
+                android:id="@+id/school_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -172,7 +172,7 @@
 
 
             <Spinner
-                android:id="@+id/tvraces"
+                android:id="@+id/year_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -199,7 +199,7 @@
 
 
             <Spinner
-                android:id="@+id/tvnationality"
+                android:id="@+id/test_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
