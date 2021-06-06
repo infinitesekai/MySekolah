@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExamResultForm"
-    android:background="@drawable/bg_gradient">
+    android:background="@drawable/bg_gradient"
+    tools:context=".ExamResultFormPr">
 
     <TextView
         android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
                 android:textSize="16dp" />
 
             <Spinner
-                android:id="@+id/school_spinner"
+                android:id="@+id/tvgender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -172,7 +172,7 @@
 
 
             <Spinner
-                android:id="@+id/year_spinner"
+                android:id="@+id/tvraces"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -199,7 +199,7 @@
 
 
             <Spinner
-                android:id="@+id/test_spinner"
+                android:id="@+id/tvnationality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -240,5 +240,6 @@
         app:menu="@menu/bottom_navigation">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </RelativeLayout>

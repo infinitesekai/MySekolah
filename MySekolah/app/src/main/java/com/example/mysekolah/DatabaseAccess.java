@@ -99,6 +99,24 @@ public class DatabaseAccess {
         return schools;
     }
 
+
+    // Get all spinner school list values
+    public List<String> getUserSchool(String ic){
+        List<String> schools= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT PreSchool, PrimarySchool, SecondarySchool FROM Qualification WHERE  ICNo= ? ", new String[] {ic});
+        if(cursor.moveToFirst()){
+            do{
+                schools.add(cursor.getString(0));
+                schools.add(cursor.getString(1));
+                schools.add(cursor.getString(2));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return schools;
+    }
+
     public List<ExamResult> DisplayExamResult(String ic,String school, String year, String test){
 
         List<ExamResult> resultList= new ArrayList<ExamResult>();

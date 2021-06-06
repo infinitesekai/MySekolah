@@ -35,6 +35,9 @@ import java.util.ArrayList;
 
 public class ExportExamResult extends AppCompatActivity {
 
+    private User currentUser;
+    private int lastfragment;
+
     private GridView gridview;
     private TextView tvname, tvyear, tvtest;
     public static ArrayList<String> resultList;
@@ -56,6 +59,9 @@ public class ExportExamResult extends AppCompatActivity {
         resultList= new ArrayList<String>();
         adapter= new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,resultList );
 
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
         String ic= getIntent().getExtras().getString("ICNo");
         String school= getIntent().getExtras().getString("School");
         String year= getIntent().getExtras().getString("Year");
@@ -65,7 +71,7 @@ public class ExportExamResult extends AppCompatActivity {
         tvname=findViewById(R.id.tvName);
         tvtest=findViewById(R.id.tvTest);
 
-
+        tvname.setText(currentUser.getName());
         tvyear.setText(year);
         tvtest.setText(test);
 
