@@ -58,6 +58,7 @@ public class ExamResultTable extends AppCompatActivity {
         //ArrayList
         resultList= new ArrayList<String>();
         adapter= new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,resultList );
+
         /*String subject, mark, grade;
         subject="";
         mark="";

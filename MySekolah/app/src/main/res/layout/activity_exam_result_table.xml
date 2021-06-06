@@ -147,6 +147,7 @@
                        android:columnWidth="60dp"
                        android:stretchMode="columnWidth"
                        android:horizontalSpacing="10dp"
+                       android:verticalSpacing="5dp"
                        android:nestedScrollingEnabled="true"
                        />
 

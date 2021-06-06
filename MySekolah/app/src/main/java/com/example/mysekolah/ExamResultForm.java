@@ -17,9 +17,11 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 public class ExamResultForm extends AppCompatActivity {
 
-    String[] school = { "KINDERGARDEN SALAK TINGGI", "SEKOLAH KEBANGSAAN SALAK", "SMK Sri Sepang"};
+    //String[] school = { "KINDERGARDEN SALAK TINGGI", "SEKOLAH KEBANGSAAN SALAK", "SMK Sri Sepang"};
     String[] year={"2015","2016","2017","2018","2019","2020","2021"};
     String[] test= {"Test 1", "Test 2", "Test 3", "Test 4"};
     TextView name, icView;
@@ -51,15 +53,12 @@ public class ExamResultForm extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        Spinner school_spin = (Spinner) findViewById(R.id.tvgender);
-        Spinner year_spin = (Spinner) findViewById(R.id.tvraces);
-        Spinner test_spin = (Spinner) findViewById(R.id.tvnationality);
+        Spinner school_spin = (Spinner) findViewById(R.id.school_spinner);
+        Spinner year_spin = (Spinner) findViewById(R.id.year_spinner);
+        Spinner test_spin = (Spinner) findViewById(R.id.test_spinner);
 
 
-
-        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,school);
-        schoolaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        school_spin.setAdapter(schoolaa);
+        loadSchoolSpinnerData(currentUser.getICNo());
 
         ArrayAdapter yearaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,year);
         yearaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -71,20 +70,6 @@ public class ExamResultForm extends AppCompatActivity {
 
 
 
-
-        school_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int arg2, long arg3) {
-                selectedSchool=school_spin.getSelectedItem().toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-
-
-            }
-
-        });
 
         year_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -169,6 +154,47 @@ public class ExamResultForm extends AppCompatActivity {
             return false;
         }
     };
+
+
+    private void loadSchoolSpinnerData(String ic) {
+
+        Spinner school_spin = (Spinner) findViewById(R.id.school_spinner);
+
+        // database handler
+        DatabaseAccess db= DatabaseAccess.getInstance(this);
+
+        // Spinner Drop down elements
+        List<String> school= db.getUserSchool(ic);
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item,school);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        school_spin .setAdapter(dataAdapter);
+
+        school_spin .setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                selectedSchool= school_spin .getSelectedItem().toString();
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+
+            }
+
+        });
+
+
+
+    }
 
 
 }
