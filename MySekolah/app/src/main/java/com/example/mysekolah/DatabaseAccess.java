@@ -376,6 +376,24 @@ public class DatabaseAccess {
         return info;
     }
 
+    public ArrayList<Dependency> getdependency(String parentIC){
+        ArrayList<Dependency> arrayList= new ArrayList<>();
+
+        Cursor cursor = database.rawQuery("SELECT * FROM Dependency WHERE ParentICNo = ? ", new String[] {parentIC});
+        //if(cursor!=null){
+        if(cursor.moveToFirst()) {
+             do{
+                 Dependency dependency= new Dependency();
+                 dependency.setParentIc(cursor.getString(0));
+                 dependency.setChildIC(cursor.getString(1));
+                 dependency.setChildName(cursor.getString(2));
+
+             }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return arrayList;
+    }
+
 }
 
 
