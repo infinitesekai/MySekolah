@@ -6,6 +6,11 @@ public class Dependency {
     private String ChildIC;
     private  String ChildName;
 
+    public Dependency(String parentIc, String childIC, String childName) {
+        ParentIc = parentIc;
+        ChildIC = childIC;
+        ChildName = childName;
+    }
 
     public String getParentIc() {
         return ParentIc;

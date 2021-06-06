@@ -21,8 +21,8 @@ import java.util.Arrays;
 
 public class Attendance_Form extends AppCompatActivity
        {
-           public static ArrayList<String> SchoolList;
-    //String[] school = { "KINDERGARDEN SALAK TINGGI", "SK Kota Warisan", "SMK Sri Sepang"};
+
+    String[] school = { "KINDERGARDEN SALAK TINGGI", "SK Kota Warisan", "SMK Sri Sepang"};
     String[] year={"2019","2020","2021"};
     String[] month={"January","February","March","April","May","June","July","August","September","October","November","December"};
    // String[] month={"1","2","3","4","5","6","7","8","9","10","11","12"};
@@ -46,8 +46,6 @@ public class Attendance_Form extends AppCompatActivity
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
-        DatabaseAccess databaseAccess= DatabaseAccess.getInstance(this);
-        databaseAccess.open();
 
         String ic= getIntent().getExtras().getString("ICNo");
         String name =getIntent().getExtras().getString("childName");
@@ -62,13 +60,8 @@ public class Attendance_Form extends AppCompatActivity
         Spinner year_spin = (Spinner) findViewById(R.id.year_spinner);
         Spinner month_spin = (Spinner) findViewById(R.id.month_spinner);
 
-        SchoolList= new ArrayList<String>();
 
-        databaseAccess.GetSchoolList(ic);
-
-
-//        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,school);
-        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,SchoolList);
+        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,school);
         schoolaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         school_spin.setAdapter(schoolaa);
 

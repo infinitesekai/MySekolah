@@ -383,10 +383,12 @@ public class DatabaseAccess {
         //if(cursor!=null){
         if(cursor.moveToFirst()) {
              do{
-                 Dependency dependency= new Dependency();
+                 /*Dependency dependency= new Dependency();
                  dependency.setParentIc(cursor.getString(0));
                  dependency.setChildIC(cursor.getString(1));
-                 dependency.setChildName(cursor.getString(2));
+                 dependency.setChildName(cursor.getString(2));*/
+
+                 arrayList.add(new Dependency(cursor.getString(1), cursor.getString(2), cursor.getString(3)));
 
              }while (cursor.moveToNext());
         }

@@ -9,8 +9,8 @@
     card_view:contentPadding="7dp"
     card_view:cardCornerRadius="7dp"
     card_view:cardMaxElevation="7dp"
-    android:clickable="true"
-    card_view:cardBackgroundColor="@color/lightBlue">
+    card_view:cardBackgroundColor="@color/lightBlue"
+    android:descendantFocusability="blocksDescendants">
 
     <TextView
         android:id="@+id/tvChild"

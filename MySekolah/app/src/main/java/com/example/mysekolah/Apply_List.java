@@ -90,7 +90,6 @@ public class Apply_List extends AppCompatActivity {
 
 
 
-
     }
 
 
