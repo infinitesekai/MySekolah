@@ -182,6 +182,63 @@ public class DatabaseAccess {
         return resultList;
     }
 
+    public List<ExamResult> DisplayExamResult_PR(String ic,String school, String year, String test){
+
+        List<ExamResult> resultList= new ArrayList<ExamResult>();
+
+        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+
+        if (cursor.moveToFirst()){
+            do{
+                ExamResult result= new ExamResult();
+
+                result.setSubject(cursor.getString(0));
+                result.setMark(cursor.getString(1));
+                result.setGrade(cursor.getString(2));
+
+
+                String subject= cursor.getString(0);
+                String mark= cursor.getString(1);
+                String grade= cursor.getString(2);
+
+                ExamResultTable_Pr.resultList.add(subject);
+                ExamResultTable_Pr.resultList.add(mark);
+                ExamResultTable_Pr.resultList.add(grade);
+
+
+            }while (cursor.moveToNext());
+        }
+        return resultList;
+    }
+
+    public List<ExamResult> ExportExamResult_PR(String ic,String school, String year, String test){
+
+        List<ExamResult> resultList= new ArrayList<ExamResult>();
+
+        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+
+        if (cursor.moveToFirst()){
+            do{
+                ExamResult result= new ExamResult();
+
+                result.setSubject(cursor.getString(0));
+                result.setMark(cursor.getString(1));
+                result.setGrade(cursor.getString(2));
+
+
+                String subject= cursor.getString(0);
+                String mark= cursor.getString(1);
+                String grade= cursor.getString(2);
+
+                ExportExamResult_PR.resultList.add(subject);
+                ExportExamResult_PR.resultList.add(mark);
+                ExportExamResult_PR.resultList.add(grade);
+
+            }while (cursor.moveToNext());
+        }
+        return resultList;
+    }
+
 
     // SELECT Qualification.ICNo,Name,PreSchool,PreYear,PrimarySchool,PrimaryYear,SecondarySchool,SecondaryYear,qualification,qualificationYear FROM (Qualification join Resident on Qualification.ICNo=Resident.ICNo)WHERE Qualification.ICNo = "041005-10-6789";
     public  Qualification DisplayQualification(String IC){

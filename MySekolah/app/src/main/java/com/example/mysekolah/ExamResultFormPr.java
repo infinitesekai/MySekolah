@@ -111,7 +111,7 @@ public class ExamResultFormPr extends AppCompatActivity {
         showbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ExamResultFormPr.this, ExamResultTable.class);
+                Intent i = new Intent(ExamResultFormPr.this, ExamResultTable_Pr.class);
                 i.putExtra("user", currentUser);
                 i.putExtra("icChild", icChild);
                 i.putExtra("childName", childName);
@@ -131,7 +131,7 @@ public class ExamResultFormPr extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new HomePage_Student();
+                    selectedFragment = new HomePage();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("user", currentUser);//这里的values就是我们要传的值
                     selectedFragment.setArguments(bundle);

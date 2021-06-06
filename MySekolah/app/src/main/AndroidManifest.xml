@@ -22,7 +22,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".ExamResultFormPr"></activity>
+        <activity android:name=".ExportExamResult_PR"></activity>
+        <activity android:name=".ExamResultTable_Pr" />
+        <activity android:name=".ExamResultFormPr" />
         <activity android:name=".Apply_List" />
         <activity android:name=".SchoolEnrollment.ApplicationFormSubmit" />
         <activity android:name=".ExportExamResult" />
