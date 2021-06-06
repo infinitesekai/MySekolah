@@ -107,9 +107,17 @@ public class DatabaseAccess {
         Cursor cursor= database.rawQuery("SELECT PreSchool, PrimarySchool, SecondarySchool FROM Qualification WHERE  ICNo= ? ", new String[] {ic});
         if(cursor.moveToFirst()){
             do{
-                schools.add(cursor.getString(0));
-                schools.add(cursor.getString(1));
-                schools.add(cursor.getString(2));
+//                schools.add(cursor.getString(0));
+//                schools.add(cursor.getString(1));
+//                schools.add(cursor.getString(2));
+                for(int i=0;i<3;i++) {
+                    if (cursor.getType(i) != 0)//if not null
+                        schools.add(cursor.getString(i));
+                }
+
+
+
+
             }while (cursor.moveToNext());
         }
 
@@ -376,31 +384,31 @@ public class DatabaseAccess {
         return info;
     }
 
-    public List<String> GetSchoolList(String ic){
-
-        List<String> SchoolList= new ArrayList<String>();
-
-        Cursor cursor= database.rawQuery("SELECT PreSchool,PrimarySchool,SecondarySchool FROM Qualification WHERE ICNo=?", new String[]{ic});
-
-        if (cursor.moveToFirst()){
-            do{
-                String pre=cursor.getString(0);
-                String pri=cursor.getString(0);
-                String sec=cursor.getString(0);
-
+//    public List<String> GetSchoolList(String ic){
+//
+//        List<String> SchoolList= new ArrayList<String>();
+//
+//        Cursor cursor= database.rawQuery("SELECT PreSchool,PrimarySchool,SecondarySchool FROM Qualification WHERE ICNo=?", new String[]{ic});
+//
+//        if (cursor.moveToFirst()){
+//            do{
 //                String pre=cursor.getString(0);
-//                String pri=cursor.getString(1);
-//                String sec=cursor.getString(2);
-
-
-                Attendance_Form.SchoolList.add(pre);
-                Attendance_Form.SchoolList.add(pri);
-                Attendance_Form.SchoolList.add(sec);
-
-            }while (cursor.moveToNext());
-        }
-        return SchoolList;
-    }
+//                String pri=cursor.getString(0);
+//                String sec=cursor.getString(0);
+//
+////                String pre=cursor.getString(0);
+////                String pri=cursor.getString(1);
+////                String sec=cursor.getString(2);
+//
+//
+//                Attendance_Form.SchoolList.add(pre);
+//                Attendance_Form.SchoolList.add(pri);
+//                Attendance_Form.SchoolList.add(sec);
+//
+//            }while (cursor.moveToNext());
+//        }
+//        return SchoolList;
+//    }
 
 }
 

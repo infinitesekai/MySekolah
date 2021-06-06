@@ -18,10 +18,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Attendance_Form extends AppCompatActivity
        {
-           public static ArrayList<String> SchoolList;
+//           public static ArrayList<String> SchoolList;
     //String[] school = { "KINDERGARDEN SALAK TINGGI", "SK Kota Warisan", "SMK Sri Sepang"};
     String[] year={"2019","2020","2021"};
     String[] month={"January","February","March","April","May","June","July","August","September","October","November","December"};
@@ -62,13 +63,15 @@ public class Attendance_Form extends AppCompatActivity
         Spinner year_spin = (Spinner) findViewById(R.id.year_spinner);
         Spinner month_spin = (Spinner) findViewById(R.id.month_spinner);
 
-        SchoolList= new ArrayList<String>();
+//        SchoolList= new ArrayList<String>();
+//
+//        databaseAccess.GetSchoolList(ic);
 
-        databaseAccess.GetSchoolList(ic);
+        List<String> SchoolList=databaseAccess.getUserSchool(ic);
 
 
 //        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,school);
-        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,SchoolList);
+        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,SchoolList);
         schoolaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         school_spin.setAdapter(schoolaa);
 
