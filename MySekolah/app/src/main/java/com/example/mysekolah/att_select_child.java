@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.GridView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class att_select_child extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class att_select_child extends AppCompatActivity {
     DatabaseAccess databaseAccess;
     GridView gridView;
     private User currentUser;
+    private Dependency dependency;
     private int lastfragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,12 +83,17 @@ public class att_select_child extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i;
+                dependency= gridViewApdater.getItem(position);
+                String icChild= dependency.getChildIC();
+                String childName= dependency.getChildName();
 
                 switch (str){
                     case ("exam"):
-                        i= new Intent(att_select_child.this, ExamResultForm.class);
+                        i= new Intent(att_select_child.this, ExamResultFormPr.class);
                         i.putExtra("user",currentUser);
-                        i.putExtra("ICNo", "160807-10-9088");
+                        i.putExtra("icChild", icChild);
+                        i.putExtra("childName", childName);
+                        //i.putExtra("ICNo", "160807-10-9088");
                         startActivity(i);
                         break;
                     case ("attendance"):
