@@ -1,4 +1,4 @@
-package com.example.mysekolah.ApplicationStatus;
+package com.example.mysekolah;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,20 +10,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mysekolah.DatabaseAccess;
-import com.example.mysekolah.HomePage;
-import com.example.mysekolah.NotificationPage;
-import com.example.mysekolah.ProfilePage;
-import com.example.mysekolah.R;
-import com.example.mysekolah.SearchPage;
-import com.example.mysekolah.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Apply_success extends AppCompatActivity {
-    ImageView successinfo;
+public class Apply_fail extends AppCompatActivity {
     Dialog dialog;
     private User currentUser;
     private int lastfragment;
@@ -31,16 +22,16 @@ public class Apply_success extends AppCompatActivity {
     TextView icno,name,school;
     StatusInfo info;
     DatabaseAccess databaseAccess;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_apply_success);
+        setContentView(R.layout.activity_apply_fail);
         dialog=new Dialog(this);
-
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
+
+
         childname=getIntent().getStringExtra("childname");
 
         icno=findViewById(R.id.icNoPending);
@@ -59,18 +50,14 @@ public class Apply_success extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
-
-
     }
-
 
     public void showPopup(View v){
         TextView close;
 
-        dialog.setContentView(R.layout.popup_approve);
+        dialog.setContentView(R.layout.popup_fail);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        close=(TextView) dialog.findViewById(R.id.close_success);
+        close=(TextView) dialog.findViewById(R.id.close_fail);
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
