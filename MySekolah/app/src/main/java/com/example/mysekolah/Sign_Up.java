@@ -49,7 +49,7 @@ public class Sign_Up extends AppCompatActivity {
                 String ic = ic_number.getText().toString();
                 String pass = password.getText().toString();
                 String repass = repassword.getText().toString();
-                String nameStr = name.getText().toString();
+                String nameStr = name.getText().toString().toUpperCase();
                 String phonetr = phoneno.getText().toString();
                 String addressStr = address.getText().toString();
                 if (ic.isEmpty()) return;
