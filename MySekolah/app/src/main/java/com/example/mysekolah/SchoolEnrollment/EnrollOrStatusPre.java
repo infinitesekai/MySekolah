@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.mysekolah.Apply_List;
 import com.example.mysekolah.Apply_fail;
@@ -28,6 +29,7 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
     String schoolLevel;
     private User currentUser;
     private int lastfragment;
+    TextView title;
 
 
     @Override
@@ -43,11 +45,27 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
 
         application = findViewById(R.id.ApplicationFormCard);
         checkStatus = findViewById(R.id.CheckStatusCard);
+        title=findViewById(R.id.title_enrol_status);
+
+        schoolLevel=getIntent().getStringExtra("SchoolLevel");
+
+        switch (schoolLevel){
+            case("PreSchool"):
+                title.setText("Pre-School Education");
+                break;
+            case("Primary"):
+                title.setText("Primary School Education");
+                break;
+            case("Secondary"):
+                title.setText("Secondary School Education");
+                break;
+
+        }
 
         application.setOnClickListener(this);
         checkStatus.setOnClickListener(this);
 
-        schoolLevel=getIntent().getStringExtra("SchoolLevel");
+
 
     }
 
