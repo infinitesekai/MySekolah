@@ -127,7 +127,7 @@ public class Attendance_Table extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Attendance checking only available for history. Please select again.", Toast.LENGTH_SHORT).show();
 
                     }
-                    else if(year > intyear){
+                    else if(year > intyear || (month>intmonth)){
 //                    else if((intyear<=thisyear && month<=intmonth && dayOfMonth!=today) ||( intyear<=thisyear && month<=intmonth && dayOfMonth<=today)){
                         dateView.setText("Not selected month");
                         Toast.makeText(getApplicationContext(), "Attendance checking only available for selected month. Please select again.", Toast.LENGTH_SHORT).show();
