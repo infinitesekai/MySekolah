@@ -29,7 +29,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         Bundle bundle = getArguments();
 
         currentUser = (User) bundle.getSerializable("user");
-        nameText.setText("Hi," + currentUser.getName());
+        nameText.setText("Hi, " + currentUser.getName());
         enrollment= (CardView) v.findViewById(R.id.enrollmentCard);
         childperform= (CardView) v.findViewById(R.id.CheckChildPerfCard);
 

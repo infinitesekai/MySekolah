@@ -17,7 +17,7 @@
 
             <TextView
                 android:id="@+id/student_home_name"
-                android:layout_width="250dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="50dp"
@@ -39,7 +39,7 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/newsCardArea"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="720dp"
                 android:minHeight="581dp"
                 android:layout_marginTop="30dp"
                 android:orientation="vertical">
