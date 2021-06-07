@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.cottacush.android.currencyedittext.CurrencyEditText;
+import com.example.mysekolah.ApplicationStatus.Apply_List;
+import com.example.mysekolah.ApplicationStatus.StatusInfo;
 
 import java.util.ArrayList;
 import java.util.List;

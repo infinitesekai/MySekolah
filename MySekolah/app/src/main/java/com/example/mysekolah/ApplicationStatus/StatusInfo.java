@@ -1,4 +1,4 @@
-package com.example.mysekolah;
+package com.example.mysekolah.ApplicationStatus;
 
 public class StatusInfo {
     private String ICNo;

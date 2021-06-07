@@ -11,10 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.mysekolah.Apply_List;
-import com.example.mysekolah.Apply_fail;
-import com.example.mysekolah.Apply_pending;
-import com.example.mysekolah.Apply_success;
+import com.example.mysekolah.ApplicationStatus.Apply_List;
 import com.example.mysekolah.HomePage;
 import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;

@@ -25,7 +25,7 @@
         <activity android:name=".ExportExamResult_PR"></activity>
         <activity android:name=".ExamResultTable_Pr" />
         <activity android:name=".ExamResultFormPr" />
-        <activity android:name=".Apply_List" />
+        <activity android:name=".ApplicationStatus.Apply_List" />
         <activity android:name=".SchoolEnrollment.ApplicationFormSubmit" />
         <activity android:name=".ExportExamResult" />
         <activity android:name=".Export_Qualification" />
@@ -56,9 +56,9 @@
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
         <activity android:name=".Attendance_Form" />
-        <activity android:name=".Apply_pending" />
-        <activity android:name=".Apply_fail" />
-        <activity android:name=".Apply_success" />
+        <activity android:name=".ApplicationStatus.Apply_pending" />
+        <activity android:name=".ApplicationStatus.Apply_fail" />
+        <activity android:name=".ApplicationStatus.Apply_success" />
         <activity android:name=".SchoolEnrollment.Enroll_Check_IC_Pre" />
         <activity android:name=".child_performance" />
         <activity android:name=".SchoolEnrollment.SchoolEnroll" />

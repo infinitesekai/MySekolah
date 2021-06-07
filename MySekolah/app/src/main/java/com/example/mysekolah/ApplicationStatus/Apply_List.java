@@ -1,20 +1,24 @@
-package com.example.mysekolah;
+package com.example.mysekolah.ApplicationStatus;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 
+import com.example.mysekolah.DatabaseAccess;
+import com.example.mysekolah.HomePage;
+import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.ProfilePage;
+import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage;
+import com.example.mysekolah.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;

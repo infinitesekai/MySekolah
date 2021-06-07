@@ -1,4 +1,4 @@
-package com.example.mysekolah;
+package com.example.mysekolah.ApplicationStatus;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.mysekolah.DatabaseAccess;
+import com.example.mysekolah.HomePage;
+import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.ProfilePage;
+import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage;
+import com.example.mysekolah.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Apply_pending extends AppCompatActivity {
