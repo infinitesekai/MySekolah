@@ -62,6 +62,8 @@ public class Check_in_scan extends AppCompatActivity {
                     public void run() {
                         //extract data and assign to text view
                         resultData.setText(result.getText());
+                        codeScanner.startPreview();
+
                     }
                 });
 
