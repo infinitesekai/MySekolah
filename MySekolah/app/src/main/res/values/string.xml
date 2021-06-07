@@ -13,5 +13,6 @@
     <string name="taking_test">Take Test</string>
     <string name="test_desc">Which Career Pathway is right for you?</string>
     <string name="tertiary_info">Tertiary Education Information</string>
+    <string name="exam_timetable">Exam Timetable</string>
     <string name="check_in">Attendance Check-in</string>
 </resources>

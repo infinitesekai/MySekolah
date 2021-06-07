@@ -16,7 +16,7 @@ import com.example.mysekolah.PersonalityCareerTest.PersonalityTestHome;
 
 public class HomePage_Student extends Fragment implements View.OnClickListener {
 
-    public CardView academic_qualification, exam_check, personality_check,tertiary_info,check_in;
+    public CardView academic_qualification, exam_check, personality_check,tertiary_info,check_in, exam_timetable;
     public String tempic="041005-10-6789";
     private User currentUser;
 
@@ -36,6 +36,7 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
         personality_check = (CardView)v.findViewById(R.id.personality_test);
         check_in = (CardView)v.findViewById(R.id.check_in);
         tertiary_info = (CardView)v.findViewById(R.id.tertiary_info);
+        exam_timetable = (CardView)v.findViewById(R.id.examTimeTable);
 
 
         academic_qualification.setOnClickListener(this);
@@ -43,6 +44,7 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
         personality_check.setOnClickListener(this);
         check_in.setOnClickListener(this);
         tertiary_info.setOnClickListener(this);
+        exam_timetable.setOnClickListener(this);
 
 
 
@@ -81,6 +83,11 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
                i.putExtra("user",currentUser);
                 startActivity(i);
                break;
+            case R.id.examTimeTable:
+                i=new Intent(getActivity(), ExamTimeTable.class);
+                i.putExtra("user",currentUser);
+                startActivity(i);
+                break;
 
 
         }
