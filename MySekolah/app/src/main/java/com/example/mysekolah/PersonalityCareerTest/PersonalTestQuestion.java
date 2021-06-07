@@ -126,6 +126,10 @@ public class PersonalTestQuestion extends AppCompatActivity {
                     Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
                 }
 
+                if(!added) {
+                    addCounter(questionCounter);
+                    added=true;
+                }
 
             }
         });
@@ -269,6 +273,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
 
     private void addCounter(int questionCounter) {
 
+        //get the category from the database set
         String category=dbAccess.getCategory(String.valueOf(questionCounter));
 
         switch(category){
