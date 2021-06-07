@@ -63,9 +63,16 @@ public class Attendance_Table extends AppCompatActivity {
         int intmonth= getIntent().getExtras().getInt("IntMonth");
 
 
+
         dateView=findViewById(R.id.dateView);
 
         calendarView=(CalendarView)findViewById(R.id.calendarView);
+
+        LocalDate currentDate=LocalDate.now();
+        int thisyear=currentDate.getYear();
+        int thismonth= currentDate.getMonthValue();
+        int today=currentDate.getDayOfMonth();
+
 
         int intday = 1;
         int intyear =Integer.valueOf(year);
@@ -75,12 +82,19 @@ public class Attendance_Table extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, intyear);
-        calendar.set(Calendar.MONTH, intmonth); calendar.set(Calendar.DAY_OF_MONTH, intday);
+        calendar.set(Calendar.MONTH, intmonth);
+        calendar.set(Calendar.DAY_OF_MONTH,intday);
+
+
+
         long milliTime = calendar.getTimeInMillis();
+
+
         calendarView.setDate (milliTime, true, true);
 
         AbsentDateList= new ArrayList<String>();
         //adapter= new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,absentDateList);
+
 
 
         databaseAccess.DisplayAbsentDate(ic,school,year,month);
@@ -95,8 +109,9 @@ public class Attendance_Table extends AppCompatActivity {
                 Calendar day= Calendar.getInstance();
                 day.set(year,month,dayOfMonth);
 
+
                 if(day.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY ||day.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY){
-                    Toast.makeText(getApplicationContext(), "Weekend on" + date, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Weekend on " + date, Toast.LENGTH_SHORT).show();
                     dateView.setText("Weekend on " + date);
                 }
                 else {
@@ -107,9 +122,16 @@ public class Attendance_Table extends AppCompatActivity {
                          Toast.makeText(getApplicationContext(), "Attendance checking only available for selected month. Please select again.", Toast.LENGTH_SHORT).show();
 
                     }
-                    else if(year >intyear || month>intmonth ){
+                    else if((year >thisyear) ||(year >=thisyear && month+1>thismonth) || (year >=thisyear && month+1>=thismonth && dayOfMonth > today)){
                         dateView.setText("Future date");
                         Toast.makeText(getApplicationContext(), "Attendance checking only available for history. Please select again.", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else if(year > intyear){
+//                    else if((intyear<=thisyear && month<=intmonth && dayOfMonth!=today) ||( intyear<=thisyear && month<=intmonth && dayOfMonth<=today)){
+                        dateView.setText("Not selected month");
+                        Toast.makeText(getApplicationContext(), "Attendance checking only available for selected month. Please select again.", Toast.LENGTH_SHORT).show();
+
 
                     }
                     else {
