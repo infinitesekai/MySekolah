@@ -22,4 +22,8 @@
     <string name="sub_confirm">Submit</string>
     <string name="export">Export</string>
     <string name="quit">Quit</string>
+    <string name="explanation_result">
+        The mixed questions related to RIASEC are given to the tester.
+        For example, if you are agreed to statement " I like to work on cars",
+        the total of Realistic is increment by 1. </string>
 </resources>

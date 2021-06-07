@@ -22,6 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
+        <activity android:name=".PersonalityCareerTest.ResultInfo"
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"/>
         <activity
             android:name=".PersonalityCareerTest.Submission"
             android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
@@ -48,7 +50,7 @@
             android:name=".PersonalityCareerTest.ResultPersonalityTest"
             android:label="@string/title_activity_result_personality_test"
             android:theme="@style/Theme.MySekolah.NoActionBar" />
-        <activity android:name=".PersonalityCareerTest.PersonalTestQuestion"/>
+        <activity android:name=".PersonalityCareerTest.PersonalTestQuestion" />
         <activity
             android:name=".PersonalityCareerTest.InstuctionPage"
             android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
