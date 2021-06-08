@@ -24,6 +24,18 @@ import android.widget.TextView;
 
 import com.example.mysekolah.databinding.ActivityResultPersonalityTestBinding;
 
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 public class ResultPersonalityTest extends AppCompatActivity implements View.OnClickListener {
 
     LinearLayout expandable_view, expandable_view2, expandable_view3;
@@ -36,6 +48,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
     TextView Svalue;
     TextView Evalue;
     TextView Cvalue;
+    TextView total;
     ImageButton image_btn;
 
     @Override
@@ -49,7 +62,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         int S_counter=getIntent().getExtras().getInt("S_counter");
         int E_counter=getIntent().getExtras().getInt("E_counter");
         int C_counter=getIntent().getExtras().getInt("C_counter");
-//        int R_counter=getIntent().getExtras().getInt("R_counter");
+
         Rvalue=findViewById(R.id.first_total);
         Rvalue.setText(String.valueOf(R_counter));
         Ivalue=findViewById(R.id.second_total);
@@ -63,31 +76,92 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         Cvalue=findViewById(R.id.sixth_total);
         Cvalue.setText(String.valueOf(C_counter));
 
+        total=findViewById(R.id.result_total);
+
+        List<Integer> result=new ArrayList<Integer>();
+
+        result.add(R_counter);
+        result.add(I_counter);
+        result.add(A_counter);
+        result.add(S_counter);
+        result.add(E_counter);
+        result.add(C_counter);
+
+        String R="R";
+        String I="I";
+        String A="A";
+        String S="S";
+        String E="E";
+        String C="C";
 
 
 
+        int totalscore=0;
+        for(int i=0;i<result.size();i++){
+//            int firstMax= Collections.max(result);
+            totalscore+=result.get(i);
+        }
 
-        expandable_view = findViewById(R.id.expandable_view);
-        expandable_view2 = findViewById(R.id.expandable_view2);
-        expandable_view3 = findViewById(R.id.expandable_view3);
 
-        imageView = findViewById(R.id.arrow_expand);
-        imageView2 = findViewById(R.id.arrow_expand2);
-        imageView3 = findViewById(R.id.arrow_expand3);
+        total.setText(String.valueOf(totalscore));
 
-        cardView = findViewById(R.id.result_card);
-        cardView2 = findViewById(R.id.result_card2);
-        cardView3 = findViewById(R.id.result_card3);
+        HashMap<String,Integer> Character=new HashMap<String, Integer>();
 
-        result_quit = findViewById(R.id.result_quit);
-        result_export = findViewById(R.id.result_export);
+        Character.put(R,R_counter);
+        Character.put(I,I_counter);
+        Character.put(A,A_counter);
+        Character.put(S,S_counter);
+        Character.put(E,E_counter);
+        Character.put(C,C_counter);
 
-        image_btn = findViewById(R.id.imageButton);
+        Map<String,Integer> sortedCharacter=sortByValue(Character);
 
-        result_export.setOnClickListener(this);
-        result_quit.setOnClickListener(this);
-        image_btn.setOnClickListener(this);
+        System.out.println(sortedCharacter);
 
+
+//
+//        expandable_view = findViewById(R.id.expandable_view);
+//        expandable_view2 = findViewById(R.id.expandable_view2);
+//        expandable_view3 = findViewById(R.id.expandable_view3);
+//
+//        imageView = findViewById(R.id.arrow_expand);
+//        imageView2 = findViewById(R.id.arrow_expand2);
+//        imageView3 = findViewById(R.id.arrow_expand3);
+//
+//        cardView = findViewById(R.id.result_card);
+//        cardView2 = findViewById(R.id.result_card2);
+//        cardView3 = findViewById(R.id.result_card3);
+//
+//        result_quit = findViewById(R.id.result_quit);
+//        result_export = findViewById(R.id.result_export);
+//
+//        image_btn = findViewById(R.id.imageButton);
+
+//        result_export.setOnClickListener(this);
+//        result_quit.setOnClickListener(this);
+//        image_btn.setOnClickListener(this);
+
+
+    }
+
+    public static HashMap<String,Integer>sortByValue(HashMap<String,Integer> Character){
+        //create a list from HashMap elements
+        List<Map.Entry<String,Integer>>list= new LinkedList<Map.Entry<String, Integer>>(Character.entrySet());
+
+        //start the list
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+
+        //put data from sorted list to hashmap
+        HashMap<String,Integer>temp=new LinkedHashMap<String, Integer>();
+        for(Map.Entry<String,Integer>aa:list){
+            temp.put(aa.getKey(),aa.getValue());
+        }
+        return temp;
 
     }
 

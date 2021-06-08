@@ -126,9 +126,9 @@ public class PersonalTestQuestion extends AppCompatActivity {
                     Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
                 }
 
-                if(!added) {
-                    addCounter(questionCounter);
-                    added=true;
+                if(added) {
+                    minusCounter(questionCounter);
+                    added=false;
                 }
 
             }
