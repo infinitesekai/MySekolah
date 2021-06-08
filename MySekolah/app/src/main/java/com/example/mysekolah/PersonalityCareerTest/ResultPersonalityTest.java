@@ -4,23 +4,36 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.mysekolah.DatabaseAccess;
+import com.example.mysekolah.HomePage_Student;
+import com.example.mysekolah.NotificationPage;
+import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage_Student;
+import com.example.mysekolah.User;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
+import android.telephony.SignalStrength;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mysekolah.databinding.ActivityResultPersonalityTestBinding;
 
@@ -35,6 +48,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ResultPersonalityTest extends AppCompatActivity implements View.OnClickListener {
 
@@ -49,12 +63,41 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
     TextView Evalue;
     TextView Cvalue;
     TextView total;
+    TextView H1;
+    TextView H2;
+    TextView H3;
     ImageButton image_btn;
+    private User currentUser;
+    private int lastfragment;
+    DatabaseAccess dbAccess;
+    TestResultInfo testInfo1;
+    TestResultInfo testInfo2;
+    TestResultInfo testInfo3;
+    TextView result1;
+    TextView result2;
+    TextView result3;
+    TextView desc1;
+    TextView desc2;
+    TextView desc3;
+    TextView exp1;
+    TextView exp2;
+    TextView exp3;
+    TextView sug1;
+    TextView sug2;
+    TextView sug3;
+    TextView name;
+    TextView testeric;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_personality_test);
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
+
+        dbAccess = DatabaseAccess.getInstance(this);
+        dbAccess.open();
 
         int R_counter=getIntent().getExtras().getInt("R_counter");
         int I_counter=getIntent().getExtras().getInt("I_counter");
@@ -62,6 +105,9 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         int S_counter=getIntent().getExtras().getInt("S_counter");
         int E_counter=getIntent().getExtras().getInt("E_counter");
         int C_counter=getIntent().getExtras().getInt("C_counter");
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         Rvalue=findViewById(R.id.first_total);
         Rvalue.setText(String.valueOf(R_counter));
@@ -77,6 +123,46 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         Cvalue.setText(String.valueOf(C_counter));
 
         total=findViewById(R.id.result_total);
+        H1=findViewById(R.id.highest_result1);
+        H2=findViewById(R.id.highest_result2);
+        H3=findViewById(R.id.highest_result3);
+
+        result1=findViewById(R.id.result_1);
+        result2=findViewById(R.id.result_2);
+        result3=findViewById(R.id.result_3);
+
+        desc1=findViewById(R.id.description_1);
+        exp1=findViewById(R.id.explanation);
+        sug1=findViewById(R.id.suggestedField);
+
+        desc2=findViewById(R.id.description_1_2);
+        exp2=findViewById(R.id.explanation2);
+        sug2=findViewById(R.id.suggestedField2);
+
+        desc3=findViewById(R.id.description_1_3);
+        exp3=findViewById(R.id.explanation3);
+        sug3=findViewById(R.id.suggestedField3);
+
+        name=findViewById(R.id.tester_name);
+        testeric=findViewById(R.id.tester_ic);
+
+
+        expandable_view = findViewById(R.id.expandable_view);
+        expandable_view2 = findViewById(R.id.expandable_view2);
+        expandable_view3 = findViewById(R.id.expandable_view3);
+
+        imageView = findViewById(R.id.arrow_expand);
+        imageView2 = findViewById(R.id.arrow_expand2);
+        imageView3 = findViewById(R.id.arrow_expand3);
+
+        cardView = findViewById(R.id.result_card);
+        cardView2 = findViewById(R.id.result_card2);
+        cardView3 = findViewById(R.id.result_card3);
+
+        result_quit = findViewById(R.id.result_quit);
+
+
+        image_btn = findViewById(R.id.imageButton);
 
         List<Integer> result=new ArrayList<Integer>();
 
@@ -102,7 +188,8 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
             totalscore+=result.get(i);
         }
 
-
+        name.setText(currentUser.getName());
+        testeric.setText(currentUser.getICNo());
         total.setText(String.valueOf(totalscore));
 
         HashMap<String,Integer> Character=new HashMap<String, Integer>();
@@ -119,27 +206,61 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         System.out.println(sortedCharacter);
 
 
-//
-//        expandable_view = findViewById(R.id.expandable_view);
-//        expandable_view2 = findViewById(R.id.expandable_view2);
-//        expandable_view3 = findViewById(R.id.expandable_view3);
-//
-//        imageView = findViewById(R.id.arrow_expand);
-//        imageView2 = findViewById(R.id.arrow_expand2);
-//        imageView3 = findViewById(R.id.arrow_expand3);
-//
-//        cardView = findViewById(R.id.result_card);
-//        cardView2 = findViewById(R.id.result_card2);
-//        cardView3 = findViewById(R.id.result_card3);
-//
-//        result_quit = findViewById(R.id.result_quit);
-//        result_export = findViewById(R.id.result_export);
-//
-//        image_btn = findViewById(R.id.imageButton);
 
-//        result_export.setOnClickListener(this);
-//        result_quit.setOnClickListener(this);
-//        image_btn.setOnClickListener(this);
+       List<String> character =new ArrayList<String>();
+
+       for(Map.Entry<String,Integer>entry:sortedCharacter.entrySet()){
+           character.add(entry.getKey());
+       }
+
+
+
+       String firstChar=character.get(0);
+       String secondChar=character.get(1);
+       String thirdChar=character.get(2);
+
+       H1.setText(firstChar);
+       H2.setText(secondChar);
+       H3.setText(thirdChar);
+
+       testInfo1=dbAccess.getTestInfo(firstChar);
+
+       testInfo2=dbAccess.getTestInfo(secondChar);
+
+       testInfo3=dbAccess.getTestInfo(thirdChar);
+
+       result1.setText(testInfo1.getAlpName());
+       desc1.setText(testInfo1.getDesc());
+       exp1.setText(testInfo1.getExp());
+       sug1.setText(testInfo1.getField());
+
+        result2.setText(testInfo2.getAlpName());
+        desc2.setText(testInfo2.getDesc());
+        exp2.setText(testInfo2.getExp());
+        sug2.setText(testInfo2.getField());
+
+        result3.setText(testInfo3.getAlpName());
+        desc3.setText(testInfo3.getDesc());
+        exp3.setText(testInfo3.getExp());
+        sug3.setText(testInfo3.getField());
+
+
+
+       boolean insert;
+
+        insert = dbAccess.insertPersonalityResult(currentUser.getICNo(),firstChar,secondChar,thirdChar);
+
+        if (insert) {
+            Toast.makeText(ResultPersonalityTest.this, "Result stored", Toast.LENGTH_SHORT).show();
+
+        } else {
+            Toast.makeText(ResultPersonalityTest.this, "Result failed", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+        result_quit.setOnClickListener(this);
+        image_btn.setOnClickListener(this);
 
 
     }
@@ -209,15 +330,54 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         switch (v.getId()){
             case R.id.result_quit:
                 intent = new Intent(this, PersonalityTestHome.class);
+                intent.putExtra("user",currentUser);
+                intent.putExtra("ICNo", currentUser.getICNo());
                 startActivity(intent);
                 break;
-            case R.id.result_export:
 
-                break;
             case  R.id.imageButton:
                 intent = new Intent(this, ResultInfo.class);
                 startActivity(intent);
                 break;
         }
     }
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Fragment selectedFragment = null;
+
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    selectedFragment = new HomePage_Student();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
+                    break;
+                case R.id.nav_notif:
+                    selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
+                    break;
+                case R.id.nav_profile:
+                    selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
+                    break;
+                case R.id.nav_search:
+                    selectedFragment = new SearchPage_Student();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return false;
+        }
+    };
+
 }

@@ -71,6 +71,8 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
                 break;
             case R.id.personality_test:
                 i=new Intent(getActivity(), PersonalityTestHome.class);
+                i.putExtra("user",currentUser);
+                i.putExtra("ICNo", currentUser.getICNo());
                 startActivity(i);
                 break;
             case R.id.tertiary_info:

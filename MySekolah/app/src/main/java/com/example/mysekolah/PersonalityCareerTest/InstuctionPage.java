@@ -12,14 +12,21 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.mysekolah.R;
+import com.example.mysekolah.User;
 
 public class InstuctionPage extends Activity {
 
     Button start_test;
+
+    private User currentUser;
+    private int lastfragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instuction_page);
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
         start_test = findViewById(R.id.start_test);
 
@@ -46,6 +53,8 @@ public class InstuctionPage extends Activity {
 
     private void start_test(){
         Intent intent = new Intent(InstuctionPage.this, PersonalTestQuestion.class);
+        intent.putExtra("user",currentUser);
+        intent.putExtra("ICNo", currentUser.getICNo());
         startActivity(intent);
     }
 }

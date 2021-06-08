@@ -19,6 +19,7 @@ import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.EditProfile_Activity;
 import com.example.mysekolah.MainActivity;
 import com.example.mysekolah.R;
+import com.example.mysekolah.User;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,6 +51,8 @@ public class PersonalTestQuestion extends AppCompatActivity {
     int S_counter=0;
     int E_counter=0;
     int C_counter=0;
+    private User currentUser;
+    private int lastfragment;
 
 
     @SuppressLint("ResourceAsColor")
@@ -57,6 +60,11 @@ public class PersonalTestQuestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_test_question);
+
+
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
         tvQuestion = findViewById(R.id.txt_question);
         tvQuestionCount = findViewById(R.id.txt_numbering);
@@ -268,6 +276,8 @@ public class PersonalTestQuestion extends AppCompatActivity {
         i.putExtra("S_counter",S_counter);
         i.putExtra("E_counter",E_counter);
         i.putExtra("C_counter",C_counter);
+        i.putExtra("user",currentUser);
+        i.putExtra("ICNo", currentUser.getICNo());
         startActivity(i);
     }
 

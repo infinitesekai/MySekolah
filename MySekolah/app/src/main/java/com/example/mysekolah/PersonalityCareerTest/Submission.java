@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.mysekolah.R;
+import com.example.mysekolah.User;
 
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class Submission extends Activity implements View.OnClickListener{
     int S_counter;
     int E_counter;
     int C_counter;
+
+    private User currentUser;
+    private int lastfragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,9 @@ public class Submission extends Activity implements View.OnClickListener{
         S_counter=getIntent().getExtras().getInt("S_counter");
         E_counter=getIntent().getExtras().getInt("E_counter");
         C_counter=getIntent().getExtras().getInt("C_counter");
+
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
 
         btn_cancel = findViewById(R.id.btn_cancel);
@@ -84,6 +91,8 @@ public class Submission extends Activity implements View.OnClickListener{
                         intent.putExtra("S_counter",S_counter);
                         intent.putExtra("E_counter",E_counter);
                         intent.putExtra("C_counter",C_counter);
+                        intent.putExtra("user",currentUser);
+                        intent.putExtra("ICNo", currentUser.getICNo());
                         startActivity(intent);
                     }
                 }, loading_time);

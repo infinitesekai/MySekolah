@@ -11,6 +11,8 @@ import android.util.Log;
 import com.cottacush.android.currencyedittext.CurrencyEditText;
 import com.example.mysekolah.PersonalityCareerTest.Question;
 import com.example.mysekolah.PersonalityCareerTest.QuestionContract;
+import com.example.mysekolah.PersonalityCareerTest.TestCharResult;
+import com.example.mysekolah.PersonalityCareerTest.TestResultInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -478,6 +480,18 @@ public class DatabaseAccess<instance> {
 //
 //    }
 
+    //    update Question_List set answer=1 where ques_ID=1;
+    public boolean updateAnswer(String answer,String quesNo) {
+        //SQLiteDatabase db = this.getWritableDatabase();
+        String update_answer = "update Question_List set answer ='" + answer +"' where ques_ID='" +quesNo+"'";
+        try {
+            database.execSQL(update_answer);
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
+
     public String getAnswer(String quesNo){
         String answer="";
         Cursor cursor= database.rawQuery("select answer from Question_List where ques_ID=?", new String[]{quesNo});
@@ -489,6 +503,77 @@ public class DatabaseAccess<instance> {
         return  answer;
     }
 
+    public List<Question> getAllQuestions() {
+        List<Question> questionList = new ArrayList<>();
+        database = openHelper.getReadableDatabase();
+        Cursor c = database.rawQuery("SELECT * FROM " + QuestionContract.QuestionsTable.TABLE_NAME, null);
+        if (c.moveToFirst()) {
+            do {
+                Question question = new Question(
+                        c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_QUESTION)),
+                        c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION1)),
+                        c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION2)));
+//                question.setQuestion(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_QUESTION)));
+//                question.setOption1(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION1)));
+//                question.setOption2(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION2)));
+//                question.setAnswerChoice(c.getInt(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE)));
+                questionList.add(question);
+            } while (c.moveToNext());
+        }
+        c.close();
+        return questionList;
+    }
+
+    public String getCategory(String quesNo){
+        String category="";
+        Cursor cursor= database.rawQuery("select category from Question_List where ques_ID=?", new String[]{quesNo});
+        if(cursor.moveToFirst()) {
+            category=new String(cursor.getString(0));
+
+        }
+        cursor.close();
+        return  category;
+    }
 
 
+    public boolean insertPersonalityResult(String ic,String first,String second,String third) {
+        String insertSql= "INSERT INTO Test_result \n"+
+                "(ICNo, highestResult1,highestResult2,highestResult3) \n"+
+                "VALUES \n"+
+                "(?,?,?,?)";
+
+        try {
+            database.execSQL(insertSql, new String [] {ic,first,second,third});
+        } catch (RuntimeException e) {
+            Log.d("Insertion failed",e.getLocalizedMessage());
+            return false;
+        }  finally {
+            database.close();//add
+        }
+        return true;
+    }
+
+    public TestResultInfo getTestInfo(String alphabet) {
+
+        TestResultInfo info= null;
+        Cursor cursor = database.rawQuery("SELECT alphabet,alpName,description,explanation,suggestedField FROM Career_Suggestion WHERE alphabet = ? ", new String[] {alphabet});
+        //if(cursor!=null){
+        if(cursor.moveToFirst()) {
+            info = new  TestResultInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4));
+        }
+        cursor.close();
+        return info;
+    }
+
+    public TestCharResult getPastResult(String ic) {
+
+        TestCharResult info= null;
+        Cursor cursor = database.rawQuery("SELECT highestResult1,highestResult2,highestResult3 FROM Test_result WHERE testID=(select max(testID) from Test_result) AND ICNo = ? ", new String[] {ic});
+        //if(cursor!=null){
+        if(cursor.moveToFirst()) {
+            info = new  TestCharResult(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+        }
+        cursor.close();
+        return info;
+    }
 }
