@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.mysekolah.DatabaseHelper;
 import com.example.mysekolah.HomePage;
@@ -28,6 +29,8 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
     String schoolLevel;
     private User currentUser;
     private int lastfragment;
+    TextView title;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +40,25 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
         mDBHelper= new DatabaseHelper(this);
         ic= findViewById(R.id.editTextIC);
         check= findViewById(R.id.btnCheck);
+        title=findViewById(R.id.title_check_ic);
+
 
         schoolLevel=getIntent().getStringExtra("SchoolLevel");
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
+
+        switch (schoolLevel){
+            case("PreSchool"):
+                title.setText("Application for Government Pre-School");
+                break;
+            case("Primary"):
+                title.setText("Application for Government Primary School");
+                break;
+            case("Secondary"):
+                title.setText("Application for Government Secondary School");
+                break;
+
+        }
 
 
 
