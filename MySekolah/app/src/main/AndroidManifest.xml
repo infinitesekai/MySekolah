@@ -30,7 +30,7 @@
         <activity android:name=".Discipline_Result" />
         <activity android:name=".ExportExamResult" />
         <activity android:name=".Export_Qualification" />
-        
+
         <activity android:name=".Discipline_Form" />
         <activity android:name=".sign_up_role" />
         <activity android:name=".Sign_Up" />
