@@ -70,14 +70,58 @@ public class DatabaseAccess<instance> {
         return districts;
     }
 
+    // Get all spinner type of school values
+    public List<String> getAllSchoolType(String schoolLevel){
+        List<String> schoolType= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT Type FROM SChool WHERE EduLevel=?", new String[] {schoolLevel});
+        if(cursor.moveToFirst()){
+            do{
+                schoolType.add(cursor.getString(0));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return schoolType;
+    }
+
+
+
+
     // Get all spinner school list values
-    public List<String> getAllSchoolList(String district, String schoolLevel){
+    public List<String> getAllSchoolList(String district, String schoolLevel, String schoolType){
         List<String> schools= new ArrayList<String>();
 
-        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=?", new String[] {district,schoolLevel});
+        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=? and Type=?", new String[] {district,schoolLevel,schoolType});
         if(cursor.moveToFirst()){
             do{
                 schools.add(cursor.getString(0));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return schools;
+    }
+
+
+    // Get all spinner school list values
+    public List<String> getUserSchool(String ic){
+        List<String> schools= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT PreSchool, PrimarySchool, SecondarySchool FROM Qualification WHERE  ICNo= ? ", new String[] {ic});
+        if(cursor.moveToFirst()){
+            do{
+//                schools.add(cursor.getString(0));
+//                schools.add(cursor.getString(1));
+//                schools.add(cursor.getString(2));
+                for(int i=0;i<3;i++) {
+                    if (cursor.getType(i) != 0)//if not null
+                        schools.add(cursor.getString(i));
+                }
+
+
+
+
             }while (cursor.moveToNext());
         }
 
@@ -136,6 +180,63 @@ public class DatabaseAccess<instance> {
                 ExportExamResult.resultList.add(subject);
                 ExportExamResult.resultList.add(mark);
                 ExportExamResult.resultList.add(grade);
+
+            }while (cursor.moveToNext());
+        }
+        return resultList;
+    }
+
+    public List<ExamResult> DisplayExamResult_PR(String ic,String school, String year, String test){
+
+        List<ExamResult> resultList= new ArrayList<ExamResult>();
+
+        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+
+        if (cursor.moveToFirst()){
+            do{
+                ExamResult result= new ExamResult();
+
+                result.setSubject(cursor.getString(0));
+                result.setMark(cursor.getString(1));
+                result.setGrade(cursor.getString(2));
+
+
+                String subject= cursor.getString(0);
+                String mark= cursor.getString(1);
+                String grade= cursor.getString(2);
+
+                ExamResultTable_Pr.resultList.add(subject);
+                ExamResultTable_Pr.resultList.add(mark);
+                ExamResultTable_Pr.resultList.add(grade);
+
+
+            }while (cursor.moveToNext());
+        }
+        return resultList;
+    }
+
+    public List<ExamResult> ExportExamResult_PR(String ic,String school, String year, String test){
+
+        List<ExamResult> resultList= new ArrayList<ExamResult>();
+
+        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+
+        if (cursor.moveToFirst()){
+            do{
+                ExamResult result= new ExamResult();
+
+                result.setSubject(cursor.getString(0));
+                result.setMark(cursor.getString(1));
+                result.setGrade(cursor.getString(2));
+
+
+                String subject= cursor.getString(0);
+                String mark= cursor.getString(1);
+                String grade= cursor.getString(2);
+
+                ExportExamResult_PR.resultList.add(subject);
+                ExportExamResult_PR.resultList.add(mark);
+                ExportExamResult_PR.resultList.add(grade);
 
             }while (cursor.moveToNext());
         }
@@ -273,61 +374,98 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
-    //GET THE PERSONALITY TEST
 
-//    private void addQuestion(Question question) {
-//        ContentValues cv = new ContentValues();
-//        cv.put(QuestionContract.QuestionsTable.COLUMN_QUESTION, question.getQuestion());
-//        cv.put(QuestionContract.QuestionsTable.COLUMN_OPTION1, question.getOption1());
-//        cv.put(QuestionContract.QuestionsTable.COLUMN_OPTION2, question.getOption2());
-////        cv.put(QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE, question.getAnswerChoice());
-//        database.insert(QuestionContract.QuestionsTable.TABLE_NAME, null, cv);
-//    }
+    public boolean insertSchoolApplication(String icChild, String nameChild, String genderChild, String raceChild, String religionChild, String nationalityChild, String addressChild,
+                                           String postcodeChild, String stateChild, String districtChild, String telChild, String icPr, String namePr, String genderPr,
+                                           String racePr, String religionPr, String nationalityPr, String addressPr, String postcodePr, String statePr, String districtPr,
+                                           String telPr, String jobPr, String salaryPr, String typeOfSchool, String stateSchool, String districtSchool, String schoolName, String distance, String status) {
 
+        String insertSql= "INSERT INTO Application \n"+
+                          "(icChild, namechild, genderChild, raceChild, religionChild, nationalityChild, addressChild, \n" +
+                "postcodeChild, stateChild, districtChild, telchild, icPr, namePr, genderPr, racePr, religionPr, nationalityPr, \n" +
+                "addressPr, postcodePr, statePr, districtPr, telPr, jobPr, salaryPr, typeOfSchool, stateSchool, districtSchool, \n" +
+                "schoolName, distance, status) \n"+
+                "VALUES \n"+
+                "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-    public List<Question> getAllQuestions() {
-        List<Question> questionList = new ArrayList<>();
-        database = openHelper.getReadableDatabase();
-        Cursor c = database.rawQuery("SELECT * FROM " + QuestionContract.QuestionsTable.TABLE_NAME, null);
-        if (c.moveToFirst()) {
-            do {
-                Question question = new Question(
-                        c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_QUESTION)),
-                        c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION1)),
-                        c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION2)));
-//                question.setQuestion(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_QUESTION)));
-//                question.setOption1(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION1)));
-//                question.setOption2(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION2)));
-//                question.setAnswerChoice(c.getInt(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE)));
-                questionList.add(question);
-            } while (c.moveToNext());
-        }
-        c.close();
-        return questionList;
-    }
-
-    public String getCategory(String quesNo){
-        String category="";
-        Cursor cursor= database.rawQuery("select category from Question_List where ques_ID=?", new String[]{quesNo});
-        if(cursor.moveToFirst()) {
-            category=new String(cursor.getString(0));
-
-        }
-        cursor.close();
-        return  category;
-    }
-
-//    update Question_List set answer=1 where ques_ID=1;
-    public boolean updateAnswer(String answer,String quesNo) {
-        //SQLiteDatabase db = this.getWritableDatabase();
-        String update_answer = "update Question_List set answer ='" + answer +"' where ques_ID='" +quesNo+"'";
         try {
-            database.execSQL(update_answer);
+            database.execSQL(insertSql, new String [] {icChild,nameChild, genderChild, raceChild, religionChild, nationalityChild, addressChild, postcodeChild, stateChild, districtChild, telChild,icPr,  namePr, genderPr,
+                    racePr, religionPr, nationalityPr, addressPr, postcodePr, statePr,  districtPr,
+                    telPr, jobPr, salaryPr, typeOfSchool, stateSchool, districtSchool, schoolName,  distance, status});
         } catch (RuntimeException e) {
+            Log.d("Insertion failed",e.getLocalizedMessage());
             return false;
+        }  finally {
+            database.close();//add
         }
         return true;
     }
+
+
+    public List<String> getApplicationList(String parentIC){
+
+        List<String> list_item= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT nameChild FROM Application WHERE icPr=?", new String[]{parentIC});
+
+
+
+        if (cursor.moveToFirst()){
+            do{
+                String child=cursor.getString(0);
+
+
+                Apply_List.list_item.add(child);
+
+            }while (cursor.moveToNext());
+        }
+        return list_item;
+    }
+
+    public String getStatus(String childName){
+        String status="";
+        Cursor cursor= database.rawQuery("SELECT status FROM Application WHERE nameChild=?", new String[]{childName});
+        if(cursor.moveToFirst()) {
+            status=new String(cursor.getString(0));
+
+        }
+        cursor.close();
+        return status;
+    }
+
+    public StatusInfo getStatusInfo(String childname) {
+
+        StatusInfo info= null;
+        Cursor cursor = database.rawQuery("SELECT icChild,nameChild,schoolName FROM Application WHERE nameChild = ? ", new String[] {childname});
+        //if(cursor!=null){
+        if(cursor.moveToFirst()) {
+            info = new  StatusInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+        }
+        cursor.close();
+        return info;
+    }
+
+    public ArrayList<Dependency> getdependency(String parentIC){
+        ArrayList<Dependency> arrayList= new ArrayList<>();
+
+        Cursor cursor = database.rawQuery("SELECT * FROM Dependency WHERE ParentICNo = ? ", new String[] {parentIC});
+        //if(cursor!=null){
+        if(cursor.moveToFirst()) {
+             do{
+                 /*Dependency dependency= new Dependency();
+                 dependency.setParentIc(cursor.getString(0));
+                 dependency.setChildIC(cursor.getString(1));
+                 dependency.setChildName(cursor.getString(2));*/
+
+                 arrayList.add(new Dependency(cursor.getString(1), cursor.getString(2), cursor.getString(3)));
+
+             }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return arrayList;
+    }
+
+
 
 //    public void updateAnswer(String answer,String quesNo) {
 //        //SQLiteDatabase db = this.getWritableDatabase();

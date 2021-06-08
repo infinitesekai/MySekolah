@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.mysekolah.DatabaseHelper;
 import com.example.mysekolah.HomePage;
@@ -17,6 +18,7 @@ import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
+import com.example.mysekolah.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Enroll_Check_IC_Pre extends AppCompatActivity  {
@@ -25,6 +27,10 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
     private EditText ic;
     private DatabaseHelper mDBHelper;
     String schoolLevel;
+    private User currentUser;
+    private int lastfragment;
+    TextView title;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +40,26 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
         mDBHelper= new DatabaseHelper(this);
         ic= findViewById(R.id.editTextIC);
         check= findViewById(R.id.btnCheck);
+        title=findViewById(R.id.title_check_ic);
+
 
         schoolLevel=getIntent().getStringExtra("SchoolLevel");
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
 
+        switch (schoolLevel){
+            case("PreSchool"):
+                title.setText("Application for Government Pre-School");
+                break;
+            case("Primary"):
+                title.setText("Application for Government Primary School");
+                break;
+            case("Secondary"):
+                title.setText("Application for Government Secondary School");
+                break;
 
-        //Check exists database
-       /* File database= getApplicationContext().getDatabasePath(DatabaseHelper.DBNAME);
-        if(false == database.exists()){
-            mDBHelper.getReadableDatabase();
-            //database.close();
-            //Copy db
-            if (copyDatabase(this)){
-                Toast.makeText(this, "Copy databse sucess", Toast.LENGTH_LONG).show();
-            }else {
-                Toast.makeText(this, "Copy data error", Toast.LENGTH_LONG).show();
-                return;
-            }
-        }*/
+        }
+
 
 
         check.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +68,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
                 Intent i= new Intent(Enroll_Check_IC_Pre.this, PreSchoolForm.class);
                 i.putExtra("ICNo", ic.getText().toString());
                 i.putExtra("SchoolLevel", schoolLevel);
+                i.putExtra("user", currentUser);
                 startActivity(i);
             }
         });
@@ -68,26 +78,6 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
 
     }
 
-    /*private Boolean copyDatabase(Context context){
-        try{
-            InputStream inputStream= context.getAssets().open(DatabaseHelper.DBNAME);
-            String outFileName= DatabaseHelper.DBLOCATION+ DatabaseHelper.DBNAME;
-            OutputStream outputStream= new FileOutputStream(outFileName);
-            byte[]buff= new byte[1024];
-            int length=0;
-            while ((length=inputStream.read(buff))>0){
-                outputStream.write(buff,0, length);
-            }
-            outputStream.flush();
-            outputStream.close();
-            Log.w("Enroll_Check_IC_Pre", "DB copied");
-            return true;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }*/
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -98,15 +88,28 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;

@@ -29,7 +29,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         Bundle bundle = getArguments();
 
         currentUser = (User) bundle.getSerializable("user");
-        nameText.setText("Hi," + currentUser.getName());
+        nameText.setText("Hi, " + currentUser.getName());
         enrollment= (CardView) v.findViewById(R.id.enrollmentCard);
         childperform= (CardView) v.findViewById(R.id.CheckChildPerfCard);
 
@@ -47,10 +47,12 @@ public class HomePage extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.enrollmentCard:
                 i= new Intent(getActivity(), SchoolEnroll.class);
+                i.putExtra("user", currentUser);
                 startActivity(i);
                 break;
             case R.id.CheckChildPerfCard:
                 i = new Intent(getActivity(), child_performance.class);
+                i.putExtra("user", currentUser);
                 startActivity(i);
                 break;
 

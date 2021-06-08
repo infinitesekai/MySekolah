@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Check_in"
+    tools:context=".Apply_List"
     android:background="@drawable/bg_gradient">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Attendance Check-in"
+        android:text="Application List"
         android:fontFamily="@font/robotobold"
         android:textSize="30dp"
         android:textColor="@color/white"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="50dp"/>
+
+
 
     <View
         android:id="@+id/bg_round_rec"
@@ -25,37 +27,19 @@
         android:background="@drawable/bg_round_rec"
         android:foregroundGravity="bottom" />
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000"
-        android:id="@+id/container">
+        android:layout_marginTop="120dp"
+        android:fillViewport="true">
 
-        <androidx.camera.view.PreviewView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/preview">
-        </androidx.camera.view.PreviewView>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_centerInParent="true"
-                android:id="@+id/image"
-                android:background="@drawable/bbg_image"/>
-        </RelativeLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/apply_list"/>
 
 
-    </FrameLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+    </ScrollView>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -64,12 +48,15 @@
         tools:layout_editor_absoluteX="5dp"
         tools:layout_editor_absoluteY="44dp" />
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/cardview_light_background"
-        app:menu="@menu/bottom_navigation"/>
+        app:menu="@menu/bottom_navigation">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </RelativeLayout>

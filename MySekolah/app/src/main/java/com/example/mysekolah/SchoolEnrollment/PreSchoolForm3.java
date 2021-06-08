@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +24,7 @@ import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
+import com.example.mysekolah.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -39,6 +39,8 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
     boolean isAllFieldsChecked = false;
 
     String schoolLevel;
+    private User currentUser;
+    private int lastfragment;
 
     String[] stateSchool= {"Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan", "Pahang",
             "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
@@ -47,12 +49,44 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
     String selectedSchoolState="";
     String selectedSchoolDistrict="";
     String selectedSchool="";
+    String selectedSchoolType="";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_school_form3);
+
+        //get all the data from last intent
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        String icChild= getIntent().getStringExtra("icChild");
+        String nameChild= getIntent().getStringExtra("nameChild");
+        String genderChild= getIntent().getStringExtra("genderChild");
+        String raceChild= getIntent().getStringExtra("raceChild");
+        String religionChild= getIntent().getStringExtra("religionChild");
+        String nationalityChild= getIntent().getStringExtra("nationalityChild");
+        String addressChild= getIntent().getStringExtra("addressChild");
+        String postcodeChild= getIntent().getStringExtra("postcodeChild");
+        String stateChild= getIntent().getStringExtra("stateChild");
+        String districtChild= getIntent().getStringExtra("districtChild");
+        String telChild= getIntent().getStringExtra("telChild");
+        String icPr= getIntent().getStringExtra("icPr");
+        String namePr= getIntent().getStringExtra("namePr");
+        String genderPr= getIntent().getStringExtra("genderPr");
+        String racePr= getIntent().getStringExtra("racePr");
+        String religionPr= getIntent().getStringExtra("religionPr");
+        String nationalityPr= getIntent().getStringExtra("nationalityPr");
+        String addressPr= getIntent().getStringExtra("addressPr");
+        String postcodePr= getIntent().getStringExtra("postcodePr");
+        String statePr= getIntent().getStringExtra("statePr");
+        String districtPr= getIntent().getStringExtra("districtPr");
+        String telPr= getIntent().getStringExtra("telPr");
+        String jobPr= getIntent().getStringExtra("jobPr");
+        String salaryPr= getIntent().getStringExtra("salaryPr");
+        schoolLevel=getIntent().getStringExtra("SchoolLevel");
+        lastfragment = 0;
+
+
 
         submit= findViewById(R.id.btnSubmit);
         back=findViewById(R.id.btnBack);
@@ -68,9 +102,11 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
         distanceInfo.setOnClickListener(this);
         schoolListInfo.setOnClickListener(this);
 
-        schoolLevel=getIntent().getStringExtra("SchoolLevel");
 
 
+
+
+        loadDSchoolTypeSpinnerData(schoolLevel);
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         Spinner state_spin = (Spinner) findViewById(R.id.spinnerStateSchool);
         //state_spin.setOnItemSelectedListener(this);
@@ -97,11 +133,15 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
 
         });
 
+        // database handler
+        DatabaseAccess db= DatabaseAccess.getInstance(this);
+
         //confirm button operation
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                String distanceForm= distance.getText().toString();
                 isAllFieldsChecked= CheckAllField();
 
                 if(isAllFieldsChecked) {
@@ -111,10 +151,20 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    finish();
                                     //inset data into database here
-                                    Intent i= new Intent(PreSchoolForm3.this, BackHomePage.class);
-                                    startActivity(i);
+                                   Boolean insert= db.insertSchoolApplication(icChild,nameChild,genderChild,raceChild,religionChild,nationalityChild,addressChild,postcodeChild,stateChild,
+                                            districtChild,telChild,icPr,namePr,genderPr,racePr,religionPr,nationalityPr,addressPr,postcodePr,statePr,districtPr,telPr,jobPr,
+                                            salaryPr,selectedSchoolType,selectedSchoolState,selectedSchoolDistrict,selectedSchool,distanceForm,"1");
+                                   if(insert){
+                                        Toast.makeText(PreSchoolForm3.this, "Application Form submitted successfully", Toast.LENGTH_LONG).show();
+                                        Intent i = new Intent(PreSchoolForm3.this, ApplicationFormSubmit.class);
+                                        i.putExtra("user", currentUser);
+                                        startActivity(i);
+
+                                        finish();}
+                                   else {
+                                       Toast.makeText(PreSchoolForm3.this, "Application submitted not successfully", Toast.LENGTH_LONG).show();
+                                   }
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -152,15 +202,28 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;
@@ -194,7 +257,7 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int arg2, long arg3) {
                 selectedSchoolDistrict= school_district_spin.getSelectedItem().toString();
-                loadDSchoolSpinnerData(selectedSchoolDistrict, schoolLevel);
+                loadDSchoolSpinnerData(selectedSchoolDistrict, schoolLevel,selectedSchoolType);
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -208,7 +271,7 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private void loadDSchoolSpinnerData(String selectedSchoolDistrict, String schoolLevel) {
+    private void loadDSchoolSpinnerData(String selectedSchoolDistrict, String schoolLevel, String selectedSchoolType) {
 
 
         Spinner school_list_spin = (Spinner) findViewById(R.id.spinnerSchoolList);
@@ -218,7 +281,7 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
         DatabaseAccess db= DatabaseAccess.getInstance(this);
 
         // Spinner Drop down elements
-        List<String> schools= db.getAllSchoolList(selectedSchoolDistrict, schoolLevel);
+        List<String> schools= db.getAllSchoolList(selectedSchoolDistrict, schoolLevel, selectedSchoolType);
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
@@ -236,6 +299,47 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int arg2, long arg3) {
                 selectedSchool= school_list_spin.getSelectedItem().toString();
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+
+
+            }
+
+        });
+
+    }
+
+
+    private void loadDSchoolTypeSpinnerData(String schoolLevel) {
+
+
+        Spinner school_type_spin = (Spinner) findViewById(R.id.spinnerSchoolType);
+        //district_spin.setOnItemSelectedListener(this);
+
+        // database handler
+        DatabaseAccess db= DatabaseAccess.getInstance(this);
+
+        // Spinner Drop down elements
+        List<String> schools= db.getAllSchoolType(schoolLevel);
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, schools);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        school_type_spin.setAdapter(dataAdapter);
+
+        school_type_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                selectedSchoolType= school_type_spin.getSelectedItem().toString();
 
             }
             @Override
@@ -273,13 +377,5 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
         return true;
     }
 
-    public class BackHomePage extends FragmentActivity {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            if (savedInstanceState == null){
-                getSupportFragmentManager().beginTransaction()
-                        .add(android.R.id.content, new com.example.mysekolah.HomePage()).commit();}
-        }
-    }
+
 }

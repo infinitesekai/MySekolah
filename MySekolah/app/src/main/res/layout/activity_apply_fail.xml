@@ -25,6 +25,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+
+
         <androidx.cardview.widget.CardView
             android:layout_width="300dp"
             android:layout_height="200dp"
@@ -46,7 +49,6 @@
 
 
                 <FrameLayout
-                    android:id="@+id/fragment_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     tools:layout_editor_absoluteX="-87dp"
@@ -85,18 +87,19 @@
                         app:srcCompat="@drawable/info_icon" />
 
                     <TextView
-                        android:id="@+id/refno2"
+                        android:id="@+id/icno2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="70dp"
                         android:layout_marginStart="16dp"
+                        android:layout_marginTop="70dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="Ref. No:"
+                        android:text="IC No:"
                         android:textColor="@color/text_color"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:translationX="10dp" />
 
                     <TextView
-                        android:id="@+id/refNoFailed"
+                        android:id="@+id/icNoFailed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="70dp"
@@ -158,8 +161,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
     <FrameLayout
-        android:id="@+id/fragment_container2"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="5dp"

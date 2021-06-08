@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
             android:layout_marginBottom="-50dp"
-            android:text="QR Scan"
+            android:text="Find a QR code"
             android:background="@color/lightBlue"
             android:textAlignment="center"
             android:textColor="@color/black"
