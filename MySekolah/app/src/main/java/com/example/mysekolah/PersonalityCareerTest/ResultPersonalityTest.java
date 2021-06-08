@@ -17,6 +17,7 @@ import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
     TextView Svalue;
     TextView Evalue;
     TextView Cvalue;
+    ImageButton image_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +82,12 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         result_quit = findViewById(R.id.result_quit);
         result_export = findViewById(R.id.result_export);
 
+        image_btn = findViewById(R.id.imageButton);
+
         result_export.setOnClickListener(this);
         result_quit.setOnClickListener(this);
+        image_btn.setOnClickListener(this);
+
 
     }
 
@@ -133,6 +139,10 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
                 break;
             case R.id.result_export:
 
+                break;
+            case  R.id.imageButton:
+                intent = new Intent(this, ResultInfo.class);
+                startActivity(intent);
                 break;
         }
     }
