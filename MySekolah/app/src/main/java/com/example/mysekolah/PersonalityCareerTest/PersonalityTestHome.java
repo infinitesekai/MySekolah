@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage_Student;
 import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
@@ -25,11 +28,15 @@ public class PersonalityTestHome extends AppCompatActivity implements View.OnCli
     CardView take_test, test_result;
     private User currentUser;
     private int lastfragment;
+    DatabaseAccess dbAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personality_test_home);
+
+        dbAccess = DatabaseAccess.getInstance(this);
+        dbAccess.open();
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
@@ -50,6 +57,7 @@ public class PersonalityTestHome extends AppCompatActivity implements View.OnCli
 
             Fragment selectedFragment = null;
 
+            //the navigation
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage_Student();
@@ -95,11 +103,23 @@ public class PersonalityTestHome extends AppCompatActivity implements View.OnCli
                 startActivity(intent);
                 break;
             case R.id.checkResultCard:
-                intent = new Intent(this, Past_Test_Result.class);
-                intent.putExtra("user",currentUser);
-                intent.putExtra("ICNo", currentUser.getICNo());
-                startActivity(intent);
-                break;
+
+                //checking if there is result exist or not
+                TestCharResult resultInfo;
+                resultInfo=dbAccess.getPastResult(currentUser.getICNo());
+                if (resultInfo == null) {
+                    Toast.makeText(
+                            PersonalityTestHome.this,
+                            "No result yet, please take the test.",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                } else {
+                    intent = new Intent(this, Past_Test_Result.class);
+                    intent.putExtra("user", currentUser);
+                    intent.putExtra("ICNo", currentUser.getICNo());
+                    startActivity(intent);
+                    break;
+                }
         }
     }
 
