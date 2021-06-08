@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_search;
                     break;
             }
