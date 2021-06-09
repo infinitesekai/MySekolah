@@ -513,10 +513,6 @@ public class DatabaseAccess<instance> {
                         c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_QUESTION)),
                         c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION1)),
                         c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION2)));
-//                question.setQuestion(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_QUESTION)));
-//                question.setOption1(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION1)));
-//                question.setOption2(c.getString(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_OPTION2)));
-//                question.setAnswerChoice(c.getInt(c.getColumnIndex(QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE)));
                 questionList.add(question);
             } while (c.moveToNext());
         }
@@ -525,14 +521,15 @@ public class DatabaseAccess<instance> {
     }
 
     public String getCategory(String quesNo){
-        String category="";
-        Cursor cursor= database.rawQuery("select category from Question_List where ques_ID=?", new String[]{quesNo});
+//        String category="";
+        Cursor cursor= database.rawQuery("select category from " + QuestionContract.QuestionsTable.TABLE_NAME +" where ques_ID=?", new String[]{quesNo});
         if(cursor.moveToFirst()) {
-            category=new String(cursor.getString(0));
+            QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE =  new String(cursor.getString(0));
+//            category=new String(cursor.getString(0));
 
         }
         cursor.close();
-        return  category;
+        return  QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE;
     }
 
 

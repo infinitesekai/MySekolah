@@ -15,7 +15,7 @@ public class TestCharResult {
     }
 
     public String getfirstChar() {
-        return  firstChar;
+        return firstChar;
     }
 
     public String getsecondChar() {

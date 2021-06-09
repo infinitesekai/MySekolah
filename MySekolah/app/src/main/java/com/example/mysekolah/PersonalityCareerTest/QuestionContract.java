@@ -10,6 +10,6 @@ public final class QuestionContract {
         public static final String COLUMN_QUESTION = "question";
         public static final String COLUMN_OPTION1 = "option1";
         public static final String COLUMN_OPTION2 = "option2";
-//        public static final String COLUMN_ANSWER_CHOICE = "category";
+        public static String COLUMN_ANSWER_CHOICE = "category";
     }
 }

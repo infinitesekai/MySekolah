@@ -3,7 +3,6 @@ package com.example.mysekolah.PersonalityCareerTest;
 public class TestResultInfo {
     private String aphabet;
     private String alpname;
-    private String school;
     private String desc;
     private String exp;
     private String field;

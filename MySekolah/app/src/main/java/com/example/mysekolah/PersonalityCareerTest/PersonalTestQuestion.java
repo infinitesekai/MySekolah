@@ -45,12 +45,15 @@ public class PersonalTestQuestion extends AppCompatActivity {
     //check if the question is answered or not
     private boolean answered = true;
 
+    //counter use to track the result
     int R_counter=0;
     int I_counter=0;
     int A_counter=0;
     int S_counter=0;
     int E_counter=0;
     int C_counter=0;
+
+    //track the user
     private User currentUser;
     private int lastfragment;
 
@@ -149,35 +152,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
                 if (!answered) {
                     if (rb1.isChecked() || rb2.isChecked()) {
                         checkAnswer();
-
-//
-//                        previousAns=dbAccess.getAnswer(String.valueOf(questionCounter));
-//
-//                        if (previousAns.equals("0"))
-//                        {
-//                            Boolean chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-////                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                            if (chosenAns) {
-//                                Toast.makeText(PersonalTestQuestion.this, "Selected Agree", Toast.LENGTH_SHORT).show();
-//
-//                            } else {
-//                                Toast.makeText(PersonalTestQuestion.this, "Selection failed", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            addCounter(questionCounter);
-//                        }
-//
-//                        if(!previousAns.equals("0") && current_answer!=previousAns)
-//                        {
-//                            minusCounter(questionCounter);
-//                            dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                            addCounter(questionCounter);
-//
-//                        }
-
-
-
-                        rbGroup.clearCheck();
+                                                rbGroup.clearCheck();
                         questionCounter++;
                         showNextQuestion();
 
@@ -231,22 +206,6 @@ public class PersonalTestQuestion extends AppCompatActivity {
             buttonBack.setBackgroundResource(R.drawable.rounded_btn_grey);
             buttonBack.setTextColor(Color.BLACK);
         }
-
-//        rb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean one_isChecked) {
-//                SaveIntoPref("option1", one_isChecked);
-//            }
-//        });
-//
-//        rb2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean two_isChecked) {
-//                SaveIntoPref("option2", two_isChecked);
-//            }
-//        });
 
         //if still have questions to answer
         if (questionCounter < questionCountTotal) {
@@ -359,18 +318,5 @@ public class PersonalTestQuestion extends AppCompatActivity {
 
         }
     }
-
-
-//    private void SaveIntoPref(String key, boolean value){
-//        SharedPreferences sp = getSharedPreferences("option", MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sp.edit();
-//        editor.putBoolean(key, value);
-//        editor.apply();
-//    }
-//
-//    private boolean Update(String key){
-//        SharedPreferences sp = getSharedPreferences("option", MODE_PRIVATE);
-//        return sp.getBoolean(key, false);
-//    }
 
 }
