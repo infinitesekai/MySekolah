@@ -69,7 +69,7 @@ public class Submission extends Activity implements View.OnClickListener{
     public void onClick(View v) {
         Intent intent;
         final LoadingDialog loadingDialog = new LoadingDialog(Submission.this);
-        int loading_time = 5000;
+        int loading_time = 3000;
 
         switch (v.getId()){
             case R.id.btn_cancel:
