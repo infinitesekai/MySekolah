@@ -2,6 +2,8 @@ package com.example.mysekolah.PersonalityCareerTest;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.mysekolah.DatabaseAccess;
@@ -20,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.telephony.SignalStrength;
@@ -55,7 +58,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
     LinearLayout expandable_view, expandable_view2, expandable_view3;
     ImageView imageView, imageView2, imageView3;
     CardView cardView, cardView2, cardView3;
-    Button result_quit, result_export;
+    Button result_quit;
     TextView Rvalue;
     TextView Ivalue;
     TextView Avalue;
@@ -192,6 +195,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         testeric.setText(currentUser.getICNo());
         total.setText(String.valueOf(totalscore));
 
+        //using hashmap to map the characters and counters
         HashMap<String,Integer> Character=new HashMap<String, Integer>();
 
         Character.put(R,R_counter);
@@ -213,12 +217,73 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
            character.add(entry.getKey());
        }
 
-
-
        String firstChar=character.get(0);
        String secondChar=character.get(1);
        String thirdChar=character.get(2);
 
+        for (int i = 0; i < 3; i++) {
+
+            switch (character.get(0)) {
+                case "R":
+                    cardView.setCardBackgroundColor(Color.parseColor("#995a3f"));
+                    break;
+                case "I":
+                    cardView.setCardBackgroundColor(Color.parseColor("#26768F"));
+                    break;
+                case "A":
+                    cardView.setCardBackgroundColor(Color.parseColor("#4F4461"));
+                    break;
+                case "S":
+                    cardView.setCardBackgroundColor(Color.parseColor("#2E8266"));
+                    break;
+                case "E":
+                    cardView.setCardBackgroundColor(Color.parseColor("#525CDD"));
+                    break;
+                case "C":
+                    cardView.setCardBackgroundColor(Color.parseColor("#B8685E"));
+                    break;
+            }
+            switch (character.get(1)) {
+                case "R":
+                    cardView2.setCardBackgroundColor(Color.parseColor("#995a3f"));
+                    break;
+                case "I":
+                    cardView2.setCardBackgroundColor(Color.parseColor("#26768F"));
+                    break;
+                case "A":
+                    cardView2.setCardBackgroundColor(Color.parseColor("#4F4461"));
+                    break;
+                case "S":
+                    cardView2.setCardBackgroundColor(Color.parseColor("#2E8266"));
+                    break;
+                case "E":
+                    cardView2.setCardBackgroundColor(Color.parseColor("#525CDD"));
+                    break;
+                case "C":
+                    cardView2.setCardBackgroundColor(Color.parseColor("#B8685E"));
+                    break;
+            }
+            switch (character.get(2)) {
+                case "R":
+                    cardView3.setCardBackgroundColor(Color.parseColor("#995a3f"));
+                    break;
+                case "I":
+                    cardView3.setCardBackgroundColor(Color.parseColor("#26768F"));
+                    break;
+                case "A":
+                    cardView3.setCardBackgroundColor(Color.parseColor("#4F4461"));
+                    break;
+                case "S":
+                    cardView3.setCardBackgroundColor(Color.parseColor("#2E8266"));
+                    break;
+                case "E":
+                    cardView3.setCardBackgroundColor(Color.parseColor("#525CDD"));
+                    break;
+                case "C":
+                    cardView3.setCardBackgroundColor(Color.parseColor("#B8685E"));
+                    break;
+            }
+        }
        H1.setText(firstChar);
        H2.setText(secondChar);
        H3.setText(thirdChar);
@@ -256,6 +321,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         } else {
             Toast.makeText(ResultPersonalityTest.this, "Result failed", Toast.LENGTH_SHORT).show();
         }
+
 
 
 
