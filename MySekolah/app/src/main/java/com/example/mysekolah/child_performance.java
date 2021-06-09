@@ -9,14 +9,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.example.mysekolah.PersonalityCareerTest.TestCharResult;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class child_performance extends AppCompatActivity implements View.OnClickListener{
+public class child_performance extends AppCompatActivity implements View.OnClickListener {
 
-    public CardView exam,discipline,attendance,personalitytest;
+    public CardView exam, discipline, attendance, personalitytest;
     private User currentUser;
     private int lastfragment;
+    DatabaseAccess dbAccess;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +33,15 @@ public class child_performance extends AppCompatActivity implements View.OnClick
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        attendance=findViewById(R.id.AttendanceCard);
-        exam=findViewById(R.id.ExamResultCard);
-       discipline=findViewById(R.id.DisciplineCard);
-        //personalitytest.findViewById(R.id.PersonalityCard);
+        attendance = findViewById(R.id.AttendanceCard);
+        exam = findViewById(R.id.ExamResultCard);
+        discipline = findViewById(R.id.DisciplineCard);
+        personalitytest = findViewById(R.id.PersonalityCard);
 
         attendance.setOnClickListener(this);
         exam.setOnClickListener(this);
         discipline.setOnClickListener(this);
-        //personalitytest.setOnClickListener(this);
-
-        /*attendance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(child_performance.this, att_select_child.class);
-                startActivity(i);
-            }
-        });*/
+        personalitytest.setOnClickListener(this);
 
 
     }
@@ -61,7 +57,7 @@ public class child_performance extends AppCompatActivity implements View.OnClick
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);
+                    bundle.putSerializable("user", currentUser);
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
@@ -72,14 +68,14 @@ public class child_performance extends AppCompatActivity implements View.OnClick
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);
+                    bundle.putSerializable("user", currentUser);
                     selectedFragment.setArguments(bundle);
                     //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);
+                    bundle.putSerializable("user", currentUser);
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_search;
             }
@@ -87,37 +83,43 @@ public class child_performance extends AppCompatActivity implements View.OnClick
             return false;
         }
     };
+
     @Override
     public void onClick(View v) {
         Intent i;
-        String examMessage= "exam";
-        String attendanceMessage= "attendance";
-        String disciplineMessage= "discipline";
+        String examMessage = "exam";
+        String attendanceMessage = "attendance";
+        String disciplineMessage = "discipline";
+        String personalityTestMessage = "personality";
 
         switch (v.getId()) {
             case R.id.AttendanceCard:
                 i = new Intent(this, att_select_child.class);
-                i.putExtra("user",currentUser);
-                i.putExtra("message",attendanceMessage);
+                i.putExtra("user", currentUser);
+                i.putExtra("message", attendanceMessage);
                 startActivity(i);
                 break;
             case R.id.ExamResultCard:
                 i = new Intent(this, att_select_child.class);
-                i.putExtra("user",currentUser);
-                i.putExtra("message",examMessage);
+                i.putExtra("user", currentUser);
+                i.putExtra("message", examMessage);
                 startActivity(i);
                 break;
 
             case R.id.DisciplineCard:
                 i = new Intent(this, att_select_child.class);
-                i.putExtra("user",currentUser);
-                i.putExtra("message",disciplineMessage);
+                i.putExtra("user", currentUser);
+                i.putExtra("message", disciplineMessage);
                 startActivity(i);
                 break;
+            case R.id.PersonalityCard:
 
 
-
-
+                i = new Intent(this, att_select_child.class);
+                i.putExtra("user", currentUser);
+                i.putExtra("message", personalityTestMessage);
+                startActivity(i);
+                break;
 
         }
     }

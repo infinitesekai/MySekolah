@@ -12,7 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
+import com.example.mysekolah.PersonalityCareerTest.Past_Child_Test_Result;
+import com.example.mysekolah.PersonalityCareerTest.Past_Test_Result;
+import com.example.mysekolah.PersonalityCareerTest.PersonalityTestHome;
+import com.example.mysekolah.PersonalityCareerTest.TestCharResult;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.Serializable;
@@ -109,6 +114,23 @@ public class att_select_child extends AppCompatActivity {
                         i= new Intent(att_select_child.this, Discipline_Form.class);
                         startActivity(i);
                         break;
+                    case ("personality"):
+                        TestCharResult resultInfo;
+                        resultInfo=databaseAccess.getPastResult(icChild);
+                        if (resultInfo == null) {
+                            Toast.makeText(
+                                    att_select_child.this,
+                                    "There is no result for your child yet.",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+                        }else {
+                            i = new Intent(att_select_child.this, Past_Child_Test_Result.class);
+                            i.putExtra("user", currentUser);
+                            i.putExtra("icChild", icChild);
+                            i.putExtra("childName", childName);
+                            startActivity(i);
+                            break;
+                        }
                 }
             }
         });
