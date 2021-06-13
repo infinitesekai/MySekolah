@@ -7,39 +7,23 @@
     tools:context=".child_performance"
     android:background="@drawable/bg_gradient">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bg_round_rec">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="266dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Children Performance"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.515" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Children Performance"
+        android:fontFamily="@font/robotobold"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"/>
 
     <View
         android:id="@+id/bg_round_rec"
         android:layout_width="match_parent"
         android:layout_height="620dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="-66dp"
-        android:background="@drawable/bg_round_rec" />
+        android:layout_marginTop="108dp"
+        android:background="@drawable/bg_round_rec"
+        android:foregroundGravity="bottom" />
 
 
     <androidx.appcompat.widget.LinearLayoutCompat

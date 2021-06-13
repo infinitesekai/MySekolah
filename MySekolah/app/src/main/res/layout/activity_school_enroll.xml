@@ -7,41 +7,23 @@
     tools:context=".SchoolEnrollment.SchoolEnroll"
     android:background="@drawable/bg_gradient">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enrolling Government School"
+        android:fontFamily="@font/robotobold"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"/>
+
+    <View
+        android:id="@+id/bg_round_rec"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <TextView
-            android:id="@+id/pageTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="33dp"
-            android:fontFamily="@font/robotobold"
-            android:text="Enrolling Government
-            School"
-            android:textColor="@color/white"
-            android:textSize="28dp"
-            app:layout_constraintBottom_toTopOf="@+id/bg_round_rec"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/bg_round_rec"
-            android:layout_width="match_parent"
-            android:layout_height="560dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/bg_round_rec"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="620dp"
+        android:layout_marginTop="138dp"
+        android:background="@drawable/bg_round_rec"
+        android:foregroundGravity="bottom" />
 
 
 
@@ -49,7 +31,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="150dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:weightSum="1"

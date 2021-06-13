@@ -132,7 +132,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="3dp"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,7 +161,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="3dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -201,7 +204,7 @@
 
             <TextView
                 android:id="@+id/tvPre"
-                android:layout_width="150dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="7dp"
@@ -209,6 +212,28 @@
                 android:text="PreSchoolView"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Pre-School Graduation Year:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
 
             <TextView
                 android:id="@+id/tvPreYear"
@@ -242,7 +267,7 @@
 
             <TextView
                 android:id="@+id/tvPrimary"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="7dp"
@@ -251,11 +276,32 @@
                 android:textColor="@color/black"
                 android:textSize="16dp" />
 
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Primary School Graduation Year:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+
             <TextView
                 android:id="@+id/tvPrimaryYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="7dp"
                 android:fontFamily="@font/robotoregular"
                 android:text="2011"
@@ -266,7 +312,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="3dp">
 
 
             <TextView
@@ -281,7 +328,7 @@
 
             <TextView
                 android:id="@+id/tvSecondary"
-                android:layout_width="150dp"
+                android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="7dp"
@@ -290,11 +337,32 @@
                 android:textColor="@color/black"
                 android:textSize="16dp" />
 
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Secondary School Graduation Year:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+
             <TextView
                 android:id="@+id/tvSecondaryYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="7dp"
                 android:fontFamily="@font/robotoregular"
                 android:text="2016"
@@ -305,7 +373,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="3dp">
 
 
             <TextView
@@ -345,9 +414,9 @@
             android:id="@+id/btnexport"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:background="@color/black"
             android:textColor="@color/white"
             android:text="Export"
+            android:background="@drawable/rounded_btn_black"
             android:stateListAnimator="@null"
             android:layout_marginLeft="150dp"
             android:layout_marginTop="20dp"
