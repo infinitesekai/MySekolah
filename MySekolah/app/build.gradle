@@ -72,7 +72,8 @@ dependencies {
     // If you want to additionally use the CameraX Extensions library
    // implementation "androidx.camera:camera-extensions:1.0.0-alpha24"
 
-
+// BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
 
 
 }

@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class ProfilePage extends Fragment {
-    private Button editBtn;
+    private Button editBtn,editChildBtn,btnLogout;
     private User currentUser;
     private TextView icNoText;
     private TextView nameText;
@@ -59,6 +59,21 @@ public class ProfilePage extends Fragment {
         phoneText.setText(currentUser.getPhoneNo());
         racesText.setText(currentUser.getRace());
         nationText.setText(currentUser.getNation());
+
+        btnLogout = view.findViewById(R.id.btn_logout);
+        editChildBtn = view.findViewById(R.id.btneditchild);
+
+        btnLogout.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(),Login_page.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            getActivity().finish();
+        });
+        editChildBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(),EditChildActivity.class);
+            intent.putExtra("user", currentUser);
+            startActivity(intent);
+        });
     }
 
     @Override

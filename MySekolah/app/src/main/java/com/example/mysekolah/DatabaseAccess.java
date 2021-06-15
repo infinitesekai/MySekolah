@@ -13,6 +13,7 @@ import com.example.mysekolah.PersonalityCareerTest.Question;
 import com.example.mysekolah.PersonalityCareerTest.QuestionContract;
 import com.example.mysekolah.PersonalityCareerTest.TestCharResult;
 import com.example.mysekolah.PersonalityCareerTest.TestResultInfo;
+import com.example.mysekolah.bean.DisciplineResultBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,6 +130,20 @@ public class DatabaseAccess<instance> {
 
         cursor.close();
         return schools;
+    }
+
+    public ArrayList<DisciplineResultBean> getDisciplineResults(String icNo, String year){
+        ArrayList<DisciplineResultBean> disciplineResultBeans= new ArrayList<DisciplineResultBean>();
+        Cursor cursor= database.rawQuery("SELECT DiscScore,DisYear,grade,Hardworking,Responsible,Leadership,Dedicate,Politeness,Honesty FROM Discipline WHERE  DisYear= ? AND ICNo= ?", new String[] {year,icNo});
+        if(cursor.moveToFirst()){
+            do{
+                DisciplineResultBean bean = new DisciplineResultBean(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
+                disciplineResultBeans.add(bean);
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return  disciplineResultBeans;
     }
 
     public List<ExamResult> DisplayExamResult(String ic,String school, String year, String test){
@@ -572,5 +587,61 @@ public class DatabaseAccess<instance> {
         }
         cursor.close();
         return info;
+    }
+
+    //获取父母名下的子女
+    public ArrayList<User> getPChilds(String ic) {
+        ArrayList<User> childs = new ArrayList<>();
+        String querySql = "Select ChildICNo, ChildName from Dependency where ParentICNo = '"+ ic +"'";
+        Cursor cursor = database.rawQuery(querySql, null);
+        while (cursor.moveToNext()) {
+            String icNo = cursor.getString(0);
+            String name = cursor.getString(1);
+            User user = new User();
+            user.setICNo(icNo);
+            user.setName(name);
+            childs.add(user);
+        }
+        cursor.close();
+        return childs;
+    }
+
+    //删除父母明下某个孩子
+    public Boolean deleteOneChild(String pIc, String cIc) {
+        String deSql = "DELETE FROM Dependency WHERE ParentICNo = '" + pIc + "'and ChildICNo = '"+ cIc +"'";
+        Boolean result = true;
+        try {
+            database.execSQL(deSql);
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
+    }
+
+    //父母添加孩子
+    public Boolean addOneChild(String pIc, User child) {
+        String insertSql = "insert into Dependency (ParentICNo, ChildICNo, ChildName) VALUES (?,?,?)";
+        Boolean result = true;
+        try {
+            database.execSQL(insertSql, new String[] {pIc, child.getICNo(), child.getName()});
+        } catch (Exception e) {
+            result = false;
+        } finally {
+            database.close();
+        }
+        return result;
+    }
+
+    //校验孩子是否可以添加
+    public Boolean checkChid(String pIc, String cIc) {
+        String qSql = "select COUNT(*) from Dependency where ParentICNo = '"+ pIc+"' and ChildICNo = '"+ cIc +"';";
+        Cursor cursor = database.rawQuery(qSql, null);
+        if (cursor.moveToFirst()) {
+            int count = cursor.getInt(0);
+            if (count == 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }
