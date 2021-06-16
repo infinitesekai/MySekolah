@@ -78,7 +78,7 @@ public class PreSchoolForm extends AppCompatActivity{
         postcode= findViewById(R.id.etPos);
         tel= findViewById(R.id.etTel);
         next= findViewById(R.id.btnNext);
-        pageTitle=findViewById(R.id.pageTitle);
+        //pageTitle=findViewById(R.id.pageTitle);
 
 
 

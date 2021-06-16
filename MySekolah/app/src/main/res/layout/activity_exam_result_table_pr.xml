@@ -160,7 +160,7 @@
                 android:layout_below="@+id/table_result"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:background="@color/black"
+                android:background="@drawable/rounded_btn_black"
                 android:textColor="@color/white"
                 android:text="Export"
                 android:stateListAnimator="@null"
