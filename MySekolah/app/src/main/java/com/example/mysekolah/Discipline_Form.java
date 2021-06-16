@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.mysekolah.bean.DisciplineResultBean;
+import com.example.mysekolah.util.MyApplication;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -31,11 +32,14 @@ public class Discipline_Form extends AppCompatActivity implements
     private String selectedYear=year[0];
     private String icNo,childName;
     private User currentUser;
+    private int lastfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discipline_form);
+
+        lastfragment = 0;
 
         tvIc=findViewById(R.id.tvIC);
         tvName=findViewById(R.id.tvName);
@@ -43,6 +47,7 @@ public class Discipline_Form extends AppCompatActivity implements
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+       // currentUser = MyApplication.currentUser;
         currentUser = (User) getIntent().getSerializableExtra("user");
         icNo = getIntent().getExtras().getString("icChild");
         childName = getIntent().getExtras().getString("childName");
@@ -92,6 +97,7 @@ public class Discipline_Form extends AppCompatActivity implements
 
     }
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -101,15 +107,28 @@ public class Discipline_Form extends AppCompatActivity implements
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user", currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
                 case R.id.nav_notif:
                     selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user", currentUser);
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user", currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;

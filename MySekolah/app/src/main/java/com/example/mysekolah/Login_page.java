@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mysekolah.util.MyApplication;
+
 public class Login_page extends AppCompatActivity {
     private EditText ic_number,password;
     private Button btnlogin,btnSignUp;
@@ -53,10 +55,11 @@ public class Login_page extends AppCompatActivity {
                 else{
                     User user =DB.checkusericpassword(ic,pass);
                     if(user.getICNo() != null){
-                        currentUser = user;
                         Toast.makeText(Login_page.this,"Sign in successfully",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        //MyApplication.currentUser = user;
+                        currentUser = user;
                         intent.putExtra("user", currentUser);
                         startActivity(intent);
                         finish();

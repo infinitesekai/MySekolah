@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.mysekolah.util.MyApplication;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
             Fragment selectedFragment = null;
-
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     Bundle bundle = new Bundle();
@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         currentUser = (User) getIntent().getSerializableExtra("user");
+        //currentUser = MyApplication.currentUser;
+
         lastfragment = 0;
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);

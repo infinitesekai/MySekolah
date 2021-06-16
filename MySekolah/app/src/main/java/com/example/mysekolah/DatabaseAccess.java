@@ -134,10 +134,10 @@ public class DatabaseAccess<instance> {
 
     public ArrayList<DisciplineResultBean> getDisciplineResults(String icNo, String year){
         ArrayList<DisciplineResultBean> disciplineResultBeans= new ArrayList<DisciplineResultBean>();
-        Cursor cursor= database.rawQuery("SELECT DiscScore,DisYear,grade,Hardworking,Responsible,Leadership,Dedicate,Politeness,Honesty FROM Discipline WHERE  DisYear= ? AND ICNo= ?", new String[] {year,icNo});
+        Cursor cursor= database.rawQuery("SELECT DiscScore,DisYear,grade,Hardworking,Responsible,Leadership,Dedicate,Politeness,Honesty,Remarks FROM Discipline WHERE  DisYear= ? AND ICNo= ?", new String[] {year,icNo});
         if(cursor.moveToFirst()){
             do{
-                DisciplineResultBean bean = new DisciplineResultBean(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8));
+                DisciplineResultBean bean = new DisciplineResultBean(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8),cursor.getInt(8));
                 disciplineResultBeans.add(bean);
             }while (cursor.moveToNext());
         }
@@ -606,6 +606,8 @@ public class DatabaseAccess<instance> {
         return childs;
     }
 
+
+
     //删除父母明下某个孩子
     public Boolean deleteOneChild(String pIc, String cIc) {
         String deSql = "DELETE FROM Dependency WHERE ParentICNo = '" + pIc + "'and ChildICNo = '"+ cIc +"'";
@@ -627,7 +629,7 @@ public class DatabaseAccess<instance> {
         } catch (Exception e) {
             result = false;
         } finally {
-            database.close();
+            //database.close();
         }
         return result;
     }

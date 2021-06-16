@@ -2,19 +2,25 @@ package com.example.mysekolah;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mysekolah.adapter.ChildInfoAdapter;
 import com.example.mysekolah.adapter.CustomDecoration;
+import com.example.mysekolah.util.MyApplication;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +30,7 @@ import java.util.List;
  */
 public class EditChildActivity extends AppCompatActivity {
     private Button btnAddChild;
+    private Button btnsave;
     private User currentUser;
     private RecyclerView rvChilds;
     private ChildInfoAdapter childInfoAdapter;
@@ -32,14 +39,23 @@ public class EditChildActivity extends AppCompatActivity {
     private View mView;
     private EditText mICText;
     private EditText mNameText;
+    private int lastfragment;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_child);
+        //currentUser = MyApplication.currentUser;
         currentUser = (User) getIntent().getSerializableExtra("user");
         rvChilds = findViewById(R.id.rv_child_info);
         btnAddChild = findViewById(R.id.btn_add_child);
+        lastfragment=0;
+
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
@@ -71,6 +87,26 @@ public class EditChildActivity extends AppCompatActivity {
         rvChilds.setAdapter(childInfoAdapter);
 
         //添加
+
+        btnsave = findViewById(R.id.btn_save_child);
+
+        btnsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment selectedFragment = null;
+                selectedFragment = new ProfilePage();
+                //currentUser = MyApplication.currentUser;
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                selectedFragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                DB.close();
+            }
+        });
+
+
+
+
         btnAddChild.setOnClickListener(v -> {
             mBuilder = new AlertDialog.Builder(EditChildActivity.this);
 //            mBuilder = new AlertDialog.Builder(EditChildActivity.this);
@@ -101,12 +137,18 @@ public class EditChildActivity extends AppCompatActivity {
                     String ic = mICText.getText().toString();
                     String name = mNameText.getText().toString();
                     User child = new User();
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
                     child.setICNo(ic);
                     child.setName(name);
                     if (DB.checkuseric(ic, name).size() > 0) {
                         if (DB.checkChid(currentUser.getICNo(), ic)) {
                             Boolean result = DB.addOneChild(currentUser.getICNo(), child);
                             if (result) {
+                                //MyApplication.currentUser.setICNo(ic);
+                               // MyApplication.currentUser.setName(name);
+                                //currentUser.setICNo(ic);
+                               // currentUser.setName(name);
                                 Toast.makeText(EditChildActivity.this, "add child success！", Toast.LENGTH_SHORT).show();
                                 childs.add(name);
                                 childInfoAdapter.notifyDataSetChanged();
@@ -126,4 +168,55 @@ public class EditChildActivity extends AppCompatActivity {
             mBuilder.show();
         });
     }
+
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Fragment selectedFragment = null;
+
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+
+                    if (currentUser.getRole() == 1) {
+                        selectedFragment = new HomePage();
+                    } else {
+                        selectedFragment = new HomePage_Student();
+                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
+                    break;
+                case R.id.nav_notif:
+                    selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
+                    break;
+                case R.id.nav_profile:
+
+                    selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
+                    break;
+                case R.id.nav_search:
+
+                    if (currentUser.getRole() == 1) {
+                        selectedFragment = new  SearchPage();
+                    } else {
+                        selectedFragment = new  SearchPage_Student();
+                    }
+
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return false;
+        }
+    };
 }

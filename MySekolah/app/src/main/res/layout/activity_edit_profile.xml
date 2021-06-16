@@ -31,6 +31,8 @@
         android:background="@drawable/bg_round_rec"
         android:foregroundGravity="bottom" />
 
+
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,10 +42,19 @@
         android:layout_marginBottom="50dp"
         android:orientation="vertical">
 
+<!--        <FrameLayout-->
+
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            tools:layout_editor_absoluteX="5dp"-->
+<!--            tools:layout_editor_absoluteY="44dp" />-->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -365,9 +376,17 @@
                     android:text="save"
                     android:textColor="@color/white" />
             </LinearLayout>
-
+<!--    </FrameLayout>-->
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

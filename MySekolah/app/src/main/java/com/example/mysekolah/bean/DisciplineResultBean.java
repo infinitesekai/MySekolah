@@ -13,8 +13,9 @@ public class DisciplineResultBean implements Parcelable {
     private String dedicate;
     private String politeness;
     private String honesty;
+    private int remarks;
 
-    public DisciplineResultBean(int discScore, int year, String grade, String hardWorking, String responsible, String leadership, String dedicate, String politeness, String honesty) {
+    public DisciplineResultBean(int discScore, int year, String grade, String hardWorking, String responsible, String leadership, String dedicate, String politeness, String honesty,int remarks) {
         this.discScore = discScore;
         this.year = year;
         this.grade = grade;
@@ -24,6 +25,7 @@ public class DisciplineResultBean implements Parcelable {
         this.dedicate = dedicate;
         this.politeness = politeness;
         this.honesty = honesty;
+        this.remarks = remarks;
     }
 
     protected DisciplineResultBean(Parcel in) {
@@ -49,6 +51,14 @@ public class DisciplineResultBean implements Parcelable {
             return new DisciplineResultBean[size];
         }
     };
+
+    public int getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(int remarks) {
+        this.remarks = remarks;
+    }
 
     public String getGrade() {
         return grade;
