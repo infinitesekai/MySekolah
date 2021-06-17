@@ -27,6 +27,7 @@ import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
 import com.example.mysekolah.SearchPage_Student;
 import com.example.mysekolah.User;
+import com.example.mysekolah.att_select_child;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -305,14 +306,17 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
     @Override
     public void onClick(View v) {
         Intent intent;
+        String personalityTestMessage = "personality";
 
         switch (v.getId()){
-            case R.id.result_quit_past:
-                intent = new Intent(this, PersonalityTestHome.class);
+            case R.id.result_quit_child:
+                intent = new Intent(this, att_select_child.class);
                 intent.putExtra("user",currentUser);
                 intent.putExtra("ICNo", currentUser.getICNo());
+                intent.putExtra("message", personalityTestMessage);
                 startActivity(intent);
                 break;
+
 
 
         }
