@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -60,14 +61,20 @@ public class Discipline_Result extends AppCompatActivity {
                 btn_export.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(bean.getRemarks() == 1){
+//                        if(bean.getRemarks() == 1){
+                        if(bean.getDiscScore()>=70){
                             showPopup(R.layout.discipline_popup_good);
-                        }else{
+                        }else {
                             showPopup(R.layout.discipline_popup_bad);
                         }
+
+
                     }
                 });
             }
+        }
+        else{
+            Toast.makeText(Discipline_Result.this,"No Discipline Result",Toast.LENGTH_LONG).show();
         }
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
