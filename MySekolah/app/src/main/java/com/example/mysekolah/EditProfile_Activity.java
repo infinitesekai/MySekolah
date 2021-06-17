@@ -35,8 +35,9 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
     private TextView icText;
     private TextView nameText;
     private TextView genderText;
-    private Spinner raceSpinner;
-    private Spinner nationSpinner;
+    private TextView raceText;
+//    private Spinner raceSpinner;
+//    private Spinner nationSpinner;
     private DatePicker datePicker;
     private Button dateBtn;
     private EditText jobEdit;
@@ -68,8 +69,8 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
 
         initViews();
 
-        prepareData();
-        setAdapter();
+//        prepareData();
+//        setAdapter();
     }
 
     private void initViews() {
@@ -77,8 +78,10 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
         icText = findViewById(R.id.tv_IC);
         nameText = findViewById(R.id.tv_Name);
         genderText = findViewById(R.id.tv_gender);
-        raceSpinner = findViewById(R.id.spin_races);
-        nationSpinner = findViewById(R.id.spin_nationality);
+        raceText = findViewById(R.id.tv_races);
+//        raceSpinner = findViewById(R.id.spin_races);
+//        nationSpinner = findViewById(R.id.spin_nationality);
+
         dateBtn = findViewById(R.id.et_bDate);
         jobEdit = findViewById(R.id.et_job);
         salaryEdit = findViewById(R.id.et_salary);
@@ -92,6 +95,7 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
         icText.setText(currentUser.getICNo());
         nameText.setText(currentUser.getName());
         genderText.setText(currentUser.getGender());
+        raceText.setText(currentUser.getRace());
         jobEdit.setText(currentUser.getJob());
         salaryEdit.setText(currentUser.getSalary());
         addressEdit.setText(currentUser.getAddress());
@@ -176,65 +180,65 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
         });
     }
 
-    private void prepareData() {
-        //准备数据
-        races.add("Chinese");
-        races.add("Malay");
-        races.add("Indian");
-        races.add("Others");
-
-        nations.add("Afghanistan");
-        nations.add("Albania" );
-        nations.add("Algeria" );
-        nations.add("Argentina" );
-        nations.add("Australia" );
-        nations.add("Austria" );
-        nations.add("Cambodia" );
-        nations.add("Canada" );
-        nations.add("Chile" );
-        nations.add("China" );
-        nations.add("Colombia *" );
-        nations.add("Czech Republic" );
-        nations.add("Denmark" );
-        nations.add("Dominican Republic" );
-        nations.add("Ecuador" );
-        nations.add("Egypt" );
-        nations.add("El Salvador" );
-        nations.add("England" );
-    }
-
-    private void setAdapter() {
-        //设置适配器
-        ArrayAdapter<String> raceAdapter = new ArrayAdapter<String>(EditProfile_Activity.this,android.R.layout.simple_spinner_item, races);
-        raceSpinner.setAdapter(raceAdapter);
-        raceSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedRace = races.get(position);
-                currentUser.setRace(selectedRace);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        ArrayAdapter<String> nationAdapter = new ArrayAdapter<String>(EditProfile_Activity.this,android.R.layout.simple_spinner_item, nations);
-        nationSpinner.setAdapter(nationAdapter);
-        nationSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedNation = nations.get(position);
-                currentUser.setRace(selectedNation);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
+//    private void prepareData() {
+//        //准备数据
+//        races.add("Chinese");
+//        races.add("Malay");
+//        races.add("Indian");
+//        races.add("Others");
+//
+//        nations.add("Afghanistan");
+//        nations.add("Albania" );
+//        nations.add("Algeria" );
+//        nations.add("Argentina" );
+//        nations.add("Australia" );
+//        nations.add("Austria" );
+//        nations.add("Cambodia" );
+//        nations.add("Canada" );
+//        nations.add("Chile" );
+//        nations.add("China" );
+//        nations.add("Colombia *" );
+//        nations.add("Czech Republic" );
+//        nations.add("Denmark" );
+//        nations.add("Dominican Republic" );
+//        nations.add("Ecuador" );
+//        nations.add("Egypt" );
+//        nations.add("El Salvador" );
+//        nations.add("England" );
+//    }
+//
+//    private void setAdapter() {
+//        //设置适配器
+//        ArrayAdapter<String> raceAdapter = new ArrayAdapter<String>(EditProfile_Activity.this,android.R.layout.simple_spinner_item, races);
+//        raceSpinner.setAdapter(raceAdapter);
+//        raceSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selectedRace = races.get(position);
+//                currentUser.setRace(selectedRace);
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//
+//        ArrayAdapter<String> nationAdapter = new ArrayAdapter<String>(EditProfile_Activity.this,android.R.layout.simple_spinner_item, nations);
+//        nationSpinner.setAdapter(nationAdapter);
+//        nationSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selectedNation = nations.get(position);
+//                currentUser.setRace(selectedNation);
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//    }
 
 
     @Override

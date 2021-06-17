@@ -77,8 +77,8 @@
 
             <TextView
                 android:id="@+id/tx_parent"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="136dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="160dp"
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/robotobold"
@@ -87,13 +87,14 @@
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:textStyle="bold"
+                android:translationX="10dp"
+                android:translationY="20dp"
                 app:layout_constraintBottom_toBottomOf="@id/img_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_view2"
 
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_view2" />
 
             <ImageView
                 android:id="@+id/img_parent"
@@ -125,8 +126,8 @@
 
             <TextView
                 android:id="@+id/tx_student"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="160dp"
                 android:layout_marginTop="55dp"
                 android:fontFamily="@font/robotobold"
@@ -135,12 +136,13 @@
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:textStyle="bold"
+                android:translationX="10dp"
+                android:translationY="20dp"
                 app:layout_constraintBottom_toBottomOf="@id/img_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_view2"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/image_view2" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

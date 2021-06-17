@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.print.PrintDocumentAdapter;
@@ -15,6 +16,7 @@ import android.print.PrintManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ public class Academic_Qualification extends AppCompatActivity {
     private Button btnexport;
     private User currentUser;
     private int lastfragment;
+    private ImageButton kpm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,7 @@ public class Academic_Qualification extends AppCompatActivity {
         secondary_year = findViewById(R.id.tvSecondaryYear);
         qualification = findViewById(R.id.tvQualification);
         qualification_year = findViewById(R.id.tvQualificationYear);
+        kpm=findViewById(R.id.logo_kpm);
 
         btnexport=findViewById(R.id.btnexport);
 
@@ -86,6 +90,16 @@ public class Academic_Qualification extends AppCompatActivity {
                 i.putExtra("user",currentUser);
                 i.putExtra("ICNo", current_IC);
                 startActivity(i);
+            }
+        });
+
+        kpm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Intent.ACTION_VIEW);//startActivity(i);
+                i.setData(Uri.parse("https://www.moe.gov.my/en/soalan-lazim-menu/permohonan-penggantian-sijil/permohonan-penggantian-sijil-srp-pmr-spm-stam"));
+                startActivity(i);
+
             }
         });
 

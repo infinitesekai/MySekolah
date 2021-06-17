@@ -26,7 +26,6 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
 
     private static final String TAG = HomePage_Student.class.getSimpleName();
     public CardView academic_qualification, exam_check, personality_check,tertiary_info,check_in, exam_timetable;
-    public String tempic="041005-10-6789";
     private User currentUser;
     VideoView videoView;
     private boolean mVolumePlaying = false;

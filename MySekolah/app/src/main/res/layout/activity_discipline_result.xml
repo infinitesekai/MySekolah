@@ -28,40 +28,41 @@
 
     <TableLayout
         android:layout_marginTop="130dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:stretchColumns="0,1,2">
+        android:stretchColumns="0,1,2"
+        android:background="@drawable/cell_shape">
         <TableRow >
-            <TextView android:text="Score" style="@style/DisciplineTable"/>
-            <TextView android:id="@+id/tv_score" tools:text="值" style="@style/DisciplineTable"/>
+            <TextView android:text="Score" style="@style/DisciplineTable" />
+            <TextView android:id="@+id/tv_score" tools:text="score" style="@style/DisciplineTable"/>
         </TableRow>
         <TableRow >
             <TextView android:text="Grade" style="@style/DisciplineTable"/>
-            <TextView android:id="@+id/tv_grade" tools:text="值" style="@style/DisciplineTable"/>
+            <TextView android:id="@+id/tv_grade" tools:text="grade" style="@style/DisciplineTable"/>
         </TableRow>
         <TableRow >
             <TextView android:text="Hardworking" style="@style/DisciplineTable"/>
-            <TextView android:id="@+id/tv_hardworking" tools:text="值" style="@style/DisciplineTable"/>
+            <TextView android:id="@+id/tv_hardworking" tools:text="grade" style="@style/DisciplineTable"/>
         </TableRow>
         <TableRow >
             <TextView android:text="Responsible" style="@style/DisciplineTable"/>
-            <TextView android:id="@+id/tv_responsible" tools:text="值" style="@style/DisciplineTable"/>
+            <TextView android:id="@+id/tv_responsible" tools:text="grade" style="@style/DisciplineTable"/>
         </TableRow>
         <TableRow >
             <TextView android:text="Leadership" style="@style/DisciplineTable"/>
-            <TextView android:id="@+id/tv_leadership" tools:text="值" style="@style/DisciplineTable"/>
+            <TextView android:id="@+id/tv_leadership" tools:text="grade" style="@style/DisciplineTable"/>
         </TableRow>
         <TableRow >
             <TextView android:text="Dedicate" style="@style/DisciplineTable"/>
-            <TextView android:id="@+id/tv_dedicate" tools:text="值" style="@style/DisciplineTable"/>
+            <TextView android:id="@+id/tv_dedicate" tools:text="grade" style="@style/DisciplineTable"/>
         </TableRow>
         <TableRow >
             <TextView android:text="Politeness" style="@style/DisciplineTable"/>
-            <TextView android:id="@+id/tv_politeness" tools:text="值" style="@style/DisciplineTable"/>
+            <TextView android:id="@+id/tv_politeness" tools:text="grade" style="@style/DisciplineTable"/>
         </TableRow>
         <TableRow >
             <TextView android:text="Honesty" style="@style/DisciplineTable"/>
-            <TextView android:id="@+id/tv_honesty" tools:text="值" style="@style/DisciplineTable"/>
+            <TextView android:id="@+id/tv_honesty" tools:text="grade" style="@style/DisciplineTable"/>
         </TableRow>
 
     </TableLayout>

@@ -39,7 +39,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="585dp"
+        android:layout_height="600dp"
 
         android:layout_alignParentTop="true"
         android:layout_marginTop="116dp"
@@ -72,7 +72,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageButton
-                        android:id="@+id/logo"
+                        android:id="@+id/logo_kpm"
                         android:layout_width="200dp"
                         android:layout_height="100dp"
                         android:adjustViewBounds="true"
@@ -115,7 +115,7 @@
 
                     <ImageButton
                         android:id="@+id/kid"
-                        android:layout_width="100dp"
+                        android:layout_width="91dp"
                         android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:background="?attr/selectableItemBackground"
@@ -410,10 +410,12 @@
                 android:textSize="16dp" />
         </LinearLayout>
 
+
+
         <Button
             android:id="@+id/btnexport"
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:textColor="@color/white"
             android:text="Export"
             android:background="@drawable/rounded_btn_black"
@@ -421,6 +423,7 @@
             android:layout_marginLeft="150dp"
             android:layout_marginTop="20dp"
             />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
         </RelativeLayout>

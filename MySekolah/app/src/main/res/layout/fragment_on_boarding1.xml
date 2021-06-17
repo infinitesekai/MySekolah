@@ -70,7 +70,7 @@
         android:layout_marginStart="11dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="62dp"
-        android:text="developed by mini_Congress"
+        android:text="-- mini_Congress © 2021"
         android:textSize="20sp"
         android:translationX="-10dp"
         android:translationY="-25dp"
@@ -80,5 +80,19 @@
         app:layout_constraintStart_toEndOf="@+id/tx_1"
         app:layout_constraintTop_toBottomOf="@+id/tx_1"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/img_baddp"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="109dp"
+        android:layout_marginBottom="16dp"
+        android:translationX="-60dp"
+        android:translationY="-10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/slidedot" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,7 +68,7 @@
         android:layout_marginStart="11dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="62dp"
-        android:text="developed by mini_Congress"
+        android:text="-- mini_Congress © 2021"
         android:textSize="20sp"
         android:translationX="-10dp"
         android:translationY="-25dp"
