@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.mysekolah"
-        minSdkVersion 27
+        minSdkVersion 22
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -72,7 +72,8 @@ dependencies {
     // If you want to additionally use the CameraX Extensions library
    // implementation "androidx.camera:camera-extensions:1.0.0-alpha24"
 
-
+// BaseRecyclerViewAdapterHelper
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
 
 
 }

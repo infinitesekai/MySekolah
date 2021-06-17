@@ -112,6 +112,9 @@ public class att_select_child extends AppCompatActivity {
                         break;
                     case ("discipline"):
                         i= new Intent(att_select_child.this, Discipline_Form.class);
+                        i.putExtra("user",currentUser);
+                        i.putExtra("icChild", icChild);
+                        i.putExtra("childName", childName);
                         startActivity(i);
                         break;
                     case ("personality"):

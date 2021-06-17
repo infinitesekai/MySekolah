@@ -1,13 +1,18 @@
 package com.example.mysekolah;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -20,6 +25,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.example.mysekolah.util.MyApplication;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -37,6 +45,7 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
     private EditText phoneEdit;
     private Button cancelBtn;
     private Button saveBtn;
+    private int lastfragment;
 
     private ArrayList<String> races = new ArrayList<String>();
     private ArrayList<String> nations = new ArrayList<String>();
@@ -46,11 +55,19 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        lastfragment=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        currentUser = (User) getIntent().getSerializableExtra("user");
+       // currentUser = MyApplication.currentUser;
+       currentUser = (User) getIntent().getSerializableExtra("user");
        // DB = new DatabaseHelper(this);
+
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
         initViews();
+
         prepareData();
         setAdapter();
     }
@@ -70,6 +87,8 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
         cancelBtn = findViewById(R.id.btncancel);
         saveBtn = findViewById(R.id.btnsave);
 
+        currentUser = (User) getIntent().getSerializableExtra("user");
+
         icText.setText(currentUser.getICNo());
         nameText.setText(currentUser.getName());
         genderText.setText(currentUser.getGender());
@@ -84,6 +103,7 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
 
         //日期点击事件
         dateBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
                 //获取日历的一个实例，里面包含了当前的年月日
@@ -122,11 +142,32 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
                 currentUser.setAddress(address == null ? "":address);
                 currentUser.setPhoneNo(phone == null ? "":phone);
                 Boolean result = DB.updateUser(currentUser);
+
+                //MyApplication.currentUser.setJob(job == null ? "":job);
+               // MyApplication.currentUser.setSalary(salary == null ? "":salary);
+                //MyApplication.currentUser.setAddress(address == null ? "":address);
+                //MyApplication.currentUser.setPhoneNo(phone == null ? "":phone);
+               // currentUser.setJob(job == null ? "":job);
+                //currentUser.setSalary(salary == null ? "":salary);
+                //currentUser.setAddress(address == null ? "":address);
+                //currentUser.setPhoneNo(phone == null ? "":phone);
                 if (result) {
+
+
+
                     Toast.makeText(EditProfile_Activity.this,"save successfully",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    intent.putExtra("user",currentUser);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+//                    intent.putExtra("user",currentUser);
+//                    startActivity(intent);
+                    Fragment selectedFragment = null;
+                    selectedFragment = new ProfilePage();
+                    //currentUser = MyApplication.currentUser;
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+
                 } else {
                     Toast.makeText(EditProfile_Activity.this,"save failed",Toast.LENGTH_SHORT).show();
                 }
@@ -247,6 +288,44 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
      * 获取InputMethodManager，隐藏软键盘
      * @param token
      */
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Fragment selectedFragment = null;
+
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    selectedFragment = new HomePage_Student();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
+                    break;
+                case R.id.nav_notif:
+                    selectedFragment = new NotificationPage();
+                    lastfragment = R.id.nav_notif;
+                    break;
+                case R.id.nav_profile:
+                    selectedFragment = new ProfilePage();
+                    selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
+                    break;
+                case R.id.nav_search:
+                    selectedFragment = new SearchPage_Student();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return false;
+        }
+    };
     private void hideKeyboard(IBinder token) {
         if (token != null) {
             InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

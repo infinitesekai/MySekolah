@@ -23,6 +23,7 @@
         app:layout_constraintVertical_bias="0.12"
         app:srcCompat="@drawable/book1" />
 
+
     <TextView
         android:id="@+id/tx_1"
         android:layout_width="313dp"
@@ -33,14 +34,14 @@
         android:layout_marginBottom="273dp"
         android:fontFamily="sans-serif-light"
         android:text="A Great Place for Education"
-        android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_book"
-        app:layout_constraintVertical_bias="0.217" />
+        app:layout_constraintVertical_bias="0.394" />
 
     <TextView
         android:id="@+id/tx_wecome"
@@ -52,13 +53,32 @@
         android:layout_marginBottom="61dp"
         android:fontFamily="sans-serif-medium"
         android:text="Welcome"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="48sp"
+        android:translationX="-13dp"
         app:layout_constraintBottom_toTopOf="@+id/tx_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_book"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.634" />
+
+    <TextView
+        android:id="@+id/tx_companyname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="62dp"
+        android:text="developed by mini_Congress"
+        android:textSize="20sp"
+        android:translationX="-10dp"
+        android:translationY="-25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tx_1"
+        app:layout_constraintTop_toBottomOf="@+id/tx_1"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
