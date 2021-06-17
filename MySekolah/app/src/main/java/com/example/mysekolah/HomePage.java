@@ -53,7 +53,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
                 "android.resource://" +
                         Objects.requireNonNull(getActivity()).getPackageName() +
                         "/" +
-                        R.raw.pencapaian_spm_2020;
+                        R.raw.pencapaian_spm2020;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
 
