@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.mysekolah.PersonalityCareerTest.Past_Child_Test_Result;
 import com.example.mysekolah.SchoolEnrollment.ApplicationFormSubmit;
 import com.example.mysekolah.SchoolEnrollment.SchoolEnroll;
 
@@ -44,7 +45,7 @@ public class SearchPage extends Fragment implements SearchView.OnQueryTextListen
         searchView= (SearchView) v.findViewById(R.id.searchView);
         listView= (ListView) v.findViewById(R.id.listview);
 
-        functionList= new String[] {"Exam Result", "Attendance", "Personality Test", "Discipline", "Application for Government School", "Application Status"};
+        functionList= new String[] {"Exam Result", "Attendance", "Personality Test Result", "Discipline", "Application for Government School", "Application Status"};
 
         for(int i=0; i< functionList.length; i++){
             FunctionName functionName= new FunctionName(functionList[i]);
@@ -74,6 +75,7 @@ public class SearchPage extends Fragment implements SearchView.OnQueryTextListen
                 String examMessage = "exam";
                 String attendanceMessage = "attendance";
                 String disciplineMessage = "discipline";
+                String personalityTestMessage = "personality";
 
                 switch (functionName) {
                     case ("Exam Result"):
@@ -108,6 +110,14 @@ public class SearchPage extends Fragment implements SearchView.OnQueryTextListen
                         i.putExtra("user", currentUser);
                         startActivity(i);
                         break;
+
+                    case ("Personality Test Result"):
+                        i = new Intent(getActivity(),att_select_child.class);
+                        i.putExtra("user", currentUser);
+                        i.putExtra("message", personalityTestMessage);
+                        startActivity(i);
+                        break;
+
 
                 }
 
