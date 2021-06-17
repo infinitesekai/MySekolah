@@ -19,10 +19,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.mysekolah.DatabaseAccess;
+import com.example.mysekolah.HomePage;
 import com.example.mysekolah.HomePage_Student;
 import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage;
 import com.example.mysekolah.SearchPage_Student;
 import com.example.mysekolah.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -234,7 +236,7 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new HomePage_Student();
+                    selectedFragment = new HomePage();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//the value that we need to pass
                     selectedFragment.setArguments(bundle);
@@ -252,7 +254,7 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
                     lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
-                    selectedFragment = new SearchPage_Student();
+                    selectedFragment = new SearchPage();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//the value that we need to pass
                     selectedFragment.setArguments(bundle);

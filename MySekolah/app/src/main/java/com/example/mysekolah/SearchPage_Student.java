@@ -81,12 +81,6 @@ public class SearchPage_Student extends Fragment implements SearchView.OnQueryTe
                         startActivity(i);
                         break;
 
-                    case ("Personality Test"):
-                        i = new Intent(getActivity(), PersonalityTestHome.class);
-                        i.putExtra("user", currentUser);
-                        startActivity(i);
-                        break;
-
                     case ("Academic Qualification"):
                         i = new Intent(getActivity(), Academic_Qualification.class);
                         i.putExtra("ICNo", currentUser.getICNo());
@@ -108,6 +102,13 @@ public class SearchPage_Student extends Fragment implements SearchView.OnQueryTe
                     case ("Exam Timetable"):
                         i = new Intent(getActivity(), ExamTimeTable.class);
                         i.putExtra("user", currentUser);
+                        startActivity(i);
+                        break;
+
+                    case ("Personality Test"):
+                        i = new Intent(getActivity(), PersonalityTestHome.class);
+                        i.putExtra("user", currentUser);
+                        i.putExtra("ICNo", currentUser.getICNo());
                         startActivity(i);
                         break;
 

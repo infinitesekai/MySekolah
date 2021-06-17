@@ -63,7 +63,7 @@ public class PreSchoolForm extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_school_form);
 
-
+        //get the value pass from the previous activity
         schoolLevel=getIntent().getStringExtra("SchoolLevel");
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
@@ -86,7 +86,7 @@ public class PreSchoolForm extends AppCompatActivity{
         DatabaseAccess databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
-
+        //Set the TextView in XML by using the value extracted from SQLite
         String check_IC_child= getIntent().getExtras().getString("ICNo");
         Residents residents= databaseAccess.getResidentbyIC(check_IC_child);
         ic_child.setText(residents.getICNo());
@@ -98,15 +98,13 @@ public class PreSchoolForm extends AppCompatActivity{
 
 
 
-
-
-
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         Spinner state_spin = (Spinner) findViewById(R.id.spinnerState);
-        //state_spin.setOnItemSelectedListener(this);
-        //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter state_aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,state);
+
+        //Creating the ArrayAdapter instance having the state list
+        ArrayAdapter state_aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item, state);
         state_aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         //Setting the ArrayAdapter data on the Spinner
         state_spin.setAdapter(state_aa);
 
@@ -114,15 +112,16 @@ public class PreSchoolForm extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int arg2, long arg3) {
+                //get the selected state on spinner
                 selectedState=state_spin.getSelectedItem().toString();
+
+                //load the district spinner according to the selected state value
                 loadSpinnerData(selectedState);
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
 
-
             }
-
         });
 
 
@@ -143,9 +142,11 @@ public class PreSchoolForm extends AppCompatActivity{
                 String postcodeChild= postcode.getText().toString();
                 String telChild= tel.getText().toString();
 
+                //Check whether all field had been filled up by user
                 isAllFieldsChecked= CheckAllField();
 
                 if(isAllFieldsChecked) {
+                    //pass all the values into next activity
                     Intent i = new Intent(PreSchoolForm.this, PreSchoolForm2.class);
                     i.putExtra("SchoolLevel", schoolLevel);
                     i.putExtra("icChild", icChild);
@@ -171,10 +172,10 @@ public class PreSchoolForm extends AppCompatActivity{
 
     }
 
+    //Populate the district spinner with the data from SQLite
     private void loadSpinnerData(String selectedState) {
 
         Spinner district_spin = (Spinner) findViewById(R.id.spinnerDistrict);
-        //district_spin.setOnItemSelectedListener(this);
 
         // database handler
         DatabaseAccess db= DatabaseAccess.getInstance(this);
@@ -186,7 +187,7 @@ public class PreSchoolForm extends AppCompatActivity{
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, districts);
 
-        // Drop down layout style - list view with radio button
+        // Drop down layout style
         dataAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -198,11 +199,12 @@ public class PreSchoolForm extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int arg2, long arg3) {
+
+                //get the selected district value
                 selectedDistrict= district_spin.getSelectedItem().toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
-
 
             }
 
@@ -211,6 +213,7 @@ public class PreSchoolForm extends AppCompatActivity{
 
     }
 
+    //check the required field filled up by user or not
     private boolean CheckAllField() {
         if (address.length()==0){
             address.setError("This field is required");

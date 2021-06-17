@@ -37,7 +37,9 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enrolle_or_status_pre);
 
+        //get the value pass from the previous activity
         currentUser = (User) getIntent().getSerializableExtra("user");
+        schoolLevel=getIntent().getStringExtra("SchoolLevel");
         lastfragment = 0;
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -47,8 +49,7 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
         checkStatus = findViewById(R.id.CheckStatusCard);
         title=findViewById(R.id.title_enrol_status);
 
-        schoolLevel=getIntent().getStringExtra("SchoolLevel");
-
+        //Title of the page change according to what education level user chosen before
         switch (schoolLevel){
             case("PreSchool"):
                 title.setText("Pre-School Education");

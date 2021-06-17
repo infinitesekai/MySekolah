@@ -25,7 +25,6 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
 
     private Button check;
     private EditText ic;
-    private DatabaseHelper mDBHelper;
     String schoolLevel;
     private User currentUser;
     private int lastfragment;
@@ -37,12 +36,11 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll_check_ic);
 
-        mDBHelper= new DatabaseHelper(this);
         ic= findViewById(R.id.editTextIC);
         check= findViewById(R.id.btnCheck);
         title=findViewById(R.id.title_check_ic);
 
-
+        //get the value pass from the previous activity
         schoolLevel=getIntent().getStringExtra("SchoolLevel");
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
@@ -60,8 +58,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
 
         }
 
-
-
+        //when check button clicked
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
