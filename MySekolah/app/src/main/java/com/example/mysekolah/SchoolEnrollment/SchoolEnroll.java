@@ -38,6 +38,7 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        // Three different education level
         preschool = findViewById(R.id.preSchoolCard);
         primary = findViewById(R.id.priSchoolCard);
         secondary = findViewById(R.id.secSchoolCard);
@@ -90,6 +91,7 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         Intent i;
+
 
         switch (v.getId()) {
             case R.id.preSchoolCard:

@@ -140,7 +140,6 @@ public class ExamResultForm extends AppCompatActivity {
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
-                    selectedFragment = new ProfilePage();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
                     selectedFragment.setArguments(bundle);
