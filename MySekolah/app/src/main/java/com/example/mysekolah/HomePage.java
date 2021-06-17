@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -53,7 +52,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
                 "android.resource://" +
                         Objects.requireNonNull(getActivity()).getPackageName() +
                         "/" +
-                        R.raw.pencapaian_spm_2020;
+                        R.raw.pencapaian_spm2020;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
 
