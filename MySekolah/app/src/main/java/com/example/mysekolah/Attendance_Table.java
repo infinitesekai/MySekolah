@@ -1,9 +1,11 @@
 package com.example.mysekolah;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -42,6 +44,7 @@ public class Attendance_Table extends AppCompatActivity {
     */
 
     CalendarView calendarView;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -168,10 +171,7 @@ public class Attendance_Table extends AppCompatActivity {
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();

@@ -80,7 +80,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
 //        rb2.setChecked(Update("option2"));
 
         buttonNext = findViewById(R.id.btn_next);
-        buttonBack = findViewById(R.id.btn_back);
+        buttonBack = findViewById(R.id.btn_back_qn);
 
         // database handler
 //        dbAccess = new DatabaseAccess(this);

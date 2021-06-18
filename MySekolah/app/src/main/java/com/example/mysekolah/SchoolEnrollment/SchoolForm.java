@@ -4,10 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +17,6 @@ import android.widget.TextView;
 
 import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage;
-import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.Residents;
@@ -29,7 +26,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-public class PreSchoolForm extends AppCompatActivity{
+public class SchoolForm extends AppCompatActivity{
 
     private String[] state= {"Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan", "Pahang",
             "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
@@ -147,7 +144,7 @@ public class PreSchoolForm extends AppCompatActivity{
 
                 if(isAllFieldsChecked) {
                     //pass all the values into next activity
-                    Intent i = new Intent(PreSchoolForm.this, PreSchoolForm2.class);
+                    Intent i = new Intent(SchoolForm.this, SchoolForm2.class);
                     i.putExtra("SchoolLevel", schoolLevel);
                     i.putExtra("icChild", icChild);
                     i.putExtra("nameChild", nameChild);
@@ -241,10 +238,7 @@ public class PreSchoolForm extends AppCompatActivity{
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();

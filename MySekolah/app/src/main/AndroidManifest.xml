@@ -51,11 +51,11 @@
         <activity android:name=".Tertiary_Info" />
         <activity android:name=".Academic_Qualification" />
         <activity android:name=".ExamResultTable" />
-        <activity android:name=".SchoolEnrollment.PreSchoolForm3" />
+        <activity android:name=".SchoolEnrollment.SchoolForm3" />
         <activity android:name=".ExamResultForm" />
-        <activity android:name=".SchoolEnrollment.EnrollOrStatusPre" />
-        <activity android:name=".SchoolEnrollment.PreSchoolForm2" />
-        <activity android:name=".SchoolEnrollment.PreSchoolForm" />
+        <activity android:name=".SchoolEnrollment.EnrollOrStatus" />
+        <activity android:name=".SchoolEnrollment.SchoolForm2" />
+        <activity android:name=".SchoolEnrollment.SchoolForm" />
         <activity
             android:name=".PersonalityCareerTest.ResultPersonalityTest"
             android:label="@string/title_activity_result_personality_test"
@@ -71,13 +71,9 @@
         <activity android:name=".Apply_pending" />
         <activity android:name=".Apply_fail" />
         <activity android:name=".Apply_success" />
-        <activity android:name=".SchoolEnrollment.Enroll_Check_IC_Pre" />
+        <activity android:name=".SchoolEnrollment.Enroll_Check_IC" />
         <activity android:name=".child_performance" />
         <activity android:name=".SchoolEnrollment.SchoolEnroll" />
-        <activity android:name=".NotificationPage" />
-        <activity android:name=".SearchPage" />
-        <activity android:name=".ProfilePage" />
-        <activity android:name=".HomePage" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Introductory_Page">
             <intent-filter>

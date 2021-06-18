@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage;
-import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
@@ -29,7 +28,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickListener {
+public class SchoolForm3 extends AppCompatActivity implements View.OnClickListener {
 
     EditText distance;
     ImageButton schoolTypeInfo, schoolListInfo, distanceInfo;
@@ -89,7 +88,7 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
 
 
         submit= findViewById(R.id.btnSubmit);
-        back=findViewById(R.id.btnBack);
+        back=findViewById(R.id.btnBack_sc);
         distance=findViewById(R.id.etDistance);
         schoolTypeInfo=findViewById(R.id.SchoolTypeInfo);
         distanceInfo=findViewById(R.id.distanceInfo);
@@ -145,7 +144,7 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
                 isAllFieldsChecked= CheckAllField();
 
                 if(isAllFieldsChecked) {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(PreSchoolForm3.this);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SchoolForm3.this);
                     alertDialogBuilder.setMessage("Do you want to submit this application?")
                             .setCancelable(false)
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -156,14 +155,14 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
                                             districtChild,telChild,icPr,namePr,genderPr,racePr,religionPr,nationalityPr,addressPr,postcodePr,statePr,districtPr,telPr,jobPr,
                                             salaryPr,selectedSchoolType,selectedSchoolState,selectedSchoolDistrict,selectedSchool,distanceForm,"1");
                                    if(insert){
-                                        Toast.makeText(PreSchoolForm3.this, "Application Form submitted successfully", Toast.LENGTH_LONG).show();
-                                        Intent i = new Intent(PreSchoolForm3.this, ApplicationFormSubmit.class);
+                                        Toast.makeText(SchoolForm3.this, "Application Form submitted successfully", Toast.LENGTH_LONG).show();
+                                        Intent i = new Intent(SchoolForm3.this, ApplicationFormSubmit.class);
                                         i.putExtra("user", currentUser);
                                         startActivity(i);
 
                                         finish();}
                                    else {
-                                       Toast.makeText(PreSchoolForm3.this, "Application submitted not successfully", Toast.LENGTH_LONG).show();
+                                       Toast.makeText(SchoolForm3.this, "Application submitted not successfully", Toast.LENGTH_LONG).show();
                                    }
                                 }
                             })
@@ -207,10 +206,7 @@ public class PreSchoolForm3 extends AppCompatActivity implements View.OnClickLis
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();

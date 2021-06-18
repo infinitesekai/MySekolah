@@ -36,11 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
 
-                    break;
                 case R.id.nav_profile:
                     selectedFragment = (ProfilePage)new ProfilePage();
                     bundle = new Bundle();

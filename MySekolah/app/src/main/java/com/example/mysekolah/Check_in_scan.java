@@ -122,10 +122,7 @@ public class Check_in_scan extends AppCompatActivity {
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();
@@ -136,7 +133,7 @@ public class Check_in_scan extends AppCompatActivity {
                 case R.id.nav_search:
                     selectedFragment = new SearchPage_Student();
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_search;
             }

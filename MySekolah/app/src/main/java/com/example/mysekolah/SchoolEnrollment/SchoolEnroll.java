@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.mysekolah.HomePage;
-import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
@@ -64,10 +63,7 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();
@@ -95,19 +91,19 @@ public class SchoolEnroll extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.preSchoolCard:
-                i = new Intent(this, EnrollOrStatusPre.class);
+                i = new Intent(this, EnrollOrStatus.class);
                 i.putExtra("SchoolLevel", "PreSchool");
                 i.putExtra("user", currentUser);
                 startActivity(i);
                 break;
             case R.id.priSchoolCard:
-                i = new Intent(this, EnrollOrStatusPre.class);
+                i = new Intent(this, EnrollOrStatus.class);
                 i.putExtra("SchoolLevel", "Primary");
                 i.putExtra("user", currentUser);
                 startActivity(i);
                 break;
             case R.id.secSchoolCard:
-                i = new Intent(this, EnrollOrStatusPre.class);
+                i = new Intent(this, EnrollOrStatus.class);
                 i.putExtra("SchoolLevel", "Secondary");
                 i.putExtra("user", currentUser);
                 startActivity(i);

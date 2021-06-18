@@ -16,31 +16,8 @@ public class Discipline_Bad_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.discipline_popup_bad);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-            Fragment selectedFragment = null;
-
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    selectedFragment = new HomePage();
-                    break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    break;
-                case R.id.nav_profile:
-                    selectedFragment = new ProfilePage();
-                    break;
-                case R.id.nav_search:
-                    selectedFragment = new SearchPage();
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-            return false;
-        }
-    };
 }

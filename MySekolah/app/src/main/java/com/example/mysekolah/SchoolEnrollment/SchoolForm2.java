@@ -3,11 +3,9 @@ package com.example.mysekolah.SchoolEnrollment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +17,6 @@ import android.widget.TextView;
 
 import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage;
-import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
@@ -28,7 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
-public class PreSchoolForm2 extends AppCompatActivity {
+public class SchoolForm2 extends AppCompatActivity {
 
     String[] statePR= {"Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan", "Pahang",
             "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
@@ -97,7 +94,7 @@ public class PreSchoolForm2 extends AppCompatActivity {
 
         //button
         next= findViewById(R.id.btnNext);
-        back=findViewById(R.id.btnBack);
+        back=findViewById(R.id.btnBack_parent);
 
         //textview
         ic_PR= findViewById(R.id.tvICPr);
@@ -144,7 +141,7 @@ public class PreSchoolForm2 extends AppCompatActivity {
                 isAllFieldsChecked= CheckAllField();
 
                 if(isAllFieldsChecked) {
-                    Intent i = new Intent(PreSchoolForm2.this, PreSchoolForm3.class);
+                    Intent i = new Intent(SchoolForm2.this, SchoolForm3.class);
                     i.putExtra("SchoolLevel", schoolLevel);
                     i.putExtra("icChild", icChild);
                     i.putExtra("nameChild", nameChild);
@@ -207,10 +204,7 @@ public class PreSchoolForm2 extends AppCompatActivity {
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();

@@ -100,11 +100,7 @@ public class Discipline_Result extends AppCompatActivity {
                     bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
                     selectedFragment.setArguments(bundle);
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
-                    selectedFragment.setArguments(bundle);
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值

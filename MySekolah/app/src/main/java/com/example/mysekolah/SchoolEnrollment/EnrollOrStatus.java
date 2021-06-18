@@ -12,18 +12,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.mysekolah.Apply_List;
-import com.example.mysekolah.Apply_fail;
-import com.example.mysekolah.Apply_pending;
-import com.example.mysekolah.Apply_success;
 import com.example.mysekolah.HomePage;
-import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
 import com.example.mysekolah.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClickListener {
+public class EnrollOrStatus extends AppCompatActivity implements View.OnClickListener {
 
     CardView application, checkStatus;
     String schoolLevel;
@@ -84,10 +80,7 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();
@@ -113,7 +106,7 @@ public class EnrollOrStatusPre extends AppCompatActivity implements View.OnClick
 
         switch (v.getId()) {
             case R.id.ApplicationFormCard:
-                i = new Intent(this, Enroll_Check_IC_Pre.class);
+                i = new Intent(this, Enroll_Check_IC.class);
                 i.putExtra("SchoolLevel", schoolLevel);
                 i.putExtra("user", currentUser);
                 startActivity(i);

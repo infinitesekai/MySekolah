@@ -307,12 +307,9 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
-                    selectedFragment = new ProfilePage();
+
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值

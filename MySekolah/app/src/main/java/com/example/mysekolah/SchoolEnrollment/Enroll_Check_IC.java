@@ -12,16 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.mysekolah.DatabaseHelper;
 import com.example.mysekolah.HomePage;
-import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;
 import com.example.mysekolah.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Enroll_Check_IC_Pre extends AppCompatActivity  {
+public class Enroll_Check_IC extends AppCompatActivity  {
 
     private Button check;
     private EditText ic;
@@ -62,7 +60,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(Enroll_Check_IC_Pre.this, PreSchoolForm.class);
+                Intent i= new Intent(Enroll_Check_IC.this, SchoolForm.class);
                 i.putExtra("ICNo", ic.getText().toString());
                 i.putExtra("SchoolLevel", schoolLevel);
                 i.putExtra("user", currentUser);
@@ -90,10 +88,7 @@ public class Enroll_Check_IC_Pre extends AppCompatActivity  {
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();

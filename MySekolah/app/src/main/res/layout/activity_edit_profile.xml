@@ -170,8 +170,11 @@
                     android:id="@+id/tv_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="33dp"
+                    android:text="tvGender"
+                    android:textColor="@color/black"
                     android:layout_marginTop="12dp"
+                    android:textSize="16dp"
 
                     />
 

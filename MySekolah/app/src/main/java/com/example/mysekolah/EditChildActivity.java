@@ -25,9 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 编辑孩子信息
- */
+
 public class EditChildActivity extends AppCompatActivity {
     private Button btnAddChild;
     private Button btnsave;
@@ -135,7 +133,7 @@ public class EditChildActivity extends AppCompatActivity {
             mBuilder.setPositiveButton("confirm", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     String ic = mICText.getText().toString();
-                    String name = mNameText.getText().toString();
+                    String name = mNameText.getText().toString().toUpperCase();
                     User child = new User();
 //                    Bundle bundle = new Bundle();
 //                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
@@ -186,19 +184,16 @@ public class EditChildActivity extends AppCompatActivity {
                         selectedFragment = new HomePage_Student();
                     }
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    lastfragment = R.id.nav_notif;
-                    break;
+
                 case R.id.nav_profile:
 
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
                     //lastfragment = R.id.nav_profile;
                     break;
@@ -211,7 +206,7 @@ public class EditChildActivity extends AppCompatActivity {
                     }
 
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_search;
             }
