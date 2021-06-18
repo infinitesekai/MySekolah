@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mysekolah">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -7,30 +8,54 @@
     <uses-feature android:name="android.hardware.camera2.full" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".util.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".Discipline_Result"></activity>
+        <activity android:name=".EditChildActivity"/>
+        <activity android:name=".PersonalityCareerTest.Past_Child_Test_Result"></activity>
+        <activity android:name=".PersonalityCareerTest.Past_Test_Result" />
+        <activity
+            android:name=".PersonalityCareerTest.ResultInfo"
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+        <activity
+            android:name=".PersonalityCareerTest.Submission"
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+        <activity android:name=".Discipline_Result" />
+        <activity android:name=".ExamTimeTable" />
+        <activity android:name=".ExportExamResult_PR" />
+        <activity android:name=".ExamResultTable_Pr" />
+        <activity android:name=".ExamResultFormPr" />
+        <activity android:name=".Apply_List" />
+        <activity android:name=".SchoolEnrollment.ApplicationFormSubmit" />
+        <activity android:name=".ExportExamResult" />
+        <activity android:name=".Export_Qualification" />
         <activity android:name=".Discipline_Form" />
-
         <activity android:name=".sign_up_role" />
         <activity android:name=".Sign_Up" />
         <activity android:name=".Login_page" />
+        <activity android:name=".EditProfile_Activity" />
         <activity android:name=".Check_in_scan" />
-        <activity android:name=".Check_in" />
         <activity android:name=".Tertiary_Info" />
         <activity android:name=".Academic_Qualification" />
         <activity android:name=".ExamResultTable" />
-        <activity android:name=".SchoolEnrollment.PreSchoolForm3" />
+        <activity android:name=".SchoolEnrollment.SchoolForm3" />
         <activity android:name=".ExamResultForm" />
-        <activity android:name=".SchoolEnrollment.EnrollOrStatusPre" />
-        <activity android:name=".SchoolEnrollment.PreSchoolForm2" />
-        <activity android:name=".SchoolEnrollment.PreSchoolForm" />
+        <activity android:name=".SchoolEnrollment.EnrollOrStatus" />
+        <activity android:name=".SchoolEnrollment.SchoolForm2" />
+        <activity android:name=".SchoolEnrollment.SchoolForm" />
         <activity
             android:name=".PersonalityCareerTest.ResultPersonalityTest"
             android:label="@string/title_activity_result_personality_test"
@@ -38,7 +63,7 @@
         <activity android:name=".PersonalityCareerTest.PersonalTestQuestion" />
         <activity
             android:name=".PersonalityCareerTest.InstuctionPage"
-            android:theme="@style/Theme.MySekolah.PopMe" />
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
         <activity android:name=".PersonalityCareerTest.PersonalityTestHome" />
         <activity android:name=".Attendance_Table" />
         <activity android:name=".att_select_child" />
@@ -46,13 +71,10 @@
         <activity android:name=".Apply_pending" />
         <activity android:name=".Apply_fail" />
         <activity android:name=".Apply_success" />
-        <activity android:name=".SchoolEnrollment.Enroll_Check_IC_Pre" />
+        <activity android:name=".SchoolEnrollment.Enroll_Check_IC" />
         <activity android:name=".child_performance" />
         <activity android:name=".SchoolEnrollment.SchoolEnroll" />
-        <activity android:name=".NotificationPage" />
-        <activity android:name=".ProfilePage" />
-        <activity android:name=".HomePage" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Introductory_Page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,6 +82,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_path" />
+        </provider>
     </application>
 
 </manifest>

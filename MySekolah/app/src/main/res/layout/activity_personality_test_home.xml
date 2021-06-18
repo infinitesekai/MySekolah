@@ -23,8 +23,7 @@
     <FrameLayout
         android:id="@+id/bg_round_rec"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="581dp"
+        android:layout_height="match_parent"
         android:layout_below="@+id/personalityTitle"
         android:background="@drawable/bg_round_rec">
 
@@ -152,17 +151,15 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="5dp"
-            tools:layout_editor_absoluteY="44dp" />
-
     </androidx.appcompat.widget.LinearLayoutCompat>
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="44dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

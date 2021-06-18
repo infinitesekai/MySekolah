@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:fitsSystemWindows="true"
+    tools:context=".PersonalityCareerTest.Past_Test_Result">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/result_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="35dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/robotobold"
+                    android:text="Result"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/result_title"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_round_rec"
+                android:minHeight="581dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="5sp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/robotoregular"
+                        android:text="Name:"
+                        android:textAlignment="center"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tester_name_past"
+                        android:layout_width="125dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/robotoregular"
+                        android:text="Siti Binti Adbullah"
+                        android:textAlignment="center"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5sp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/robotoregular"
+                        android:text="IC No:"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/tester_ic_past"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/robotoregular"
+                        android:text="123456-78-9012"
+                        android:textAlignment="center"
+                        android:textColor="#000" />
+
+
+                    <LinearLayout
+                        android:id="@+id/rule_test"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/result_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/robotoregular"
+                                android:text="MY INTEREST CODE"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/robotoregular"
+                                android:padding="5dp"
+                                android:text="(Take the three letters with the highest scores)"
+                                android:textAlignment="center"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TableLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="70dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="70dp"
+                                android:stretchColumns="0,1,2">
+
+                                <TableRow
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:id="@+id/highest_result1_past"
+                                        android:layout_width="10dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/cell_field"
+                                        android:fontFamily="@font/robotoregular"
+                                        android:padding="10dp"
+                                        android:text="A"
+                                        android:textAlignment="center"
+                                        android:textSize="14sp"
+                                        android:textColor="@color/white"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/highest_result2_past"
+                                        android:layout_width="10dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:background="@drawable/cell_field"
+                                        android:fontFamily="@font/robotoregular"
+                                        android:padding="10dp"
+                                        android:text="A"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/highest_result3_past"
+                                        android:layout_width="10dp"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/cell_field"
+                                        android:fontFamily="@font/robotoregular"
+                                        android:padding="10dp"
+                                        android:text="A"
+                                        android:textColor="@color/white"
+                                        android:textAlignment="center"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                </TableRow>
+                            </TableLayout>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/result_card_past"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="50dp"
+                                android:foregroundGravity="center"
+                                app:cardBackgroundColor="@color/greyGreen"
+                                app:cardCornerRadius="8dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/result_1_past"
+                                        android:layout_width="240dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:fontFamily="@font/robotoregular"
+                                        android:gravity="center"
+                                        android:text="Result 1"
+                                        android:textColor="@color/white"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:id="@+id/arrow_expand_past"
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:layout_gravity="center"
+                                        android:onClick="showmore"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/arrow"
+                                        android:visibility="visible" />
+
+                                    <LinearLayout
+                                        android:id="@+id/expandable_view_past"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <TextView
+                                            android:id="@+id/description_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="center"
+                                            android:text="Description"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+
+                                        <TextView
+                                            android:id="@+id/description11_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="start"
+                                            android:text="Good college majors for Realistic people are…"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+
+                                        <TextView
+                                            android:id="@+id/explanation_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="start"
+                                            android:text="Career text"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+
+                                        <TextView
+                                            android:id="@+id/suggestedField_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:layout_marginBottom="30dp"
+                                            android:background="@drawable/cell_field"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="start"
+                                            android:padding="10dp"
+                                            android:text="technology"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+                                    </LinearLayout>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/result_card2_past"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="50dp"
+                                android:foregroundGravity="center"
+                                app:cardBackgroundColor="@color/greyGreen"
+                                app:cardCornerRadius="8dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/result_2_past"
+                                        android:layout_width="240dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:fontFamily="@font/robotoregular"
+                                        android:gravity="center"
+                                        android:text="Result 1"
+                                        android:textColor="@color/white"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:id="@+id/arrow_expand2_past"
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:layout_gravity="center"
+                                        android:onClick="showmore2"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/arrow"
+                                        android:visibility="visible" />
+
+                                    <LinearLayout
+                                        android:id="@+id/expandable_view2_past"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <TextView
+                                            android:id="@+id/description2_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="center"
+                                            android:text="Description"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+
+                                        <TextView
+                                            android:id="@+id/description22_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="start"
+                                            android:text="Good college majors for Realistic people are…"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+
+                                        <TextView
+                                            android:id="@+id/explanation2_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="start"
+                                            android:text="Career text"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+
+                                        <TextView
+                                            android:id="@+id/suggestedField2_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:layout_marginBottom="30dp"
+                                            android:background="@drawable/cell_field"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="start"
+                                            android:padding="10dp"
+                                            android:text="technology"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+                                    </LinearLayout>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/result_card3_past"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="50dp"
+                                android:foregroundGravity="center"
+                                app:cardBackgroundColor="@color/greyGreen"
+                                app:cardCornerRadius="8dp">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/result_3_past"
+                                        android:layout_width="240dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginEnd="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:fontFamily="@font/robotoregular"
+                                        android:gravity="center"
+                                        android:text="Result 1"
+                                        android:textColor="@color/white"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:id="@+id/arrow_expand3_past"
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:layout_gravity="center"
+                                        android:onClick="showmore3"
+                                        android:scaleType="centerInside"
+                                        android:src="@drawable/arrow"
+                                        android:visibility="visible" />
+
+                                    <LinearLayout
+                                        android:id="@+id/expandable_view3_past"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:visibility="gone">
+
+                                        <TextView
+                                            android:id="@+id/description3_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="center"
+                                            android:text="Description"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+
+                                        <TextView
+                                            android:id="@+id/description33_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="start"
+                                            android:text="Good college majors for Realistic people are…"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+
+                                        <TextView
+                                            android:id="@+id/explanation3_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="start"
+                                            android:text="Career text"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+
+                                        <TextView
+                                            android:id="@+id/suggestedField3_past"
+                                            android:layout_width="240dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="13dp"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginEnd="8dp"
+                                            android:layout_marginBottom="30dp"
+                                            android:background="@drawable/cell_field"
+                                            android:fontFamily="@font/robotoregular"
+                                            android:gravity="start"
+                                            android:padding="10dp"
+                                            android:text="technology"
+                                            android:textColor="@color/white"
+                                            android:textSize="16sp" />
+                                    </LinearLayout>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            </androidx.cardview.widget.CardView>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </FrameLayout>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="60dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/result_quit_past"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_btn_black"
+                            android:text="@string/quit"
+                            android:textColor="@color/white" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </LinearLayout>
+            </FrameLayout>
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="44dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/cardview_light_background"
+        app:menu="@menu/bottom_navigation" />
+
+</RelativeLayout>
+

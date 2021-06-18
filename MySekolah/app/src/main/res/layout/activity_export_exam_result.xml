@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExportExamResult"
+    android:id="@+id/relativeLayout">
+
+
+
+    <FrameLayout
+        android:id="@+id/child_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/robotoregular"
+                android:text="Name"
+                android:textAlignment="center"/>
+
+
+            <TextView
+                android:id="@+id/tvTest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/robotoregular"
+                android:text="Test"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/tvYear"
+                android:textColor="#000"
+                android:fontFamily="@font/robotoregular"
+                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:text="Year"/>
+        </LinearLayout>
+    </FrameLayout>
+
+
+    <TableLayout
+        android:id="@+id/table_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/child_info"
+        android:stretchColumns="*"
+        android:shrinkColumns="*"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:background="@drawable/cell_shape">
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/header"
+            android:padding="10dp"
+            >
+
+            <TextView
+                android:fontFamily="@font/robotoregular"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="Subject"
+                android:layout_marginStart="10dp"
+                android:textColor="#000" />
+            <TextView
+                android:fontFamily="@font/robotoregular"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="7"
+                android:layout_marginStart="20dp"
+                android:text="Marks"
+                android:textColor="#000" />
+            <TextView
+                android:textColor="#000"
+                android:layout_weight="2"
+                android:layout_marginStart="50dp"
+                android:id="@+id/realistic_total"
+                android:fontFamily="@font/robotoregular"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Grade"
+                />
+        </TableRow>
+
+        <GridView
+            android:id="@+id/result_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:fastScrollEnabled="true"
+            android:numColumns= "3"
+            android:columnWidth="50dp"
+            android:layout_centerInParent="true"
+            android:stretchMode="columnWidth"
+            android:horizontalSpacing="10dp"/>
+
+
+
+    </TableLayout>
+
+</RelativeLayout>

@@ -4,43 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SchoolEnrollment.PreSchoolForm"
+    tools:context=".SchoolEnrollment.SchoolForm"
     android:background="@drawable/bg_gradient">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <FrameLayout
+        android:id="@+id/application_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
+        android:layout_height="100dp">
         <TextView
-            android:id="@+id/pageTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="177dp"
-            android:fontFamily="@font/robotobold"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
             android:text="Application Form"
+            android:layout_marginTop="20dp"
             android:textColor="@color/white"
-            android:textSize="28dp"
-            app:layout_constraintBottom_toTopOf="@+id/bg_round_rec"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="30sp"
+            android:layout_margin="35dp"
+            android:fontFamily="@font/robotobold" />
+
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/application_title"
+        android:layout_alignParentBottom="true">
 
         <View
             android:id="@+id/bg_round_rec"
-            android:layout_width="match_parent"
-            android:layout_height="560dp"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/bg_round_rec"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="800dp"
+            android:background="@drawable/bg_round_rec" />
+    </FrameLayout>
 
 
     <ScrollView
@@ -51,15 +45,16 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="700dp"
+            android:layout_height="800dp"
             android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="700dp">
+            android:layout_height="800dp">
 
 
             <TextView
+                android:id="@+id/infoChildTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -67,14 +62,16 @@
                 android:text="Information of Child"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 />
 
             <LinearLayout
+                android:id="@+id/icRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/infoChildTitle"
                 android:orientation="horizontal"
-                android:layout_marginTop="32dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -91,7 +88,7 @@
                     android:id="@+id/tvIC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="50dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/robotoregular"
                     android:text="ICView"
@@ -101,9 +98,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/nameRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="60dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/icRow"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -120,7 +119,7 @@
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="45dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/robotoregular"
                     android:text="NameView"
@@ -130,10 +129,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/genderRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nameRow"
                 android:orientation="horizontal"
-                android:layout_marginTop="92dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,7 +150,7 @@
                     android:id="@+id/tvGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="35dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/robotoregular"
                     android:text="GenderView"
@@ -159,10 +160,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/raceRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/genderRow"
                 android:orientation="horizontal"
-                android:layout_marginTop="124dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -178,7 +181,7 @@
                     android:id="@+id/tvRace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="52dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/robotoregular"
                     android:text="RaceView"
@@ -188,10 +191,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/religionRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/raceRow"
                 android:orientation="horizontal"
-                android:layout_marginTop="156dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -207,7 +212,7 @@
                     android:id="@+id/tvReligion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/robotoregular"
                     android:text="ReligionView"
@@ -217,10 +222,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/nationalityRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/religionRow"
                 android:orientation="horizontal"
-                android:layout_marginTop="188dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -236,7 +243,7 @@
                     android:id="@+id/tvNationality"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="11dp"
                     android:layout_marginTop="12dp"
                     android:fontFamily="@font/robotoregular"
                     android:text="NationalityView"
@@ -248,10 +255,12 @@
 
 
             <LinearLayout
+                android:id="@+id/addressRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nationalityRow"
                 android:orientation="horizontal"
-                android:layout_marginTop="220dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -282,9 +291,9 @@
                         android:layout_height="80dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="12dp"
+                        android:padding="10dp"
                         android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
-                        android:text="AddressView"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
@@ -292,10 +301,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/postcodeRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addressRow"
                 android:orientation="horizontal"
-                android:layout_marginTop="315dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -323,23 +334,26 @@
 
                    <EditText
                         android:id="@+id/etPos"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_width="70dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="12dp"
+                        android:padding="10dp"
                         android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
-                        android:text="43900"
                         android:textColor="@color/black"
+                        android:inputType="number"
                         android:textSize="16dp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/stateRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/postcodeRow"
                 android:orientation="horizontal"
-                android:layout_marginTop="360dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -364,9 +378,9 @@
                 <Spinner
                     android:id="@+id/spinnerState"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="46dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@color/lightGrey"
@@ -374,10 +388,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/districtRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/stateRow"
                 android:orientation="horizontal"
-                android:layout_marginTop="412dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -403,18 +419,20 @@
                 <Spinner
                     android:id="@+id/spinnerDistrict"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="30dp"
                     android:background="@color/lightGrey"
                     android:spinnerMode="dropdown" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/telRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/districtRow"
                 android:orientation="horizontal"
-                android:layout_marginTop="460dp">
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:id="@+id/tvTel"
@@ -431,12 +449,13 @@
                     <EditText
                         android:id="@+id/etTel"
                         android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="60dp"
                         android:layout_marginTop="12dp"
+                        android:padding="10dp"
                         android:background="@color/lightGrey"
                         android:fontFamily="@font/robotoregular"
-                        android:text="0112018982"
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
@@ -448,9 +467,11 @@
                 android:id="@+id/btnNext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/telRow"
                 android:layout_gravity="center"
-                android:layout_marginTop="550dp"
-                android:background="@color/black"
+                android:padding="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/rounded_btn_black"
                 android:text="Next"
                 android:textColor="@color/white"
                 android:layout_centerHorizontal="true" />

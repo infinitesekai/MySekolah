@@ -1,6 +1,8 @@
 package com.example.mysekolah;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mysekolah.util.MyApplication;
+
 public class Login_page extends AppCompatActivity {
     private EditText ic_number,password;
     private Button btnlogin,btnSignUp;
-    //private DatabaseHelper DB;
+   // private DatabaseHelper DB;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +29,9 @@ public class Login_page extends AppCompatActivity {
         password =findViewById(R.id.etx_password);
         btnlogin =findViewById(R.id.btn_login);
         btnSignUp=findViewById(R.id.btn_sign_up);
-       // DB =new DatabaseHelper(this);
+       // DB = new DatabaseHelper(this);
+        DatabaseAccess DB = DatabaseAccess.getInstance(this);
+        DB.open();
 
 
         //temp link to main page
@@ -36,7 +43,7 @@ public class Login_page extends AppCompatActivity {
             }
         });
 
-       /*btnlogin.setOnClickListener(new View.OnClickListener() {
+       btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String ic= ic_number.getText().toString();
@@ -46,25 +53,29 @@ public class Login_page extends AppCompatActivity {
                 if (ic.equals("")||pass.equals(""))
                     Toast.makeText(Login_page.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
                 else{
-                    Boolean checkicpass =DB.checkusericpassword(ic,pass);
-                    if(checkicpass==true){
+                    User user =DB.checkusericpassword(ic,pass);
+                    if(user.getICNo() != null){
                         Toast.makeText(Login_page.this,"Sign in successfully",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                        //MyApplication.currentUser = user;
+                        currentUser = user;
+                        intent.putExtra("user", currentUser);
                         startActivity(intent);
                         finish();
+
                     }else{
                         //go to
                         Toast.makeText(Login_page.this,"invalid credetials",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
-        });*/
+        });
 
                 btnSignUp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(Login_page.this, Sign_Up.class));
+                        startActivity(new Intent(Login_page.this, sign_up_role.class));
                     }
                 });
     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SchoolEnrollment.PreSchoolForm3"
+    tools:context=".SchoolEnrollment.SchoolForm3"
     android:background="@drawable/bg_gradient">
 
     <TextView
@@ -20,7 +20,7 @@
     <View
         android:id="@+id/bg_round_rec"
         android:layout_width="match_parent"
-        android:layout_height="900dp"
+        android:layout_height="600dp"
         android:layout_alignBottom="@+id/fragment_container"
         android:layout_marginTop="108dp"
         android:background="@drawable/bg_round_rec"
@@ -43,6 +43,7 @@
 
 
                 <TextView
+                    android:id="@+id/chooseSchoolTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -50,14 +51,16 @@
                     android:text="Choose of School"
                     android:textColor="@color/black"
                     android:textSize="16dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     />
 
                 <LinearLayout
+                    android:id="@+id/typeRow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/chooseSchoolTitle"
                     android:orientation="horizontal"
-                    android:layout_marginTop="50dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -92,17 +95,19 @@
                     <Spinner
                         android:id="@+id/spinnerSchoolType"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:background="@color/lightGrey" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/stateRow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/typeRow"
                     android:orientation="horizontal"
-                    android:layout_marginTop="100dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -128,17 +133,19 @@
                     <Spinner
                         android:id="@+id/spinnerStateSchool"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="35dp"
                         android:layout_marginTop="10dp"
                         android:background="@color/lightGrey" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/districtRow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/stateRow"
                     android:orientation="horizontal"
-                    android:layout_marginTop="150dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -164,17 +171,19 @@
                     <Spinner
                         android:id="@+id/spinnerDistrictSchool"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:background="@color/lightGrey" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/schoolRow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/districtRow"
                     android:orientation="horizontal"
-                    android:layout_marginTop="200dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -206,20 +215,33 @@
                         android:background="?attr/selectableItemBackground"
                         android:scaleType="fitXY"/>
 
-                    <Spinner
-                        android:id="@+id/spinnerSchoolList"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/lightGrey" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/schoolOptionsRow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/schoolRow"
                     android:orientation="horizontal"
-                    android:layout_marginTop="250dp">
+                    android:layout_marginTop="10dp">
+
+                    <Spinner
+                    android:id="@+id/spinnerSchoolList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/lightGrey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/distanceRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/schoolOptionsRow"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -261,12 +283,14 @@
                         android:fontFamily="@font/robotoregular"
                         android:textColor="@color/black"
                         android:textSize="16dp"
+                        android:padding="10dp"
                         android:inputType="number"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:paddingLeft="10dp"
                         android:text="KM"
                         android:fontFamily="@font/robotoregular"
                         android:textColor="@color/black"
@@ -276,20 +300,22 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/buttonRow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="450dp"
+                    android:layout_below="@+id/distanceRow"
+                    android:layout_marginTop="50dp"
                     android:layout_centerHorizontal="true">
 
                     <Button
-                        android:id="@+id/btnBack"
+                        android:id="@+id/btnBack_sc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="100dp"
-                        android:background="@color/black"
+                        android:background="@drawable/rounded_btn_grey"
                         android:text="Back"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:layout_centerHorizontal="true" />
 
                     <Button
@@ -297,8 +323,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="55dp"
-                        android:background="@color/black"
-                        android:text="Next"
+                        android:background="@drawable/rounded_btn_black"
+                        android:text="Submit"
                         android:textColor="@color/white"
                         android:layout_centerHorizontal="true" />
                 </LinearLayout>

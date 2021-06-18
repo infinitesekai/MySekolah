@@ -12,16 +12,30 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Attendance_Form extends AppCompatActivity implements
-        AdapterView.OnItemSelectedListener
-       {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-    String[] school = { "Kindergarten Aman", "SK Kota Warisan", "SMK Sri Sepang"};
+public class Attendance_Form extends AppCompatActivity
+       {
+//           public static ArrayList<String> SchoolList;
+    //String[] school = { "KINDERGARDEN SALAK TINGGI", "SK Kota Warisan", "SMK Sri Sepang"};
     String[] year={"2015","2016","2017","2018","2019","2020","2021"};
+    String[] month={"January","February","March","April","May","June","July","August","September","October","November","December"};
+   // String[] month={"1","2","3","4","5","6","7","8","9","10","11","12"};
     Button showbtn;
+    TextView ictv,nametv;
+
+           String selectedSchool="";
+           String selectedYear="";
+           String selectedMonth="";
+
+           private User currentUser;
+           private int lastfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +45,33 @@ public class Attendance_Form extends AppCompatActivity implements
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        currentUser = (User) getIntent().getSerializableExtra("user");
+        lastfragment = 0;
+        DatabaseAccess databaseAccess= DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+
+        String ic= getIntent().getExtras().getString("icChild");
+        String name =getIntent().getExtras().getString("childName");
+
+        ictv=findViewById(R.id.tvIC);
+        nametv=findViewById(R.id.tvName);
+
+        ictv.setText(ic);
+        nametv.setText(name);
+
         Spinner school_spin = (Spinner) findViewById(R.id.school_spinner);
         Spinner year_spin = (Spinner) findViewById(R.id.year_spinner);
-        school_spin.setOnItemSelectedListener(this);
-        year_spin.setOnItemSelectedListener(this);
+        Spinner month_spin = (Spinner) findViewById(R.id.month_spinner);
 
-        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,school);
+//        SchoolList= new ArrayList<String>();
+//
+//        databaseAccess.GetSchoolList(ic);
+
+        List<String> SchoolList=databaseAccess.getUserSchool(ic);
+
+
+//        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,school);
+        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,SchoolList);
         schoolaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         school_spin.setAdapter(schoolaa);
 
@@ -44,12 +79,64 @@ public class Attendance_Form extends AppCompatActivity implements
         yearaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         year_spin.setAdapter(yearaa);
 
+        ArrayAdapter monthaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,month);
+        monthaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        month_spin.setAdapter(monthaa);
+
+        school_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedSchool=school_spin.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        year_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedYear=year_spin.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        month_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedMonth=month_spin.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+
+
+
         showbtn=findViewById(R.id.btnshow);
 
         showbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(Attendance_Form.this, Attendance_Table.class);
+                i.putExtra("ICNo", ic);
+                i.putExtra("Year", selectedYear);
+                i.putExtra("School", selectedSchool);
+                i.putExtra("Month", selectedMonth);
+                i.putExtra("IntMonth", Arrays.asList(month).indexOf(selectedMonth));
+                i.putExtra("user",currentUser);
                 startActivity(i);
             }
         });
@@ -67,28 +154,30 @@ public class Attendance_Form extends AppCompatActivity implements
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new HomePage();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
                     break;
-                case R.id.nav_notif:
-                    selectedFragment = new NotificationPage();
-                    break;
+
                 case R.id.nav_profile:
                     selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return false;
         }
     };
 
-           @Override
-           public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
-               //Toast.makeText(getApplicationContext(),school[position] , Toast.LENGTH_LONG).show();
-           }
-           @Override
-           public void onNothingSelected(AdapterView<?> arg0) {
-               // TODO Auto-generated method stub
-           }
 }

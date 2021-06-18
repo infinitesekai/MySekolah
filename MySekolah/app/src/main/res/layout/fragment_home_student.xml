@@ -16,7 +16,8 @@
             android:layout_height="180dp">
 
             <TextView
-                android:layout_width="250dp"
+                android:id="@+id/student_home_name"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="50dp"
@@ -38,16 +39,16 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/newsCardArea"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="770dp"
                 android:minHeight="581dp"
                 android:layout_marginTop="30dp"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/newscard"
+                    android:id="@+id/newscard_std"
                     android:layout_width="350dp"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
                     android:elevation="14dp"
                     app:cardCornerRadius="8dp"
                     app:cardPreventCornerOverlap="false"
@@ -55,15 +56,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageButton
-                        android:id="@+id/news"
+                    <VideoView
+                        android:id="@+id/news_std"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
+                        android:layout_gravity="center"
                         android:background="?attr/selectableItemBackground"
-                        android:contentDescription="TODO"
+                        android:contentDescription="latest announcement"
                         android:scaleType="fitXY"
                         android:src="@drawable/upsr" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/volume_std"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="start"
+                        android:background="@drawable/ic_baseline_volume_up_24"/>
 
                 </androidx.cardview.widget.CardView>
 
@@ -320,6 +331,57 @@
                                 app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/image_view5" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/examTimeTable"
+                        android:layout_width="150dp"
+                        android:layout_height="128dp"
+                        android:layout_margin="20dp"
+                        android:clickable="true"
+                        android:elevation="12dp"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:onClick="methodtoexecute"
+                        app:cardBackgroundColor="@color/darkPurple"
+                        app:cardCornerRadius="8dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/image_view6"
+                                android:layout_width="35dp"
+                                android:layout_height="40dp"
+                                android:layout_marginStart="88dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="10dp"
+                                android:src="@drawable/schedule"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:fontFamily="@font/robotobold"
+                                android:gravity="start"
+                                android:text="@string/exam_timetable"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/image_view6" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 

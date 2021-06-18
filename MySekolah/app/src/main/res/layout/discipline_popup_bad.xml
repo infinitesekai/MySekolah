@@ -26,7 +26,7 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/robotoregular"
                 android:gravity="center"
-                android:text="Please be present for class on time."
+                android:text="Please perform well in class."
                 android:textColor="@color/text_color"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -43,10 +43,14 @@
                 android:layout_marginStart="109dp"
                 android:layout_marginTop="29dp"
                 android:layout_marginBottom="1dp"
+                android:translationX="-60dp"
+                android:translationY="-10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tx_badcomment"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/discipline_bad" />
 
 
