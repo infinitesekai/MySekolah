@@ -32,28 +32,26 @@
         android:foregroundGravity="bottom" />
 
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/bottom_navigation"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="116dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginBottom="48dp"
         android:orientation="vertical">
 
-<!--        <FrameLayout-->
+        <!--        <FrameLayout-->
 
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            tools:layout_editor_absoluteX="5dp"-->
-<!--            tools:layout_editor_absoluteY="44dp" />-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            tools:layout_editor_absoluteX="5dp"-->
+        <!--            tools:layout_editor_absoluteY="44dp" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -82,311 +80,317 @@
 
         </LinearLayout>
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/robotobold"
+                android:text="No IC:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_IC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/robotoregular"
+                android:text="ICView"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:translationX="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Name:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotoregular"
+                android:text="NameView"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:translationX="12dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Gender:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+
+                android:translationX="5dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Races:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+
+            <Spinner
+                android:id="@+id/spin_races"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:translationX="12dp" />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="No IC:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_IC"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="20dp"
-                    android:fontFamily="@font/robotoregular"
-                    android:text="ICView"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Nationality:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
-            </LinearLayout>
 
-            <LinearLayout
+            <Spinner
+                android:id="@+id/spin_nationality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp" />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="Name:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_Name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotoregular"
-                    android:text="NameView"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotobold"
+                android:text="BDate:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
-            </LinearLayout>
 
-            <LinearLayout
+            <Button
+                android:id="@+id/et_bDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="30dp"
+                android:text="Choose a date"
+                android:translationX="12dp" />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="Gender:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_gender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-
-                    />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Job:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
 
-            </LinearLayout>
-
-            <LinearLayout
+            <EditText
+                android:id="@+id/et_job"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="37dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:lines="1"
+                android:translationX="12dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="Races:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="44dp" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/spin_races"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="20dp" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Salary:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/et_salary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:lines="1"
+                android:translationX="12dp" />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="Nationality:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotobold"
+                android:text="Adress:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
 
 
-                <Spinner
-                    android:id="@+id/spin_nationality"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="20dp" />
-            </LinearLayout>
-
-            <LinearLayout
+            <EditText
+                android:id="@+id/et_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="BDate:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:lines="1"
+                android:translationX="9dp" />
+        </LinearLayout>
 
 
-                <Button
-                    android:id="@+id/et_bDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Choose a date" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/robotobold"
+                android:text="PhoneNo:"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+
+            <EditText
+                android:id="@+id/et_phoneno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:lines="1"
+                android:translationX="-3dp" />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="Job:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-
-                <EditText
-                    android:id="@+id/et_job"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="37dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="20dp"
-                    android:lines="1"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btncancel"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rounded_btn_black"
+                android:paddingStart="20dp"
+                android:paddingEnd="30dp"
+                android:text="cancel"
+                android:textColor="@color/white" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="Salary:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
-
-                <EditText
-                    android:id="@+id/et_salary"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="20dp"
-                    android:lines="1"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnsave"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="Adress:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
-
-
-                <EditText
-                    android:id="@+id/et_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="20dp"
-                    android:lines="1"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/robotobold"
-                    android:text="PhoneNo:"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
-
-
-                <EditText
-                    android:id="@+id/et_phoneno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="20dp"
-                    android:lines="1"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btncancel"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginTop="4dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="30dp"
-                    android:background="@color/black"
-                    android:text="cancel"
-                    android:textColor="@color/white" />
-
-                <Button
-                    android:id="@+id/btnsave"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="90dp"
-                    android:background="@color/black"
-                    android:text="save"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-<!--    </FrameLayout>-->
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/rounded_btn_black"
+                android:text="save"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <!--    </FrameLayout>-->
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="44dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

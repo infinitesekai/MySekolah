@@ -34,6 +34,7 @@
         android:text="Find the right path for children"
         android:textColor="@color/black"
         android:textSize="22sp"
+        android:translationX="-10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.886"
@@ -60,23 +61,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_book"
         app:layout_constraintVertical_bias="0.634" />
-
-    <TextView
-        android:id="@+id/tx_companyname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginBottom="62dp"
-        android:text="developed by mini_Congress"
-        android:textSize="20sp"
-        android:translationX="-10dp"
-        android:translationY="-25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tx_1"
-        app:layout_constraintTop_toBottomOf="@+id/tx_1"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
