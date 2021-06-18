@@ -34,6 +34,7 @@
         android:text="Find the right path for children"
         android:textColor="@color/black"
         android:textSize="22sp"
+        android:translationX="-10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.886"

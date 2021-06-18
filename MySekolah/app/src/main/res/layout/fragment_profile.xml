@@ -26,8 +26,6 @@
         android:textColor="@color/white"
         android:translationY="-20dp" />
 
-
-
     <View
         android:id="@+id/bg_round_rec"
         android:layout_width="match_parent"
@@ -234,8 +232,6 @@
         </LinearLayout>
 
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -352,7 +348,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="130dp"
             android:overScrollMode="never"/>
 
 
@@ -361,7 +357,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="700dp">
+        android:layout_marginTop="580dp"
+        android:translationY="-40dp">
+
         <Button
             android:id="@+id/btneditprofile"
             android:layout_width="230dp"
@@ -383,8 +381,6 @@
             android:layout_marginLeft="55dp"
             android:layout_marginRight="55dp"
             android:textColor="@color/white" />
-
-
     </LinearLayout>
 
 
