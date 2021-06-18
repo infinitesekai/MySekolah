@@ -133,7 +133,7 @@ public class EditChildActivity extends AppCompatActivity {
             mBuilder.setPositiveButton("confirm", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     String ic = mICText.getText().toString();
-                    String name = mNameText.getText().toString().toUpperCase();
+                    String name = mNameText.getText().toString();
                     User child = new User();
 //                    Bundle bundle = new Bundle();
 //                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
