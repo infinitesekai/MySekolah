@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".OnBoardingFragment1">
 
+
     <ImageView
         android:id="@+id/img_book"
         android:layout_width="246dp"
@@ -14,7 +15,6 @@
         android:layout_marginStart="63dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="63dp"
-        android:layout_marginBottom="194dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
@@ -25,62 +25,59 @@
 
 
     <TextView
-        android:id="@+id/tx_1"
-        android:layout_width="313dp"
-        android:layout_height="96dp"
-        android:layout_marginStart="151dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="273dp"
-        android:fontFamily="sans-serif-light"
-        android:text="A Great Place for Education"
-        android:textColor="@color/black"
-        android:textSize="22sp"
-        android:translationX="-10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.886"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_book"
-        app:layout_constraintVertical_bias="0.394" />
-
-    <TextView
         android:id="@+id/tx_wecome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="195dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginEnd="130dp"
         android:fontFamily="sans-serif-medium"
+        android:gravity="center"
         android:text="Welcome"
         android:textColor="@color/black"
         android:textSize="48sp"
         android:translationX="-13dp"
         app:layout_constraintBottom_toTopOf="@+id/tx_1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_book"
-        app:layout_constraintVertical_bias="0.634" />
+        app:layout_constraintVertical_bias="0.206" />
+
+    <TextView
+        android:id="@+id/tx_1"
+        android:layout_width="200dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="106dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="A Great Place for Education"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:translationX="-10dp"
+        app:layout_constraintBottom_toTopOf="@+id/img_baddp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_wecome" />
 
     <TextView
         android:id="@+id/tx_companyname"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginBottom="62dp"
-        android:text="-- mini_Congress © 2021"
+        android:layout_marginTop="212dp"
+        android:layout_marginBottom="55dp"
+        android:gravity="center"
+        android:text="mini_Congress © 2021"
         android:textSize="20sp"
-        android:translationX="-10dp"
         android:translationY="-35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/img_baddp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tx_1"
-        app:layout_constraintTop_toBottomOf="@+id/tx_1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_book" />
 
     <ImageView
         android:id="@+id/img_baddp"
