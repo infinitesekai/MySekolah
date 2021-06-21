@@ -46,13 +46,13 @@ public class HomePage extends Fragment implements View.OnClickListener {
         childperform = (CardView) v.findViewById(R.id.CheckChildPerfCard);
         volume = (AppCompatImageView) v.findViewById(R.id.volume);
 
-        //set the video announcement
+        //set the video
         videoView = (VideoView) v.findViewById(R.id.news);
         String videoPath =
                 "android.resource://" +
                         Objects.requireNonNull(getActivity()).getPackageName() +
                         "/" +
-                        R.raw.pencapaian_spm2020;
+                        R.raw.usaha_selenggara_encoded;
         Uri uri = Uri.parse(videoPath);
         videoView.setVideoURI(uri);
 
