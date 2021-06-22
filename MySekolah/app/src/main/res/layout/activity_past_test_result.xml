@@ -34,6 +34,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/ll_scroll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/result_title"
@@ -45,7 +46,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="50dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -509,14 +512,21 @@
                         android:layout_gravity="center"
                         android:layout_marginBottom="60dp"
                         android:orientation="horizontal">
-
+                        <Button
+                            android:id="@+id/result_export"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/rounded_btn_black"
+                            android:layout_marginRight="25dp"
+                            android:text="@string/export"
+                            android:textColor="@color/white" />
                         <Button
                             android:id="@+id/result_quit_past"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/rounded_btn_black"
                             android:text="@string/quit"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"/>
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </LinearLayout>

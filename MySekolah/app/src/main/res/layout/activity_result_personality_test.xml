@@ -33,6 +33,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/ll_scroll_now"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/result_title"
@@ -44,7 +45,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -826,6 +829,13 @@
                     android:orientation="horizontal"
                     android:layout_gravity="center"
                     android:layout_marginBottom="75dp">
+                    <Button
+                        android:id="@+id/result_export_now"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/export"
+                        android:textColor="@color/white"
+                        android:background="@drawable/rounded_btn_black"/>
                     <Button
                         android:id="@+id/result_quit"
                         android:layout_width="wrap_content"
