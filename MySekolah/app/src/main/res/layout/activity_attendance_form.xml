@@ -57,14 +57,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/kid"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:adjustViewBounds="true"
                     android:background="?attr/selectableItemBackground"
                     android:scaleType="fitXY"
-                    android:src="@drawable/kids" />
+                    android:src="@drawable/user_pic" />
 
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
