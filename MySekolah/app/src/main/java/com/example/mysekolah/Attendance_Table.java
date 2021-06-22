@@ -97,38 +97,51 @@ public class Attendance_Table extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-
+                //string of date selected
                 String date= dayOfMonth+"/"+(month+1)+"/"+year;
                 Calendar day= Calendar.getInstance();
                 day.set(year,month,dayOfMonth);
 
-
+                //inform date selection on weekend
                 if(day.get(Calendar.DAY_OF_WEEK)==Calendar.SUNDAY ||day.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY){
                     Toast.makeText(getApplicationContext(), "Weekend on " + date, Toast.LENGTH_SHORT).show();
                     dateView.setText("Weekend on " + date);
                 }
                 else {
-
-//                    if(year !=intyear || month!=intmonth ){
+                    //check if user select date from previous month and year
+                    //make toast to inform attendace checking not available
                     if(year <intyear || month<intmonth ){
                         dateView.setText("Not selected month");
-                         Toast.makeText(getApplicationContext(), "Attendance checking only available for selected month. Please select again.", Toast.LENGTH_SHORT).show();
+                         Toast.makeText(getApplicationContext(),
+                                 "Attendance checking only available for selected month. Please select again.",
+                                 Toast.LENGTH_SHORT).show();
 
                     }
+
+                    //check selected date if it is future date
+                    //make toast to inform attendace checking not available
                     else if((year >thisyear) ||(year >=thisyear && month+1>thismonth) || (year >=thisyear && month+1>=thismonth && dayOfMonth > today)){
                         dateView.setText("Future date");
-                        Toast.makeText(getApplicationContext(), "Attendance checking only available for history. Please select again.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),
+                                "Attendance checking only available for history. Please select again.",
+                                Toast.LENGTH_SHORT).show();
 
                     }
+                    //for the case selected history year
+                    //check if it is selected month and year
+                    //make toast to inform attendace checking not available
                     else if(year > intyear || (month>intmonth)){
-//                    else if((intyear<=thisyear && month<=intmonth && dayOfMonth!=today) ||( intyear<=thisyear && month<=intmonth && dayOfMonth<=today)){
                         dateView.setText("Not selected month");
-                        Toast.makeText(getApplicationContext(), "Attendance checking only available for selected month. Please select again.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),
+                                "Attendance checking only available for selected month. Please select again.",
+                                Toast.LENGTH_SHORT).show();
 
 
                     }
                     else {
-
+                        //present or absent
+                        //absent if date contains in AbsentDateList
+                        //else present
                         if (AbsentDateList.contains(String.valueOf(dayOfMonth))) {
                             dateView.setText("Absent on " + date);
                             Toast.makeText(getApplicationContext(), "Absent on " + date, Toast.LENGTH_SHORT).show();
