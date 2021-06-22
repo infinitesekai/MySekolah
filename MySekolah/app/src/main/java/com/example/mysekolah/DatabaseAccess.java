@@ -487,7 +487,10 @@ public class DatabaseAccess<instance> {
     //    update Question_List set answer=1 where ques_ID=1;
     public boolean updateAnswer(String answer,String quesNo) {
 
-        String update_answer = "update Question_List set answer ='" + answer +"' where ques_ID='" +quesNo+"'";
+        String update_answer = "update "+
+                QuestionContract.QuestionsTable.TABLE_NAME +" set "+
+                QuestionContract.QuestionsTable.COLUMN_ANSWER_OPTION +
+                " ='" + answer +"' where ques_ID='" +quesNo+"'";
         try {
             database.execSQL(update_answer);
         } catch (RuntimeException e) {
@@ -499,7 +502,7 @@ public class DatabaseAccess<instance> {
     //get selected answer for particular question
     public String getAnswer(String quesNo){
         String answer="";
-        Cursor cursor= database.rawQuery("select answer from Question_List where ques_ID=?", new String[]{quesNo});
+        Cursor cursor= database.rawQuery("select "+ QuestionContract.QuestionsTable.COLUMN_ANSWER_OPTION +" from Question_List where ques_ID=?", new String[]{quesNo});
         if(cursor.moveToFirst()) {
             answer=new String(cursor.getString(0));
 
