@@ -20,12 +20,12 @@ import com.example.mysekolah.bean.DisciplineResultBean;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-
+//discipline table
 public class Discipline_Result extends AppCompatActivity {
-    private ArrayList<DisciplineResultBean> disciplineResultBeans;
-    private User currentUser;
-    private TextView tvScore,tvGrade,tvHardworking,tvResponsible,tvLeadership,tvDecicate,tvPoliteness,tvHonesty;
-    private Button btn_export;
+    private ArrayList<DisciplineResultBean> disciplineResultBeans;////array list disciplineresultbeans
+    private User currentUser;//current user
+    private TextView tvScore,tvGrade,tvHardworking,tvResponsible,tvLeadership,tvDecicate,tvPoliteness,tvHonesty;// text
+    private Button btn_export;//export button
     private int lastfragment;
     Dialog dialog;
     @Override
@@ -33,8 +33,9 @@ public class Discipline_Result extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discipline_result);
         lastfragment=0;
-        currentUser = (User) getIntent().getSerializableExtra("user");
+        currentUser = (User) getIntent().getSerializableExtra("user");//get intent for current user
 
+        //reference to view by id
         tvScore=findViewById(R.id.tv_score);
         tvGrade=findViewById(R.id.tv_grade);
         tvHardworking=findViewById(R.id.tv_hardworking);
@@ -44,10 +45,12 @@ public class Discipline_Result extends AppCompatActivity {
         tvPoliteness=findViewById(R.id.tv_politeness);
         tvHonesty = findViewById(R.id.tv_honesty);
         btn_export = findViewById(R.id.btn_export);
+
+        //initial,get,printout discipline result
         dialog=new Dialog(Discipline_Result.this);
         disciplineResultBeans= getIntent().getParcelableArrayListExtra("discipline_result");
         System.out.println(disciplineResultBeans);
-
+        //
         if (disciplineResultBeans != null && disciplineResultBeans.size() > 0) {
             for (DisciplineResultBean bean : disciplineResultBeans) {
                 tvScore.setText(bean.getDiscScore()+"");
@@ -58,14 +61,15 @@ public class Discipline_Result extends AppCompatActivity {
                 tvDecicate.setText(bean.getDedicate());
                 tvPoliteness.setText(bean.getPoliteness());
                 tvHonesty.setText(bean.getHonesty());
+              //button remarks
                 btn_export.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 //                        if(bean.getRemarks() == 1){
                         if(bean.getDiscScore()>=70){
-                            showPopup(R.layout.discipline_popup_good);
+                            showPopup(R.layout.discipline_popup_good);//discipline good popup
                         }else {
-                            showPopup(R.layout.discipline_popup_bad);
+                            showPopup(R.layout.discipline_popup_bad);//discipline bad popup
                         }
 
 
@@ -73,20 +77,23 @@ public class Discipline_Result extends AppCompatActivity {
                 });
             }
         }
+        //can not find data in this year
         else{
             Toast.makeText(Discipline_Result.this,"No Discipline Result",Toast.LENGTH_LONG).show();
         }
-
+        //navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
     }
-
+    //show the dialog window
     public void showPopup(int layId){
         dialog.setContentView(layId);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
 
+    //function for bottom navigation bar
+    //back to Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

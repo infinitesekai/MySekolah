@@ -32,24 +32,23 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 public class EditProfile_Activity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    private TextView icText;
-    private TextView nameText;
-    private TextView genderText;
-    private TextView raceText;
-//    private Spinner raceSpinner;
-//    private Spinner nationSpinner;
-    private DatePicker datePicker;
-    private Button dateBtn;
-    private EditText jobEdit;
-    private EditText salaryEdit;
-    private EditText addressEdit;
-    private EditText phoneEdit;
-    private Button cancelBtn;
-    private Button saveBtn;
+    private TextView icText;//ic text
+    private TextView nameText;//name text
+    private TextView genderText;//gender text
+    private TextView raceText;//race text
+
+    private DatePicker datePicker;//date picker from calendar
+    private Button dateBtn;//date button
+    private EditText jobEdit;// job edit filed
+    private EditText salaryEdit;//salary edit filed
+    private EditText addressEdit;//address edit filed
+    private EditText phoneEdit;//phone edit filed
+    private Button cancelBtn;//cance button
+    private Button saveBtn;//save button
     private int lastfragment;
 
     private ArrayList<String> races = new ArrayList<String>();
-    private ArrayList<String> nations = new ArrayList<String>();
+    private ArrayList<String> nations = new ArrayList<String>();//array lists
 
     private User currentUser;
     //private DatabaseHelper DB;
@@ -59,29 +58,24 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
         lastfragment=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-       // currentUser = MyApplication.currentUser;
+
+        //get intent for current user
        currentUser = (User) getIntent().getSerializableExtra("user");
-       // DB = new DatabaseHelper(this);
 
-
+        //navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
+        //init views
         initViews();
-
-//        prepareData();
-//        setAdapter();
     }
-
+    //  init views
     private void initViews() {
-        //初始化view
+
+        //reference to view by id
         icText = findViewById(R.id.tv_IC);
         nameText = findViewById(R.id.tv_Name);
         genderText = findViewById(R.id.tv_gender);
         raceText = findViewById(R.id.tv_races);
-//        raceSpinner = findViewById(R.id.spin_races);
-//        nationSpinner = findViewById(R.id.spin_nationality);
-
         dateBtn = findViewById(R.id.et_bDate);
         jobEdit = findViewById(R.id.et_job);
         salaryEdit = findViewById(R.id.et_salary);
@@ -90,6 +84,7 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
         cancelBtn = findViewById(R.id.btncancel);
         saveBtn = findViewById(R.id.btnsave);
 
+        //get intent for current user
         currentUser = (User) getIntent().getSerializableExtra("user");
 
         icText.setText(currentUser.getICNo());
@@ -102,40 +97,41 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
         phoneEdit.setText(currentUser.getPhoneNo());
         dateBtn.setText(currentUser.getBdate());
 
+        //initiate database access and open database
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
 
-        //日期点击事件
+        //click date and show calendar
         dateBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                //获取日历的一个实例，里面包含了当前的年月日
+                //Gets an instance of a calendar that contains the current year, month and day
                 Calendar calendar=Calendar.getInstance();
-                //构建一个日期对话框，该对话框已经集成了日期选择器
-                //DatePickerDialog的第二个构造参数指定了日期监听器
+                //Build a date dialog that has a date picker integrated
+                //The second construction parameter of DatePickerDialog specifies the date listener
                 DatePickerDialog dialog=new DatePickerDialog(EditProfile_Activity.this,EditProfile_Activity.this,
                         calendar.get(Calendar.YEAR),
                         calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH));
-                //把日期对话框显示在界面上
+                //Displays the date dialog on the screen
                 dialog.show();
             }
         });
 
-        //取消
+        //on click listener for cancel button
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        //保存
+
+        //on click listener for save button
         saveBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
 
                 String job = jobEdit.getText().toString();
                 String salary = salaryEdit.getText().toString();
@@ -147,27 +143,14 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
                 currentUser.setPhoneNo(phone == null ? "":phone);
                 Boolean result = DB.updateUser(currentUser);
 
-                //MyApplication.currentUser.setJob(job == null ? "":job);
-               // MyApplication.currentUser.setSalary(salary == null ? "":salary);
-                //MyApplication.currentUser.setAddress(address == null ? "":address);
-                //MyApplication.currentUser.setPhoneNo(phone == null ? "":phone);
-               // currentUser.setJob(job == null ? "":job);
-                //currentUser.setSalary(salary == null ? "":salary);
-                //currentUser.setAddress(address == null ? "":address);
-                //currentUser.setPhoneNo(phone == null ? "":phone);
                 if (result) {
 
-
-
                     Toast.makeText(EditProfile_Activity.this,"save successfully",Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-//                    intent.putExtra("user",currentUser);
-//                    startActivity(intent);
                     Fragment selectedFragment = null;
                     selectedFragment = new ProfilePage();
-                    //currentUser = MyApplication.currentUser;
+
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);//pass the value user
                     selectedFragment.setArguments(bundle);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
@@ -180,71 +163,11 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
         });
     }
 
-//    private void prepareData() {
-//        //准备数据
-//        races.add("Chinese");
-//        races.add("Malay");
-//        races.add("Indian");
-//        races.add("Others");
-//
-//        nations.add("Afghanistan");
-//        nations.add("Albania" );
-//        nations.add("Algeria" );
-//        nations.add("Argentina" );
-//        nations.add("Australia" );
-//        nations.add("Austria" );
-//        nations.add("Cambodia" );
-//        nations.add("Canada" );
-//        nations.add("Chile" );
-//        nations.add("China" );
-//        nations.add("Colombia *" );
-//        nations.add("Czech Republic" );
-//        nations.add("Denmark" );
-//        nations.add("Dominican Republic" );
-//        nations.add("Ecuador" );
-//        nations.add("Egypt" );
-//        nations.add("El Salvador" );
-//        nations.add("England" );
-//    }
-//
-//    private void setAdapter() {
-//        //设置适配器
-//        ArrayAdapter<String> raceAdapter = new ArrayAdapter<String>(EditProfile_Activity.this,android.R.layout.simple_spinner_item, races);
-//        raceSpinner.setAdapter(raceAdapter);
-//        raceSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String selectedRace = races.get(position);
-//                currentUser.setRace(selectedRace);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        ArrayAdapter<String> nationAdapter = new ArrayAdapter<String>(EditProfile_Activity.this,android.R.layout.simple_spinner_item, nations);
-//        nationSpinner.setAdapter(nationAdapter);
-//        nationSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String selectedNation = nations.get(position);
-//                currentUser.setRace(selectedNation);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//    }
-
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        //实现日期选择器的监听
-        //获取日期对话框设定的年月份
+        //Implement dateset listener
+        //Gets the month of the year set by the date dialog.
         String bdate = String.format("%d-%d-%d",i,i1+1,i2);
         dateBtn.setText(bdate);
         currentUser.setBdate(bdate);
@@ -252,47 +175,54 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent me) {
-        if (me.getAction() == MotionEvent.ACTION_DOWN) {  //把操作放在用户点击的时候
-            View v = getCurrentFocus();      //得到当前页面的焦点,ps:有输入框的页面焦点一般会被输入框占据
-            if (isShouldHideKeyboard(v, me)) { //判断用户点击的是否是输入框以外的区域
-                hideKeyboard(v.getWindowToken());   //收起键盘
+        // getaction when the user clicks
+        if (me.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();     // Gets the focus of the current page
+
+            // Determine if the user clicked outside of the input field
+            if (isShouldHideKeyboard(v, me)) {
+                hideKeyboard(v.getWindowToken());   //hide the keyboard
             }
         }
         return super.dispatchTouchEvent(me);
     }
 
     /**
-     * 根据EditText所在坐标和用户点击的坐标相对比，来判断是否隐藏键盘，因为当用户点击EditText时则不能隐藏
+     * Hide the keyboard based on the location of the EditText relative to the location the user clicked on, because it cannot be hidden when the user clicked on EditText
      *
      * @param v
      * @param event
      * @return
      */
     private boolean isShouldHideKeyboard(View v, MotionEvent event) {
-        if (v != null && (v instanceof EditText)) {  //判断得到的焦点控件是否包含EditText
+        // Check if the resulting focus contains EditText
+        if (v != null && (v instanceof EditText)) {
             int[] l = {0, 0};
             v.getLocationInWindow(l);
-            int left = l[0],    //得到输入框在屏幕中上下左右的位置
+
+            // Gets the position of the input field on the screen
+            int left = l[0],
                     top = l[1],
                     bottom = top + v.getHeight(),
                     right = left + v.getWidth();
             if (event.getX() > left && event.getX() < right
                     && event.getY() > top && event.getY() < bottom) {
-                // 点击位置如果是EditText的区域，忽略它，不收起键盘。
+                // Click the location if it is the EditText area, ignore it and do not close the keyboard.
                 return false;
             } else {
                 return true;
             }
         }
-        // 如果焦点不是EditText则忽略
+        // If the focus is not EditText, ignore it
         return false;
     }
 
     /**
-     * 获取InputMethodManager，隐藏软键盘
+     * Get InputMethodManager and hide the soft keyboard
      * @param token
      */
-
+    //function for bottom navigation bar
+    //back to Student Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -303,7 +233,7 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
                 case R.id.nav_home:
                     selectedFragment = new HomePage_Student();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);//pass the value
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
@@ -312,14 +242,14 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
 
                     selectedFragment = new ProfilePage();
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);//pass the value
                     selectedFragment.setArguments(bundle);
                     //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage_Student();
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);//pass the value
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_search;
             }

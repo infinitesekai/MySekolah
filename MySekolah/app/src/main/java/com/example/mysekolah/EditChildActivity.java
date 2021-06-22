@@ -27,16 +27,16 @@ import java.util.List;
 
 
 public class EditChildActivity extends AppCompatActivity {
-    private Button btnAddChild;
-    private Button btnsave;
-    private User currentUser;
-    private RecyclerView rvChilds;
-    private ChildInfoAdapter childInfoAdapter;
-    private List<String> childs;
-    private AlertDialog.Builder mBuilder;
-    private View mView;
-    private EditText mICText;
-    private EditText mNameText;
+    private Button btnAddChild;//add child button
+    private Button btnsave;//save button
+    private User currentUser;//current user
+    private RecyclerView rvChilds;//recycler view:children card
+    private ChildInfoAdapter childInfoAdapter;//children information adapter
+    private List<String> childs;//array list
+    private AlertDialog.Builder mBuilder;//builder
+    private View mView;//new view
+    private EditText mICText;//edit text:ic
+    private EditText mNameText;//edit text:name
     private int lastfragment;
 
 
@@ -45,18 +45,20 @@ public class EditChildActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_child);
-        //currentUser = MyApplication.currentUser;
-        currentUser = (User) getIntent().getSerializableExtra("user");
+
+        currentUser = (User) getIntent().getSerializableExtra("user");//get intent for current user
         rvChilds = findViewById(R.id.rv_child_info);
         btnAddChild = findViewById(R.id.btn_add_child);
         lastfragment=0;
 
-
+        //navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        //initiate database access and open database
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
+        //get children array list
         ArrayList<User> users = DB.getPChilds(currentUser.getICNo());
         childs = new ArrayList<>();
         for (int i = 0; i < users.size();i++) {
@@ -84,18 +86,19 @@ public class EditChildActivity extends AppCompatActivity {
         )));
         rvChilds.setAdapter(childInfoAdapter);
 
-        //添加
 
         btnsave = findViewById(R.id.btn_save_child);
-
+        //on click listener for save button
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //button save will link to profile page
                 Fragment selectedFragment = null;
                 selectedFragment = new ProfilePage();
-                //currentUser = MyApplication.currentUser;
+
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                bundle.putSerializable("user",currentUser);//pass value current user
                 selectedFragment.setArguments(bundle);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 DB.close();
@@ -104,49 +107,43 @@ public class EditChildActivity extends AppCompatActivity {
 
 
 
-
+        //on click listener for add child button
         btnAddChild.setOnClickListener(v -> {
             mBuilder = new AlertDialog.Builder(EditChildActivity.this);
-//            mBuilder = new AlertDialog.Builder(EditChildActivity.this);
             mView = View.inflate(getApplicationContext(), R.layout.child_add_view, null);
-            //设置自定义的布局
+            //set layout
             mBuilder.setView(mView);
-            //拿到控件,设置数据
+            //Get the builder and set view
+
+            //get child's name and ic from imput
             mICText = (EditText) mView.findViewById(R.id.child_add_ic);
             mNameText = (EditText) mView.findViewById(R.id.child_add_name);
 
-
-
-//            final EditText inputIc = new EditText(EditChildActivity.this);
-//            final EditText inputName = new EditText(EditChildActivity.this);
-//            inputIc.setText(dbStr);
-
-
+            //set view
             mBuilder.setTitle("Add Child").setIcon(android.R.drawable.ic_dialog_info)
                     .setView(mView)
+                    //on click listener for cancel button
                     .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
                     });
+            //confirm positive button to add child
             mBuilder.setPositiveButton("confirm", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     String ic = mICText.getText().toString();
                     String name = mNameText.getText().toString();
                     User child = new User();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
                     child.setICNo(ic);
                     child.setName(name);
+
+                    //check ic and name of the child and show the status
                     if (DB.checkuseric(ic, name).size() > 0) {
                         if (DB.checkChid(currentUser.getICNo(), ic)) {
                             Boolean result = DB.addOneChild(currentUser.getICNo(), child);
                             if (result) {
-                                //MyApplication.currentUser.setICNo(ic);
-                               // MyApplication.currentUser.setName(name);
-                                //currentUser.setICNo(ic);
-                               // currentUser.setName(name);
+
                                 Toast.makeText(EditChildActivity.this, "add child success！", Toast.LENGTH_SHORT).show();
                                 childs.add(name);
                                 childInfoAdapter.notifyDataSetChanged();
@@ -168,7 +165,8 @@ public class EditChildActivity extends AppCompatActivity {
     }
 
 
-
+    //function for bottom navigation bar
+    //back to Student Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

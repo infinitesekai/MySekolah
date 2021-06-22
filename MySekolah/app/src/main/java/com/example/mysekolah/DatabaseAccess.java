@@ -44,7 +44,7 @@ public class DatabaseAccess<instance> {
             this.database.close();
         }
     }
-
+    // Get residents by ic number
     public Residents getResidentbyIC(String IC) {
 
         Residents residents = null;
@@ -298,11 +298,12 @@ public class DatabaseAccess<instance> {
         return AbsentDateList;
     }
 
-
+    //check ic number
     public ArrayList checkuseric(String ic, String nameStr) {
 
         String querySql = "select ICNo,Name,Gender,Races,Religion,Nationality from Resident where ICNo = '" + ic +"' and name = '" + nameStr +"';";
         Cursor cursor = database.rawQuery(querySql, null);
+        //list all the personal information
         ArrayList<User> userArrayList = new ArrayList<User>();
         while(cursor.moveToNext()) {
 

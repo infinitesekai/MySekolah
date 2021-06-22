@@ -35,24 +35,27 @@ public class att_select_child extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_att_select_child);
-
         Intent intent = getIntent();
         String str = intent.getStringExtra("message");
 
+        //navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
+        //get intent for current user
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
         gridView= findViewById(R.id.simpleGridView);
 
+        //initiate database access and open database
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
+        //array list:get dependency array list
         ArrayList<Dependency> dependencyArrayList=databaseAccess.getdependency(currentUser.getICNo());
 
         GridViewApdater gridViewApdater= new GridViewApdater(this, dependencyArrayList);
         gridView.setAdapter(gridViewApdater);
+
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

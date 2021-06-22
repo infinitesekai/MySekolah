@@ -14,22 +14,23 @@ import android.widget.Toast;
 import com.example.mysekolah.util.MyApplication;
 
 public class Login_page extends AppCompatActivity {
-    private EditText ic_number,password;
-    private Button btnlogin,btnSignUp;
+    private EditText ic_number,password;//ic number,password text field
+    private Button btnlogin,btnSignUp;//login button,signup button
    // private DatabaseHelper DB;
-    private User currentUser;
+    private User currentUser;//current user
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-
+        //reference to view by id
         ic_number =findViewById(R.id.etx_ic_number);
         password =findViewById(R.id.etx_password);
         btnlogin =findViewById(R.id.btn_login);
         btnSignUp=findViewById(R.id.btn_sign_up);
-       // DB = new DatabaseHelper(this);
+
+        //initiate database access and open database
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
 
@@ -43,6 +44,7 @@ public class Login_page extends AppCompatActivity {
             }
         });
 
+        //on click listener for login button
        btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +60,7 @@ public class Login_page extends AppCompatActivity {
                         Toast.makeText(Login_page.this,"Sign in successfully",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //MyApplication.currentUser = user;
+
                         currentUser = user;
                         intent.putExtra("user", currentUser);
                         startActivity(intent);
@@ -71,7 +73,7 @@ public class Login_page extends AppCompatActivity {
                 }
             }
         });
-
+        //on click listener for signup button
                 btnSignUp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

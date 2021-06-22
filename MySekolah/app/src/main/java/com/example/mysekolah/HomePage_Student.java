@@ -40,9 +40,11 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
         TextView nameText = v.findViewById(R.id.student_home_name);
         Bundle bundle = getArguments();
 
+        //get bundle for current user
         currentUser = (User) bundle.getSerializable("user");
         nameText.setText("Hi, " + currentUser.getName());
 
+        //reference to view by id
         academic_qualification = (CardView)v.findViewById(R.id.academic_qualification);
         exam_check = (CardView)v.findViewById(R.id.exam_check);
         personality_check = (CardView)v.findViewById(R.id.personality_test);

@@ -15,9 +15,11 @@ import com.example.mysekolah.util.MyApplication;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    public Button btn_student_home, btn_parent_home;
-    private User currentUser;
+    public Button btn_student_home, btn_parent_home;//student home button,parent home button
+    private User currentUser;//current user
     private int lastfragment;
+
+    //navigation bar
     private BottomNavigationView bottomNav;
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);//pass the value
                     if (currentUser.getRole() == 1) {
                         selectedFragment = new HomePage();
                     } else {
@@ -40,14 +42,14 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_profile:
                     selectedFragment = (ProfilePage)new ProfilePage();
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);//pass the value
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
-                    //selectedFragment = new SearchPage();
+
                     bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    bundle.putSerializable("user",currentUser);//pass the value
                     if (currentUser.getRole() == 1) {
                         selectedFragment = new SearchPage();
                     } else {
@@ -67,10 +69,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        currentUser = (User) getIntent().getSerializableExtra("user");
-        //currentUser = MyApplication.currentUser;
 
+        //get intent for current user
+        currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
+
+        //navigation bar
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         bottomNav.postDelayed(new Runnable() {
@@ -79,47 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 bottomNav.setSelectedItemId(bottomNav.getMenu().getItem(lastfragment).getItemId());
             }
         },100);
-        /*
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
-        if (currentUser.getRole() == 1) {
-            Fragment fragment = new HomePage();
-            fragment.setArguments(bundle);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, fragment);
-            transaction.commit();
-        } else {
-            Fragment fragment = new HomePage_Student();
-            fragment.setArguments(bundle);
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, fragment);
-            transaction.commit();
-        }
-        */
 
-        /*
-        btn_student_home = findViewById(R.id.student_home);
-        btn_parent_home = findViewById(R.id.parent_home);
-
-        btn_student_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new HomePage_Student();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, fragment);
-                transaction.commit();
-            }
-        });
-
-        btn_parent_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new HomePage();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, fragment);
-                transaction.commit();
-            }
-        });
-         */
     }
 }

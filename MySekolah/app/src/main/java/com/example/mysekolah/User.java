@@ -2,7 +2,8 @@ package com.example.mysekolah;
 
 import java.io.Serializable;
 
-public class User implements Serializable {//实现这个接口才可以在intent中传对象
+// pass an object in an Intent to implement this interface
+public class User implements Serializable {
 
     private String userID;
     private String ICNo;

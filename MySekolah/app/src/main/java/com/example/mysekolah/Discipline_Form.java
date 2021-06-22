@@ -29,17 +29,17 @@ public class Discipline_Form extends AppCompatActivity implements
     //string array for year
     String[] year={"2015","2016","2017","2018","2019","2020","2021"};
 
-    Button showbtn;
-    private String selectedYear=year[0];
-    private String icNo,childName;
-    private User currentUser;
+    Button showbtn;//show button
+    private String selectedYear=year[0];//declare string for selected year
+    private String icNo,childName;//declare string for ic and name
+    private User currentUser;//current user
     private int lastfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discipline_form);
-
+        // current user and last fragment information
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
@@ -54,6 +54,7 @@ public class Discipline_Form extends AppCompatActivity implements
         //get ic no and name selected child from previous page (att_select_child)
         icNo = getIntent().getExtras().getString("icChild");
         childName = getIntent().getExtras().getString("childName");
+
         //display information
         tvIc.setText(icNo);
         tvName.setText(childName);

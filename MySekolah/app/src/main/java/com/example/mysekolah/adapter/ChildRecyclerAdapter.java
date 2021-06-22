@@ -15,7 +15,8 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+//to show the child card
+//implement child recycleradapter
 public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdapter.InnerHolder> {
 
     List<User> children;
@@ -27,7 +28,7 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
         this.context = context;
         mInflater = LayoutInflater.from(context);
     }
-
+    //list all the childern
     public List<User> getChildren() {
         return children;
     }
@@ -49,6 +50,7 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
         holder.initData(position);
     }
 
+    //get item count and set innerholder
     @Override
     public int getItemCount() {
         return children.size();
@@ -60,7 +62,7 @@ public class ChildRecyclerAdapter extends RecyclerView.Adapter<ChildRecyclerAdap
             super(itemView);
             mChild1name = itemView.findViewById(R.id.child1name);
         }
-
+        //init data
         public void initData(int position) {
             mChild1name.setText(children.get(position).getName());
         }

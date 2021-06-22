@@ -18,7 +18,7 @@ import java.util.List;
 public class ChildInfoAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
     private Context context;
     private OnDeleteChildListener onDeleteChildListener;
-
+    //set child information adapter
     public ChildInfoAdapter(Context context, @Nullable List<String> data) {
         super(R.layout.item_child_info, data);
         this.context = context;
@@ -53,11 +53,11 @@ public class ChildInfoAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
             }
         });
     }
-
+    //delete child listener
     public  interface  OnDeleteChildListener{
         void onDelete(int position);
     }
-
+    //set on delete child listener
     public void setOnDeleteChildListener(OnDeleteChildListener onDeleteChildListener){
         this.onDeleteChildListener = onDeleteChildListener;
     };

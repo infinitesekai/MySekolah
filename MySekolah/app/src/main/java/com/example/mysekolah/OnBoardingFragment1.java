@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+//this for frament1
 public class OnBoardingFragment1 extends Fragment {
 
     @Nullable

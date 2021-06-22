@@ -3,12 +3,10 @@ package com.example.mysekolah.PersonalityCareerTest;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage_Student;
-import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage_Student;
@@ -29,7 +27,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;

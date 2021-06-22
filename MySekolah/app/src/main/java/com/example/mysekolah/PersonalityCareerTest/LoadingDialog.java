@@ -11,11 +11,12 @@ public class LoadingDialog {
     Activity activity;
     AlertDialog dialog;
 
-    //constructor
+    //constructor of loading dialog
     LoadingDialog(Activity myActivity) {
         activity = myActivity;
     }
 
+    //start to loading dialog
     void startLoadingDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
@@ -27,6 +28,7 @@ public class LoadingDialog {
         dialog.show();
     }
 
+    //dismiss dialog
     void dismissDialog(){
         dialog.dismiss();
     }

@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.mysekolah.HomePage;
-import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage;

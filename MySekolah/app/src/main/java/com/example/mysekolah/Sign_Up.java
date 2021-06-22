@@ -17,8 +17,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Sign_Up extends AppCompatActivity {
-    private EditText ic_number,password,repassword,name,address,phoneno;
-    private Button signup,signin;
+    private EditText ic_number,password,repassword,name,address,phoneno;//input text
+    private Button signup,signin;//signup button,signin button
+
     //private DatabaseHelper DB;
     private int role;
     @Override
@@ -26,6 +27,8 @@ public class Sign_Up extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+
+        //reference to view by id
         ic_number =findViewById(R.id.etx_signin_ic);
         name =findViewById(R.id.etx_signin_name);
         password =findViewById(R.id.etx_signup_password);
@@ -34,15 +37,15 @@ public class Sign_Up extends AppCompatActivity {
         phoneno =findViewById(R.id.etx_signup_phoneno);
         signup =findViewById(R.id.btn_signup);
         signin =findViewById(R.id.btn_signin);
-       // DB = new DatabaseHelper(this);
-        role = getIntent().getIntExtra("role", 0);//取值
+        //get user type
+        role = getIntent().getIntExtra("role", 0);
 
+        //initiate database access and open database
         DatabaseAccess DB = DatabaseAccess.getInstance(this);
         DB.open();
 
-       // android:onClick="methodtoexecute"
-        //remember to add this back to xml
-
+        // on click listener for export button
+        //save all the information and create an account
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +62,8 @@ public class Sign_Up extends AppCompatActivity {
                     Toast.makeText(Sign_Up.this,"Please enter all the fields",Toast.LENGTH_SHORT).show();
                 } else{
                     if(pass.equals(repass)){
-                        ArrayList<User> userList = DB.checkuseric(ic, nameStr);//存在才可以添加用户
+                        // Add a user if the user exists in residents
+                        ArrayList<User> userList = DB.checkuseric(ic, nameStr);
                         Boolean checkuser = true;
                         User currentUser = null;
                         if (userList.size() == 0) {
@@ -68,9 +72,9 @@ public class Sign_Up extends AppCompatActivity {
                             checkuser = false;
                             currentUser = userList.get(0);
                         }
-
-                        if(!checkuser){//查询不到为true，查询到为false
-//                            User user = new User(ic, nameStr, role, pass);
+                        // If cannoe query:true, can query: false
+                        if(!checkuser){
+                            //insert data into user table
                             Boolean insert = DB.inserData(ic,pass, role, nameStr, phonetr, addressStr);
                             if(insert){
                                 if(ContextCompat.checkSelfPermission(Sign_Up.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
@@ -94,11 +98,8 @@ public class Sign_Up extends AppCompatActivity {
             }
         });
 
-
-
-
-
-        //signin function
+        // on click listener for export button
+        //user click here go back to login page
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

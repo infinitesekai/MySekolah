@@ -2,8 +2,9 @@ package com.example.mysekolah.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+//this is used to discipline the discipline table
 public class DisciplineResultBean implements Parcelable {
+    //declare all the variables
     private int discScore;
     private int year;
     private String grade;
@@ -14,7 +15,7 @@ public class DisciplineResultBean implements Parcelable {
     private String politeness;
     private String honesty;
     private int remarks;
-
+    //descipline result bean
     public DisciplineResultBean(int discScore, int year, String grade, String hardWorking, String responsible, String leadership, String dedicate, String politeness, String honesty,int remarks) {
         this.discScore = discScore;
         this.year = year;
@@ -39,7 +40,7 @@ public class DisciplineResultBean implements Parcelable {
         politeness = in.readString();
         honesty = in.readString();
     }
-
+    //create descipline result bean
     public static final Creator<DisciplineResultBean> CREATOR = new Creator<DisciplineResultBean>() {
         @Override
         public DisciplineResultBean createFromParcel(Parcel in) {
@@ -96,6 +97,7 @@ public class DisciplineResultBean implements Parcelable {
         return responsible;
     }
 
+    //covert all the values to string
     @Override
     public String toString() {
         return "DisciplineResultBean{" +
@@ -115,7 +117,7 @@ public class DisciplineResultBean implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
+    // write all the values to parcel
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(discScore);
