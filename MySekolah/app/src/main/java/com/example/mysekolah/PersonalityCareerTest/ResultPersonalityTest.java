@@ -1,12 +1,15 @@
 package com.example.mysekolah.PersonalityCareerTest;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage_Student;
+import com.example.mysekolah.MainActivity;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage_Student;
@@ -16,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.transition.AutoTransition;
@@ -76,6 +80,13 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
     TextView name;
     TextView testeric;
 
+    int R_counter=getIntent().getExtras().getInt("R_counter");
+    int I_counter=getIntent().getExtras().getInt("I_counter");
+    int A_counter=getIntent().getExtras().getInt("A_counter");
+    int S_counter=getIntent().getExtras().getInt("S_counter");
+    int E_counter=getIntent().getExtras().getInt("E_counter");
+    int C_counter=getIntent().getExtras().getInt("C_counter");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,13 +98,55 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         dbAccess = DatabaseAccess.getInstance(this);
         dbAccess.open();
 
-        int R_counter=getIntent().getExtras().getInt("R_counter");
-        int I_counter=getIntent().getExtras().getInt("I_counter");
-        int A_counter=getIntent().getExtras().getInt("A_counter");
-        int S_counter=getIntent().getExtras().getInt("S_counter");
-        int E_counter=getIntent().getExtras().getInt("E_counter");
-        int C_counter=getIntent().getExtras().getInt("C_counter");
+        init();
+        getTotal();
+        getThreeChar();
 
+        result_quit.setOnClickListener(this);
+        image_btn.setOnClickListener(this);
+
+
+    }
+
+
+
+    //expand and show less 
+    public void showmore(View view){
+        if (expandable_view.getVisibility() == View.GONE){
+            imageView.setImageResource(R.drawable.arrow_up);
+            TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+            expandable_view.setVisibility(View.VISIBLE);
+        }else {
+            imageView.setImageResource(R.drawable.arrow);
+            TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+            expandable_view.setVisibility(View.GONE);
+        }
+    }
+    public void showmore2(View view){
+        if (expandable_view2.getVisibility() == View.GONE){
+            imageView2.setImageResource(R.drawable.arrow_up);
+            TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
+            expandable_view2.setVisibility(View.VISIBLE);
+        }else {
+            imageView2.setImageResource(R.drawable.arrow);
+            TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
+            expandable_view2.setVisibility(View.GONE);
+        }
+    }
+
+    public void showmore3(View view){
+        if (expandable_view3.getVisibility() == View.GONE){
+            imageView3.setImageResource(R.drawable.arrow_up);
+            TransitionManager.beginDelayedTransition(cardView3, new AutoTransition());
+            expandable_view3.setVisibility(View.VISIBLE);
+        }else {
+            imageView3.setImageResource(R.drawable.arrow);
+            TransitionManager.beginDelayedTransition(cardView3, new AutoTransition());
+            expandable_view3.setVisibility(View.GONE);
+        }
+    }
+
+    private void init(){
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -156,7 +209,9 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
 
         image_btn = findViewById(R.id.imageButton);
+    }
 
+    private void getTotal(){
         List<Integer> result=new ArrayList<Integer>();
 
         result.add(R_counter);
@@ -165,15 +220,6 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         result.add(S_counter);
         result.add(E_counter);
         result.add(C_counter);
-
-        String R="R";
-        String I="I";
-        String A="A";
-        String S="S";
-        String E="E";
-        String C="C";
-
-
 
         int totalscore=0;
         for(int i=0;i<result.size();i++){
@@ -184,7 +230,15 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         name.setText(currentUser.getName());
         testeric.setText(currentUser.getICNo());
         total.setText(String.valueOf(totalscore));
+    }
 
+    private void getThreeChar(){
+        String R="R";
+        String I="I";
+        String A="A";
+        String S="S";
+        String E="E";
+        String C="C";
         //using hashmap to map the characters and counters
         HashMap<String,Integer> Character=new HashMap<String, Integer>();
 
@@ -201,18 +255,19 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
 
 
-       List<String> character =new ArrayList<String>();
+        List<String> character =new ArrayList<String>();
 
-       for(Map.Entry<String,Integer>entry:sortedCharacter.entrySet()){
-           character.add(entry.getKey());
-       }
+        for(Map.Entry<String,Integer>entry:sortedCharacter.entrySet()){
+            character.add(entry.getKey());
+        }
 
-       String firstChar=character.get(0);
-       String secondChar=character.get(1);
-       String thirdChar=character.get(2);
+        String firstChar=character.get(0);
+        String secondChar=character.get(1);
+        String thirdChar=character.get(2);
 
         for (int i = 0; i < 3; i++) {
 
+            //change the background color depends on the char
             switch (character.get(0)) {
                 case "R":
                     cardView.setCardBackgroundColor(Color.parseColor("#995a3f"));
@@ -274,20 +329,20 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
                     break;
             }
         }
-       H1.setText(firstChar);
-       H2.setText(secondChar);
-       H3.setText(thirdChar);
+        H1.setText(firstChar);
+        H2.setText(secondChar);
+        H3.setText(thirdChar);
 
-       testInfo1=dbAccess.getTestInfo(firstChar);
+        testInfo1=dbAccess.getTestInfo(firstChar);
 
-       testInfo2=dbAccess.getTestInfo(secondChar);
+        testInfo2=dbAccess.getTestInfo(secondChar);
 
-       testInfo3=dbAccess.getTestInfo(thirdChar);
+        testInfo3=dbAccess.getTestInfo(thirdChar);
 
-       result1.setText(testInfo1.getAlpName());
-       desc1.setText(testInfo1.getDesc());
-       exp1.setText(testInfo1.getExp());
-       sug1.setText(testInfo1.getField());
+        result1.setText(testInfo1.getAlpName());
+        desc1.setText(testInfo1.getDesc());
+        exp1.setText(testInfo1.getExp());
+        sug1.setText(testInfo1.getField());
 
         result2.setText(testInfo2.getAlpName());
         desc2.setText(testInfo2.getDesc());
@@ -301,7 +356,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
 
 
-       boolean insert;
+        boolean insert;
 
         insert = dbAccess.insertPersonalityResult(currentUser.getICNo(),firstChar,secondChar,thirdChar);
 
@@ -311,16 +366,9 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         } else {
             Toast.makeText(ResultPersonalityTest.this, "Result failed", Toast.LENGTH_SHORT).show();
         }
-
-
-
-
-        result_quit.setOnClickListener(this);
-        image_btn.setOnClickListener(this);
-
-
     }
 
+    //sorting the value
     public static HashMap<String,Integer>sortByValue(HashMap<String,Integer> Character){
         //create a list from HashMap elements
         List<Map.Entry<String,Integer>>list= new LinkedList<Map.Entry<String, Integer>>(Character.entrySet());
@@ -340,42 +388,6 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         }
         return temp;
 
-    }
-
-    //expand and show less 
-    public void showmore(View view){
-        if (expandable_view.getVisibility() == View.GONE){
-            imageView.setImageResource(R.drawable.arrow_up);
-            TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-            expandable_view.setVisibility(View.VISIBLE);
-        }else {
-            imageView.setImageResource(R.drawable.arrow);
-            TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-            expandable_view.setVisibility(View.GONE);
-        }
-    }
-    public void showmore2(View view){
-        if (expandable_view2.getVisibility() == View.GONE){
-            imageView2.setImageResource(R.drawable.arrow_up);
-            TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
-            expandable_view2.setVisibility(View.VISIBLE);
-        }else {
-            imageView2.setImageResource(R.drawable.arrow);
-            TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
-            expandable_view2.setVisibility(View.GONE);
-        }
-    }
-
-    public void showmore3(View view){
-        if (expandable_view3.getVisibility() == View.GONE){
-            imageView3.setImageResource(R.drawable.arrow_up);
-            TransitionManager.beginDelayedTransition(cardView3, new AutoTransition());
-            expandable_view3.setVisibility(View.VISIBLE);
-        }else {
-            imageView3.setImageResource(R.drawable.arrow);
-            TransitionManager.beginDelayedTransition(cardView3, new AutoTransition());
-            expandable_view3.setVisibility(View.GONE);
-        }
     }
 
     @SuppressLint("NonConstantResourceId")
