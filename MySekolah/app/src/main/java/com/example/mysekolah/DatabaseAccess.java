@@ -74,14 +74,14 @@ public class DatabaseAccess<instance> {
     }
 
     // Get all spinner type of school values
-    public List<String> getAllSchoolType(String schoolLevel){
-        List<String> schoolType= new ArrayList<String>();
+    public List<String> getAllSchoolType(String schoolLevel) {
+        List<String> schoolType = new ArrayList<String>();
 
-        Cursor cursor= database.rawQuery("SELECT Type FROM SChool WHERE EduLevel=?", new String[] {schoolLevel});
-        if(cursor.moveToFirst()){
-            do{
+        Cursor cursor = database.rawQuery("SELECT Type FROM SChool WHERE EduLevel=?", new String[]{schoolLevel});
+        if (cursor.moveToFirst()) {
+            do {
                 schoolType.add(cursor.getString(0));
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         cursor.close();
@@ -89,17 +89,15 @@ public class DatabaseAccess<instance> {
     }
 
 
-
-
     // Get all spinner school list values
-    public List<String> getAllSchoolList(String district, String schoolLevel, String schoolType){
-        List<String> schools= new ArrayList<String>();
+    public List<String> getAllSchoolList(String district, String schoolLevel, String schoolType) {
+        List<String> schools = new ArrayList<String>();
 
-        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=? and Type=?", new String[] {district,schoolLevel,schoolType});
-        if(cursor.moveToFirst()){
-            do{
+        Cursor cursor = database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=? and Type=?", new String[]{district, schoolLevel, schoolType});
+        if (cursor.moveToFirst()) {
+            do {
                 schools.add(cursor.getString(0));
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         cursor.close();
@@ -108,167 +106,165 @@ public class DatabaseAccess<instance> {
 
 
     // Get all spinner school list values
-    public List<String> getUserSchool(String ic){
-        List<String> schools= new ArrayList<String>();
+    public List<String> getUserSchool(String ic) {
+        List<String> schools = new ArrayList<String>();
 
-        Cursor cursor= database.rawQuery("SELECT PreSchool, PrimarySchool, SecondarySchool FROM Qualification WHERE  ICNo= ? ", new String[] {ic});
-        if(cursor.moveToFirst()){
-            do{
+        Cursor cursor = database.rawQuery("SELECT PreSchool, PrimarySchool, SecondarySchool FROM Qualification WHERE  ICNo= ? ", new String[]{ic});
+        if (cursor.moveToFirst()) {
+            do {
 //                schools.add(cursor.getString(0));
 //                schools.add(cursor.getString(1));
 //                schools.add(cursor.getString(2));
-                for(int i=0;i<3;i++) {
+                for (int i = 0; i < 3; i++) {
                     if (cursor.getType(i) != 0)//if not null
                         schools.add(cursor.getString(i));
                 }
 
 
-
-
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         cursor.close();
         return schools;
     }
 
-    public ArrayList<DisciplineResultBean> getDisciplineResults(String icNo, String year){
-        ArrayList<DisciplineResultBean> disciplineResultBeans= new ArrayList<DisciplineResultBean>();
-        Cursor cursor= database.rawQuery("SELECT DiscScore,DisYear,grade,Hardworking,Responsible,Leadership,Dedicate,Politeness,Honesty,Remarks FROM Discipline WHERE  DisYear= ? AND ICNo= ?", new String[] {year,icNo});
-        if(cursor.moveToFirst()){
-            do{
-                DisciplineResultBean bean = new DisciplineResultBean(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8),cursor.getInt(8));
+    public ArrayList<DisciplineResultBean> getDisciplineResults(String icNo, String year) {
+        ArrayList<DisciplineResultBean> disciplineResultBeans = new ArrayList<DisciplineResultBean>();
+        Cursor cursor = database.rawQuery("SELECT DiscScore,DisYear,grade,Hardworking,Responsible,Leadership,Dedicate,Politeness,Honesty,Remarks FROM Discipline WHERE  DisYear= ? AND ICNo= ?", new String[]{year, icNo});
+        if (cursor.moveToFirst()) {
+            do {
+                DisciplineResultBean bean = new DisciplineResultBean(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getInt(8));
                 disciplineResultBeans.add(bean);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         cursor.close();
-        return  disciplineResultBeans;
+        return disciplineResultBeans;
     }
 
-    public List<ExamResult> DisplayExamResult(String ic,String school, String year, String test){
+    public List<ExamResult> DisplayExamResult(String ic, String school, String year, String test) {
 
-        List<ExamResult> resultList= new ArrayList<ExamResult>();
+        List<ExamResult> resultList = new ArrayList<ExamResult>();
 
-        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+        Cursor cursor = database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic, school, year, test});
 
-        if (cursor.moveToFirst()){
-            do{
-                ExamResult result= new ExamResult();
+        if (cursor.moveToFirst()) {
+            do {
+                ExamResult result = new ExamResult();
 
                 result.setSubject(cursor.getString(0));
                 result.setMark(cursor.getString(1));
                 result.setGrade(cursor.getString(2));
 
 
-                String subject= cursor.getString(0);
-                String mark= cursor.getString(1);
-                String grade= cursor.getString(2);
+                String subject = cursor.getString(0);
+                String mark = cursor.getString(1);
+                String grade = cursor.getString(2);
 
                 ExamResultTable.resultList.add(subject);
                 ExamResultTable.resultList.add(mark);
                 ExamResultTable.resultList.add(grade);
 
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return resultList;
     }
 
-    public List<ExamResult> ExportExamResult(String ic,String school, String year, String test){
+    public List<ExamResult> ExportExamResult(String ic, String school, String year, String test) {
 
-        List<ExamResult> resultList= new ArrayList<ExamResult>();
+        List<ExamResult> resultList = new ArrayList<ExamResult>();
 
-        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+        Cursor cursor = database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic, school, year, test});
 
-        if (cursor.moveToFirst()){
-            do{
-                ExamResult result= new ExamResult();
+        if (cursor.moveToFirst()) {
+            do {
+                ExamResult result = new ExamResult();
 
                 result.setSubject(cursor.getString(0));
                 result.setMark(cursor.getString(1));
                 result.setGrade(cursor.getString(2));
 
 
-                String subject= cursor.getString(0);
-                String mark= cursor.getString(1);
-                String grade= cursor.getString(2);
+                String subject = cursor.getString(0);
+                String mark = cursor.getString(1);
+                String grade = cursor.getString(2);
 
                 ExportExamResult.resultList.add(subject);
                 ExportExamResult.resultList.add(mark);
                 ExportExamResult.resultList.add(grade);
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return resultList;
     }
 
-    public List<ExamResult> DisplayExamResult_PR(String ic,String school, String year, String test){
+    public List<ExamResult> DisplayExamResult_PR(String ic, String school, String year, String test) {
 
-        List<ExamResult> resultList= new ArrayList<ExamResult>();
+        List<ExamResult> resultList = new ArrayList<ExamResult>();
 
-        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+        Cursor cursor = database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic, school, year, test});
 
-        if (cursor.moveToFirst()){
-            do{
-                ExamResult result= new ExamResult();
+        if (cursor.moveToFirst()) {
+            do {
+                ExamResult result = new ExamResult();
 
                 result.setSubject(cursor.getString(0));
                 result.setMark(cursor.getString(1));
                 result.setGrade(cursor.getString(2));
 
 
-                String subject= cursor.getString(0);
-                String mark= cursor.getString(1);
-                String grade= cursor.getString(2);
+                String subject = cursor.getString(0);
+                String mark = cursor.getString(1);
+                String grade = cursor.getString(2);
 
                 ExamResultTable_Pr.resultList.add(subject);
                 ExamResultTable_Pr.resultList.add(mark);
                 ExamResultTable_Pr.resultList.add(grade);
 
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return resultList;
     }
 
-    public List<ExamResult> ExportExamResult_PR(String ic,String school, String year, String test){
+    public List<ExamResult> ExportExamResult_PR(String ic, String school, String year, String test) {
 
-        List<ExamResult> resultList= new ArrayList<ExamResult>();
+        List<ExamResult> resultList = new ArrayList<ExamResult>();
 
-        Cursor cursor= database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic,school,year,test});
+        Cursor cursor = database.rawQuery("SELECT SubjectName,Mark,Grade FROM Result join School on Result.ScCode=School.ScCode WHERE Result.ICNo = ? and School.ScName=? and Result.Year=? and Result.Term=?", new String[]{ic, school, year, test});
 
-        if (cursor.moveToFirst()){
-            do{
-                ExamResult result= new ExamResult();
+        if (cursor.moveToFirst()) {
+            do {
+                ExamResult result = new ExamResult();
 
                 result.setSubject(cursor.getString(0));
                 result.setMark(cursor.getString(1));
                 result.setGrade(cursor.getString(2));
 
 
-                String subject= cursor.getString(0);
-                String mark= cursor.getString(1);
-                String grade= cursor.getString(2);
+                String subject = cursor.getString(0);
+                String mark = cursor.getString(1);
+                String grade = cursor.getString(2);
 
                 ExportExamResult_PR.resultList.add(subject);
                 ExportExamResult_PR.resultList.add(mark);
                 ExportExamResult_PR.resultList.add(grade);
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return resultList;
     }
 
 
     //display qualification information
-    public  Qualification DisplayQualification(String IC){
-        Qualification qualifications= null;
+    public Qualification DisplayQualification(String IC) {
+        Qualification qualifications = null;
         Cursor cursor = database.rawQuery("SELECT Qualification.ICNo,Name,PreSchool,PreYear,PrimarySchool,PrimaryYear," +
                 "SecondarySchool,SecondaryYear,qualification,qualificationYear " +
-                "FROM Qualification join Resident on Qualification.ICNo=Resident.ICNo WHERE Qualification.ICNo = ?", new String[] {IC});
-        if(cursor.moveToFirst()) {
-            qualifications = new Qualification(cursor.getString(0),cursor.getString(1), cursor.getString(2)
+                "FROM Qualification join Resident on Qualification.ICNo=Resident.ICNo WHERE Qualification.ICNo = ?", new String[]{IC});
+        if (cursor.moveToFirst()) {
+            qualifications = new Qualification(cursor.getString(0), cursor.getString(1), cursor.getString(2)
                     , cursor.getString(3), cursor.getString(4), cursor.getString(5)
                     , cursor.getString(6), cursor.getString(7), cursor.getString(8),
                     cursor.getString(9));
@@ -278,22 +274,21 @@ public class DatabaseAccess<instance> {
     }
 
 
+    //get list of absent date of child for selected school, year and month
+    public List<String> DisplayAbsentDate(String ic, String school, String year, String month) {
 
-//get list of absent date of child for selected school, year and month
-    public List<String> DisplayAbsentDate(String ic,String school, String year, String month){
+        List<String> AbsentDateList = new ArrayList<String>();
 
-        List<String> AbsentDateList= new ArrayList<String>();
+        Cursor cursor = database.rawQuery("SELECT AbsenceDate FROM Attendance JOIN School ON Attendance.ScCode=School.ScCode " +
+                "WHERE ICNo=? AND School.ScName=? AND Year=? AND Month=?", new String[]{ic, school, year, month});
 
-        Cursor cursor= database.rawQuery("SELECT AbsenceDate FROM Attendance JOIN School ON Attendance.ScCode=School.ScCode " +
-                "WHERE ICNo=? AND School.ScName=? AND Year=? AND Month=?", new String[]{ic,school,year,month});
-
-        if (cursor.moveToFirst()){
-            do{
-                String date=cursor.getString(0);
+        if (cursor.moveToFirst()) {
+            do {
+                String date = cursor.getString(0);
 
                 Attendance_Table.AbsentDateList.add(date);//add the date into the list in Attendance_Table.java
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return AbsentDateList;
     }
@@ -301,10 +296,10 @@ public class DatabaseAccess<instance> {
 
     public ArrayList checkuseric(String ic, String nameStr) {
 
-        String querySql = "select ICNo,Name,Gender,Races,Religion,Nationality from Resident where ICNo = '" + ic +"' and name = '" + nameStr +"';";
+        String querySql = "select ICNo,Name,Gender,Races,Religion,Nationality from Resident where ICNo = '" + ic + "' and name = '" + nameStr + "';";
         Cursor cursor = database.rawQuery(querySql, null);
         ArrayList<User> userArrayList = new ArrayList<User>();
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
 
             String icno = cursor.getString(0);
             String name = cursor.getString(1);
@@ -328,14 +323,14 @@ public class DatabaseAccess<instance> {
     //new user-insert into database
     public boolean inserData(String ic, String pass, int role, String name, String phone, String address) {
 
-        String insertSql = "insert into User(ICNo,Name, Role, Password, PhoneNo, Address) select '" + ic+ "','" + name + "','" + role +"','" + pass + "','" + phone + "','" + address +"' where not exists (select * from User where icNo = '"+ ic +"');";
+        String insertSql = "insert into User(ICNo,Name, Role, Password, PhoneNo, Address) select '" + ic + "','" + name + "','" + role + "','" + pass + "','" + phone + "','" + address + "' where not exists (select * from User where icNo = '" + ic + "');";
 
         try {
             database.execSQL(insertSql);
         } catch (RuntimeException e) {
-            Log.d("1122334455",e.getLocalizedMessage());
+            Log.d("1122334455", e.getLocalizedMessage());
             return false;
-        }  finally {
+        } finally {
             database.close();//add
         }
         return true;
@@ -344,8 +339,8 @@ public class DatabaseAccess<instance> {
     //check ic and password
     public User checkusericpassword(String ic, String pwd) {
 
-        String queryUser = "Select u.icNo, u.role,u.name, u.gender,u.job,u.salary,u.address,u.phoneno, r.races, r.religion, r.gender, r.nationality, u.bdate from User u, Resident r  where u.icNo = '"+ ic +"' and u.Password = '" + pwd +"'";
-        Cursor cursor =  database.rawQuery(queryUser, null);
+        String queryUser = "Select u.icNo, u.role,u.name, u.gender,u.job,u.salary,u.address,u.phoneno, r.races, r.religion, r.gender, r.nationality, u.bdate from User u, Resident r  where u.icNo = '" + ic + "' and u.Password = '" + pwd + "'";
+        Cursor cursor = database.rawQuery(queryUser, null);
         User user = new User();
         if (cursor.getCount() > 0) {
             cursor.moveToNext();
@@ -382,9 +377,9 @@ public class DatabaseAccess<instance> {
     //update user profile information
     public boolean updateUser(User user) {
 
-        String update_user = "update User set Bdate ='"+ user.getBdate() +"', salary='"+ user.getSalary() +
-                "',job='"+ user.getJob() +"',address='"+ user.getAddress() +
-                "',phoneno='" + user.getPhoneNo() +"' where icNo = '" + user.getICNo() +"'";
+        String update_user = "update User set Bdate ='" + user.getBdate() + "', salary='" + user.getSalary() +
+                "',job='" + user.getJob() + "',address='" + user.getAddress() +
+                "',phoneno='" + user.getPhoneNo() + "' where icNo = '" + user.getICNo() + "'";
         try {
             database.execSQL(update_user);
         } catch (RuntimeException e) {
@@ -399,54 +394,53 @@ public class DatabaseAccess<instance> {
                                            String racePr, String religionPr, String nationalityPr, String addressPr, String postcodePr, String statePr, String districtPr,
                                            String telPr, String jobPr, String salaryPr, String typeOfSchool, String stateSchool, String districtSchool, String schoolName, String distance, String status) {
 
-        String insertSql= "INSERT INTO Application \n"+
-                          "(icChild, namechild, genderChild, raceChild, religionChild, nationalityChild, addressChild, \n" +
+        String insertSql = "INSERT INTO Application \n" +
+                "(icChild, namechild, genderChild, raceChild, religionChild, nationalityChild, addressChild, \n" +
                 "postcodeChild, stateChild, districtChild, telchild, icPr, namePr, genderPr, racePr, religionPr, nationalityPr, \n" +
                 "addressPr, postcodePr, statePr, districtPr, telPr, jobPr, salaryPr, typeOfSchool, stateSchool, districtSchool, \n" +
-                "schoolName, distance, status) \n"+
-                "VALUES \n"+
+                "schoolName, distance, status) \n" +
+                "VALUES \n" +
                 "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
-            database.execSQL(insertSql, new String [] {icChild,nameChild, genderChild, raceChild, religionChild, nationalityChild, addressChild, postcodeChild, stateChild, districtChild, telChild,icPr,  namePr, genderPr,
-                    racePr, religionPr, nationalityPr, addressPr, postcodePr, statePr,  districtPr,
-                    telPr, jobPr, salaryPr, typeOfSchool, stateSchool, districtSchool, schoolName,  distance, status});
+            database.execSQL(insertSql, new String[]{icChild, nameChild, genderChild, raceChild, religionChild, nationalityChild, addressChild, postcodeChild, stateChild, districtChild, telChild, icPr, namePr, genderPr,
+                    racePr, religionPr, nationalityPr, addressPr, postcodePr, statePr, districtPr,
+                    telPr, jobPr, salaryPr, typeOfSchool, stateSchool, districtSchool, schoolName, distance, status});
         } catch (RuntimeException e) {
-            Log.d("Insertion failed",e.getLocalizedMessage());
+            Log.d("Insertion failed", e.getLocalizedMessage());
             return false;
-        }  finally {
+        } finally {
             database.close();//add
         }
         return true;
     }
 
     //get list of child name that applied for enrolment
-    public List<String> getApplicationList(String parentIC){
+    public List<String> getApplicationList(String parentIC) {
 
-        List<String> list_item= new ArrayList<String>();
+        List<String> list_item = new ArrayList<String>();
 
-        Cursor cursor= database.rawQuery("SELECT nameChild FROM Application WHERE icPr=?", new String[]{parentIC});
+        Cursor cursor = database.rawQuery("SELECT nameChild FROM Application WHERE icPr=?", new String[]{parentIC});
 
 
-
-        if (cursor.moveToFirst()){
-            do{
-                String child=cursor.getString(0);
+        if (cursor.moveToFirst()) {
+            do {
+                String child = cursor.getString(0);
 
 
                 Apply_List.list_item.add(child);//add the child name into the list in Apply_List.java
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return list_item;
     }
 
     //get application status of for the selected child
-    public String getStatus(String childName){
-        String status="";
-        Cursor cursor= database.rawQuery("SELECT status FROM Application WHERE nameChild=?", new String[]{childName});
-        if(cursor.moveToFirst()) {
-            status=new String(cursor.getString(0));
+    public String getStatus(String childName) {
+        String status = "";
+        Cursor cursor = database.rawQuery("SELECT status FROM Application WHERE nameChild=?", new String[]{childName});
+        if (cursor.moveToFirst()) {
+            status = new String(cursor.getString(0));
 
         }
         cursor.close();
@@ -456,41 +450,40 @@ public class DatabaseAccess<instance> {
     //get application status information of the child
     public StatusInfo getStatusInfo(String childname) {
 
-        StatusInfo info= null;
-        Cursor cursor = database.rawQuery("SELECT icChild,nameChild,schoolName FROM Application WHERE nameChild = ? ", new String[] {childname});
+        StatusInfo info = null;
+        Cursor cursor = database.rawQuery("SELECT icChild,nameChild,schoolName FROM Application WHERE nameChild = ? ", new String[]{childname});
 
-        if(cursor.moveToFirst()) {
-            info = new  StatusInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+        if (cursor.moveToFirst()) {
+            info = new StatusInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2));
         }
         cursor.close();
         return info;
     }
 
-    public ArrayList<Dependency> getdependency(String parentIC){
-        ArrayList<Dependency> arrayList= new ArrayList<>();
+    public ArrayList<Dependency> getdependency(String parentIC) {
+        ArrayList<Dependency> arrayList = new ArrayList<>();
 
-        Cursor cursor = database.rawQuery("SELECT * FROM Dependency WHERE ParentICNo = ? ", new String[] {parentIC});
+        Cursor cursor = database.rawQuery("SELECT * FROM Dependency WHERE ParentICNo = ? ", new String[]{parentIC});
 
-        if(cursor.moveToFirst()) {
-             do{
+        if (cursor.moveToFirst()) {
+            do {
 
-                 arrayList.add(new Dependency(cursor.getString(1), cursor.getString(2), cursor.getString(3)));
+                arrayList.add(new Dependency(cursor.getString(1), cursor.getString(2), cursor.getString(3)));
 
-             }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         cursor.close();
         return arrayList;
     }
 
 
-
     //    update Question_List set answer=1 where ques_ID=1;
-    public boolean updateAnswer(String answer,String quesNo) {
+    public boolean updateAnswer(String answer, String quesNo) {
 
-        String update_answer = "update "+
-                QuestionContract.QuestionsTable.TABLE_NAME +" set "+
+        String update_answer = "update " +
+                QuestionContract.QuestionsTable.TABLE_NAME + " set " +
                 QuestionContract.QuestionsTable.COLUMN_ANSWER_OPTION +
-                " ='" + answer +"' where ques_ID='" +quesNo+"'";
+                " ='" + answer + "' where ques_ID='" + quesNo + "'";
         try {
             database.execSQL(update_answer);
         } catch (RuntimeException e) {
@@ -500,15 +493,20 @@ public class DatabaseAccess<instance> {
     }
 
     //get selected answer for particular question
-    public String getAnswer(String quesNo){
-        String answer="";
-        Cursor cursor= database.rawQuery("select "+ QuestionContract.QuestionsTable.COLUMN_ANSWER_OPTION +" from Question_List where ques_ID=?", new String[]{quesNo});
-        if(cursor.moveToFirst()) {
-            answer=new String(cursor.getString(0));
+    public String getAnswer(String quesNo) {
+        String answer = "";
+        Cursor cursor =
+                database.rawQuery(
+                        "select " +
+                        QuestionContract.QuestionsTable.COLUMN_ANSWER_OPTION +
+                        " from Question_List where ques_ID=?",
+                new String[]{quesNo});
+        if (cursor.moveToFirst()) {
+            answer = new String(cursor.getString(0));
 
         }
         cursor.close();
-        return  answer;
+        return answer;
     }
 
     public List<Question> getAllQuestions() {
@@ -530,31 +528,31 @@ public class DatabaseAccess<instance> {
 
 
     //get category
-    public String getCategory(String quesNo){
+    public String getCategory(String quesNo) {
 //        String category="";
-        Cursor cursor= database.rawQuery("select category from " + QuestionContract.QuestionsTable.TABLE_NAME +" where ques_ID=?", new String[]{quesNo});
-        if(cursor.moveToFirst()) {
-            QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE =  new String(cursor.getString(0));
+        Cursor cursor = database.rawQuery("select category from " + QuestionContract.QuestionsTable.TABLE_NAME + " where ques_ID=?", new String[]{quesNo});
+        if (cursor.moveToFirst()) {
+            QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE = new String(cursor.getString(0));
 //            category=new String(cursor.getString(0));
 
         }
         cursor.close();
-        return  QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE;
+        return QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE;
     }
 
-//store personality result(three characters)-insert into database
-    public boolean insertPersonalityResult(String ic,String first,String second,String third) {
-        String insertSql= "INSERT INTO Test_result \n"+
-                "(ICNo, highestResult1,highestResult2,highestResult3) \n"+
-                "VALUES \n"+
+    //store personality result(three characters)-insert into database
+    public boolean insertPersonalityResult(String ic, String first, String second, String third) {
+        String insertSql = "INSERT INTO Test_result \n" +
+                "(ICNo, highestResult1,highestResult2,highestResult3) \n" +
+                "VALUES \n" +
                 "(?,?,?,?)";
 
         try {
-            database.execSQL(insertSql, new String [] {ic,first,second,third});
+            database.execSQL(insertSql, new String[]{ic, first, second, third});
         } catch (RuntimeException e) {
-            Log.d("Insertion failed",e.getLocalizedMessage());
+            Log.d("Insertion failed", e.getLocalizedMessage());
             return false;
-        }  finally {
+        } finally {
             database.close();//add
         }
         return true;
@@ -563,10 +561,10 @@ public class DatabaseAccess<instance> {
     //get personality test result information-explanation of result
     public TestResultInfo getTestInfo(String alphabet) {
 
-        TestResultInfo info= null;
-        Cursor cursor = database.rawQuery("SELECT alphabet,alpName,description,explanation,suggestedField FROM Career_Suggestion WHERE alphabet = ? ", new String[] {alphabet});
-        if(cursor.moveToFirst()) {
-            info = new  TestResultInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4));
+        TestResultInfo info = null;
+        Cursor cursor = database.rawQuery("SELECT alphabet,alpName,description,explanation,suggestedField FROM Career_Suggestion WHERE alphabet = ? ", new String[]{alphabet});
+        if (cursor.moveToFirst()) {
+            info = new TestResultInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
         }
         cursor.close();
         return info;
@@ -575,11 +573,11 @@ public class DatabaseAccess<instance> {
     //get previous test result
     public TestCharResult getPastResult(String ic) {
 
-        TestCharResult info= null;
-        Cursor cursor = database.rawQuery("SELECT highestResult1,highestResult2,highestResult3 FROM Test_result WHERE testID=(select max(testID) from Test_result) AND ICNo = ? ", new String[] {ic});
+        TestCharResult info = null;
+        Cursor cursor = database.rawQuery("SELECT highestResult1,highestResult2,highestResult3 FROM Test_result WHERE testID=(select max(testID) from Test_result) AND ICNo = ? ", new String[]{ic});
 
-        if(cursor.moveToFirst()) {
-            info = new  TestCharResult(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+        if (cursor.moveToFirst()) {
+            info = new TestCharResult(cursor.getString(0), cursor.getString(1), cursor.getString(2));
         }
         cursor.close();
         return info;
@@ -588,7 +586,7 @@ public class DatabaseAccess<instance> {
     //get lilst of children
     public ArrayList<User> getPChilds(String ic) {
         ArrayList<User> childs = new ArrayList<>();
-        String querySql = "Select ChildICNo, ChildName from Dependency where ParentICNo = '"+ ic +"'";
+        String querySql = "Select ChildICNo, ChildName from Dependency where ParentICNo = '" + ic + "'";
         Cursor cursor = database.rawQuery(querySql, null);
         while (cursor.moveToNext()) {
             String icNo = cursor.getString(0);
@@ -603,10 +601,9 @@ public class DatabaseAccess<instance> {
     }
 
 
-
     //delete child
     public Boolean deleteOneChild(String pIc, String cIc) {
-        String deSql = "DELETE FROM Dependency WHERE ParentICNo = '" + pIc + "'and ChildICNo = '"+ cIc +"'";
+        String deSql = "DELETE FROM Dependency WHERE ParentICNo = '" + pIc + "'and ChildICNo = '" + cIc + "'";
         Boolean result = true;
         try {
             database.execSQL(deSql);
@@ -621,7 +618,7 @@ public class DatabaseAccess<instance> {
         String insertSql = "insert into Dependency (ParentICNo, ChildICNo, ChildName) VALUES (?,?,?)";
         Boolean result = true;
         try {
-            database.execSQL(insertSql, new String[] {pIc, child.getICNo(), child.getName()});
+            database.execSQL(insertSql, new String[]{pIc, child.getICNo(), child.getName()});
         } catch (Exception e) {
             result = false;
         } finally {
@@ -632,7 +629,7 @@ public class DatabaseAccess<instance> {
 
     //check if a child can be added
     public Boolean checkChid(String pIc, String cIc) {
-        String qSql = "select COUNT(*) from Dependency where ParentICNo = '"+ pIc+"' and ChildICNo = '"+ cIc +"';";
+        String qSql = "select COUNT(*) from Dependency where ParentICNo = '" + pIc + "' and ChildICNo = '" + cIc + "';";
         Cursor cursor = database.rawQuery(qSql, null);
         if (cursor.moveToFirst()) {
             int count = cursor.getInt(0);
