@@ -261,10 +261,12 @@ public class DatabaseAccess<instance> {
     }
 
 
-    // SELECT Qualification.ICNo,Name,PreSchool,PreYear,PrimarySchool,PrimaryYear,SecondarySchool,SecondaryYear,qualification,qualificationYear FROM (Qualification join Resident on Qualification.ICNo=Resident.ICNo)WHERE Qualification.ICNo = "041005-10-6789";
+    //display qualification information
     public  Qualification DisplayQualification(String IC){
         Qualification qualifications= null;
-        Cursor cursor = database.rawQuery("SELECT Qualification.ICNo,Name,PreSchool,PreYear,PrimarySchool,PrimaryYear,SecondarySchool,SecondaryYear,qualification,qualificationYear FROM Qualification join Resident on Qualification.ICNo=Resident.ICNo WHERE Qualification.ICNo = ?", new String[] {IC});
+        Cursor cursor = database.rawQuery("SELECT Qualification.ICNo,Name,PreSchool,PreYear,PrimarySchool,PrimaryYear," +
+                "SecondarySchool,SecondaryYear,qualification,qualificationYear " +
+                "FROM Qualification join Resident on Qualification.ICNo=Resident.ICNo WHERE Qualification.ICNo = ?", new String[] {IC});
         if(cursor.moveToFirst()) {
             qualifications = new Qualification(cursor.getString(0),cursor.getString(1), cursor.getString(2)
                     , cursor.getString(3), cursor.getString(4), cursor.getString(5)
@@ -277,32 +279,33 @@ public class DatabaseAccess<instance> {
 
 
 
-    //SELECT AbsenceDate FROM Attendance JOIN School ON Attendance.ScCode=School.ScCode WHERE ICNo="160807-10-9088" AND School.ScName="KINDERGARDEN SALAK TINGGI" AND Year="2021" AND Month="May";
+//get list of absent date of child for selected school, year and month
     public List<String> DisplayAbsentDate(String ic,String school, String year, String month){
 
         List<String> AbsentDateList= new ArrayList<String>();
 
-        Cursor cursor= database.rawQuery("SELECT AbsenceDate FROM Attendance JOIN School ON Attendance.ScCode=School.ScCode WHERE ICNo=? AND School.ScName=? AND Year=? AND Month=?", new String[]{ic,school,year,month});
+        Cursor cursor= database.rawQuery("SELECT AbsenceDate FROM Attendance JOIN School ON Attendance.ScCode=School.ScCode " +
+                "WHERE ICNo=? AND School.ScName=? AND Year=? AND Month=?", new String[]{ic,school,year,month});
 
         if (cursor.moveToFirst()){
             do{
                 String date=cursor.getString(0);
 
-
-                Attendance_Table.AbsentDateList.add(date);
+                Attendance_Table.AbsentDateList.add(date);//add the date into the list in Attendance_Table.java
 
             }while (cursor.moveToNext());
         }
         return AbsentDateList;
     }
 
+
     public ArrayList checkuseric(String ic, String nameStr) {
-        //SQLiteDatabase db = this.getWritableDatabase();
+
         String querySql = "select ICNo,Name,Gender,Races,Religion,Nationality from Resident where ICNo = '" + ic +"' and name = '" + nameStr +"';";
         Cursor cursor = database.rawQuery(querySql, null);
         ArrayList<User> userArrayList = new ArrayList<User>();
         while(cursor.moveToNext()) {
-            //光标移动成功
+
             String icno = cursor.getString(0);
             String name = cursor.getString(1);
             String gender = cursor.getString(2);
@@ -322,10 +325,9 @@ public class DatabaseAccess<instance> {
         return userArrayList;
     }
 
-    //新增用户
+    //new user-insert into database
     public boolean inserData(String ic, String pass, int role, String name, String phone, String address) {
-        //SQLiteDatabase db = this.getWritableDatabase();
-//        String insertSql = "insert into User(icNo, Name, Role, Password) value('" + ic +"','"+ name + "','" + role +"','"+ pass +"')";
+
         String insertSql = "insert into User(ICNo,Name, Role, Password, PhoneNo, Address) select '" + ic+ "','" + name + "','" + role +"','" + pass + "','" + phone + "','" + address +"' where not exists (select * from User where icNo = '"+ ic +"');";
 
         try {
@@ -339,9 +341,9 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
-    //校验用户名密码
+    //check ic and password
     public User checkusericpassword(String ic, String pwd) {
-       // SQLiteDatabase db = this.getWritableDatabase();
+
         String queryUser = "Select u.icNo, u.role,u.name, u.gender,u.job,u.salary,u.address,u.phoneno, r.races, r.religion, r.gender, r.nationality, u.bdate from User u, Resident r  where u.icNo = '"+ ic +"' and u.Password = '" + pwd +"'";
         Cursor cursor =  database.rawQuery(queryUser, null);
         User user = new User();
@@ -377,9 +379,9 @@ public class DatabaseAccess<instance> {
         return user;
     }
 
-    //更新user信息
+    //update user profile information
     public boolean updateUser(User user) {
-        //SQLiteDatabase db = this.getWritableDatabase();
+
         String update_user = "update User set Bdate ='"+ user.getBdate() +"', salary='"+ user.getSalary() +
                 "',job='"+ user.getJob() +"',address='"+ user.getAddress() +
                 "',phoneno='" + user.getPhoneNo() +"' where icNo = '" + user.getICNo() +"'";
@@ -418,7 +420,7 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
-
+    //get list of child name that applied for enrolment
     public List<String> getApplicationList(String parentIC){
 
         List<String> list_item= new ArrayList<String>();
@@ -432,13 +434,14 @@ public class DatabaseAccess<instance> {
                 String child=cursor.getString(0);
 
 
-                Apply_List.list_item.add(child);
+                Apply_List.list_item.add(child);//add the child name into the list in Apply_List.java
 
             }while (cursor.moveToNext());
         }
         return list_item;
     }
 
+    //get application status of for the selected child
     public String getStatus(String childName){
         String status="";
         Cursor cursor= database.rawQuery("SELECT status FROM Application WHERE nameChild=?", new String[]{childName});
@@ -450,11 +453,12 @@ public class DatabaseAccess<instance> {
         return status;
     }
 
+    //get application status information of the child
     public StatusInfo getStatusInfo(String childname) {
 
         StatusInfo info= null;
         Cursor cursor = database.rawQuery("SELECT icChild,nameChild,schoolName FROM Application WHERE nameChild = ? ", new String[] {childname});
-        //if(cursor!=null){
+
         if(cursor.moveToFirst()) {
             info = new  StatusInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2));
         }
@@ -466,13 +470,9 @@ public class DatabaseAccess<instance> {
         ArrayList<Dependency> arrayList= new ArrayList<>();
 
         Cursor cursor = database.rawQuery("SELECT * FROM Dependency WHERE ParentICNo = ? ", new String[] {parentIC});
-        //if(cursor!=null){
+
         if(cursor.moveToFirst()) {
              do{
-                 /*Dependency dependency= new Dependency();
-                 dependency.setParentIc(cursor.getString(0));
-                 dependency.setChildIC(cursor.getString(1));
-                 dependency.setChildName(cursor.getString(2));*/
 
                  arrayList.add(new Dependency(cursor.getString(1), cursor.getString(2), cursor.getString(3)));
 
@@ -484,20 +484,9 @@ public class DatabaseAccess<instance> {
 
 
 
-//    public void updateAnswer(String answer,String quesNo) {
-//        //SQLiteDatabase db = this.getWritableDatabase();
-//        String update_answer = "update Question_List set answer =" + answer +" where ques_ID=" +quesNo;
-//        try {
-//            database.execSQL(update_answer);
-//        } catch (RuntimeException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
     //    update Question_List set answer=1 where ques_ID=1;
     public boolean updateAnswer(String answer,String quesNo) {
-        //SQLiteDatabase db = this.getWritableDatabase();
+
         String update_answer = "update Question_List set answer ='" + answer +"' where ques_ID='" +quesNo+"'";
         try {
             database.execSQL(update_answer);
@@ -507,6 +496,7 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
+    //get selected answer for particular question
     public String getAnswer(String quesNo){
         String answer="";
         Cursor cursor= database.rawQuery("select answer from Question_List where ques_ID=?", new String[]{quesNo});
@@ -535,6 +525,8 @@ public class DatabaseAccess<instance> {
         return questionList;
     }
 
+
+    //get category
     public String getCategory(String quesNo){
 //        String category="";
         Cursor cursor= database.rawQuery("select category from " + QuestionContract.QuestionsTable.TABLE_NAME +" where ques_ID=?", new String[]{quesNo});
@@ -547,7 +539,7 @@ public class DatabaseAccess<instance> {
         return  QuestionContract.QuestionsTable.COLUMN_ANSWER_CHOICE;
     }
 
-
+//store personality result(three characters)-insert into database
     public boolean insertPersonalityResult(String ic,String first,String second,String third) {
         String insertSql= "INSERT INTO Test_result \n"+
                 "(ICNo, highestResult1,highestResult2,highestResult3) \n"+
@@ -565,11 +557,11 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
+    //get personality test result information-explanation of result
     public TestResultInfo getTestInfo(String alphabet) {
 
         TestResultInfo info= null;
         Cursor cursor = database.rawQuery("SELECT alphabet,alpName,description,explanation,suggestedField FROM Career_Suggestion WHERE alphabet = ? ", new String[] {alphabet});
-        //if(cursor!=null){
         if(cursor.moveToFirst()) {
             info = new  TestResultInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getString(3),cursor.getString(4));
         }
@@ -577,11 +569,12 @@ public class DatabaseAccess<instance> {
         return info;
     }
 
+    //get previous test result
     public TestCharResult getPastResult(String ic) {
 
         TestCharResult info= null;
         Cursor cursor = database.rawQuery("SELECT highestResult1,highestResult2,highestResult3 FROM Test_result WHERE testID=(select max(testID) from Test_result) AND ICNo = ? ", new String[] {ic});
-        //if(cursor!=null){
+
         if(cursor.moveToFirst()) {
             info = new  TestCharResult(cursor.getString(0), cursor.getString(1), cursor.getString(2));
         }
@@ -589,7 +582,7 @@ public class DatabaseAccess<instance> {
         return info;
     }
 
-    //获取父母名下的子女
+    //get lilst of children
     public ArrayList<User> getPChilds(String ic) {
         ArrayList<User> childs = new ArrayList<>();
         String querySql = "Select ChildICNo, ChildName from Dependency where ParentICNo = '"+ ic +"'";
@@ -608,7 +601,7 @@ public class DatabaseAccess<instance> {
 
 
 
-    //删除父母明下某个孩子
+    //delete child
     public Boolean deleteOneChild(String pIc, String cIc) {
         String deSql = "DELETE FROM Dependency WHERE ParentICNo = '" + pIc + "'and ChildICNo = '"+ cIc +"'";
         Boolean result = true;
@@ -620,7 +613,7 @@ public class DatabaseAccess<instance> {
         return result;
     }
 
-    //父母添加孩子
+    //add child
     public Boolean addOneChild(String pIc, User child) {
         String insertSql = "insert into Dependency (ParentICNo, ChildICNo, ChildName) VALUES (?,?,?)";
         Boolean result = true;
@@ -634,7 +627,7 @@ public class DatabaseAccess<instance> {
         return result;
     }
 
-    //校验孩子是否可以添加
+    //check if a child can be added
     public Boolean checkChid(String pIc, String cIc) {
         String qSql = "select COUNT(*) from Dependency where ParentICNo = '"+ pIc+"' and ChildICNo = '"+ cIc +"';";
         Cursor cursor = database.rawQuery(qSql, null);

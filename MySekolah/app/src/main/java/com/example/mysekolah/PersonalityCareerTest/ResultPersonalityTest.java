@@ -2,30 +2,22 @@ package com.example.mysekolah.PersonalityCareerTest;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage_Student;
-import com.example.mysekolah.NotificationPage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
 import com.example.mysekolah.SearchPage_Student;
 import com.example.mysekolah.User;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.telephony.SignalStrength;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
 import android.view.MenuItem;
@@ -34,24 +26,17 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mysekolah.databinding.ActivityResultPersonalityTestBinding;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class ResultPersonalityTest extends AppCompatActivity implements View.OnClickListener {
 
@@ -114,14 +99,19 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
         Rvalue=findViewById(R.id.first_total);
         Rvalue.setText(String.valueOf(R_counter));
+
         Ivalue=findViewById(R.id.second_total);
         Ivalue.setText(String.valueOf(I_counter));
+
         Avalue=findViewById(R.id.third_total);
         Avalue.setText(String.valueOf(A_counter));
+
         Svalue=findViewById(R.id.forth_total);
         Svalue.setText(String.valueOf(S_counter));
+
         Evalue=findViewById(R.id.fifth_total);
         Evalue.setText(String.valueOf(E_counter));
+
         Cvalue=findViewById(R.id.sixth_total);
         Cvalue.setText(String.valueOf(C_counter));
 
