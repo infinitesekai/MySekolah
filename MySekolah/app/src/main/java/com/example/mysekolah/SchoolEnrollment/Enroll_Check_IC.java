@@ -11,7 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.mysekolah.DatabaseAccess;
 import com.example.mysekolah.HomePage;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
@@ -56,15 +58,25 @@ public class Enroll_Check_IC extends AppCompatActivity  {
 
         }
 
+        //Database
+        DatabaseAccess databaseAccess= DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+
         //when check button clicked
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(Enroll_Check_IC.this, SchoolForm.class);
-                i.putExtra("ICNo", ic.getText().toString()); //ic pass from EditText
-                i.putExtra("SchoolLevel", schoolLevel);
-                i.putExtra("user", currentUser);
-                startActivity(i);
+                if(databaseAccess.getResidentbyIC(ic.getText().toString())!=null) {
+                    Intent i = new Intent(Enroll_Check_IC.this, SchoolForm.class);
+                    i.putExtra("ICNo", ic.getText().toString()); //ic pass from EditText
+                    i.putExtra("SchoolLevel", schoolLevel);
+                    i.putExtra("user", currentUser);
+                    startActivity(i);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Resident not exist", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
