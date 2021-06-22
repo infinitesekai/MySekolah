@@ -15,41 +15,59 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+//application success page
 public class Apply_success extends AppCompatActivity {
-    ImageView successinfo;
-    Dialog dialog;
+
+
     private User currentUser;
     private int lastfragment;
+
+    Dialog dialog;
     private String childname;
     TextView icno,name,school;
-    StatusInfo info;
+    StatusInfo info;//application status information
+
     DatabaseAccess databaseAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_success);
-        dialog=new Dialog(this);
+
+        dialog=new Dialog(this);//initialize new dialog
 
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
+
+        //get selected child name
         childname=getIntent().getStringExtra("childname");
 
+
+        //reference to view by id
         icno=findViewById(R.id.icNoPending);
         name=findViewById(R.id.namePending);
         school=findViewById(R.id.schoolPending);
 
+
+        //initiate database access
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
+
+        //call database access to display status information
         info=databaseAccess.getStatusInfo(childname);
+
+        //display application status information
         icno.setText(info.getICNo());
         name.setText(info.getName());
         school.setText(info.getSchool());
 
-        databaseAccess.close();
 
+        databaseAccess.close();//close database access
+
+
+        //bottom navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -57,22 +75,30 @@ public class Apply_success extends AppCompatActivity {
 
     }
 
-
+    //show pop up when click on info image button
     public void showPopup(View v){
-        TextView close;
+        TextView close;//close button with text view
 
+        //dialog for pop up approve info
         dialog.setContentView(R.layout.popup_approve);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         close=(TextView) dialog.findViewById(R.id.close_success);
+
+        //dismiss dialog when click on close
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
-        dialog.show();
+
+        dialog.show();//show pop up approve dialog
     }
 
+
+    //function for bottom navigation bar
+    //back to Parent Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -93,7 +119,7 @@ public class Apply_success extends AppCompatActivity {
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
-                    //lastfragment = R.id.nav_profile;
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();

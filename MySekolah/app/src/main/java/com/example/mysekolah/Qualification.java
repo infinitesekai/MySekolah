@@ -1,5 +1,7 @@
 package com.example.mysekolah;
 
+
+//qualification information
 public class Qualification {
     private String ICNo;
     private String Name;
@@ -12,6 +14,7 @@ public class Qualification {
     private String qualification;
     private String qualificationYear;
 
+    //constructor
     public Qualification (String ICNo,String Name,String PreSchool,String PreYear,String PrimarySchool,String PrimaryYear,String SecondarySchool,String SecondaryYear,String qualification,String qualificationYear){
         this.ICNo=ICNo;
         this.Name=Name;
@@ -24,6 +27,8 @@ public class Qualification {
         this.qualification=qualification;
         this.qualificationYear=qualificationYear;
     }
+
+    //getter and setter for qualification information
 
     public String getICNo() {
         return ICNo;

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class att_select_child extends AppCompatActivity {
 
-    //public CardView child1,child2,child3,child4;
+
     DatabaseAccess databaseAccess;
     GridView gridView;
     private User currentUser;
@@ -74,6 +74,7 @@ public class att_select_child extends AppCompatActivity {
                         i.putExtra("user",currentUser);
                         i.putExtra("icChild", icChild);
                         i.putExtra("childName", childName);
+
                         startActivity(i);
                         break;
                     case ("attendance"):
@@ -114,6 +115,8 @@ public class att_select_child extends AppCompatActivity {
 
     }
 
+    //function for bottom navigation bar
+    //back to Parent Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {

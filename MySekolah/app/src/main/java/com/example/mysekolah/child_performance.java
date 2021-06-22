@@ -19,7 +19,6 @@ public class child_performance extends AppCompatActivity implements View.OnClick
     public CardView exam, discipline, attendance, personalitytest;
     private User currentUser;
     private int lastfragment;
-    DatabaseAccess dbAccess;
 
 
     @Override
@@ -30,14 +29,17 @@ public class child_performance extends AppCompatActivity implements View.OnClick
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
+        //bottom navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        //reference to view by id
         attendance = findViewById(R.id.AttendanceCard);
         exam = findViewById(R.id.ExamResultCard);
         discipline = findViewById(R.id.DisciplineCard);
         personalitytest = findViewById(R.id.PersonalityCard);
 
+        //on click listener
         attendance.setOnClickListener(this);
         exam.setOnClickListener(this);
         discipline.setOnClickListener(this);
@@ -46,7 +48,8 @@ public class child_performance extends AppCompatActivity implements View.OnClick
 
     }
 
-
+//function for bottom navigation bar
+//back to Parent Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -67,7 +70,7 @@ public class child_performance extends AppCompatActivity implements View.OnClick
                     bundle = new Bundle();
                     bundle.putSerializable("user", currentUser);
                     selectedFragment.setArguments(bundle);
-                    //lastfragment = R.id.nav_profile;
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();
@@ -84,6 +87,8 @@ public class child_performance extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         Intent i;
+        //start intent navigating to att_select_child to select which children to view
+        //message to indicate selected check
         String examMessage = "exam";
         String attendanceMessage = "attendance";
         String disciplineMessage = "discipline";

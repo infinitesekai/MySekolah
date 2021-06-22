@@ -22,6 +22,7 @@ import com.example.mysekolah.SchoolEnrollment.SchoolEnroll;
 
 import java.util.Objects;
 
+//Parent Home Page
 public class HomePage extends Fragment implements View.OnClickListener {
 
 
@@ -62,6 +63,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
 
         videoView.setOnPreparedListener(this::PreparedListener);
 
+        //on click listener on card view
         enrollment.setOnClickListener(this);
         childperform.setOnClickListener(this);
 
@@ -95,7 +97,7 @@ public class HomePage extends Fragment implements View.OnClickListener {
         }
     }
 
-
+    //start intent to navigate to respective page
     @Override
     public void onClick(View v) {
         Intent i;

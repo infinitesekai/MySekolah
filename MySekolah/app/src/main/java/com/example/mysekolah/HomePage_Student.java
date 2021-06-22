@@ -22,6 +22,7 @@ import com.example.mysekolah.PersonalityCareerTest.PersonalityTestHome;
 
 import java.util.Objects;
 
+//Student Home Page
 public class HomePage_Student extends Fragment implements View.OnClickListener {
 
     private static final String TAG = HomePage_Student.class.getSimpleName();
@@ -66,6 +67,8 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
 
         videoView.setOnPreparedListener(this::PreparedListener);
 
+
+        //on click listener on card view
         academic_qualification.setOnClickListener(this);
         exam_check.setOnClickListener(this);
         personality_check.setOnClickListener(this);
@@ -103,6 +106,8 @@ public class HomePage_Student extends Fragment implements View.OnClickListener {
         }
     }
 
+
+    //start intent to navigate to respective page
     @Override
     public void onClick(View v) {
         Intent i;

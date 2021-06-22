@@ -19,13 +19,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
+//application list
 public class Apply_List extends AppCompatActivity {
 
     private User currentUser;
     private int lastfragment;
-    DatabaseAccess databaseAccess;
-    ListView apply_list;
 
+    DatabaseAccess databaseAccess;
+
+    //list view, list item and adapter to display list of application
+    ListView apply_list;
     public static ArrayList<String> list_item;
     ArrayAdapter adapter;
 
@@ -37,29 +40,48 @@ public class Apply_List extends AppCompatActivity {
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
+        //bottom navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+
+        //initiate database access
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
+        //reference to list view by id
         apply_list=findViewById(R.id.apply_list);
 
+        //array list to store list item
         list_item=new ArrayList<String>();
-        String icParent=currentUser.getICNo();
+
+        String icParent=currentUser.getICNo();//get IC No of current user(parent）
+
+        //call database method to get application list
+        //child added into list_item
+        //list_item is the list of application for children
         databaseAccess.getApplicationList(icParent);
 
+        //array adapter for ListView display-insert item into ListView from list_item
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_item);
-        apply_list.setAdapter(adapter);
 
+        apply_list.setAdapter(adapter);//conjoin array adapter with list view
 
+        //click on list item
         apply_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //get selected child name from list according to the position
                 String childName=apply_list.getItemAtPosition(position).toString();
+
+                //call database method to get application status of selected child
                 String status=databaseAccess.getStatus(childName);
                 Intent i;
 
+                //start intent to navigate to respective page according to application status
+                //application status=1, pending
+                //application status=2, success
+                //application status=3, fail
                 switch (status){
                     case ("1"):
                         i= new Intent(Apply_List.this, Apply_pending.class);
@@ -85,16 +107,12 @@ public class Apply_List extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
 
 
 
-
+    //function for bottom navigation bar
+    //back to Parent Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -115,7 +133,7 @@ public class Apply_List extends AppCompatActivity {
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
-                    //lastfragment = R.id.nav_profile;
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();

@@ -21,13 +21,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//discipline form to select the period for discipline checking
 public class Discipline_Form extends AppCompatActivity implements
         AdapterView.OnItemSelectedListener {
     private TextView tvIc,tvName;
 
-//    String[] school = { "Kindergarten Aman", "SK Kota Warisan", "SMK Sri Sepang"};
+    //string array for year
     String[] year={"2015","2016","2017","2018","2019","2020","2021"};
+
     Button showbtn;
     private String selectedYear=year[0];
     private String icNo,childName;
@@ -39,24 +40,28 @@ public class Discipline_Form extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discipline_form);
 
+        currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
+        //reference to view by id
         tvIc=findViewById(R.id.tvIC);
         tvName=findViewById(R.id.tvName);
 
+        //bottom navigation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-       // currentUser = MyApplication.currentUser;
-        currentUser = (User) getIntent().getSerializableExtra("user");
+        //get ic no and name selected child from previous page (att_select_child)
         icNo = getIntent().getExtras().getString("icChild");
         childName = getIntent().getExtras().getString("childName");
+        //display information
         tvIc.setText(icNo);
         tvName.setText(childName);
 
-//        Spinner school_spin = (Spinner) findViewById(R.id.tvgender);
-        Spinner year_spin = (Spinner) findViewById(R.id.tvraces);
-//        school_spin.setOnItemSelectedListener(this);
+        //year spinner
+        Spinner year_spin = (Spinner) findViewById(R.id.disc_yearspin);
+
+        //get string of selected year from year spinner when clicked
         year_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -70,16 +75,19 @@ public class Discipline_Form extends AppCompatActivity implements
             }
         });
 
-//        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,school);
-//        schoolaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        school_spin.setAdapter(schoolaa);
-
+        //populate spinner control with list item
+        //use array adapter to bind items to spinner
+        //drop down list
+        //year spinner-string array year
         ArrayAdapter yearaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,year);
         yearaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         year_spin.setAdapter(yearaa);
 
         showbtn=findViewById(R.id.btnshow);
 
+
+        //click on show button
+        //start intent to navigate to discipline result page
         showbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,8 +104,8 @@ public class Discipline_Form extends AppCompatActivity implements
 
 
     }
-
-
+    //function for bottom navigation bar
+    //back to Parent Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -118,7 +126,7 @@ public class Discipline_Form extends AppCompatActivity implements
                     bundle = new Bundle();
                     bundle.putSerializable("user", currentUser);
                     selectedFragment.setArguments(bundle);
-                    //lastfragment = R.id.nav_profile;
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage();

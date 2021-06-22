@@ -29,30 +29,42 @@ import org.w3c.dom.Text;
 import java.util.Scanner;
 
 public class Check_in_scan extends AppCompatActivity {
+    //use Code Scanner library for Android, based on ZXing (ZebraCrossing)
     CodeScanner codeScanner;
     CodeScannerView scanView;
-    TextView resultData;
+
+    TextView resultData;//text view to display result of the scan
+
     private User currentUser;
     private int lastfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_in_scan);
 
+        //current user and last fragment
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
+        //bottom naviagation bar
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
+        //reference to view by id
         scanView=findViewById(R.id.scanner_view);
-        codeScanner=new CodeScanner(this,scanView);
         resultData=findViewById(R.id.QRtxt);
 
+        //instance of code scanner with CodeScannerview
+        //two arguments, this context and the scanner view to be used
+        codeScanner=new CodeScanner(this,scanView);
+
+
+
+        //decode qr code and display
+        //able to scan multiple qr code once opened
+        //use threading for result display in text view
         codeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull @NotNull Result result) {
@@ -60,9 +72,10 @@ public class Check_in_scan extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //extract data and assign to text view
+                        //extract data from result variable and assign to text view
                         resultData.setText(result.getText());
-                        codeScanner.startPreview();
+
+                        codeScanner.startPreview();//continue for preview after decode
 
                     }
                 });
@@ -70,6 +83,7 @@ public class Check_in_scan extends AppCompatActivity {
             }
         });
 
+        //camera preview when click on the screen/scan view
         scanView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,28 +100,35 @@ public class Check_in_scan extends AppCompatActivity {
         requestforCamera();
 
 
-        //codeScanner.startPreview();
     }
 
+    //request camera permission
+    //Dexter :Android library that simplifies the process of requesting permissions at runtime
     private void requestforCamera() {
         Dexter.withContext(this).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
             @Override
             public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                codeScanner.startPreview();
+                codeScanner.startPreview();//start camera preview with permission granted
             }
 
             @Override
             public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+                //make toast to inform camera persmission deny
                 Toast.makeText(Check_in_scan.this,"Camera Permission is Required",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                //keep asking camera permission until granted
+                //need to operate with camera permission
                 permissionToken.continuePermissionRequest();
             }
         }).check();
     }
 
+
+    //function for bottom navigation bar
+    //back to Student Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -128,7 +149,7 @@ public class Check_in_scan extends AppCompatActivity {
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
-                    //lastfragment = R.id.nav_profile;
+                    lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
                     selectedFragment = new SearchPage_Student();
