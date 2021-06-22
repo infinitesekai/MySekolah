@@ -45,45 +45,21 @@ public class att_select_child extends AppCompatActivity {
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
-       /* child1=findViewById(R.id.Child1Card);
-
-        child1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i;
-
-                switch (str){
-                    case ("exam"):
-                        i= new Intent(att_select_child.this, ExamResultForm.class);
-                        i.putExtra("user",currentUser);
-                        i.putExtra("ICNo", "160807-10-9088");
-                        startActivity(i);
-                        break;
-                    case ("attendance"):
-                        i= new Intent(att_select_child.this, Attendance_Form.class);
-                        i.putExtra("user",currentUser);
-                        i.putExtra("ICNo", "160807-10-9088");
-                        i.putExtra("childName","LIM KOK WENG");
-                        startActivity(i);
-                        break;
-                    case ("discipline"):
-                        i= new Intent(att_select_child.this, Discipline_Form.class);
-                        startActivity(i);
-                        break;
-                }
-
-            }
-        });*/
-
+        //find GridView
         gridView= findViewById(R.id.simpleGridView);
 
+        //call database
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
+
+        //get a list of current user's children
         ArrayList<Dependency> dependencyArrayList=databaseAccess.getdependency(currentUser.getICNo());
 
+        //Initialize a custom GridView adapter
         GridViewApdater gridViewApdater= new GridViewApdater(this, dependencyArrayList);
         gridView.setAdapter(gridViewApdater);
 
+        //when GridView items are click
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -98,14 +74,11 @@ public class att_select_child extends AppCompatActivity {
                         i.putExtra("user",currentUser);
                         i.putExtra("icChild", icChild);
                         i.putExtra("childName", childName);
-                        //i.putExtra("ICNo", "160807-10-9088");
                         startActivity(i);
                         break;
                     case ("attendance"):
                         i= new Intent(att_select_child.this, Attendance_Form.class);
                         i.putExtra("user",currentUser);
-//                        i.putExtra("ICNo", "160807-10-9088");
-//                        i.putExtra("childName","LIM KOK WENG");
                         i.putExtra("icChild", icChild);
                         i.putExtra("childName", childName);
                         startActivity(i);

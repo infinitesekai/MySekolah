@@ -54,7 +54,7 @@
                     android:layout_marginTop="10dp"
                     />
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:id="@+id/typeRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,13 +99,13 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:background="@color/lightGrey" />
-                </LinearLayout>
+                </LinearLayout>-->
 
                 <LinearLayout
                     android:id="@+id/stateRow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/typeRow"
+                    android:layout_below="@+id/chooseSchoolTitle"
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp">
 

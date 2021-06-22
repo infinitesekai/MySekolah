@@ -61,7 +61,7 @@ public class Enroll_Check_IC extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent i= new Intent(Enroll_Check_IC.this, SchoolForm.class);
-                i.putExtra("ICNo", ic.getText().toString());
+                i.putExtra("ICNo", ic.getText().toString()); //ic pass from EditText
                 i.putExtra("SchoolLevel", schoolLevel);
                 i.putExtra("user", currentUser);
                 startActivity(i);

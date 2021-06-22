@@ -92,10 +92,10 @@ public class DatabaseAccess<instance> {
 
 
     // Get all spinner school list values
-    public List<String> getAllSchoolList(String district, String schoolLevel, String schoolType){
+    public List<String> getAllSchoolList(String district, String schoolLevel){
         List<String> schools= new ArrayList<String>();
 
-        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=? and Type=?", new String[] {district,schoolLevel,schoolType});
+        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=? ", new String[] {district,schoolLevel});
         if(cursor.moveToFirst()){
             do{
                 schools.add(cursor.getString(0));
@@ -392,10 +392,12 @@ public class DatabaseAccess<instance> {
     }
 
 
-    public boolean insertSchoolApplication(String icChild, String nameChild, String genderChild, String raceChild, String religionChild, String nationalityChild, String addressChild,
-                                           String postcodeChild, String stateChild, String districtChild, String telChild, String icPr, String namePr, String genderPr,
+    public boolean insertSchoolApplication(String icChild, String nameChild, String genderChild, String raceChild, String religionChild,
+                                           String nationalityChild, String addressChild, String postcodeChild, String stateChild,
+                                           String districtChild, String telChild, String icPr, String namePr, String genderPr,
                                            String racePr, String religionPr, String nationalityPr, String addressPr, String postcodePr, String statePr, String districtPr,
-                                           String telPr, String jobPr, String salaryPr, String typeOfSchool, String stateSchool, String districtSchool, String schoolName, String distance, String status) {
+                                           String telPr, String jobPr, String salaryPr, String typeOfSchool, String stateSchool, String districtSchool,
+                                           String schoolName, String distance, String status) {
 
         String insertSql= "INSERT INTO Application \n"+
                           "(icChild, namechild, genderChild, raceChild, religionChild, nationalityChild, addressChild, \n" +
@@ -406,7 +408,8 @@ public class DatabaseAccess<instance> {
                 "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
-            database.execSQL(insertSql, new String [] {icChild,nameChild, genderChild, raceChild, religionChild, nationalityChild, addressChild, postcodeChild, stateChild, districtChild, telChild,icPr,  namePr, genderPr,
+            database.execSQL(insertSql, new String [] {icChild,nameChild, genderChild, raceChild, religionChild, nationalityChild,
+                    addressChild, postcodeChild, stateChild, districtChild, telChild,icPr,  namePr, genderPr,
                     racePr, religionPr, nationalityPr, addressPr, postcodePr, statePr,  districtPr,
                     telPr, jobPr, salaryPr, typeOfSchool, stateSchool, districtSchool, schoolName,  distance, status});
         } catch (RuntimeException e) {
@@ -466,14 +469,9 @@ public class DatabaseAccess<instance> {
         ArrayList<Dependency> arrayList= new ArrayList<>();
 
         Cursor cursor = database.rawQuery("SELECT * FROM Dependency WHERE ParentICNo = ? ", new String[] {parentIC});
-        //if(cursor!=null){
+
         if(cursor.moveToFirst()) {
              do{
-                 /*Dependency dependency= new Dependency();
-                 dependency.setParentIc(cursor.getString(0));
-                 dependency.setChildIC(cursor.getString(1));
-                 dependency.setChildName(cursor.getString(2));*/
-
                  arrayList.add(new Dependency(cursor.getString(1), cursor.getString(2), cursor.getString(3)));
 
              }while (cursor.moveToNext());
