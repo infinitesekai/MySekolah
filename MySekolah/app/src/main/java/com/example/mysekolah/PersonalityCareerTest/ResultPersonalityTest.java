@@ -101,13 +101,6 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
     TextView name;
     TextView testeric;
 
-    int R_counter=getIntent().getExtras().getInt("R_counter");
-    int I_counter=getIntent().getExtras().getInt("I_counter");
-    int A_counter=getIntent().getExtras().getInt("A_counter");
-    int S_counter=getIntent().getExtras().getInt("S_counter");
-    int E_counter=getIntent().getExtras().getInt("E_counter");
-    int C_counter=getIntent().getExtras().getInt("C_counter");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,89 +112,13 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         dbAccess = DatabaseAccess.getInstance(this);
         dbAccess.open();
 
-        init();
-        getTotal();
-        getThreeChar();
+        int R_counter=getIntent().getExtras().getInt("R_counter");
+        int I_counter=getIntent().getExtras().getInt("I_counter");
+        int A_counter=getIntent().getExtras().getInt("A_counter");
+        int S_counter=getIntent().getExtras().getInt("S_counter");
+        int E_counter=getIntent().getExtras().getInt("E_counter");
+        int C_counter=getIntent().getExtras().getInt("C_counter");
 
-        result_quit.setOnClickListener(this);
-        image_btn.setOnClickListener(this);
-        result_export_now.setOnClickListener(this);
-
-
-    }
-
-
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-            Fragment selectedFragment = null;
-
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    selectedFragment = new HomePage_Student();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
-                    selectedFragment.setArguments(bundle);
-                    lastfragment = R.id.nav_home;
-                    break;
-
-                case R.id.nav_profile:
-                    selectedFragment = new ProfilePage();
-                    bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
-                    selectedFragment.setArguments(bundle);
-                    //lastfragment = R.id.nav_profile;
-                    break;
-                case R.id.nav_search:
-                    selectedFragment = new SearchPage_Student();
-                    bundle = new Bundle();
-                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
-                    selectedFragment.setArguments(bundle);
-                    lastfragment = R.id.nav_search;
-            }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-            return false;
-        }
-    };
-
-    //expand and show less 
-    public void showmore(View view){
-        if (expandable_view.getVisibility() == View.GONE){
-            imageView.setImageResource(R.drawable.arrow_up);
-            TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-            expandable_view.setVisibility(View.VISIBLE);
-        }else {
-            imageView.setImageResource(R.drawable.arrow);
-            TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-            expandable_view.setVisibility(View.GONE);
-        }
-    }
-    public void showmore2(View view){
-        if (expandable_view2.getVisibility() == View.GONE){
-            imageView2.setImageResource(R.drawable.arrow_up);
-            TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
-            expandable_view2.setVisibility(View.VISIBLE);
-        }else {
-            imageView2.setImageResource(R.drawable.arrow);
-            TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
-            expandable_view2.setVisibility(View.GONE);
-        }
-    }
-
-    public void showmore3(View view){
-        if (expandable_view3.getVisibility() == View.GONE){
-            imageView3.setImageResource(R.drawable.arrow_up);
-            TransitionManager.beginDelayedTransition(cardView3, new AutoTransition());
-            expandable_view3.setVisibility(View.VISIBLE);
-        }else {
-            imageView3.setImageResource(R.drawable.arrow);
-            TransitionManager.beginDelayedTransition(cardView3, new AutoTransition());
-            expandable_view3.setVisibility(View.GONE);
-        }
-    }
-
-    private void init(){
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -266,9 +183,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
 
         image_btn = findViewById(R.id.imageButton);
-    }
 
-    private void getTotal(){
         List<Integer> result=new ArrayList<Integer>();
 
         result.add(R_counter);
@@ -277,6 +192,15 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         result.add(S_counter);
         result.add(E_counter);
         result.add(C_counter);
+
+        String R="R";
+        String I="I";
+        String A="A";
+        String S="S";
+        String E="E";
+        String C="C";
+
+
 
         int totalscore=0;
         for(int i=0;i<result.size();i++){
@@ -287,15 +211,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         name.setText(currentUser.getName());
         testeric.setText(currentUser.getICNo());
         total.setText(String.valueOf(totalscore));
-    }
 
-    private void getThreeChar(){
-        String R="R";
-        String I="I";
-        String A="A";
-        String S="S";
-        String E="E";
-        String C="C";
         //using hashmap to map the characters and counters
         HashMap<String,Integer> Character=new HashMap<String, Integer>();
 
@@ -324,7 +240,6 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
         for (int i = 0; i < 3; i++) {
 
-            //change the background color depends on the char
             switch (character.get(0)) {
                 case "R":
                     cardView.setCardBackgroundColor(Color.parseColor("#995a3f"));
@@ -423,6 +338,86 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         } else {
             Toast.makeText(ResultPersonalityTest.this, "Result failed", Toast.LENGTH_SHORT).show();
         }
+
+
+
+
+        result_quit.setOnClickListener(this);
+        image_btn.setOnClickListener(this);
+        result_export_now.setOnClickListener(this);
+
+
+    }
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            Fragment selectedFragment = null;
+
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    selectedFragment = new HomePage_Student();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_home;
+                    break;
+
+                case R.id.nav_profile:
+                    selectedFragment = new ProfilePage();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    //lastfragment = R.id.nav_profile;
+                    break;
+                case R.id.nav_search:
+                    selectedFragment = new SearchPage_Student();
+                    bundle = new Bundle();
+                    bundle.putSerializable("user",currentUser);//这里的values就是我们要传的值
+                    selectedFragment.setArguments(bundle);
+                    lastfragment = R.id.nav_search;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return false;
+        }
+    };
+
+    //expand and show less 
+    public void showmore(View view){
+        if (expandable_view.getVisibility() == View.GONE){
+            imageView.setImageResource(R.drawable.arrow_up);
+            TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+            expandable_view.setVisibility(View.VISIBLE);
+        }else {
+            imageView.setImageResource(R.drawable.arrow);
+            TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+            expandable_view.setVisibility(View.GONE);
+        }
+    }
+    public void showmore2(View view){
+        if (expandable_view2.getVisibility() == View.GONE){
+            imageView2.setImageResource(R.drawable.arrow_up);
+            TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
+            expandable_view2.setVisibility(View.VISIBLE);
+        }else {
+            imageView2.setImageResource(R.drawable.arrow);
+            TransitionManager.beginDelayedTransition(cardView2, new AutoTransition());
+            expandable_view2.setVisibility(View.GONE);
+        }
+    }
+
+    public void showmore3(View view){
+        if (expandable_view3.getVisibility() == View.GONE){
+            imageView3.setImageResource(R.drawable.arrow_up);
+            TransitionManager.beginDelayedTransition(cardView3, new AutoTransition());
+            expandable_view3.setVisibility(View.VISIBLE);
+        }else {
+            imageView3.setImageResource(R.drawable.arrow);
+            TransitionManager.beginDelayedTransition(cardView3, new AutoTransition());
+            expandable_view3.setVisibility(View.GONE);
+        }
     }
 
     //sorting the value
@@ -494,7 +489,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
         //start first page
         PdfDocument document = new PdfDocument();
-        int page_number=2;
+        int page_number=1;
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHighet, page_number).create();
         PdfDocument.Page page = document.startPage(pageInfo);
 

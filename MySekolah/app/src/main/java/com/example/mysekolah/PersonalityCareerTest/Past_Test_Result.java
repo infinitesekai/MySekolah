@@ -393,7 +393,6 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
         canvas.drawBitmap(bitmap, 0, 0 , null);
         document.finishPage(page);
 
-
         //Create a directory for your PDF
 //        File pdfDir = new File(Environment.getExternalStoragePublicDirectory(
 //                Environment.DIRECTORY_DOCUMENTS), "MyApp");

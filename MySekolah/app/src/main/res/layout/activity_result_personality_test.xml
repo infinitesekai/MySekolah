@@ -833,6 +833,7 @@
                         android:id="@+id/result_export_now"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="25dp"
                         android:text="@string/export"
                         android:textColor="@color/white"
                         android:background="@drawable/rounded_btn_black"/>
