@@ -400,7 +400,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
 //            pdfDir.mkdir();
 //        }
         // write the document content
-        String targetPdf = "/sdcard/"+ currentUser.getName()+".pdf";
+        String targetPdf = "/sdcard/"+ currentUser.getName()+"_personality_test.pdf";
 
 //        String targetPdf = "/storage/emulated/0/Download/pdffromScroll.pdf";
         File filePath;
@@ -425,7 +425,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
 
 
     private void openGeneratedPDF(){
-        File file = new File("/sdcard/"+ currentUser.getName() +".pdf");
+        File file = new File("/sdcard/"+ currentUser.getName() +"_personality_test.pdf");
 //        File file = new File("/storage/emulated/0/Download/pdffromScroll.pdf");
 
         if (file.exists())

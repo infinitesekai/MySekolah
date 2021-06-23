@@ -389,7 +389,7 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
 //            pdfDir.mkdir();
 //        }
         // write the document content
-        String targetPdf = "/sdcard/"+ childName+".pdf";
+        String targetPdf = "/sdcard/"+ childName+"_personality_test.pdf";
 
 //        String targetPdf = "/storage/emulated/0/Download/pdffromScroll.pdf";
         File filePath;
@@ -413,7 +413,7 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
 
 
     private void openGeneratedPDF() {
-        File file = new File("/sdcard/"+ childName+".pdf");
+        File file = new File("/sdcard/"+ childName+"_personality_test.pdf");
 //        File file = new File("/storage/emulated/0/Download/pdffromScroll.pdf");
 
         if (file.exists()) {
