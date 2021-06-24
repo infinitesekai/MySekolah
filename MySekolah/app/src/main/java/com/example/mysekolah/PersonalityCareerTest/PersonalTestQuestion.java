@@ -70,7 +70,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
         lastfragment = 0;
 
         tvQuestion = findViewById(R.id.txt_question);
-        tvQuestionCount = findViewById(R.id.txt_numbering);
+        tvQuestionCount = findViewById(R.id.txt_number);
         tvQuestionNoGuide = findViewById(R.id.total_question);
 
         rbGroup = findViewById(R.id.radio_group);
