@@ -76,7 +76,7 @@
                         android:adjustViewBounds="true"
                         android:background="?attr/selectableItemBackground"
                         android:scaleType="fitXY"
-                        android:src="@drawable/kids" />
+                        android:src="@drawable/user_pic" />
 
 
                 </androidx.cardview.widget.CardView>

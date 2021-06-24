@@ -81,12 +81,7 @@ public class ExportExamResult extends AppCompatActivity {
 
         databaseAccess.ExportExamResult(ic,school,year,test);
         gridview.setAdapter(adapter);
-        //databaseAccess.close();
 
-        Log.d("selectedYear", year);
-        Log.d("selectedSchool", school);
-        Log.d("selectedYear", test);
-        Log.d("resultList", String.valueOf(resultList));
 
         //First Check if the external storage is writable
         String state= Environment.getExternalStorageState();
@@ -103,14 +98,6 @@ public class ExportExamResult extends AppCompatActivity {
 
 
         //Then take the screen shot
-       /* Bitmap screen;
-        View v1 = getWindow().getDecorView().getRootView();
-        v1.setDrawingCacheEnabled(true);
-        screen = Bitmap.createBitmap(v1.getDrawingCache());
-        //Canvas canvas= new Canvas(screen);
-        //v1.draw(canvas);
-        v1.setDrawingCacheEnabled(false);*/
-
         Bitmap screen;
         View v1 = getWindow().getDecorView().getRootView();
         v1.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
@@ -141,13 +128,14 @@ public class ExportExamResult extends AppCompatActivity {
         }
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        //Uri uri = Uri.fromFile(new File(pdfDir,  "ExamResult.pdf"));
         Uri uri = FileProvider.getUriForFile(ExportExamResult.this, BuildConfig.APPLICATION_ID+ ".provider", pdfDir);
         intent.setDataAndType(uri, "application/pdf");
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         startActivity(intent);
     }
+
+
     private static void addImage(Document document,byte[] byteArray)
     {
         Image image = null;

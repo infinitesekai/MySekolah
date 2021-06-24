@@ -55,14 +55,11 @@ public class ExamResultTable extends AppCompatActivity {
 
         //GridView
         gridview= findViewById(R.id.result_grid);
+
         //ArrayList
         resultList= new ArrayList<String>();
         adapter= new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,resultList );
 
-        /*String subject, mark, grade;
-        subject="";
-        mark="";
-        grade="";*/
 
         tvyear= findViewById(R.id.tvYear);
         tvname=findViewById(R.id.tvName);
@@ -80,43 +77,17 @@ public class ExamResultTable extends AppCompatActivity {
         tvyear.setText(year);
         tvtest.setText(test);
 
-
-
+        //Open database
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
-        /*Log.d("selectedYear", year);
-        Log.d("selectedSchool", school);
-        Log.d("selectedYear", test);*/
-        /*try {
-            //for holding retrieve data from query and store in the form of rows
-            Cursor c=databaseAccess.DisplayExamResult();
-            //Move the cursor to the first row.
-            if(c.moveToFirst()){
-                do {
-                   subject=c.getString(c.getColumnIndex("SubjectName"));
-                   mark=c.getString(c.getColumnIndex("Mark"));
-                   grade=c.getString(c.getColumnIndex("Grade"));
-                   //add in to array list
-                    resultList.add(subject);
-                    resultList.add(mark);
-                    resultList.add(grade);
-                    gridview.setAdapter(adapter);
-                }while (c.moveToNext());
-            }else
-            {
-                Toast.makeText(getApplicationContext(), "No data found", Toast.LENGTH_LONG).show();
-            }
-        }catch (Exception e)
-        {
-            Toast.makeText(getApplicationContext(), "No data found 2", Toast.LENGTH_LONG).show();
-        }*/
+        //get exam result from database
         databaseAccess.DisplayExamResult(ic,school,year,test);
         gridview.setAdapter(adapter);
         gridview.setExpanded(true);
         gridview.setFocusable(false);
-        //databaseAccess.close();
 
+        //export button
        export.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

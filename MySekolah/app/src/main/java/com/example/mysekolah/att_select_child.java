@@ -35,6 +35,7 @@ public class att_select_child extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_att_select_child);
+
         Intent intent = getIntent();
         String str = intent.getStringExtra("message");
 
@@ -45,18 +46,24 @@ public class att_select_child extends AppCompatActivity {
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
+        //find GridView
         gridView= findViewById(R.id.simpleGridView);
 
         //initiate database access and open database
+        //call database
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
         //array list:get dependency array list
+
+        //get a list of current user's children
         ArrayList<Dependency> dependencyArrayList=databaseAccess.getdependency(currentUser.getICNo());
 
+        //Initialize a custom GridView adapter
         GridViewApdater gridViewApdater= new GridViewApdater(this, dependencyArrayList);
         gridView.setAdapter(gridViewApdater);
 
 
+        //when GridView items are click
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

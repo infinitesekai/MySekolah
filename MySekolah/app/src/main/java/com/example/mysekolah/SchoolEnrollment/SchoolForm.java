@@ -28,6 +28,7 @@ import java.util.List;
 
 public class SchoolForm extends AppCompatActivity{
 
+    //state will pass to the spinner
     private String[] state= {"Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan", "Pahang",
             "Penang", "Perak", "Perlis", "Sabah", "Sarawak", "Selangor", "Terengganu", "Kuala Lumpur",
             "Putarjaya", "Labuan"};

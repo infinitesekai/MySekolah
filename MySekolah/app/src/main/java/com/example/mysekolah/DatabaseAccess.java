@@ -92,10 +92,10 @@ public class DatabaseAccess<instance> {
 
 
     // Get all spinner school list values
-    public List<String> getAllSchoolList(String district, String schoolLevel, String schoolType){
+    public List<String> getAllSchoolList(String district, String schoolLevel){
         List<String> schools= new ArrayList<String>();
 
-        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=? and Type=?", new String[] {district,schoolLevel,schoolType});
+        Cursor cursor= database.rawQuery("SELECT ScName FROM School WHERE District = ? and EduLevel=? ", new String[] {district,schoolLevel});
         if(cursor.moveToFirst()){
             do{
                 schools.add(cursor.getString(0));
@@ -395,10 +395,12 @@ public class DatabaseAccess<instance> {
     }
 
 
-    public boolean insertSchoolApplication(String icChild, String nameChild, String genderChild, String raceChild, String religionChild, String nationalityChild, String addressChild,
-                                           String postcodeChild, String stateChild, String districtChild, String telChild, String icPr, String namePr, String genderPr,
+    public boolean insertSchoolApplication(String icChild, String nameChild, String genderChild, String raceChild, String religionChild,
+                                           String nationalityChild, String addressChild, String postcodeChild, String stateChild,
+                                           String districtChild, String telChild, String icPr, String namePr, String genderPr,
                                            String racePr, String religionPr, String nationalityPr, String addressPr, String postcodePr, String statePr, String districtPr,
-                                           String telPr, String jobPr, String salaryPr, String typeOfSchool, String stateSchool, String districtSchool, String schoolName, String distance, String status) {
+                                           String telPr, String jobPr, String salaryPr, String typeOfSchool, String stateSchool, String districtSchool,
+                                           String schoolName, String distance, String status) {
 
         String insertSql= "INSERT INTO Application \n"+
                           "(icChild, namechild, genderChild, raceChild, religionChild, nationalityChild, addressChild, \n" +
@@ -409,7 +411,8 @@ public class DatabaseAccess<instance> {
                 "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
-            database.execSQL(insertSql, new String [] {icChild,nameChild, genderChild, raceChild, religionChild, nationalityChild, addressChild, postcodeChild, stateChild, districtChild, telChild,icPr,  namePr, genderPr,
+            database.execSQL(insertSql, new String [] {icChild,nameChild, genderChild, raceChild, religionChild, nationalityChild,
+                    addressChild, postcodeChild, stateChild, districtChild, telChild,icPr,  namePr, genderPr,
                     racePr, religionPr, nationalityPr, addressPr, postcodePr, statePr,  districtPr,
                     telPr, jobPr, salaryPr, typeOfSchool, stateSchool, districtSchool, schoolName,  distance, status});
         } catch (RuntimeException e) {
@@ -459,7 +462,7 @@ public class DatabaseAccess<instance> {
 
         StatusInfo info= null;
         Cursor cursor = database.rawQuery("SELECT icChild,nameChild,schoolName FROM Application WHERE nameChild = ? ", new String[] {childname});
-
+        //if(cursor!=null){
         if(cursor.moveToFirst()) {
             info = new  StatusInfo(cursor.getString(0), cursor.getString(1), cursor.getString(2));
         }
@@ -491,7 +494,8 @@ public class DatabaseAccess<instance> {
         String update_answer = "update "+
                 QuestionContract.QuestionsTable.TABLE_NAME +" set "+
                 QuestionContract.QuestionsTable.COLUMN_ANSWER_OPTION +
-                " ='" + answer +"' where ques_ID='" +quesNo+"'";
+                " ='" + answer +
+                "' where "+ QuestionContract.QuestionsTable.COLUMN_QUESTION_ID +"='" +quesNo+"'";
         try {
             database.execSQL(update_answer);
         } catch (RuntimeException e) {
@@ -505,9 +509,11 @@ public class DatabaseAccess<instance> {
         String answer="";
         Cursor cursor=
                 database.rawQuery(
-                        "select "+
+                "select "+
                         QuestionContract.QuestionsTable.COLUMN_ANSWER_OPTION +
-                        " from Question_List where ques_ID=?",
+                        " from " +
+                        QuestionContract.QuestionsTable.TABLE_NAME +
+                        " where "+ QuestionContract.QuestionsTable.COLUMN_QUESTION_ID+"=?",
                         new String[]{quesNo});
         if(cursor.moveToFirst()) {
             answer=new String(cursor.getString(0));

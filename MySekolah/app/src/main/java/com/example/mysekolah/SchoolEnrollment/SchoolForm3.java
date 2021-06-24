@@ -51,6 +51,7 @@ public class SchoolForm3 extends AppCompatActivity implements View.OnClickListen
     String selectedSchoolType="";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,29 +91,30 @@ public class SchoolForm3 extends AppCompatActivity implements View.OnClickListen
         submit= findViewById(R.id.btnSubmit);
         back=findViewById(R.id.btnBack_sc);
         distance=findViewById(R.id.etDistance);
-        schoolTypeInfo=findViewById(R.id.SchoolTypeInfo);
+        //schoolTypeInfo=findViewById(R.id.SchoolTypeInfo);
         distanceInfo=findViewById(R.id.distanceInfo);
         schoolListInfo=findViewById(R.id.SchoolListInfo);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        schoolTypeInfo.setOnClickListener(this);
+       // schoolTypeInfo.setOnClickListener(this);
         distanceInfo.setOnClickListener(this);
         schoolListInfo.setOnClickListener(this);
 
 
 
 
+        //load school type spinner
+       // loadDSchoolTypeSpinnerData(schoolLevel);
 
-        loadDSchoolTypeSpinnerData(schoolLevel);
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
         Spinner state_spin = (Spinner) findViewById(R.id.spinnerStateSchool);
-        //state_spin.setOnItemSelectedListener(this);
 
         //Creating the ArrayAdapter instance having the country list
         ArrayAdapter statePR_aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,stateSchool);
         statePR_aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         //Setting the ArrayAdapter data on the Spinner
         state_spin.setAdapter(statePR_aa);
 
@@ -131,6 +133,8 @@ public class SchoolForm3 extends AppCompatActivity implements View.OnClickListen
             }
 
         });
+
+
 
         // database handler
         DatabaseAccess db= DatabaseAccess.getInstance(this);
@@ -151,8 +155,9 @@ public class SchoolForm3 extends AppCompatActivity implements View.OnClickListen
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     //inset data into database here
-                                   Boolean insert= db.insertSchoolApplication(icChild,nameChild,genderChild,raceChild,religionChild,nationalityChild,addressChild,postcodeChild,stateChild,
-                                            districtChild,telChild,icPr,namePr,genderPr,racePr,religionPr,nationalityPr,addressPr,postcodePr,statePr,districtPr,telPr,jobPr,
+                                   Boolean insert= db.insertSchoolApplication(icChild,nameChild,genderChild,raceChild,religionChild,nationalityChild,
+                                            addressChild,postcodeChild,stateChild,districtChild,telChild,icPr,namePr,genderPr,racePr,
+                                           religionPr,nationalityPr,addressPr,postcodePr,statePr,districtPr,telPr,jobPr,
                                             salaryPr,selectedSchoolType,selectedSchoolState,selectedSchoolDistrict,selectedSchool,distanceForm,"1");
                                    if(insert){
                                         Toast.makeText(SchoolForm3.this, "Application Form submitted successfully", Toast.LENGTH_LONG).show();
@@ -253,7 +258,7 @@ public class SchoolForm3 extends AppCompatActivity implements View.OnClickListen
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int arg2, long arg3) {
                 selectedSchoolDistrict= school_district_spin.getSelectedItem().toString();
-                loadDSchoolSpinnerData(selectedSchoolDistrict, schoolLevel,selectedSchoolType);
+                loadDSchoolSpinnerData(selectedSchoolDistrict, schoolLevel);
             }
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
@@ -267,17 +272,17 @@ public class SchoolForm3 extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    private void loadDSchoolSpinnerData(String selectedSchoolDistrict, String schoolLevel, String selectedSchoolType) {
+    //populate school_list_spinner with data from database
+    private void loadDSchoolSpinnerData(String selectedSchoolDistrict, String schoolLevel) {
 
 
         Spinner school_list_spin = (Spinner) findViewById(R.id.spinnerSchoolList);
-        //district_spin.setOnItemSelectedListener(this);
 
         // database handler
         DatabaseAccess db= DatabaseAccess.getInstance(this);
 
         // Spinner Drop down elements
-        List<String> schools= db.getAllSchoolList(selectedSchoolDistrict, schoolLevel, selectedSchoolType);
+        List<String> schools= db.getAllSchoolList(selectedSchoolDistrict, schoolLevel);
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
@@ -308,11 +313,9 @@ public class SchoolForm3 extends AppCompatActivity implements View.OnClickListen
     }
 
 
-    private void loadDSchoolTypeSpinnerData(String schoolLevel) {
+   /* private void loadDSchoolTypeSpinnerData(String schoolLevel) {
 
-
-        Spinner school_type_spin = (Spinner) findViewById(R.id.spinnerSchoolType);
-        //district_spin.setOnItemSelectedListener(this);
+       // Spinner school_type_spin = (Spinner) findViewById(R.id.spinnerSchoolType);
 
         // database handler
         DatabaseAccess db= DatabaseAccess.getInstance(this);
@@ -331,7 +334,7 @@ public class SchoolForm3 extends AppCompatActivity implements View.OnClickListen
         // attaching data adapter to spinner
         school_type_spin.setAdapter(dataAdapter);
 
-        school_type_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        *//*school_type_spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1,
                                        int arg2, long arg3) {
@@ -341,20 +344,19 @@ public class SchoolForm3 extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
 
-
             }
 
-        });
+        });*//*
 
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.SchoolTypeInfo:
+           /* case R.id.SchoolTypeInfo:
                 Toast.makeText(getApplicationContext(),"Please choose the school type.", Toast.LENGTH_LONG).show();
-                break;
+                break;*/
             case R.id.SchoolListInfo:
                 Toast.makeText(getApplicationContext(),"Please choose from the school list", Toast.LENGTH_LONG).show();
                 break;

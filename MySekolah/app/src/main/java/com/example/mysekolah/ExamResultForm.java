@@ -21,7 +21,6 @@ import java.util.List;
 
 public class ExamResultForm extends AppCompatActivity {
 
-    //String[] school = { "KINDERGARDEN SALAK TINGGI", "SEKOLAH KEBANGSAAN SALAK", "SMK Sri Sepang"};
     String[] year={"2015","2016","2017","2018","2019","2020","2021"};
     String[] test= {"Test 1", "Test 2", "Test 3", "Test 4"};
     TextView name, icView;
@@ -58,16 +57,18 @@ public class ExamResultForm extends AppCompatActivity {
         Spinner test_spin = (Spinner) findViewById(R.id.test_spinner);
 
 
+        //populate spinner with data from database
         loadSchoolSpinnerData(currentUser.getICNo());
 
+        //year spinner
         ArrayAdapter yearaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,year);
         yearaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         year_spin.setAdapter(yearaa);
 
+        //test spinner
         ArrayAdapter testaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,test);
         testaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         test_spin.setAdapter(testaa);
-
 
 
 
