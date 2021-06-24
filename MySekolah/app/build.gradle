@@ -46,7 +46,7 @@ dependencies {
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
     implementation 'com.google.mlkit:barcode-scanning:16.1.2'
 
-
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.18'
     //Code scanner library for Android, based on ZXing (ZebraCrossing)
     implementation 'com.budiyev.android:code-scanner:2.1.0'
 
