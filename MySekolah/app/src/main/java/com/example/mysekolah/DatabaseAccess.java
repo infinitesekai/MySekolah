@@ -277,9 +277,29 @@ public class DatabaseAccess<instance> {
         return qualifications;
     }
 
+    public  AppEnrol_Info DisplayApplication(String name){
+        AppEnrol_Info info= null;
+        Cursor cursor = database.rawQuery("SELECT * " +
+                "FROM Application WHERE nameChild = ?", new String[] {name});
+        if(cursor.moveToFirst()) {
+            info = new AppEnrol_Info(cursor.getString(0),cursor.getString(1), cursor.getString(2)
+                    , cursor.getString(3), cursor.getString(4), cursor.getString(5)
+                    , cursor.getString(6), cursor.getString(7), cursor.getString(8),
+                    cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12)
+                    , cursor.getString(13), cursor.getString(14), cursor.getString(15), cursor.getString(16)
+                    , cursor.getString(17), cursor.getString(18), cursor.getString(19), cursor.getString(20)
+                    , cursor.getString(21), cursor.getString(22), cursor.getString(23), cursor.getString(24)
+                    , cursor.getString(25), cursor.getString(26), cursor.getString(27), cursor.getString(28)
+                    , cursor.getString(29));
+        }
+        cursor.close();
+        return info;
+    }
 
 
-//get list of absent date of child for selected school, year and month
+
+
+    //get list of absent date of child for selected school, year and month
     public List<String> DisplayAbsentDate(String ic,String school, String year, String month){
 
         List<String> AbsentDateList= new ArrayList<String>();
@@ -442,6 +462,7 @@ public class DatabaseAccess<instance> {
 
             }while (cursor.moveToNext());
         }
+        cursor.close();
         return list_item;
     }
 
@@ -468,6 +489,48 @@ public class DatabaseAccess<instance> {
         }
         cursor.close();
         return info;
+    }
+
+//get list of applicant
+    public List<String> getEnrolmentList(){
+
+        List<String> list_item= new ArrayList<String>();
+
+        Cursor cursor= database.rawQuery("SELECT nameChild FROM Application",null);
+
+        if (cursor.moveToFirst()){
+            do{
+                String applicant=cursor.getString(0);
+
+
+                All_Enrolment.list_item.add(applicant);//add the applicant name into the list
+
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        return list_item;
+    }
+
+    //approve application
+    public boolean approve(String applicantname){
+        String update_approve = "update Application set status ='2' where nameChild = '" + applicantname +"'";
+        try {
+            database.execSQL(update_approve);
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
+
+    //reject application
+    public boolean reject(String applicantname){
+        String update_reject = "update Application set status ='3' where nameChild = '" + applicantname +"'";
+        try {
+            database.execSQL(update_reject);
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
     }
 
     public ArrayList<Dependency> getdependency(String parentIC){

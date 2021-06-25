@@ -45,9 +45,9 @@ public class Apply_success extends AppCompatActivity {
 
 
         //reference to view by id
-        icno=findViewById(R.id.icNoPending);
-        name=findViewById(R.id.namePending);
-        school=findViewById(R.id.schoolPending);
+        icno=findViewById(R.id.icNoApproved);
+        name=findViewById(R.id.nameApproved);
+        school=findViewById(R.id.schoolApproved);
 
 
         //initiate database access

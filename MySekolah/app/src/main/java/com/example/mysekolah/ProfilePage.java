@@ -96,7 +96,7 @@ public class ProfilePage extends Fragment {
             getActivity().finish();
         });
         //if the user role is student,hind two components
-        if(currentUser.getRole() == 2){
+        if(currentUser.getRole() != 1){
             editChildBtn.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
 
