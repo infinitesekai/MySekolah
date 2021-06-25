@@ -1,7 +1,6 @@
 package com.example.mysekolah;
 
 public class AppEnrol_Info {
-
     private String ICSt;
     private String nameSt;
     private String genderSt;
@@ -171,10 +170,6 @@ public class AppEnrol_Info {
     public String getstatus() {
         return status;
     }
-
-
-
-
 
 
 
