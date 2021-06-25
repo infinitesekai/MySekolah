@@ -4,87 +4,83 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-//application fail page
-public class Apply_fail extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class All_Enrolment extends AppCompatActivity {
 
     private User currentUser;
     private int lastfragment;
 
-    Dialog dialog;
-    private String childname;
-    TextView icno,name,school;
-    StatusInfo info;//application status information
-
     DatabaseAccess databaseAccess;
+
+    //list view, list item and adapter to display list of application
+    ListView enrol_list;
+    public static ArrayList<String> list_item;
+    ArrayAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_apply_fail);
+        setContentView(R.layout.activity_all_enrolment);
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
-        dialog=new Dialog(this);//initialize new dialog
+        //bottom navigation bar
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        //get selected child name
-        childname=getIntent().getStringExtra("childname");
-
-        //get reference to view by id
-        icno=findViewById(R.id.icNoFailed);
-        name=findViewById(R.id.nameFailed);
-        school=findViewById(R.id.schoolFailed);
 
         //initiate database access
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
-        //call database method to get application status information
-        info=databaseAccess.getStatusInfo(childname);
+        //reference to list view by id
+        enrol_list=findViewById(R.id.enrol_list);
 
-        //display application information
-        icno.setText(info.getICNo());
-        name.setText(info.getName());
-        school.setText(info.getSchool());
+        //array list to store list item
+        list_item=new ArrayList<String>();
 
-        databaseAccess.close();//close database access
 
-        //bottom navigation bar
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
-    }
 
-    //show pop up dialog when click on info image view
-    public void showPopup(View v){
-        TextView close;//close button using text view
+        //call database method to get application list
+        //child added into list_item
+        //list_item is the list of application for children
+        databaseAccess.getEnrolmentList();
 
-        //dialog for pop up fail information
-        dialog.setContentView(R.layout.popup_fail);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        close=(TextView) dialog.findViewById(R.id.close_fail);//close button
+        //array adapter for ListView display-insert item into ListView from list_item
+        adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_item);
 
-        //dismiss the dialog when click on close
-        close.setOnClickListener(new View.OnClickListener() {
+        enrol_list.setAdapter(adapter);//conjoin array adapter with list view
+
+        enrol_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //get selected child name from list according to the position
+                String applicantName=enrol_list.getItemAtPosition(position).toString();
+                Intent i;
+                i= new Intent(All_Enrolment.this, Application_Review.class);
+                i.putExtra("user",currentUser);
+                i.putExtra("applicant", applicantName);
+                startActivity(i);
             }
         });
 
-        dialog.show();//show fail pop up dialog
     }
 
+
     //function for bottom navigation bar
-    //back to Parent Home Page
+    //back to Admin Home Page
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -93,7 +89,7 @@ public class Apply_fail extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new HomePage();
+                    selectedFragment = new Homepage_Admin();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);

@@ -24,8 +24,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySekolah">
-        <activity android:name=".EditChildActivity"/>
-        <activity android:name=".PersonalityCareerTest.Past_Child_Test_Result"></activity>
+        <activity android:name=".Application_Review"></activity>
+        <activity android:name=".All_Enrolment" />
+        <activity android:name=".EditChildActivity" />
+        <activity android:name=".PersonalityCareerTest.Past_Child_Test_Result" />
         <activity android:name=".PersonalityCareerTest.Past_Test_Result" />
         <activity
             android:name=".PersonalityCareerTest.ResultInfo"
@@ -82,7 +84,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <provider
             android:name="androidx.core.content.FileProvider"

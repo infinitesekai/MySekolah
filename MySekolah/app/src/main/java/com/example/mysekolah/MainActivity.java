@@ -32,9 +32,12 @@ public class MainActivity extends AppCompatActivity {
                     bundle.putSerializable("user",currentUser);//pass the value
                     if (currentUser.getRole() == 1) {
                         selectedFragment = new HomePage();
-                    } else {
+                    } else if (currentUser.getRole() == 2){
                         selectedFragment = new HomePage_Student();
                     }
+                    else if (currentUser.getRole() == 0){
+                        selectedFragment = new Homepage_Admin();
+                }
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
