@@ -55,8 +55,8 @@ public class All_Enrolment extends AppCompatActivity {
 
 
         //call database method to get application list
-        //child added into list_item
-        //list_item is the list of application for children
+        //applicant added into list_item
+        //list_item is the list of application for applicant
         databaseAccess.getEnrolmentList();
 
         if(list_item.isEmpty()){
@@ -72,7 +72,7 @@ public class All_Enrolment extends AppCompatActivity {
         enrol_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //get selected child name from list according to the position
+                //get selected applicant name from list according to the position
                 String applicantName=enrol_list.getItemAtPosition(position).toString();
                 Intent i;
                 i= new Intent(All_Enrolment.this, Application_Review.class);
