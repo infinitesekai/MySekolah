@@ -231,9 +231,13 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
 
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    selectedFragment = new HomePage_Student();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
+                    if (currentUser.getRole() == 1) {
+                        selectedFragment = new HomePage();
+                    } else {
+                        selectedFragment = new HomePage_Student();
+                    }
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_home;
                     break;
@@ -247,9 +251,13 @@ public class EditProfile_Activity extends AppCompatActivity implements DatePicke
                     //lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
-                    selectedFragment = new SearchPage_Student();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);//pass the value
+                    if (currentUser.getRole() == 1) {
+                        selectedFragment = new SearchPage();
+                    } else {
+                        selectedFragment = new SearchPage_Student();
+                    }
                     selectedFragment.setArguments(bundle);
                     lastfragment = R.id.nav_search;
             }
