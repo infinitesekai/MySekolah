@@ -3,14 +3,17 @@ package com.example.mysekolah.PersonalityCareerTest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -87,12 +90,22 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
     TextView sug3;
     TextView name;
     TextView testeric;
+    public static final int EXTERNAL_STORAGE_REQ_CODE = 10;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_child_test_result);
 
+        int permission = ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // request permission
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    EXTERNAL_STORAGE_REQ_CODE);
+        }
         childName = getIntent().getStringExtra("childName");
         icChild = getIntent().getStringExtra("icChild");
         currentUser = (User) getIntent().getSerializableExtra("user");
@@ -169,17 +182,14 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
         testInfo3 = dbAccess.getTestInfo(thirdChar);
 
         result1.setText(testInfo1.getAlpName());
-        desc1.setText(testInfo1.getDesc());
         exp1.setText(testInfo1.getExp());
         sug1.setText(testInfo1.getField());
 
         result2.setText(testInfo2.getAlpName());
-        desc2.setText(testInfo2.getDesc());
         exp2.setText(testInfo2.getExp());
         sug2.setText(testInfo2.getField());
 
         result3.setText(testInfo3.getAlpName());
-        desc3.setText(testInfo3.getDesc());
         exp3.setText(testInfo3.getExp());
         sug3.setText(testInfo3.getField());
 
@@ -188,64 +198,83 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
             switch (chars.get(0)) {
                 case "R":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.realistic));
                     break;
                 case "I":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyGreen));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.social));
                     break;
                 case "E":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.darkPurple));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.enterprising));
                     break;
                 case "C":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + getString(R.string.conventional));
                     break;
             }
             switch (chars.get(1)) {
                 case "R":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.realistic));
                     break;
                 case "I":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyGreen));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.social));
                     break;
                 case "E":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.darkPurple));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.enterprising));
                     break;
                 case "C":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + getString(R.string.conventional));
                     break;
             }
             switch (chars.get(2)) {
                 case "R":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.realistic));
                     break;
                 case "I":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyGreen));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.social));
                     break;
                 case "E":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.darkPurple));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.enterprising));
                     break;
                 case "C":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + getString(R.string.conventional));
                     break;
             }
         }
+
         result_quit.setOnClickListener(this);
         result_export_child.setOnClickListener(this);
 
@@ -389,7 +418,7 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
 //            pdfDir.mkdir();
 //        }
         // write the document content
-        String targetPdf = "/sdcard/"+ childName+"_personality_test.pdf";
+        String targetPdf = "/sdcard/" + childName + "_personality_test.pdf";
 
 //        String targetPdf = "/storage/emulated/0/Download/pdffromScroll.pdf";
         File filePath;
@@ -413,7 +442,7 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
 
 
     private void openGeneratedPDF() {
-        File file = new File("/sdcard/"+ childName+"_personality_test.pdf");
+        File file = new File("/sdcard/" + childName + "_personality_test.pdf");
 //        File file = new File("/storage/emulated/0/Download/pdffromScroll.pdf");
 
         if (file.exists()) {

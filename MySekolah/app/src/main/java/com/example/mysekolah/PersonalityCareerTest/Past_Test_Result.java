@@ -17,7 +17,6 @@ import android.os.Bundle;
 
 import com.example.mysekolah.BuildConfig;
 import com.example.mysekolah.DatabaseAccess;
-import com.example.mysekolah.Export_Qualification;
 import com.example.mysekolah.HomePage_Student;
 import com.example.mysekolah.ProfilePage;
 import com.example.mysekolah.R;
@@ -90,21 +89,13 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
     TextView sug3;
     TextView name;
     TextView testeric;
-    public static final int EXTERNAL_STORAGE_REQ_CODE = 10 ;
+    public static final int EXTERNAL_STORAGE_REQ_CODE = 10;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_test_result);
-
-        int permission = ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // request permission
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    EXTERNAL_STORAGE_REQ_CODE);
-        }
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
@@ -180,17 +171,14 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
         testInfo3 = dbAccess.getTestInfo(thirdChar);
 
         result1.setText(testInfo1.getAlpName());
-        desc1.setText(testInfo1.getDesc());
         exp1.setText(testInfo1.getExp());
         sug1.setText(testInfo1.getField());
 
         result2.setText(testInfo2.getAlpName());
-        desc2.setText(testInfo2.getDesc());
         exp2.setText(testInfo2.getExp());
         sug2.setText(testInfo2.getField());
 
         result3.setText(testInfo3.getAlpName());
-        desc3.setText(testInfo3.getDesc());
         exp3.setText(testInfo3.getExp());
         sug3.setText(testInfo3.getField());
 
@@ -199,61 +187,79 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
             switch (chars.get(0)) {
                 case "R":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.realistic));
                     break;
                 case "I":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyGreen));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.social));
                     break;
                 case "E":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.darkPurple));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.enterprising));
                     break;
                 case "C":
                     cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
+                    desc1.setText(getString(R.string.people) + testInfo1.getDesc() + getString(R.string.conventional));
                     break;
             }
             switch (chars.get(1)) {
                 case "R":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.realistic));
                     break;
                 case "I":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyGreen));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.social));
                     break;
                 case "E":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.darkPurple));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.enterprising));
                     break;
                 case "C":
                     cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
+                    desc2.setText(getString(R.string.people) + testInfo2.getDesc() + getString(R.string.conventional));
                     break;
             }
             switch (chars.get(2)) {
                 case "R":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.realistic));
                     break;
                 case "I":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyGreen));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.social));
                     break;
                 case "E":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.darkPurple));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.enterprising));
                     break;
                 case "C":
                     cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
+                    desc3.setText(getString(R.string.people) + testInfo3.getDesc() + getString(R.string.conventional));
                     break;
             }
         }
@@ -350,11 +356,22 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.result_export:
-                Log.d("size"," "+ll_scroll.getWidth() +"  "+ll_scroll.getWidth());
+                //ask permission to access the external storage
+                int permission = ActivityCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+                if (permission != PackageManager.PERMISSION_GRANTED) {
+                    // request permission
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            EXTERNAL_STORAGE_REQ_CODE);
+                }
+
+                Log.d("size", " " + ll_scroll.getWidth() + "  " + ll_scroll.getWidth());
                 bitmap = loadBitmapFromView(ll_scroll, ll_scroll.getWidth(), ll_scroll.getHeight());
                 createPdf();
         }
     }
+
     public static Bitmap loadBitmapFromView(View v, int width, int height) {
         Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
@@ -363,13 +380,13 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
         return b;
     }
 
-    private void createPdf(){
+    private void createPdf() {
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         //  Display display = wm.getDefaultDisplay();
         DisplayMetrics displaymetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        float hight = displaymetrics.heightPixels ;
-        float width = displaymetrics.widthPixels ;
+        float hight = displaymetrics.heightPixels;
+        float width = displaymetrics.widthPixels;
 
         int convertHighet = (int) hight, convertWidth = (int) width;
 
@@ -378,7 +395,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
 
         //start first page
         PdfDocument document = new PdfDocument();
-        int page_number=2;
+        int page_number = 2;
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHighet, page_number).create();
         PdfDocument.Page page = document.startPage(pageInfo);
 
@@ -390,7 +407,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
         bitmap = Bitmap.createScaledBitmap(bitmap, convertWidth, convertHighet, true);
 
         paint.setColor(Color.BLUE);
-        canvas.drawBitmap(bitmap, 0, 0 , null);
+        canvas.drawBitmap(bitmap, 0, 0, null);
         document.finishPage(page);
 
         //Create a directory for your PDF
@@ -400,7 +417,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
 //            pdfDir.mkdir();
 //        }
         // write the document content
-        String targetPdf = "/sdcard/"+ currentUser.getName()+"_personality_test.pdf";
+        String targetPdf = "/sdcard/" + currentUser.getName() + "_personality_test.pdf";
 
 //        String targetPdf = "/storage/emulated/0/Download/pdffromScroll.pdf";
         File filePath;
@@ -423,29 +440,24 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
     }
 
 
-
-    private void openGeneratedPDF(){
-        File file = new File("/sdcard/"+ currentUser.getName() +"_personality_test.pdf");
+    private void openGeneratedPDF() {
+        File file = new File("/sdcard/" + currentUser.getName() + "_personality_test.pdf");
 //        File file = new File("/storage/emulated/0/Download/pdffromScroll.pdf");
 
-        if (file.exists())
-        {
-            Intent intent=new Intent(Intent.ACTION_VIEW);
+        if (file.exists()) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
 //            Uri uri = Uri.fromFile(file);
 //            Context context= Past_Test_Result.this;
 //            Uri uri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", file);
 
-            Uri uri = FileProvider.getUriForFile(Past_Test_Result.this, BuildConfig.APPLICATION_ID + ".provider",file);
+            Uri uri = FileProvider.getUriForFile(Past_Test_Result.this, BuildConfig.APPLICATION_ID + ".provider", file);
 
             intent.setDataAndType(uri, "application/pdf");
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            try
-            {
+            try {
                 startActivity(intent);
-            }
-            catch(ActivityNotFoundException e)
-            {
+            } catch (ActivityNotFoundException e) {
                 Toast.makeText(Past_Test_Result.this, "No Application available to view pdf", Toast.LENGTH_LONG).show();
             }
         }

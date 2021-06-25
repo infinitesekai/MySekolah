@@ -6,9 +6,8 @@ public class TestCharResult {
     private String thirdChar;
 
 
-
-    public TestCharResult(String  firstChar, String secondChar, String thirdChar){
-        this. firstChar=  firstChar;
+    public TestCharResult(String firstChar, String secondChar, String thirdChar) {
+        this.firstChar = firstChar;
         this.secondChar = secondChar;
         this.thirdChar = thirdChar;
 
@@ -25,9 +24,6 @@ public class TestCharResult {
     public String getthirdChar() {
         return thirdChar;
     }
-
-
-
 
 
 }

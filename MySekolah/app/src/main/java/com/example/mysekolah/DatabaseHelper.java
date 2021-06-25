@@ -216,11 +216,11 @@ import android.os.Build;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
-public class DatabaseHelper  extends SQLiteAssetHelper {
+public class DatabaseHelper extends SQLiteAssetHelper {
 
     public static final String DBNAME = "MySekolahDB.db";
 
-    public static final String TABLE_NAME1= "Resident";
+    public static final String TABLE_NAME1 = "Resident";
 
     private static final int DATABASE_VERSION = 1;
 

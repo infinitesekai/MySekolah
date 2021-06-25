@@ -8,12 +8,12 @@ public class TestResultInfo {
     private String field;
 
 
-    public TestResultInfo(String aphabet, String alpname, String desc,String exp,String field){
-        this.aphabet= aphabet;
+    public TestResultInfo(String aphabet, String alpname, String desc, String exp, String field) {
+        this.aphabet = aphabet;
         this.alpname = alpname;
         this.desc = desc;
         this.exp = exp;
-        this.field=field;
+        this.field = field;
     }
 
     public String getAlphabet() {
@@ -35,7 +35,6 @@ public class TestResultInfo {
     public String getField() {
         return field;
     }
-
 
 
 }

@@ -450,9 +450,9 @@
                         <TableLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="70dp"
+                            android:layout_marginStart="40dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginEnd="70dp"
+                            android:layout_marginEnd="40dp"
                             android:stretchColumns="0,1,2">
 
                             <TableRow
@@ -476,8 +476,8 @@
                                     android:id="@+id/highest_result2"
                                     android:layout_width="10dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="25dp"
+                                    android:layout_marginRight="25dp"
                                     android:background="@drawable/cell_field"
                                     android:fontFamily="@font/robotoregular"
                                     android:padding="10dp"
@@ -534,7 +534,7 @@
 
                                     <TextView
                                         android:id="@+id/result_1"
-                                        android:layout_width="240dp"
+                                        android:layout_width="305dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="10dp"
                                         android:layout_marginTop="10dp"
@@ -566,7 +566,7 @@
 
                                         <TextView
                                             android:id="@+id/description"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginEnd="8dp"
@@ -578,7 +578,7 @@
 
                                         <TextView
                                             android:id="@+id/description_1"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginEnd="8dp"
@@ -590,7 +590,7 @@
 
                                         <TextView
                                             android:id="@+id/explanation"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginEnd="8dp"
@@ -602,7 +602,7 @@
 
                                         <TextView
                                             android:id="@+id/suggestedField"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginTop="10dp"
@@ -611,7 +611,7 @@
                                             android:background="@drawable/cell_field"
                                             android:fontFamily="@font/robotoregular"
                                             android:gravity="start"
-                                            android:padding="10dp"
+                                            android:padding="20dp"
                                             android:text="technology"
                                             android:textColor="@color/white"
                                             android:textSize="16sp" />
@@ -635,7 +635,7 @@
 
                                     <TextView
                                         android:id="@+id/result_2"
-                                        android:layout_width="240dp"
+                                        android:layout_width="305dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="10dp"
                                         android:layout_marginTop="10dp"
@@ -667,7 +667,7 @@
 
                                         <TextView
                                             android:id="@+id/description2"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginEnd="8dp"
@@ -679,7 +679,7 @@
 
                                         <TextView
                                             android:id="@+id/description_1_2"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginEnd="8dp"
@@ -691,7 +691,7 @@
 
                                         <TextView
                                             android:id="@+id/explanation2"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginEnd="8dp"
@@ -703,7 +703,7 @@
 
                                         <TextView
                                             android:id="@+id/suggestedField2"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginTop="10dp"
@@ -712,7 +712,7 @@
                                             android:background="@drawable/cell_field"
                                             android:fontFamily="@font/robotoregular"
                                             android:gravity="start"
-                                            android:padding="10dp"
+                                            android:padding="20dp"
                                             android:text="technology"
                                             android:textColor="@color/white"
                                             android:textSize="16sp" />
@@ -736,7 +736,7 @@
 
                                     <TextView
                                         android:id="@+id/result_3"
-                                        android:layout_width="240dp"
+                                        android:layout_width="305dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="10dp"
                                         android:layout_marginTop="10dp"
@@ -768,7 +768,7 @@
 
                                         <TextView
                                             android:id="@+id/description3"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginEnd="8dp"
@@ -780,7 +780,7 @@
 
                                         <TextView
                                             android:id="@+id/description_1_3"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginEnd="8dp"
@@ -792,7 +792,7 @@
 
                                         <TextView
                                             android:id="@+id/explanation3"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginEnd="8dp"
@@ -804,7 +804,7 @@
 
                                         <TextView
                                             android:id="@+id/suggestedField3"
-                                            android:layout_width="240dp"
+                                            android:layout_width="300dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginStart="13dp"
                                             android:layout_marginTop="10dp"
@@ -813,7 +813,7 @@
                                             android:background="@drawable/cell_field"
                                             android:fontFamily="@font/robotoregular"
                                             android:gravity="start"
-                                            android:padding="10dp"
+                                            android:padding="20dp"
                                             android:text="technology"
                                             android:textColor="@color/white"
                                             android:textSize="16sp" />
@@ -833,7 +833,7 @@
                         android:id="@+id/result_export_now"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
+                        android:layout_marginRight="50dp"
                         android:text="@string/export"
                         android:textColor="@color/white"
                         android:background="@drawable/rounded_btn_black"/>

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -36,22 +37,22 @@ public class PersonalTestQuestion extends AppCompatActivity {
     private int questionCountTotal;
     private Question currentQuestion;
     DatabaseAccess dbAccess;
-    String current_answer="";
-    String previousAns="";
+    String current_answer = "";
+//    String previousAns = "";
     Boolean chosenAns;
-    Boolean added=false;
-
+    Boolean added = false;
+    private static final String TAG = PersonalTestQuestion.class.getSimpleName();
 
     //check if the question is answered or not
     private boolean answered = true;
 
     //counter use to track the result
-    int R_counter=0;
-    int I_counter=0;
-    int A_counter=0;
-    int S_counter=0;
-    int E_counter=0;
-    int C_counter=0;
+    int R_counter = 0;
+    int I_counter = 0;
+    int A_counter = 0;
+    int S_counter = 0;
+    int E_counter = 0;
+    int C_counter = 0;
 
     //track the user
     private User currentUser;
@@ -63,8 +64,6 @@ public class PersonalTestQuestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_test_question);
-
-
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
@@ -100,50 +99,41 @@ public class PersonalTestQuestion extends AppCompatActivity {
         showNextQuestion();
 
 
-        rb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                current_answer = "1";
-                Toast.makeText(PersonalTestQuestion.this, "Selected Agree", Toast.LENGTH_SHORT).show();
+//        rb1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                current_answer = "1";
+//                Log.d(TAG, "Selected Agree"); //text show in console to double check
 //                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-                            if (chosenAns) {
-                                Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
-
-                            } else {
-                                Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
-                            }
-                if(!added) {
-                    addCounter(questionCounter);
-                    added=true;
-                }
-
-            }
-        });
-
-        rb2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                current_answer = "2";
-                Toast.makeText(PersonalTestQuestion.this, "Selected Disagree", Toast.LENGTH_SHORT).show();
-               chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+//                if (!added) {
+//                    addCounter(questionCounter);
+//                    added = true;
+//                }
+//                if (chosenAns) {
+//                    Log.d(TAG, "Updated"); //text show in console to double check
+//                } else {
+//                    Log.d(TAG, "Update failed"); //text show in console to double check
+//                }
+//            }
+//        });
+//
+//        rb2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                current_answer = "2";
+//                Log.d(TAG, "Selected Disagree"); //text show in console to double check
 //                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-                if (chosenAns) {
-                    Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
-                }
-
-                if(added) {
-                    minusCounter(questionCounter);
-                    added=false;
-                }
-
-            }
-        });
+//                if (added) {
+//                    minusCounter(questionCounter);
+//                    added = false;
+//                }
+//                if (chosenAns) {
+//                    Log.d(TAG, "Updated"); //text show in console to double check
+//                } else {
+//                    Log.d(TAG, "Update failed"); //text show in console to double check
+//                }
+//            }
+//        });
 
         //when clicking the button next
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -151,8 +141,9 @@ public class PersonalTestQuestion extends AppCompatActivity {
             public void onClick(View v) {
                 if (!answered) {
                     if (rb1.isChecked() || rb2.isChecked()) {
+
                         checkAnswer();
-                                                rbGroup.clearCheck();
+                        rbGroup.clearCheck();
                         questionCounter++;
                         showNextQuestion();
 
@@ -165,8 +156,6 @@ public class PersonalTestQuestion extends AppCompatActivity {
                     }
                 }
             }
-
-
         });
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
@@ -176,11 +165,12 @@ public class PersonalTestQuestion extends AppCompatActivity {
             public void onClick(View v) {
                 if (questionCounter > 0) {
                     // decrease the current question counter to back to the previous question
+                    rbGroup.clearCheck();
+                    checkAnswer();
                     questionCounter--;
-                    previousAns=dbAccess.getAnswer(String.valueOf(questionCounter));
-                    if(previousAns.equals("1"))
-                            minusCounter(questionCounter);
-
+//                    previousAns = dbAccess.getAnswer(String.valueOf(questionCounter));
+//                    if (currentQuestion.getAnswer().equals("1") && rb2.isChecked())
+//                        minusCounter(questionCounter);
                     showNextQuestion();
                 } else {
                     // you're at the first question => no previous one
@@ -192,17 +182,15 @@ public class PersonalTestQuestion extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     @SuppressLint({"SetTextI18n"})
     private void showNextQuestion() {
-        if ((questionCounter-1)>=0){
+        if ((questionCounter - 1) >= 0) {
             buttonBack.setBackgroundResource(R.drawable.rounded_btn_black);
             buttonBack.setTextColor(Color.WHITE);
-            added=false;
-        }
-        else{
+            added = false;
+        } else {
             buttonBack.setBackgroundResource(R.drawable.rounded_btn_grey);
             buttonBack.setTextColor(Color.BLACK);
         }
@@ -213,29 +201,56 @@ public class PersonalTestQuestion extends AppCompatActivity {
             tvQuestion.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
-            tvQuestionCount.setText("Question " + (questionCounter+1));
-            tvQuestionNoGuide.setText((questionCounter+1) + " / " + questionCountTotal);
+            tvQuestionCount.setText("Question " + (questionCounter + 1));
+            tvQuestionNoGuide.setText((questionCounter + 1) + " / " + questionCountTotal);
             answered = false;
-        }
-        else {
+        } else {
             submitQuiz();
         }
     }
 
     //make sure the user choose an option
     private void checkAnswer() {
+        if ((currentQuestion.getAnswer().equals("0") && rb1.isChecked()) || (currentQuestion.getAnswer().equals("2") && rb1.isChecked()) ) {
+            current_answer = "1";
+            Log.d(TAG, "Selected Agree"); //text show in console to double check
+            chosenAns = dbAccess.updateAnswer(current_answer, currentQuestion.getQuestionID());
+            if (!added) {
+                addCounter(questionCounter);
+                added = true;
+            }
+            if (chosenAns) {
+                Log.d(TAG, "Updated"); //text show in console to double check
+            } else {
+                Log.d(TAG, "Update failed"); //text show in console to double check
+            }
+        }
+        if ((currentQuestion.getAnswer().equals("1") && rb2.isChecked()) ) {
+            current_answer = "2";
+            Log.d(TAG, "Selected Disagree"); //text show in console to double check
+            chosenAns = dbAccess.updateAnswer(current_answer, currentQuestion.getQuestionID());
+            if (added) {
+                minusCounter(questionCounter);
+                added = false;
+            }
+            if (chosenAns) {
+                Log.d(TAG, "Updated"); //text show in console to double check
+            } else {
+                Log.d(TAG, "Update failed"); //text show in console to double check
+            }
+        }
         answered = true;
     }
 
     private void submitQuiz() {
         Intent i = new Intent(PersonalTestQuestion.this, Submission.class);
-        i.putExtra("R_counter",R_counter);
-        i.putExtra("I_counter",I_counter);
-        i.putExtra("A_counter",A_counter);
-        i.putExtra("S_counter",S_counter);
-        i.putExtra("E_counter",E_counter);
-        i.putExtra("C_counter",C_counter);
-        i.putExtra("user",currentUser);
+        i.putExtra("R_counter", R_counter);
+        i.putExtra("I_counter", I_counter);
+        i.putExtra("A_counter", A_counter);
+        i.putExtra("S_counter", S_counter);
+        i.putExtra("E_counter", E_counter);
+        i.putExtra("C_counter", C_counter);
+        i.putExtra("user", currentUser);
         i.putExtra("ICNo", currentUser.getICNo());
         startActivity(i);
     }
@@ -243,37 +258,38 @@ public class PersonalTestQuestion extends AppCompatActivity {
     private void addCounter(int questionCounter) {
 
         //get the category from the database set
-        String category=dbAccess.getCategory(String.valueOf(questionCounter));
+//        String category = dbAccess.getCategory(String.valueOf(questionCounter));
 
-        switch(category){
-            case("R"):
+        switch (currentQuestion.getCategory()) {
+            case ("R"):
                 R_counter++;
-                System.out.println(category);
-                System.out.println(R_counter);
+                Log.d(TAG, currentQuestion.getCategory() + ": " + R_counter); //text show in console to double check
+//                System.out.println(category);
+//                System.out.println(R_counter);
                 break;
-            case("I"):
+            case ("I"):
                 I_counter++;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(I_counter);
                 break;
-            case("A"):
+            case ("A"):
                 A_counter++;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(A_counter);
                 break;
-            case("S"):
+            case ("S"):
                 S_counter++;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(S_counter);
                 break;
-            case("E"):
+            case ("E"):
                 E_counter++;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(E_counter);
                 break;
-            case("C"):
+            case ("C"):
                 C_counter++;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(C_counter);
                 break;
 
@@ -282,37 +298,37 @@ public class PersonalTestQuestion extends AppCompatActivity {
 
     private void minusCounter(int questionCounter) {
 
-        String category=dbAccess.getCategory(String.valueOf(questionCounter));
+//        String category = dbAccess.getCategory(String.valueOf(questionCounter));
 
-        switch(category){
-            case("R"):
+        switch (currentQuestion.getCategory()) {
+            case ("R"):
                 R_counter--;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(R_counter);
                 break;
-            case("I"):
+            case ("I"):
                 I_counter--;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(I_counter);
                 break;
-            case("A"):
+            case ("A"):
                 A_counter--;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(A_counter);
                 break;
-            case("S"):
+            case ("S"):
                 S_counter--;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(S_counter);
                 break;
-            case("E"):
+            case ("E"):
                 E_counter--;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(E_counter);
                 break;
-            case("C"):
+            case ("C"):
                 C_counter--;
-                System.out.println(category);
+                System.out.println(currentQuestion.getCategory());
                 System.out.println(C_counter);
                 break;
 

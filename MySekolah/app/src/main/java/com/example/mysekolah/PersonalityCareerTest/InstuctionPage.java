@@ -20,6 +20,7 @@ public class InstuctionPage extends Activity {
 
     private User currentUser;
     private int lastfragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,7 @@ public class InstuctionPage extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width*.8), (int) (height*.75));
+        getWindow().setLayout((int) (width * .8), (int) (height * .75));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
@@ -51,9 +52,9 @@ public class InstuctionPage extends Activity {
         getWindow().setAttributes(params);
     }
 
-    private void start_test(){
+    private void start_test() {
         Intent intent = new Intent(InstuctionPage.this, PersonalTestQuestion.class);
-        intent.putExtra("user",currentUser);
+        intent.putExtra("user", currentUser);
         intent.putExtra("ICNo", currentUser.getICNo());
         startActivity(intent);
     }

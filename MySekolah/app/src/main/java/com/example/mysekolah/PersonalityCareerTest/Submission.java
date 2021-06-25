@@ -17,7 +17,7 @@ import com.example.mysekolah.User;
 
 import java.util.List;
 
-public class Submission extends Activity implements View.OnClickListener{
+public class Submission extends Activity implements View.OnClickListener {
 
     Button btn_cancel, btn_submit;
     int R_counter;
@@ -29,17 +29,18 @@ public class Submission extends Activity implements View.OnClickListener{
 
     private User currentUser;
     private int lastfragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
 
-        R_counter=getIntent().getExtras().getInt("R_counter");
-        I_counter=getIntent().getExtras().getInt("I_counter");
-        A_counter=getIntent().getExtras().getInt("A_counter");
-        S_counter=getIntent().getExtras().getInt("S_counter");
-        E_counter=getIntent().getExtras().getInt("E_counter");
-        C_counter=getIntent().getExtras().getInt("C_counter");
+        R_counter = getIntent().getExtras().getInt("R_counter");
+        I_counter = getIntent().getExtras().getInt("I_counter");
+        A_counter = getIntent().getExtras().getInt("A_counter");
+        S_counter = getIntent().getExtras().getInt("S_counter");
+        E_counter = getIntent().getExtras().getInt("E_counter");
+        C_counter = getIntent().getExtras().getInt("C_counter");
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
@@ -56,7 +57,7 @@ public class Submission extends Activity implements View.OnClickListener{
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width*.8), (int) (height*.4));
+        getWindow().setLayout((int) (width * .8), (int) (height * .4));
 
         WindowManager.LayoutParams params = getWindow().getAttributes();
         params.gravity = Gravity.CENTER;
@@ -71,7 +72,7 @@ public class Submission extends Activity implements View.OnClickListener{
         final LoadingDialog loadingDialog = new LoadingDialog(Submission.this);
         int loading_time = 3000;
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_cancel:
                 finish();
                 break;
@@ -85,13 +86,13 @@ public class Submission extends Activity implements View.OnClickListener{
                     @Override
                     public void run() {
                         loadingDialog.dismissDialog();
-                        intent.putExtra("R_counter",R_counter);
-                        intent.putExtra("I_counter",I_counter);
-                        intent.putExtra("A_counter",A_counter);
-                        intent.putExtra("S_counter",S_counter);
-                        intent.putExtra("E_counter",E_counter);
-                        intent.putExtra("C_counter",C_counter);
-                        intent.putExtra("user",currentUser);
+                        intent.putExtra("R_counter", R_counter);
+                        intent.putExtra("I_counter", I_counter);
+                        intent.putExtra("A_counter", A_counter);
+                        intent.putExtra("S_counter", S_counter);
+                        intent.putExtra("E_counter", E_counter);
+                        intent.putExtra("C_counter", C_counter);
+                        intent.putExtra("user", currentUser);
                         intent.putExtra("ICNo", currentUser.getICNo());
                         startActivity(intent);
                     }
