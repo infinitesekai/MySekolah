@@ -62,6 +62,11 @@ public class Apply_List extends AppCompatActivity {
         //list_item is the list of application for children
         databaseAccess.getApplicationList(icParent);
 
+        if(list_item.isEmpty()){
+            Toast.makeText(Apply_List.this, "No Application", Toast.LENGTH_SHORT).show();
+
+        }
+
         //array adapter for ListView display-insert item into ListView from list_item
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_item);
 

@@ -198,7 +198,7 @@ public class Application_Review extends AppCompatActivity {
                     lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
-                    selectedFragment = new SearchPage();
+                    selectedFragment = new SearchPage_Admin();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);

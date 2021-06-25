@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -58,6 +59,11 @@ public class All_Enrolment extends AppCompatActivity {
         //list_item is the list of application for children
         databaseAccess.getEnrolmentList();
 
+        if(list_item.isEmpty()){
+            Toast.makeText(All_Enrolment.this, "No Application", Toast.LENGTH_SHORT).show();
+
+        }
+
         //array adapter for ListView display-insert item into ListView from list_item
         adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_item);
 
@@ -104,7 +110,7 @@ public class All_Enrolment extends AppCompatActivity {
                     lastfragment = R.id.nav_profile;
                     break;
                 case R.id.nav_search:
-                    selectedFragment = new SearchPage();
+                    selectedFragment = new SearchPage_Admin();
                     bundle = new Bundle();
                     bundle.putSerializable("user",currentUser);
                     selectedFragment.setArguments(bundle);
