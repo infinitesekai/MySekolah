@@ -35,16 +35,11 @@ public class AppEnrol_Info {
     private String distance;
     private String status;
 
-
-
-
-    private String school;
-
     //constructor
     public AppEnrol_Info(String ICSt, String nameSt, String genderSt,
-                         String raceSt,String religionSt,String natioinalitySt,String addSt,String pcSt,String stateSt,String districtSt,String telSt,
+                         String raceSt,String religionSt,String nationalitySt,String addSt,String pcSt,String stateSt,String districtSt,String telSt,
                          String ICPr, String namePr, String genderPr,
-                         String racePr,String religionPr,String natioinalityPr,String addPr,String pcPr,String statePr,String districtPr,String telPr,
+                         String racePr,String religionPr,String nationalityPr,String addPr,String pcPr,String statePr,String districtPr,String telPr,
                          String job,String salary,String type,String stateSc,String districtSc,String nameSc,String distance,String status){
         this.ICSt = ICSt;
         this.nameSt = nameSt;
@@ -121,11 +116,9 @@ public class AppEnrol_Info {
     public String getPrICNo() {
         return ICPr;
     }
-
     public String getPrName() {
         return namePr;
     }
-
     public String getgenderPr() {
         return genderPr;
     }
@@ -153,11 +146,9 @@ public class AppEnrol_Info {
     public String gettelPr() {
         return telPr;
     }
-
     public String getjob() {
         return job;
     }
-
     public String getsalary() {
         return salary;
     }
@@ -165,23 +156,18 @@ public class AppEnrol_Info {
     public String gettype() {
         return type;
     }
-
     public String getstateSc() {
         return stateSc;
     }
-
     public String getDistrictSc() {
         return districtSc;
     }
-
     public String getnameSc() {
         return nameSc;
     }
-
     public String getdistance() {
         return distance;
     }
-
     public String getstatus() {
         return status;
     }

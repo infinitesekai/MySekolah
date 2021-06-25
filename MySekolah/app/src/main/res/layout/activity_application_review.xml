@@ -222,7 +222,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="Natioinality:"
+                        android:text="Nationality:"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 
@@ -565,7 +565,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="7dp"
                         android:fontFamily="@font/robotobold"
-                        android:text="Natioinality:"
+                        android:text="Nationality:"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
 

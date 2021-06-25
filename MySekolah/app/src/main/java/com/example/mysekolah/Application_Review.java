@@ -50,7 +50,7 @@ public class Application_Review extends AppCompatActivity {
         databaseAccess= DatabaseAccess.getInstance(this);
         databaseAccess.open();
 
-
+        //reference to view by id
         approve=findViewById(R.id.btn_approve);
         reject=findViewById(R.id.btn_reject);
 
@@ -86,9 +86,11 @@ public class Application_Review extends AppCompatActivity {
         distance=findViewById(R.id.distancesc);
         status=findViewById(R.id.statussc);
 
-
+        //get application information
         AppEnrol_Info application_record=databaseAccess.DisplayApplication(applicantname);
 
+
+        //display the information
         icSt.setText(application_record.getStICNo());
         nameSt.setText(application_record.getStName());
         genderSt.setText(application_record.getgenderSt());
@@ -120,6 +122,7 @@ public class Application_Review extends AppCompatActivity {
         nameSc.setText(application_record.getnameSc());
         distance.setText(application_record.getdistance());
 
+        //switch status display
         switch (application_record.getstatus()){
             case "1":
                 status.setText("Pending");
@@ -133,6 +136,8 @@ public class Application_Review extends AppCompatActivity {
         }
 
 
+
+        //approve application
         approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +157,7 @@ public class Application_Review extends AppCompatActivity {
             }
         });
 
-
+        //reject application
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

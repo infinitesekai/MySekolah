@@ -491,7 +491,7 @@ public class DatabaseAccess<instance> {
         return info;
     }
 
-
+//get list of applicant
     public List<String> getEnrolmentList(){
 
         List<String> list_item= new ArrayList<String>();
@@ -503,7 +503,7 @@ public class DatabaseAccess<instance> {
                 String applicant=cursor.getString(0);
 
 
-                All_Enrolment.list_item.add(applicant);//add the child name into the list in Apply_List.java
+                All_Enrolment.list_item.add(applicant);//add the applicant name into the list
 
             }while (cursor.moveToNext());
         }
@@ -511,6 +511,7 @@ public class DatabaseAccess<instance> {
         return list_item;
     }
 
+    //approve application
     public boolean approve(String applicantname){
         String update_approve = "update Application set status ='2' where nameChild = '" + applicantname +"'";
         try {
@@ -521,6 +522,7 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
+    //reject application
     public boolean reject(String applicantname){
         String update_reject = "update Application set status ='3' where nameChild = '" + applicantname +"'";
         try {
