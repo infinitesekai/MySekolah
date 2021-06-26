@@ -223,29 +223,11 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
     public static final String TABLE_NAME1 = "Resident";
 
-    //    private static final int DATABASE_VERSION = 1;
-    private static final int DATABASE_VERSION = 2;
+        private static final int DATABASE_VERSION = 1;
 
     public DatabaseHelper(Context context) {
         super(context, DBNAME, null, DATABASE_VERSION);
 
     }
-
-    String answer;
-    String quesNo;
-    public String update_answer =
-            "update " +
-                    TestContract.QuestionsTable.TABLE_NAME + " set " +
-                    TestContract.QuestionsTable.COLUMN_ANSWER_OPTION +
-                    " ='" + answer +
-                    "' where " + TestContract.QuestionsTable.COLUMN_QUESTION_ID + "='" + quesNo + "'";
-
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 2) {
-            db.execSQL(update_answer);
-        }
-
-    }
+    
 }

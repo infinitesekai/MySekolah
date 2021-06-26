@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -44,7 +45,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     String previousAns = "";
     Boolean chosenAns;
     Boolean added = false;
-
+    private static final String TAG = PersonalTestQuestion.class.getSimpleName();
 
     //check if the question is answered or not
     private boolean answered = true;
@@ -56,7 +57,6 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     int S_counter = 0;
     int E_counter = 0;
     int C_counter = 0;
-
 
     //track the user
     private User currentUser;
@@ -105,7 +105,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         questionCountTotal = questionList.size();
 
         //random the questions in the question collection
-//        Collections.shuffle(questionList);
+        Collections.shuffle(questionList);
 
         rbGroup.clearCheck();
 
@@ -168,43 +168,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
                     ).show();
                 }
                 break;
-//            case R.id.radioBtn_agree:
-//                current_answer = "1";
-//                Toast.makeText(PersonalTestQuestion.this, "Selected Agree", Toast.LENGTH_SHORT).show();
-////                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-////                dbHelper.onUpgrade(db, 1,2);
-////                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                if (chosenAns) {
-//                    Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
-//
-//                } else {
-//                    Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
-//                }
-//                if(added) {
-//                    addCounter(currentQuestion.getQuestionID());
-//                    added=!added;
-//                }
-//                break;
-//            case R.id.radioBtn_disagree:
-//                current_answer = "2";
-//                Toast.makeText(PersonalTestQuestion.this, "Selected Disagree", Toast.LENGTH_SHORT).show();
-//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-////                dbHelper.onUpgrade(db, 1, 2);
-////                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-////                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                if (chosenAns) {
-//                    Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
-//
-//                } else {
-//                    Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
-//                }
-//
-//                if(!added) {
-//                    minusCounter(currentQuestion.getQuestionID());
-//                    added=!added;
-//                }
-//                break;
+
         }
     }
 
@@ -237,16 +201,19 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         answered = true;
         if (rb1.isChecked()) {
             current_answer = "1";
-            Toast.makeText(PersonalTestQuestion.this, "Selected Agree", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Selected Agree"); //text show in console to double check
+//            Toast.makeText(PersonalTestQuestion.this, "Selected Agree", Toast.LENGTH_SHORT).show();
 //                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
             chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
 //                dbHelper.onUpgrade(db, 1,2);
 //                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
             if (chosenAns) {
-                Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Updated"); //text show in console to double check
+//                Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
 
             } else {
-                Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Update failed"); //text show in console to double check
+//                Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
             }
 //            if(added) {
 //                addCounter(currentQuestion.getQuestionID());
@@ -258,16 +225,19 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
             }
         } else if (rb2.isChecked()) {
             current_answer = "2";
-            Toast.makeText(PersonalTestQuestion.this, "Selected Disagree", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Selected Disagree"); //text show in console to double check
+//            Toast.makeText(PersonalTestQuestion.this, "Selected Disagree", Toast.LENGTH_SHORT).show();
             chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
 //                dbHelper.onUpgrade(db, 1, 2);
 //                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
 //                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
             if (chosenAns) {
-                Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Updated"); //text show in console to double check
+//                Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
 
             } else {
-                Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Update failed"); //text show in console to double check
+//                Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
             }
 
 //            if(!added) {
@@ -276,7 +246,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
 //            }
             int queCategory;
             queCategory = getCounterValue(currentQuestion.getQuestionID()).get(currentQuestion.getCategory());
-            System.out.println("thissssss: " + queCategory);
+            Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
             if (queCategory > 0) {
                 minusCounter(currentQuestion.getQuestionID());
             }
