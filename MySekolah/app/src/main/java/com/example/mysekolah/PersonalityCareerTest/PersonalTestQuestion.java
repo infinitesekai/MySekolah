@@ -19,6 +19,8 @@ import com.example.mysekolah.R;
 import com.example.mysekolah.User;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -215,6 +217,9 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
                 Log.d(TAG, "Update failed"); //text show in console to double check
             }
 
+            dbAccess.open();
+            Log.d(TAG, "current question ans: " + currentQuestion.getAnswer()); //text show in console to double check
+
             previousAns=dbAccess.getpreAnswer(currentQuestion.getQuestionID());
 //            if(previousAns.equals("1"))
 //                minusCounter(questionCounter);
@@ -254,7 +259,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         Character.put("S", S_counter);
         Character.put("E", E_counter);
         Character.put("C", C_counter);
-        System.out.println(Character);
+        Log.d(TAG, "previous value stored: " + Character); //text show in console to double check
         return Character;
     }
 
@@ -303,7 +308,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
 
 //        String category=dbAccess.getCategory(String.valueOf(questionCounter));
         String category = currentQuestion.getCategory();
-        System.out.println("minussssss" + questionCounter);
+        Log.d(TAG, "questionCounter ID passed: " + questionCounter); //text show in console to double check
         switch (category) {
             case ("R"):
                 R_counter--;

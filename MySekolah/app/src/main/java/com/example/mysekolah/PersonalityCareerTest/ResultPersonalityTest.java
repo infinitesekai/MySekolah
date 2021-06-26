@@ -50,13 +50,17 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ResultPersonalityTest extends AppCompatActivity implements View.OnClickListener {
@@ -115,6 +119,10 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
             greyGreen = "#2E8266",
             greyPurple = "#4F4461",
             darkPurple = "#525CDD";
+
+    Date c = Calendar.getInstance().getTime();
+    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+    String formattedDate = df.format(c);
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -517,6 +525,8 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
     }
 
     private void createPdf() {
+
+
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 //          Display display = wm.getDefaultDisplay();
         DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -554,7 +564,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 //            pdfDir.mkdir();
 //        }
         // write the document content
-        String targetPdf = "/sdcard/" + currentUser.getName() + "_personality_test.pdf";
+        String targetPdf = "/sdcard/" + currentUser.getName() + "_" + formattedDate + ".pdf";
 
 //        String targetPdf = "/storage/emulated/0/Download/pdffromScroll.pdf";
         File filePath;
@@ -577,7 +587,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
     }
 
     private void openGeneratedPDF() {
-        File file = new File("/sdcard/" + currentUser.getName() + "_personality_test.pdf");
+        File file = new File("/sdcard/" + currentUser.getName() + "_" + formattedDate + ".pdf");
 //        File file = new File("/storage/emulated/0/Download/pdffromScroll.pdf");
 
         if (file.exists()) {

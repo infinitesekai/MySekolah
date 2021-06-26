@@ -50,8 +50,12 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Past_Test_Result extends AppCompatActivity implements View.OnClickListener {
 
@@ -90,6 +94,10 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
     TextView name;
     TextView testeric;
     public static final int EXTERNAL_STORAGE_REQ_CODE = 10;
+
+    Date c = Calendar.getInstance().getTime();
+    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+    String formattedDate = df.format(c);
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -390,9 +398,6 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
 
         int convertHighet = (int) hight, convertWidth = (int) width;
 
-//        Resources mResources = getResources();
-//        Bitmap bitmap = BitmapFactory.decodeResource(mResources, R.drawable.screenshot);
-
         //start first page
         PdfDocument document = new PdfDocument();
         int page_number = 2;
@@ -410,14 +415,8 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
         canvas.drawBitmap(bitmap, 0, 0, null);
         document.finishPage(page);
 
-        //Create a directory for your PDF
-//        File pdfDir = new File(Environment.getExternalStoragePublicDirectory(
-//                Environment.DIRECTORY_DOCUMENTS), "MyApp");
-//        if (!pdfDir.exists()){
-//            pdfDir.mkdir();
-//        }
         // write the document content
-        String targetPdf = "/sdcard/" + currentUser.getName() + "_personality_test.pdf";
+        String targetPdf = "/sdcard/" + currentUser.getName() + "_past_personality_test.pdf";
 
 //        String targetPdf = "/storage/emulated/0/Download/pdffromScroll.pdf";
         File filePath;
@@ -441,7 +440,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
 
 
     private void openGeneratedPDF() {
-        File file = new File("/sdcard/" + currentUser.getName() + "_personality_test.pdf");
+        File file = new File("/sdcard/" + currentUser.getName() + "_past_personality_test.pdf");
 //        File file = new File("/storage/emulated/0/Download/pdffromScroll.pdf");
 
         if (file.exists()) {
