@@ -561,24 +561,22 @@ public class DatabaseAccess<instance> {
 
     //get selected answer for particular question
     //QuestionContract store all the table information of question list.
-//    public String getAnswer(String quesNo) {
-//        String answer = "";
-//        Cursor cursor =
-//                database.rawQuery(
-//                        "SELECT " +
-//                                TestContract.QuestionsTable.COLUMN_ANSWER_OPTION +
-//                                " FROM " +
-//                                TestContract.QuestionsTable.TABLE_NAME +
-//                                " WHERE " + TestContract.QuestionsTable.COLUMN_QUESTION_ID + "=?",
-//                        new String[]{quesNo});
-//        if (cursor.moveToFirst()) {
-//            //move the cursor to select the next row of answer
-//            answer = cursor.getString(0);
-//
-//        }
-//        cursor.close();
-//        return answer;
-//    }
+    public String getpreAnswer(String quesNo) {
+        String answer = "";
+        Cursor cursor =
+                database.rawQuery(
+                        "SELECT " +
+                                TestContract.QuestionsTable.COLUMN_ANSWER_OPTION +
+                                " FROM " +
+                                TestContract.QuestionsTable.TABLE_NAME +
+                                " WHERE " + TestContract.QuestionsTable.COLUMN_QUESTION_ID + "=?",
+                        new String[]{quesNo});
+        if (cursor.moveToFirst()) {
+            answer = cursor.getString(0);
+        }
+        cursor.close();
+        return answer;
+    }
 
     //store the personality test question into list
     public List<Question> getAllQuestions() {
@@ -692,7 +690,7 @@ public class DatabaseAccess<instance> {
         return resultInfo;
     }
 
-    //get lilst of children
+    //get list of children
     public ArrayList<User> getPChilds(String ic) {
         ArrayList<User> childs = new ArrayList<>();
         String querySql = "Select ChildICNo, ChildName from Dependency where ParentICNo = '" + ic + "'";

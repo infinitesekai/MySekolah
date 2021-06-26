@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -17,15 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mysekolah.DatabaseAccess;
+import com.example.mysekolah.DatabaseHelper;
 import com.example.mysekolah.EditProfile_Activity;
 import com.example.mysekolah.MainActivity;
 import com.example.mysekolah.R;
 import com.example.mysekolah.User;
 
+import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
-public class PersonalTestQuestion extends AppCompatActivity {
+public class PersonalTestQuestion extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvQuestion, tvQuestionCount, tvQuestionNoGuide;
     private RadioGroup rbGroup;
@@ -38,10 +41,10 @@ public class PersonalTestQuestion extends AppCompatActivity {
     private Question currentQuestion;
     DatabaseAccess dbAccess;
     String current_answer = "";
-//    String previousAns = "";
+    String previousAns = "";
     Boolean chosenAns;
     Boolean added = false;
-    private static final String TAG = PersonalTestQuestion.class.getSimpleName();
+
 
     //check if the question is answered or not
     private boolean answered = true;
@@ -54,6 +57,7 @@ public class PersonalTestQuestion extends AppCompatActivity {
     int E_counter = 0;
     int C_counter = 0;
 
+
     //track the user
     private User currentUser;
     private int lastfragment;
@@ -64,6 +68,16 @@ public class PersonalTestQuestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_test_question);
+
+        int pid = android.os.Process.myPid();
+        String whiteList = "logcat -P '" + pid + "'";
+        try {
+            Runtime.getRuntime().exec(whiteList).waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
@@ -91,57 +105,31 @@ public class PersonalTestQuestion extends AppCompatActivity {
         questionCountTotal = questionList.size();
 
         //random the questions in the question collection
-        Collections.shuffle(questionList);
+//        Collections.shuffle(questionList);
 
         rbGroup.clearCheck();
 
         //show the first question
         showNextQuestion();
 
+        rb1.setOnClickListener(this::onClick);
 
-//        rb1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                current_answer = "1";
-//                Log.d(TAG, "Selected Agree"); //text show in console to double check
-//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                if (!added) {
-//                    addCounter(questionCounter);
-//                    added = true;
-//                }
-//                if (chosenAns) {
-//                    Log.d(TAG, "Updated"); //text show in console to double check
-//                } else {
-//                    Log.d(TAG, "Update failed"); //text show in console to double check
-//                }
-//            }
-//        });
-//
-//        rb2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                current_answer = "2";
-//                Log.d(TAG, "Selected Disagree"); //text show in console to double check
-//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                if (added) {
-//                    minusCounter(questionCounter);
-//                    added = false;
-//                }
-//                if (chosenAns) {
-//                    Log.d(TAG, "Updated"); //text show in console to double check
-//                } else {
-//                    Log.d(TAG, "Update failed"); //text show in console to double check
-//                }
-//            }
-//        });
+        rb2.setOnClickListener(this::onClick);
 
-        //when clicking the button next
-        buttonNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //when clicking the button next, to next question
+        buttonNext.setOnClickListener(this::onClick);
+
+        //when clicking the button back, to previous question
+        buttonBack.setOnClickListener(this::onClick);
+
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_next:
+                added = false;
                 if (!answered) {
                     if (rb1.isChecked() || rb2.isChecked()) {
-
                         checkAnswer();
                         rbGroup.clearCheck();
                         questionCounter++;
@@ -155,22 +143,21 @@ public class PersonalTestQuestion extends AppCompatActivity {
                         ).show();
                     }
                 }
-            }
-        });
+                break;
+            case R.id.btn_back_qn:
+                answered = true;
 
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-
-            @SuppressLint({"SetTextI18n"})
-            @Override
-            public void onClick(View v) {
                 if (questionCounter > 0) {
-                    // decrease the current question counter to back to the previous question
+                    //clear the radio button group
                     rbGroup.clearCheck();
-                    checkAnswer();
+                    // decrease the current question counter to back to the previous question
                     questionCounter--;
-//                    previousAns = dbAccess.getAnswer(String.valueOf(questionCounter));
-//                    if (currentQuestion.getAnswer().equals("1") && rb2.isChecked())
-//                        minusCounter(questionCounter);
+//                    previousAns=dbAccess.getpreAnswer(String.valueOf(currentQuestion.getQuestionID()));
+//                    previousAns=dbAccess.getpreAnswer(String.valueOf(questionCounter));
+//                    previousAns=currentQuestion.getAnswer();
+//                    if(previousAns.equals("1"))
+//                        minusCounter(currentQuestion.getQuestionID());
+
                     showNextQuestion();
                 } else {
                     // you're at the first question => no previous one
@@ -180,8 +167,45 @@ public class PersonalTestQuestion extends AppCompatActivity {
                             Toast.LENGTH_SHORT
                     ).show();
                 }
-            }
-        });
+                break;
+//            case R.id.radioBtn_agree:
+//                current_answer = "1";
+//                Toast.makeText(PersonalTestQuestion.this, "Selected Agree", Toast.LENGTH_SHORT).show();
+////                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+////                dbHelper.onUpgrade(db, 1,2);
+////                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+//                if (chosenAns) {
+//                    Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
+//
+//                } else {
+//                    Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
+//                }
+//                if(added) {
+//                    addCounter(currentQuestion.getQuestionID());
+//                    added=!added;
+//                }
+//                break;
+//            case R.id.radioBtn_disagree:
+//                current_answer = "2";
+//                Toast.makeText(PersonalTestQuestion.this, "Selected Disagree", Toast.LENGTH_SHORT).show();
+//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+////                dbHelper.onUpgrade(db, 1, 2);
+////                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+////                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+//                if (chosenAns) {
+//                    Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
+//
+//                } else {
+//                    Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                if(!added) {
+//                    minusCounter(currentQuestion.getQuestionID());
+//                    added=!added;
+//                }
+//                break;
+        }
     }
 
     @SuppressLint({"SetTextI18n"})
@@ -189,7 +213,6 @@ public class PersonalTestQuestion extends AppCompatActivity {
         if ((questionCounter - 1) >= 0) {
             buttonBack.setBackgroundResource(R.drawable.rounded_btn_black);
             buttonBack.setTextColor(Color.WHITE);
-            added = false;
         } else {
             buttonBack.setBackgroundResource(R.drawable.rounded_btn_grey);
             buttonBack.setTextColor(Color.BLACK);
@@ -211,35 +234,55 @@ public class PersonalTestQuestion extends AppCompatActivity {
 
     //make sure the user choose an option
     private void checkAnswer() {
-        if ((currentQuestion.getAnswer().equals("0") && rb1.isChecked()) || (currentQuestion.getAnswer().equals("2") && rb1.isChecked()) ) {
-            current_answer = "1";
-            Log.d(TAG, "Selected Agree"); //text show in console to double check
-            chosenAns = dbAccess.updateAnswer(current_answer, currentQuestion.getQuestionID());
-            if (!added) {
-                addCounter(questionCounter);
-                added = true;
-            }
-            if (chosenAns) {
-                Log.d(TAG, "Updated"); //text show in console to double check
-            } else {
-                Log.d(TAG, "Update failed"); //text show in console to double check
-            }
-        }
-        if ((currentQuestion.getAnswer().equals("1") && rb2.isChecked()) ) {
-            current_answer = "2";
-            Log.d(TAG, "Selected Disagree"); //text show in console to double check
-            chosenAns = dbAccess.updateAnswer(current_answer, currentQuestion.getQuestionID());
-            if (added) {
-                minusCounter(questionCounter);
-                added = false;
-            }
-            if (chosenAns) {
-                Log.d(TAG, "Updated"); //text show in console to double check
-            } else {
-                Log.d(TAG, "Update failed"); //text show in console to double check
-            }
-        }
         answered = true;
+        if (rb1.isChecked()) {
+            current_answer = "1";
+            Toast.makeText(PersonalTestQuestion.this, "Selected Agree", Toast.LENGTH_SHORT).show();
+//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+            chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+//                dbHelper.onUpgrade(db, 1,2);
+//                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+            if (chosenAns) {
+                Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
+            }
+//            if(added) {
+//                addCounter(currentQuestion.getQuestionID());
+//                added=!added;
+//            }
+            ;
+            if (!added) {
+                addCounter(currentQuestion.getQuestionID());
+            }
+        } else if (rb2.isChecked()) {
+            current_answer = "2";
+            Toast.makeText(PersonalTestQuestion.this, "Selected Disagree", Toast.LENGTH_SHORT).show();
+            chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+//                dbHelper.onUpgrade(db, 1, 2);
+//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+//                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+            if (chosenAns) {
+                Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
+            }
+
+//            if(!added) {
+//                minusCounter(currentQuestion.getQuestionID());
+//                added=!added;
+//            }
+            int queCategory;
+            queCategory = getCounterValue(currentQuestion.getQuestionID()).get(currentQuestion.getCategory());
+            System.out.println("thissssss: " + queCategory);
+            if (queCategory > 0) {
+                minusCounter(currentQuestion.getQuestionID());
+            }
+        }
+
+
     }
 
     private void submitQuiz() {
@@ -255,84 +298,99 @@ public class PersonalTestQuestion extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void addCounter(int questionCounter) {
+    private HashMap<String, Integer> getCounterValue(String sensorName) {
+        HashMap<String, Integer> Character = new HashMap<String, Integer>();
 
+        Character.put("R", R_counter);
+        Character.put("I", I_counter);
+        Character.put("A", A_counter);
+        Character.put("S", S_counter);
+        Character.put("E", E_counter);
+        Character.put("C", C_counter);
+        System.out.println(Character);
+        return Character;
+    }
+
+    private void addCounter(String questionCounter) {
         //get the category from the database set
-//        String category = dbAccess.getCategory(String.valueOf(questionCounter));
+//        String category=dbAccess.getCategory(String.valueOf(questionCounter));
+        String category = currentQuestion.getCategory();
 
-        switch (currentQuestion.getCategory()) {
+        switch (category) {
             case ("R"):
                 R_counter++;
-                Log.d(TAG, currentQuestion.getCategory() + ": " + R_counter); //text show in console to double check
-//                System.out.println(category);
-//                System.out.println(R_counter);
+                System.out.println(category);
+                System.out.println(R_counter);
                 break;
             case ("I"):
                 I_counter++;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(category);
                 System.out.println(I_counter);
                 break;
             case ("A"):
                 A_counter++;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(category);
                 System.out.println(A_counter);
                 break;
             case ("S"):
                 S_counter++;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(category);
                 System.out.println(S_counter);
                 break;
             case ("E"):
                 E_counter++;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(category);
                 System.out.println(E_counter);
                 break;
             case ("C"):
                 C_counter++;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(category);
                 System.out.println(C_counter);
                 break;
-
         }
+        getCounterValue(questionCounter);
+        added = true;
     }
 
-    private void minusCounter(int questionCounter) {
+    private void minusCounter(String questionCounter) {
 
-//        String category = dbAccess.getCategory(String.valueOf(questionCounter));
-
-        switch (currentQuestion.getCategory()) {
+//        String category=dbAccess.getCategory(String.valueOf(questionCounter));
+        String category = currentQuestion.getCategory();
+        System.out.println("minussssss" + questionCounter);
+        switch (category) {
             case ("R"):
                 R_counter--;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(questionCounter);
                 System.out.println(R_counter);
                 break;
             case ("I"):
                 I_counter--;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(questionCounter);
                 System.out.println(I_counter);
                 break;
             case ("A"):
                 A_counter--;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(questionCounter);
                 System.out.println(A_counter);
                 break;
             case ("S"):
                 S_counter--;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(questionCounter);
                 System.out.println(S_counter);
                 break;
             case ("E"):
                 E_counter--;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(questionCounter);
                 System.out.println(E_counter);
                 break;
             case ("C"):
                 C_counter--;
-                System.out.println(currentQuestion.getCategory());
+                System.out.println(questionCounter);
                 System.out.println(C_counter);
                 break;
-
         }
+        getCounterValue(questionCounter);
+        added = false;
     }
 
 }
