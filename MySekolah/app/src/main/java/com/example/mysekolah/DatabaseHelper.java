@@ -229,5 +229,5 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         super(context, DBNAME, null, DATABASE_VERSION);
 
     }
-    
+
 }

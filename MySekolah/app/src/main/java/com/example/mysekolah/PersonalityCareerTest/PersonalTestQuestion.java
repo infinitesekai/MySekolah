@@ -1,26 +1,20 @@
 package com.example.mysekolah.PersonalityCareerTest;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mysekolah.DatabaseAccess;
-import com.example.mysekolah.DatabaseHelper;
-import com.example.mysekolah.EditProfile_Activity;
-import com.example.mysekolah.MainActivity;
 import com.example.mysekolah.R;
 import com.example.mysekolah.User;
 
@@ -42,7 +36,6 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     private Question currentQuestion;
     DatabaseAccess dbAccess;
     String current_answer = "";
-    String previousAns = "";
     Boolean chosenAns;
     Boolean added = false;
     private static final String TAG = PersonalTestQuestion.class.getSimpleName();
@@ -69,6 +62,9 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_test_question);
 
+        //prevent missing the logs
+        // Logcat is a command-line tool that dumps a log of system messages,
+        // including stack traces
         int pid = android.os.Process.myPid();
         String whiteList = "logcat -P '" + pid + "'";
         try {
@@ -79,6 +75,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
             e.printStackTrace();
         }
 
+        //get the current user
         currentUser = (User) getIntent().getSerializableExtra("user");
         lastfragment = 0;
 
@@ -89,14 +86,10 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         rbGroup = findViewById(R.id.radio_group);
         rb1 = findViewById(R.id.radioBtn_agree);
         rb2 = findViewById(R.id.radioBtn_disagree);
-//        rb1.setChecked(Update("option1"));
-//        rb2.setChecked(Update("option2"));
 
         buttonNext = findViewById(R.id.btn_next);
         buttonBack = findViewById(R.id.btn_back_qn);
 
-        // database handler
-//        dbAccess = new DatabaseAccess(this);
         dbAccess = DatabaseAccess.getInstance(this);
         dbAccess.open();
         questionList = dbAccess.getAllQuestions();
@@ -107,14 +100,11 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         //random the questions in the question collection
         Collections.shuffle(questionList);
 
+        //keep the radio button group no option selected
         rbGroup.clearCheck();
 
         //show the first question
         showNextQuestion();
-
-        rb1.setOnClickListener(this::onClick);
-
-        rb2.setOnClickListener(this::onClick);
 
         //when clicking the button next, to next question
         buttonNext.setOnClickListener(this::onClick);
@@ -124,6 +114,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_next:
@@ -147,20 +138,16 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
             case R.id.btn_back_qn:
                 answered = true;
 
+                //if the question is not the first question
                 if (questionCounter > 0) {
                     //clear the radio button group
                     rbGroup.clearCheck();
                     // decrease the current question counter to back to the previous question
                     questionCounter--;
-//                    previousAns=dbAccess.getpreAnswer(String.valueOf(currentQuestion.getQuestionID()));
-//                    previousAns=dbAccess.getpreAnswer(String.valueOf(questionCounter));
-//                    previousAns=currentQuestion.getAnswer();
-//                    if(previousAns.equals("1"))
-//                        minusCounter(currentQuestion.getQuestionID());
 
                     showNextQuestion();
                 } else {
-                    // you're at the first question => no previous one
+                    // at the first question => no previous one
                     Toast.makeText(
                             PersonalTestQuestion.this,
                             "You are on the first question already.",
@@ -168,12 +155,14 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
                     ).show();
                 }
                 break;
-
         }
     }
 
     @SuppressLint({"SetTextI18n"})
     private void showNextQuestion() {
+        //make the button to previous question to turn grey color
+        //      if there is no more previous question
+        //      otherwise turn into black color
         if ((questionCounter - 1) >= 0) {
             buttonBack.setBackgroundResource(R.drawable.rounded_btn_black);
             buttonBack.setTextColor(Color.WHITE);
@@ -199,59 +188,41 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     //make sure the user choose an option
     private void checkAnswer() {
         answered = true;
+
+        //in the case of radio button of "agree" is chosen
         if (rb1.isChecked()) {
             current_answer = "1";
             Log.d(TAG, "Selected Agree"); //text show in console to double check
-//            Toast.makeText(PersonalTestQuestion.this, "Selected Agree", Toast.LENGTH_SHORT).show();
-//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
             chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                dbHelper.onUpgrade(db, 1,2);
-//                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
             if (chosenAns) {
                 Log.d(TAG, "Updated"); //text show in console to double check
-//                Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
 
             } else {
                 Log.d(TAG, "Update failed"); //text show in console to double check
-//                Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
             }
-//            if(added) {
-//                addCounter(currentQuestion.getQuestionID());
-//                added=!added;
-//            }
-            ;
             if (!added) {
                 addCounter(currentQuestion.getQuestionID());
             }
         } else if (rb2.isChecked()) {
             current_answer = "2";
             Log.d(TAG, "Selected Disagree"); //text show in console to double check
-//            Toast.makeText(PersonalTestQuestion.this, "Selected Disagree", Toast.LENGTH_SHORT).show();
             chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                dbHelper.onUpgrade(db, 1, 2);
-//                chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
-//                             dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
             if (chosenAns) {
                 Log.d(TAG, "Updated"); //text show in console to double check
-//                Toast.makeText(PersonalTestQuestion.this, "Updated", Toast.LENGTH_SHORT).show();
 
             } else {
                 Log.d(TAG, "Update failed"); //text show in console to double check
-//                Toast.makeText(PersonalTestQuestion.this, "Update failed", Toast.LENGTH_SHORT).show();
             }
 
-//            if(!added) {
-//                minusCounter(currentQuestion.getQuestionID());
-//                added=!added;
-//            }
+            //if the counter of the related alphabet's counter is greater than 0
+            //      to prevent -ve counter which affect the final result
             int queCategory;
             queCategory = getCounterValue(currentQuestion.getQuestionID()).get(currentQuestion.getCategory());
             Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
-            if (queCategory > 0) {
+            if (queCategory > 0 && added) {
                 minusCounter(currentQuestion.getQuestionID());
             }
         }
-
 
     }
 
