@@ -36,6 +36,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     private Question currentQuestion;
     DatabaseAccess dbAccess;
     String current_answer = "";
+    String previousAns="";
     Boolean chosenAns;
     Boolean added = false;
     private static final String TAG = PersonalTestQuestion.class.getSimpleName();
@@ -98,7 +99,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         questionCountTotal = questionList.size();
 
         //random the questions in the question collection
-        Collections.shuffle(questionList);
+//        Collections.shuffle(questionList);
 
         //keep the radio button group no option selected
         rbGroup.clearCheck();
@@ -214,13 +215,18 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
                 Log.d(TAG, "Update failed"); //text show in console to double check
             }
 
+            previousAns=dbAccess.getpreAnswer(currentQuestion.getQuestionID());
+//            if(previousAns.equals("1"))
+//                minusCounter(questionCounter);
+
             //if the counter of the related alphabet's counter is greater than 0
             //      to prevent -ve counter which affect the final result
             int queCategory;
             queCategory = getCounterValue(currentQuestion.getQuestionID()).get(currentQuestion.getCategory());
-            Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
-            if (queCategory > 0 && added) {
+//            Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
+            if (queCategory > 0 && previousAns.equals("1")) {
                 minusCounter(currentQuestion.getQuestionID());
+                Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
             }
         }
 
