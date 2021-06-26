@@ -120,6 +120,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
             greyPurple = "#4F4461",
             darkPurple = "#525CDD";
 
+    //get current date that user take the test
     Date c = Calendar.getInstance().getTime();
     SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
     String formattedDate = df.format(c);
