@@ -23,7 +23,9 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MySekolah">
+        android:theme="@style/Theme.MySekolah"
+        android:largeHeap="true"
+        android:hardwareAccelerated="false">
         <activity android:name=".Application_Review"></activity>
         <activity android:name=".All_Enrolment" />
         <activity android:name=".EditChildActivity" />

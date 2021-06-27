@@ -65,8 +65,7 @@
                         android:layout_gravity="center"
                         android:background="?attr/selectableItemBackground"
                         android:contentDescription="latest announcement"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/upsr" />
+                        android:scaleType="fitXY"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/volume"
