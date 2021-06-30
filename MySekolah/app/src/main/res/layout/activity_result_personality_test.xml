@@ -9,6 +9,7 @@
     tools:context=".PersonalityCareerTest.ResultPersonalityTest">
 
     <ScrollView
+        android:id="@+id/ll_scroll_now"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <RelativeLayout
@@ -33,7 +34,6 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/ll_scroll_now"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/result_title"
@@ -850,17 +850,14 @@
         </FrameLayout>
     </RelativeLayout>
 
-
-
-
 </ScrollView>
 
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation" >
-    </FrameLayout>
+        android:layout_above="@id/bottom_navigation"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

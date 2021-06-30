@@ -31,7 +31,7 @@ public class PersonalityTestHome extends AppCompatActivity implements View.OnCli
     private User currentUser;
     //initialize database access
     DatabaseAccess dbAccess;
-
+    //request permission
     public static final int EXTERNAL_STORAGE_REQ_CODE = 10;
 
     @Override
@@ -48,6 +48,7 @@ public class PersonalityTestHome extends AppCompatActivity implements View.OnCli
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     EXTERNAL_STORAGE_REQ_CODE);
         }
+
         //initiate database access
         dbAccess = DatabaseAccess.getInstance(this);
         dbAccess.open();
@@ -107,7 +108,7 @@ public class PersonalityTestHome extends AppCompatActivity implements View.OnCli
 
         switch (v.getId()) {
             case R.id.takeTestCard:
-                intent = new Intent(this, InstuctionPage.class);
+                intent = new Intent(this, InstructionPage.class);
                 intent.putExtra("user", currentUser);
                 intent.putExtra("ICNo", currentUser.getICNo());
                 startActivity(intent);

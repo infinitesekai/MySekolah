@@ -37,6 +37,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     private int questionCountTotal;
     private Question currentQuestion;
     DatabaseAccess dbAccess;
+
     String current_answer = "";
     String previousAns="";
     Boolean chosenAns;
@@ -72,9 +73,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         String whiteList = "logcat -P '" + pid + "'";
         try {
             Runtime.getRuntime().exec(whiteList).waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }
 
@@ -93,15 +92,18 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         buttonNext = findViewById(R.id.btn_next);
         buttonBack = findViewById(R.id.btn_back_qn);
 
+        //initiate database access and open database
         dbAccess = DatabaseAccess.getInstance(this);
         dbAccess.open();
+
+        //get all the questions in the database, into a list
         questionList = dbAccess.getAllQuestions();
 
         //get the total number of the question that we have
         questionCountTotal = questionList.size();
 
         //random the questions in the question collection
-//        Collections.shuffle(questionList);
+        Collections.shuffle(questionList);
 
         //keep the radio button group no option selected
         rbGroup.clearCheck();
@@ -110,10 +112,10 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         showNextQuestion();
 
         //when clicking the button next, to next question
-        buttonNext.setOnClickListener(this::onClick);
+        buttonNext.setOnClickListener(this);
 
         //when clicking the button back, to previous question
-        buttonBack.setOnClickListener(this::onClick);
+        buttonBack.setOnClickListener(this);
 
     }
 
@@ -218,17 +220,17 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
             }
 
             dbAccess.open();
-            Log.d(TAG, "current question ans: " + currentQuestion.getAnswer()); //text show in console to double check
+            //text show in console to double check
+            Log.d(TAG, "current question ans: " + currentQuestion.getAnswer());
 
-            previousAns=dbAccess.getpreAnswer(currentQuestion.getQuestionID());
 //            if(previousAns.equals("1"))
 //                minusCounter(questionCounter);
 
             //if the counter of the related alphabet's counter is greater than 0
             //      to prevent -ve counter which affect the final result
+            previousAns=dbAccess.getpreAnswer(currentQuestion.getQuestionID());
             int queCategory;
             queCategory = getCounterValue(currentQuestion.getQuestionID()).get(currentQuestion.getCategory());
-//            Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
             if (queCategory > 0 && previousAns.equals("1")) {
                 minusCounter(currentQuestion.getQuestionID());
                 Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
@@ -267,37 +269,30 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         //get the category from the database set
 //        String category=dbAccess.getCategory(String.valueOf(questionCounter));
         String category = currentQuestion.getCategory();
-
         switch (category) {
             case ("R"):
                 R_counter++;
-                System.out.println(category);
-                System.out.println(R_counter);
+                Log.d(TAG, category +" : " + R_counter); //text show in console to double check
                 break;
             case ("I"):
                 I_counter++;
-                System.out.println(category);
-                System.out.println(I_counter);
+                Log.d(TAG, category +" : " + I_counter); //text show in console to double check
                 break;
             case ("A"):
                 A_counter++;
-                System.out.println(category);
-                System.out.println(A_counter);
+                Log.d(TAG, category +" : " + A_counter); //text show in console to double check
                 break;
             case ("S"):
                 S_counter++;
-                System.out.println(category);
-                System.out.println(S_counter);
+                Log.d(TAG, category +" : " + S_counter); //text show in console to double check
                 break;
             case ("E"):
                 E_counter++;
-                System.out.println(category);
-                System.out.println(E_counter);
+                Log.d(TAG, category +" : " + E_counter); //text show in console to double check
                 break;
             case ("C"):
                 C_counter++;
-                System.out.println(category);
-                System.out.println(C_counter);
+                Log.d(TAG, category +" : " + C_counter); //text show in console to double check
                 break;
         }
         getCounterValue(questionCounter);
@@ -312,33 +307,27 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         switch (category) {
             case ("R"):
                 R_counter--;
-                System.out.println(questionCounter);
-                System.out.println(R_counter);
+                Log.d(TAG, category +" : " + R_counter); //text show in console to double check
                 break;
             case ("I"):
                 I_counter--;
-                System.out.println(questionCounter);
-                System.out.println(I_counter);
+                Log.d(TAG, category +" : " + I_counter); //text show in console to double check
                 break;
             case ("A"):
                 A_counter--;
-                System.out.println(questionCounter);
-                System.out.println(A_counter);
+                Log.d(TAG, category +" : " + A_counter); //text show in console to double check
                 break;
             case ("S"):
                 S_counter--;
-                System.out.println(questionCounter);
-                System.out.println(S_counter);
+                Log.d(TAG, category +" : " + S_counter); //text show in console to double check
                 break;
             case ("E"):
                 E_counter--;
-                System.out.println(questionCounter);
-                System.out.println(E_counter);
+                Log.d(TAG, category +" : " + E_counter); //text show in console to double check
                 break;
             case ("C"):
                 C_counter--;
-                System.out.println(questionCounter);
-                System.out.println(C_counter);
+                Log.d(TAG, category +" : " + C_counter); //text show in console to double check
                 break;
         }
         getCounterValue(questionCounter);

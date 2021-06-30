@@ -5,14 +5,12 @@ public class Question {
     private String question;
     private String option1;
     private String option2;
-    private String category;
+    private final String category;
     private String answer;
 //    private int answerChoice;
 
-    public Question() {
-    }
-
-    public Question(String questionID, String question, String option1, String option2, String category, String answer) {
+    public Question(String questionID, String question, String option1,
+                    String option2, String category, String answer) {
         this.questionID = questionID;
         this.question = question;
         this.option1 = option1;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_round_corner"
     android:orientation="vertical"
-    tools:context=".PersonalityCareerTest.InstuctionPage">
+    tools:context=".PersonalityCareerTest.InstructionPage">
 
     <TextView
         android:layout_width="wrap_content"

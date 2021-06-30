@@ -535,7 +535,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         float hight = displaymetrics.heightPixels;
         float width = displaymetrics.widthPixels;
 
-        int convertHighet = (int) hight, convertWidth = (int) width;
+        int convertHight = (int) hight, convertWidth = (int) width;
 
 //        Resources mResources = getResources();
 //        Bitmap bitmap = BitmapFactory.decodeResource(mResources, R.drawable.screenshot);
@@ -543,7 +543,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         //start first page
         PdfDocument document = new PdfDocument();
         int page_number = 1;
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHighet, page_number).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHight, page_number).create();
         PdfDocument.Page page = document.startPage(pageInfo);
 
         Canvas canvas = page.getCanvas();
@@ -551,7 +551,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         Paint paint = new Paint();
         canvas.drawPaint(paint);
 
-        bitmap = Bitmap.createScaledBitmap(bitmap, convertWidth, convertHighet, true);
+        bitmap = Bitmap.createScaledBitmap(bitmap, convertWidth, convertHight, true);
 
         paint.setColor(Color.BLUE);
         canvas.drawBitmap(bitmap, 0, 0, null);

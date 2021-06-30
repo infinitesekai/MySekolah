@@ -221,9 +221,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
     public static final String DBNAME = "MySekolahDB.db";
 
-    public static final String TABLE_NAME1 = "Resident";
-
-        private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 1;
 
     public DatabaseHelper(Context context) {
         super(context, DBNAME, null, DATABASE_VERSION);

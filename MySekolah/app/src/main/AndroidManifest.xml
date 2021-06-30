@@ -66,7 +66,7 @@
             android:theme="@style/Theme.MySekolah.NoActionBar" />
         <activity android:name=".PersonalityCareerTest.PersonalTestQuestion" />
         <activity
-            android:name=".PersonalityCareerTest.InstuctionPage"
+            android:name=".PersonalityCareerTest.InstructionPage"
             android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
         <activity android:name=".PersonalityCareerTest.PersonalityTestHome" />
         <activity android:name=".Attendance_Table" />

@@ -560,7 +560,7 @@ public class DatabaseAccess<instance> {
     }
 
     //get selected answer for particular question
-    //QuestionContract store all the table information of question list.
+    //TestContract store all the information of table used in personality and career test.
     public String getpreAnswer(String quesNo) {
         String answer = "";
         Cursor cursor =
@@ -599,24 +599,6 @@ public class DatabaseAccess<instance> {
         c.close();
         return questionList;
     }
-
-
-//    //get category
-//    public String getCategory(String quesNo) {
-//        Question question_category = null;
-//        Cursor cursor = database.rawQuery(
-//                "SELECT category FROM " +
-//                        TestContract.QuestionsTable.TABLE_NAME +
-//                        " where " +
-//                        TestContract.QuestionsTable.COLUMN_QUESTION_ID +
-//                        "=?", new String[]{quesNo}
-//        );
-//        if (cursor.moveToFirst()) {
-//            question_category = new Question(cursor.getString(cursor.getColumnIndex(TestContract.QuestionsTable.COLUMN_ANSWER_CATEGORY)));
-//        }
-//        cursor.close();
-//        return question_category;
-//    }
 
     //store personality result(three characters)-insert into database
     public boolean insertPersonalityResult(String ic, String first, String second, String third) {

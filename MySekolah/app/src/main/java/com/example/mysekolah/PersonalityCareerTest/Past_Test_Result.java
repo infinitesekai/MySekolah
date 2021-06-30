@@ -67,7 +67,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
     TextView H2;
     TextView H3;
 
-    FrameLayout ll_scroll;
+    ScrollView ll_scroll;
     private Bitmap bitmap;
     Button result_export;
 
@@ -99,7 +99,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
     SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
     String formattedDate = df.format(c);
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -377,6 +377,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
                 Log.d("size", " " + ll_scroll.getWidth() + "  " + ll_scroll.getWidth());
                 bitmap = loadBitmapFromView(ll_scroll, ll_scroll.getWidth(), ll_scroll.getHeight());
                 createPdf();
+                break;
         }
     }
 
@@ -396,12 +397,13 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
         float hight = displaymetrics.heightPixels;
         float width = displaymetrics.widthPixels;
 
-        int convertHighet = (int) hight, convertWidth = (int) width;
+        int convertHight = (int) hight, convertWidth = (int) width;
 
         //start first page
         PdfDocument document = new PdfDocument();
-        int page_number = 2;
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHighet, page_number).create();
+
+        int page_number = 1;
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHight, page_number).create();
         PdfDocument.Page page = document.startPage(pageInfo);
 
         Canvas canvas = page.getCanvas();
@@ -409,11 +411,15 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
         Paint paint = new Paint();
         canvas.drawPaint(paint);
 
-        bitmap = Bitmap.createScaledBitmap(bitmap, convertWidth, convertHighet, true);
+
+        bitmap = Bitmap.createScaledBitmap(bitmap, convertWidth, convertHight, true);
 
         paint.setColor(Color.BLUE);
         canvas.drawBitmap(bitmap, 0, 0, null);
         document.finishPage(page);
+
+//
+
 
         // write the document content
         String targetPdf = "/sdcard/" + currentUser.getName() + "_past_personality_test.pdf";
@@ -435,19 +441,14 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
 
         openGeneratedPDF();
 
-
     }
-
 
     private void openGeneratedPDF() {
         File file = new File("/sdcard/" + currentUser.getName() + "_past_personality_test.pdf");
-//        File file = new File("/storage/emulated/0/Download/pdffromScroll.pdf");
 
         if (file.exists()) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-//            Uri uri = Uri.fromFile(file);
-//            Context context= Past_Test_Result.this;
-//            Uri uri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", file);
+
 
             Uri uri = FileProvider.getUriForFile(Past_Test_Result.this, BuildConfig.APPLICATION_ID + ".provider", file);
 
