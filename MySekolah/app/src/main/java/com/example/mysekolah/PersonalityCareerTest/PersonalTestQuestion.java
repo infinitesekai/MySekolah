@@ -222,9 +222,6 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
             }
 
             dbAccess.open();
-            //text show in console to double check
-            Log.d(TAG, "current question ans: " + currentQuestion.getAnswer());
-
 //            if(previousAns.equals("1"))
 //                minusCounter(questionCounter);
 

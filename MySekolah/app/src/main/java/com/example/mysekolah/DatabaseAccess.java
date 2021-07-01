@@ -632,8 +632,7 @@ public class DatabaseAccess<instance> {
                         c.getString(c.getColumnIndex(TestContract.QuestionsTable.COLUMN_QUESTION)),
                         c.getString(c.getColumnIndex(TestContract.QuestionsTable.COLUMN_OPTION1)),
                         c.getString(c.getColumnIndex(TestContract.QuestionsTable.COLUMN_OPTION2)),
-                        c.getString(c.getColumnIndex(TestContract.QuestionsTable.COLUMN_ANSWER_CATEGORY)),
-                        c.getString(c.getColumnIndex(TestContract.QuestionsTable.COLUMN_ANSWER_OPTION)));
+                        c.getString(c.getColumnIndex(TestContract.QuestionsTable.COLUMN_ANSWER_CATEGORY)));
                 questionList.add(question);
             } while (c.moveToNext());
         }
