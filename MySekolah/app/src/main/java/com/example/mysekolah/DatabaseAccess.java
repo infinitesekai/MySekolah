@@ -541,17 +541,30 @@ public class DatabaseAccess<instance> {
         return arrayList;
     }
 
+    public boolean deleteAnswerRecord() {
+
+        String update_answer =
+                "DELETE FROM " + TestContract.AnswerTrackingTable.TABLE_NAME+
+                        " WHERE " + TestContract.AnswerTrackingTable.COLUMN_QUESTION_ID;
+
+        try {
+            database.execSQL(update_answer);
+        } catch (RuntimeException e) {
+            return false;
+        }
+        return true;
+    }
 
     //update Question_List set answer=0 where ques_ID=0;
     //TestContract store all the table information of question list.
-    public boolean updateAnswer(String answer, String quesNo) {
+    public boolean updateAnswer(String quesID, String ansOpt) {
 
         String update_answer =
                 "update " +
-                        TestContract.QuestionsTable.TABLE_NAME + " set " +
-                        TestContract.QuestionsTable.COLUMN_ANSWER_OPTION +
-                        " ='" + answer +
-                        "' where " + TestContract.QuestionsTable.COLUMN_QUESTION_ID + "='" + quesNo + "'";
+                        TestContract.AnswerTrackingTable.TABLE_NAME + " set " +
+                        TestContract.AnswerTrackingTable.COLUMN_ANSWER_OPTION +
+                        " ='" + ansOpt +
+                        "' where " + TestContract.AnswerTrackingTable.COLUMN_QUESTION_ID + "='" + quesID + "'";
         try {
             database.execSQL(update_answer);
         } catch (RuntimeException e) {

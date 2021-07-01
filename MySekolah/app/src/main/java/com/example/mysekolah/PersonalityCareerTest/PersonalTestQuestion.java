@@ -41,6 +41,8 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     String current_answer = "";
     Question previousAns;
     Boolean chosenAns;
+    Boolean deleteRecord;
+    Boolean updateAnswerRecord;
     Boolean added = false;
     private static final String TAG = PersonalTestQuestion.class.getSimpleName();
 
@@ -210,10 +212,17 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
             if (answer_tracking.getAnswerChoice() != 1) {
                 addCounter(currentQuestion.getQuestionID());
             }
+            if (answer_tracking.getQuestionID()!=null) {
+                if (answer_tracking.getQuestionID().equals(currentQuestion.getQuestionID()) && answer_tracking.getAnswerChoice()!=1){
+                    updateAnswerRecord = dbAccess.updateAnswer(currentQuestion.getQuestionID(), current_answer);
+                }
+            }
+
         } else if (rb2.isChecked()) {
             current_answer = "2";
             Log.d(TAG, "Selected Disagree"); //text show in console to double check
             chosenAns = dbAccess.insertAnswer(currentQuestion.getQuestionID(),current_answer);
+
             if (chosenAns) {
                 Log.d(TAG, "Updated"); //text show in console to double check
 
@@ -235,7 +244,13 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
                 minusCounter(currentQuestion.getQuestionID());
                 Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
             }
+            if (answer_tracking.getQuestionID()!=null) {
+                if (answer_tracking.getQuestionID().equals(currentQuestion.getQuestionID()) && answer_tracking.getAnswerChoice()!=2){
+                    updateAnswerRecord = dbAccess.updateAnswer(currentQuestion.getQuestionID(), current_answer);
+                }
+            }
         }
+
 
     }
 
@@ -249,6 +264,14 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         i.putExtra("C_counter", C_counter);
         i.putExtra("user", currentUser);
         i.putExtra("ICNo", currentUser.getICNo());
+        //delete record
+        deleteRecord = dbAccess.deleteAnswerRecord();
+        if (deleteRecord) {
+            Log.d(TAG, "Delete Updated"); //text show in console to double check
+
+        } else {
+            Log.d(TAG, "Delete Update failed"); //text show in console to double check
+        }
         startActivity(i);
     }
 
