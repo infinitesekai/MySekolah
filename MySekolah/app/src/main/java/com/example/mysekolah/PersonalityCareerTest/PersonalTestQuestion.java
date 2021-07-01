@@ -39,7 +39,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     DatabaseAccess dbAccess;
 
     String current_answer = "";
-    String previousAns="";
+    Question previousAns;
     Boolean chosenAns;
     Boolean added = false;
     private static final String TAG = PersonalTestQuestion.class.getSimpleName();
@@ -193,25 +193,27 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     //make sure the user choose an option
     private void checkAnswer() {
         answered = true;
-
+        Answer_Tracking answer_tracking =dbAccess.checkPreAnswer(currentQuestion.getQuestionID(), String.valueOf(1));
         //in the case of radio button of "agree" is chosen
         if (rb1.isChecked()) {
             current_answer = "1";
             Log.d(TAG, "Selected Agree"); //text show in console to double check
-            chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+            chosenAns = dbAccess.insertAnswer(currentQuestion.getQuestionID(), current_answer);
+            Log.d(TAG, "agree: getQuestionID= " + currentQuestion.getQuestionID()); //text show in console to double check
             if (chosenAns) {
                 Log.d(TAG, "Updated"); //text show in console to double check
 
             } else {
                 Log.d(TAG, "Update failed"); //text show in console to double check
             }
-            if (!added) {
+            dbAccess.open();
+            if (answer_tracking.getAnswerChoice() != 1) {
                 addCounter(currentQuestion.getQuestionID());
             }
         } else if (rb2.isChecked()) {
             current_answer = "2";
             Log.d(TAG, "Selected Disagree"); //text show in console to double check
-            chosenAns = dbAccess.updateAnswer(current_answer, String.valueOf(questionCounter));
+            chosenAns = dbAccess.insertAnswer(currentQuestion.getQuestionID(),current_answer);
             if (chosenAns) {
                 Log.d(TAG, "Updated"); //text show in console to double check
 
@@ -228,10 +230,11 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
 
             //if the counter of the related alphabet's counter is greater than 0
             //      to prevent -ve counter which affect the final result
-            previousAns=dbAccess.getpreAnswer(currentQuestion.getQuestionID());
             int queCategory;
             queCategory = getCounterValue(currentQuestion.getQuestionID()).get(currentQuestion.getCategory());
-            if (queCategory > 0 && previousAns.equals("1")) {
+            Log.d(TAG, "getAnswerChoice= " + answer_tracking.getAnswerChoice()); //text show in console to double check
+            Log.d(TAG, "disagree getQuestionID= " + answer_tracking.getQuestionID()); //text show in console to double check
+            if (queCategory > 0 && answer_tracking.getAnswerChoice() == 1) {
                 minusCounter(currentQuestion.getQuestionID());
                 Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
             }

@@ -1,13 +1,18 @@
 package com.example.mysekolah.PersonalityCareerTest;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable {
     private String questionID;
     private String question;
     private String option1;
     private String option2;
-    private final String category;
+    private String category;
     private String answer;
-//    private int answerChoice;
+    private int answerChoice;
+    public Question(){
+
+    }
 
     public Question(String questionID, String question, String option1,
                     String option2, String category, String answer) {
@@ -25,6 +30,10 @@ public class Question {
     public String getQuestionID() {
         return questionID;
     }
+    public String setQuestionID(String questionID) {
+        return questionID;
+    }
+
 
     public String getQuestion() {
         return question;
@@ -58,5 +67,12 @@ public class Question {
         return answer;
     }
 
+    public int getAnswerChoice() {
+        return answerChoice;
+    }
+
+    public void setAnswerChoice(int answerChoice) {
+        this.answerChoice = answerChoice;
+    }
 }
 

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.mysekolah.PersonalityCareerTest.Answer_Tracking;
 import com.example.mysekolah.PersonalityCareerTest.Question;
 import com.example.mysekolah.PersonalityCareerTest.TestContract;
 import com.example.mysekolah.PersonalityCareerTest.TestCharResult;
@@ -559,23 +560,63 @@ public class DatabaseAccess<instance> {
         return true;
     }
 
+    public boolean insertAnswer(String quesID, String ansOpt) {
+
+        String insertAns =
+                "insert into Answer_Tracking(quesID,answerOption) select '"
+                        + quesID + "','" + ansOpt
+                        + "' where not exists (select * from Answer_Tracking where quesID = '"
+                        + quesID + "');";
+
+        try {
+            database.execSQL(insertAns);
+        } catch (RuntimeException e) {
+            Log.d("insertAnswer", e.getLocalizedMessage());
+            return false;
+        } finally {
+            database.close();//add
+        }
+        return true;
+    }
+
+    public Answer_Tracking checkPreAnswer(String quesID, String ans) {
+
+        String queryAns = "Select " + TestContract.AnswerTrackingTable.COLUMN_QUESTION_ID +
+                " , " + TestContract.AnswerTrackingTable.COLUMN_ANSWER_OPTION+
+                " FROM " + TestContract.AnswerTrackingTable.TABLE_NAME +
+                " where " + TestContract.AnswerTrackingTable.COLUMN_QUESTION_ID + " = '" + quesID + "' " +
+                "and " + TestContract.AnswerTrackingTable.COLUMN_ANSWER_OPTION+ " = '" + ans + "'";
+        Cursor cursor = database.rawQuery(queryAns, null);
+        Answer_Tracking answer_tracking = new Answer_Tracking();
+        if (cursor.getCount() > 0) {
+            cursor.moveToNext();
+            int ansOpt = Integer.parseInt(cursor.getString(cursor.getColumnIndex(TestContract.AnswerTrackingTable.COLUMN_ANSWER_OPTION)));
+            answer_tracking.setAnswerChoice(ansOpt);
+            String ques_id= cursor.getString(cursor.getColumnIndex(TestContract.AnswerTrackingTable.COLUMN_QUESTION_ID));
+            answer_tracking.setQuestionID(ques_id);
+        }
+        cursor.close();
+        return answer_tracking;
+    }
+
     //get selected answer for particular question
     //TestContract store all the information of table used in personality and career test.
-    public String getpreAnswer(String quesNo) {
-        String answer = "";
+    public Question getpreAnswer(String quesNo) {
+//        String answer = "";
+        Question question = new Question();
         Cursor cursor =
                 database.rawQuery(
                         "SELECT " +
                                 TestContract.QuestionsTable.COLUMN_ANSWER_OPTION +
                                 " FROM " +
                                 TestContract.QuestionsTable.TABLE_NAME +
-                                " WHERE " + TestContract.QuestionsTable.COLUMN_QUESTION_ID + "=?",
+                                " WHERE " + TestContract.QuestionsTable.COLUMN_ANSWER_OPTION + "=?",
                         new String[]{quesNo});
         if (cursor.moveToFirst()) {
-            answer = cursor.getString(0);
+//            answer = cursor.getString(0);
         }
         cursor.close();
-        return answer;
+        return question;
     }
 
     //store the personality test question into list

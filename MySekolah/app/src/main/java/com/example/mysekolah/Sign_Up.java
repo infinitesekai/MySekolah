@@ -72,7 +72,7 @@ public class Sign_Up extends AppCompatActivity {
                             checkuser = false;
                             currentUser = userList.get(0);
                         }
-                        // If cannoe query:true, can query: false
+                        // If cannot query:true, can query: false
                         if(!checkuser){
                             //insert data into user table
                             Boolean insert = DB.inserData(ic,pass, role, nameStr, phonetr, addressStr);

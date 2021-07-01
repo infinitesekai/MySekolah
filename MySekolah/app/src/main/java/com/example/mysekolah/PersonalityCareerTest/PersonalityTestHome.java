@@ -32,22 +32,22 @@ public class PersonalityTestHome extends AppCompatActivity implements View.OnCli
     //initialize database access
     DatabaseAccess dbAccess;
     //request permission
-    public static final int EXTERNAL_STORAGE_REQ_CODE = 10;
+//    public static final int EXTERNAL_STORAGE_REQ_CODE = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personality_test_home);
 
-        //ask permission to access the external storage
-        int permission = ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // request permission
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    EXTERNAL_STORAGE_REQ_CODE);
-        }
+//        //ask permission to access the external storage
+//        int permission = ActivityCompat.checkSelfPermission(this,
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//
+//        if (permission != PackageManager.PERMISSION_GRANTED) {
+//            // request permission
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                    EXTERNAL_STORAGE_REQ_CODE);
+//        }
 
         //initiate database access
         dbAccess = DatabaseAccess.getInstance(this);

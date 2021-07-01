@@ -14,15 +14,19 @@ import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
-
-import com.example.mysekolah.BuildConfig;
-import com.example.mysekolah.DatabaseAccess;
-import com.example.mysekolah.HomePage_Student;
-import com.example.mysekolah.ProfilePage;
-import com.example.mysekolah.R;
-import com.example.mysekolah.SearchPage_Student;
-import com.example.mysekolah.User;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,20 +36,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
-import android.transition.AutoTransition;
-import android.transition.TransitionManager;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
+import com.example.mysekolah.BuildConfig;
+import com.example.mysekolah.DatabaseAccess;
+import com.example.mysekolah.HomePage_Student;
+import com.example.mysekolah.ProfilePage;
+import com.example.mysekolah.R;
+import com.example.mysekolah.SearchPage_Student;
+import com.example.mysekolah.User;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -272,11 +270,16 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
             }
         }
 
+
+
         result_quit.setOnClickListener(this);
         result_export.setOnClickListener(this);
 
 
     }
+
+
+
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @SuppressLint("NonConstantResourceId")
@@ -381,6 +384,8 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
         }
     }
 
+
+    ///////////////////////////////////////////////////////////////////////////////
     public static Bitmap loadBitmapFromView(View v, int width, int height) {
         Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
@@ -388,6 +393,7 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
 
         return b;
     }
+
 
     private void createPdf() {
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
@@ -417,9 +423,6 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
         paint.setColor(Color.BLUE);
         canvas.drawBitmap(bitmap, 0, 0, null);
         document.finishPage(page);
-
-//
-
 
         // write the document content
         String targetPdf = "/sdcard/" + currentUser.getName() + "_past_personality_test.pdf";

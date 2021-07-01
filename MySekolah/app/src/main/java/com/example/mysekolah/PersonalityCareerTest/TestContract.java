@@ -33,7 +33,11 @@ public final class TestContract {
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_EXPLANATION = "explanation";
         public static final String COLUMN_SUGGESTION = "suggestedField";
+    }
 
-
+    public static class AnswerTrackingTable implements BaseColumns{
+        public static final String TABLE_NAME = "Answer_Tracking";
+        public static final String COLUMN_QUESTION_ID = "quesID";
+        public static final String COLUMN_ANSWER_OPTION = "answerOption";
     }
 }
