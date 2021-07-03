@@ -300,7 +300,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/robotobold"
-                android:text="Adress:"
+                android:text="Address:"
                 android:textColor="@color/black"
                 android:textSize="17dp" />
 
@@ -329,7 +329,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/robotobold"
-                android:text="PhoneNo"
+                android:text="Phone No."
                 android:textColor="@color/black"
                 android:textSize="17dp" />
 
@@ -354,11 +354,31 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="730dp"
+                android:translationY="-110dp">
+
+                <TextView
+                    android:id="@+id/scroll_h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="125dp"
+                    android:layout_marginTop="12dp"
+                    android:paddingBottom="10dp"
+                    android:text="Scroll Horizontally"
+                    android:textSize="17dp"
+
+                    />
+
+            </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="730dp"
-        android:translationY="-40dp">
+        android:translationY="-60dp">
 
         <Button
             android:id="@+id/btneditprofile"
