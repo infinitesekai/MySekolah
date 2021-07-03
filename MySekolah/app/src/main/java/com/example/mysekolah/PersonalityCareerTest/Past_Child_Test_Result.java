@@ -197,15 +197,15 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
 
             switch (chars.get(0)) {
                 case "R":
-                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
                     desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.realistic));
                     break;
                 case "I":
-                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
                     desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
-                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyYellow));
                     desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":
@@ -213,25 +213,25 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
                     desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.social));
                     break;
                 case "E":
-                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.darkPurple));
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
                     desc1.setText(getString(R.string.people) + testInfo1.getDesc() + "\n" + getString(R.string.enterprising));
                     break;
                 case "C":
-                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
+                    cardView.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
                     desc1.setText(getString(R.string.people) + testInfo1.getDesc() + getString(R.string.conventional));
                     break;
             }
             switch (chars.get(1)) {
                 case "R":
-                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
                     desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.realistic));
                     break;
                 case "I":
-                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
+                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
                     desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
-                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
+                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
                     desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":
@@ -239,25 +239,25 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
                     desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.social));
                     break;
                 case "E":
-                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.darkPurple));
+                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
                     desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.enterprising));
                     break;
                 case "C":
-                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
+                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
                     desc2.setText(getString(R.string.people) + testInfo2.getDesc() + getString(R.string.conventional));
                     break;
             }
             switch (chars.get(2)) {
                 case "R":
-                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
                     desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.realistic));
                     break;
                 case "I":
-                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
+                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
                     desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
-                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
+                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyYellow));
                     desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":
@@ -265,11 +265,11 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
                     desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.social));
                     break;
                 case "E":
-                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.darkPurple));
+                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyBlue));
                     desc3.setText(getString(R.string.people) + testInfo3.getDesc() + "\n" + getString(R.string.enterprising));
                     break;
                 case "C":
-                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyRed));
+                    cardView3.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyPurple));
                     desc3.setText(getString(R.string.people) + testInfo3.getDesc() + getString(R.string.conventional));
                     break;
             }

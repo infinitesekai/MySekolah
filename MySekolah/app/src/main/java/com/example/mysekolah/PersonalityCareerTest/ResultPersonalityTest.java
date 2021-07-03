@@ -118,7 +118,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
             greyBlue = "#26768F",
             greyGreen = "#2E8266",
             greyPurple = "#4F4461",
-            darkPurple = "#525CDD";
+            greyYellow = "#988c31";
 
     //get current date that user take the test
     Date c = Calendar.getInstance().getTime();
@@ -306,15 +306,16 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
             switch (character.get(0)) {
                 case "R":
+                    cardView.setCardBackgroundColor(Color.parseColor(greyRed));
                     cardView.setCardBackgroundColor(Color.parseColor(greyOrange));
                     desc1.setText(people + testInfo1.getDesc() + "\n" + realistic);
                     break;
                 case "I":
-                    cardView.setCardBackgroundColor(Color.parseColor(greyBlue));
+                    cardView.setCardBackgroundColor(Color.parseColor(greyOrange));
                     desc1.setText(people + testInfo1.getDesc() + "\n" + investigative);
                     break;
                 case "A":
-                    cardView.setCardBackgroundColor(Color.parseColor(greyPurple));
+                    cardView.setCardBackgroundColor(Color.parseColor(greyYellow));
                     desc1.setText(people + testInfo1.getDesc() + "\n" + artistic);
                     break;
                 case "S":
@@ -322,25 +323,25 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
                     desc1.setText(people + testInfo1.getDesc() + "\n" + social);
                     break;
                 case "E":
-                    cardView.setCardBackgroundColor(Color.parseColor(darkPurple));
+                    cardView.setCardBackgroundColor(Color.parseColor(greyBlue));
                     desc1.setText(people + testInfo1.getDesc() + "\n" + enterprising);
                     break;
                 case "C":
-                    cardView.setCardBackgroundColor(Color.parseColor(greyRed));
+                    cardView.setCardBackgroundColor(Color.parseColor(greyPurple));
                     desc1.setText(people + testInfo1.getDesc() + "\n" + conventional);
                     break;
             }
             switch (character.get(1)) {
                 case "R":
-                    cardView2.setCardBackgroundColor(Color.parseColor(greyOrange));
+                    cardView2.setCardBackgroundColor(Color.parseColor(greyRed));
                     desc2.setText(people + testInfo2.getDesc() + "\n" + realistic);
                     break;
                 case "I":
-                    cardView2.setCardBackgroundColor(Color.parseColor(greyBlue));
+                    cardView2.setCardBackgroundColor(Color.parseColor(greyOrange));
                     desc2.setText(people + testInfo2.getDesc() + "\n" + investigative);
                     break;
                 case "A":
-                    cardView2.setCardBackgroundColor(Color.parseColor(greyPurple));
+                    cardView2.setCardBackgroundColor(Color.parseColor(greyYellow));
                     desc2.setText(people + testInfo2.getDesc() + "\n" + artistic);
                     break;
                 case "S":
@@ -348,25 +349,25 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
                     desc2.setText(people + testInfo2.getDesc() + "\n" + social);
                     break;
                 case "E":
-                    cardView2.setCardBackgroundColor(Color.parseColor(darkPurple));
+                    cardView2.setCardBackgroundColor(Color.parseColor(greyBlue));
                     desc2.setText(people + testInfo2.getDesc() + "\n" + enterprising);
                     break;
                 case "C":
-                    cardView2.setCardBackgroundColor(Color.parseColor(greyRed));
+                    cardView2.setCardBackgroundColor(Color.parseColor(greyPurple));
                     desc2.setText(people + testInfo2.getDesc() + "\n" + conventional);
                     break;
             }
             switch (character.get(2)) {
                 case "R":
-                    cardView3.setCardBackgroundColor(Color.parseColor(greyOrange));
+                    cardView3.setCardBackgroundColor(Color.parseColor(greyRed));
                     desc3.setText(people + testInfo3.getDesc() + "\n" + realistic);
                     break;
                 case "I":
-                    cardView3.setCardBackgroundColor(Color.parseColor(greyBlue));
+                    cardView3.setCardBackgroundColor(Color.parseColor(greyOrange));
                     desc3.setText(people + testInfo3.getDesc() + "\n" + investigative);
                     break;
                 case "A":
-                    cardView3.setCardBackgroundColor(Color.parseColor(greyPurple));
+                    cardView3.setCardBackgroundColor(Color.parseColor(greyYellow));
                     desc3.setText(people + testInfo3.getDesc() + "\n" + artistic);
                     break;
                 case "S":
@@ -374,11 +375,11 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
                     desc3.setText(people + testInfo3.getDesc() + "\n" + social);
                     break;
                 case "E":
-                    cardView3.setCardBackgroundColor(Color.parseColor(darkPurple));
+                    cardView3.setCardBackgroundColor(Color.parseColor(greyBlue));
                     desc3.setText(people + testInfo3.getDesc() + "\n" + enterprising);
                     break;
                 case "C":
-                    cardView3.setCardBackgroundColor(Color.parseColor(greyRed));
+                    cardView3.setCardBackgroundColor(Color.parseColor(greyPurple));
                     desc3.setText(people + testInfo3.getDesc() + "\n" + conventional);
                     break;
             }
