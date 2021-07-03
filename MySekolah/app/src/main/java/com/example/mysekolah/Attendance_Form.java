@@ -82,7 +82,7 @@ public class Attendance_Form extends AppCompatActivity
         //drop down list
 
         //school list spinner-school list from database
-        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,SchoolList);
+        ArrayAdapter schoolaa = new ArrayAdapter(this,android.R.layout.simple_list_item_1,SchoolList);
         schoolaa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         school_spin.setAdapter(schoolaa);
 
