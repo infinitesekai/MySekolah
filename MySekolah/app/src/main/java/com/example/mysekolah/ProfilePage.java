@@ -35,6 +35,7 @@ public class ProfilePage extends Fragment {
     private TextView salaryText;//salary text
     private TextView addressText;//address text
     private TextView phoneText;//phone text
+    private TextView scroll_h;//scroll message
     private RecyclerView recyclerView;//recycler view for children card
     private ChildRecyclerAdapter adapter;//child recycler adapter
     private DatabaseAccess DB;//database
@@ -70,6 +71,7 @@ public class ProfilePage extends Fragment {
         salaryText = view.findViewById(R.id.tvsalary);
         addressText = view.findViewById(R.id.tvaddress);
         phoneText = view.findViewById(R.id.tvphoneno);
+        scroll_h = view.findViewById(R.id.scroll_h);
 
         //get intent for current user
         Bundle bundle = getArguments();
@@ -99,7 +101,7 @@ public class ProfilePage extends Fragment {
         if(currentUser.getRole() != 1){
             editChildBtn.setVisibility(View.GONE);
             recyclerView.setVisibility(View.GONE);
-
+            scroll_h.setVisibility(View.GONE);
         }
         //on click listener for edit child button
         editChildBtn.setOnClickListener(new View.OnClickListener() {
