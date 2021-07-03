@@ -13,7 +13,7 @@ public final class TestContract {
         public static final String COLUMN_OPTION1 = "option1";
         public static final String COLUMN_OPTION2 = "option2";
         public static String COLUMN_ANSWER_CATEGORY = "category";
-        public static String COLUMN_ANSWER_OPTION = "answer";
+//        public static String COLUMN_ANSWER_OPTION = "answer";
     }
 
     public static class TestResultTable implements BaseColumns {

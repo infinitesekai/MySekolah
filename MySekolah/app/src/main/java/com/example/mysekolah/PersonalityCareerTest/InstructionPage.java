@@ -18,7 +18,6 @@ public class InstructionPage extends Activity {
 
     //initialize user
     private User currentUser;
-    private int lastfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,6 @@ public class InstructionPage extends Activity {
         setContentView(R.layout.activity_instruction_page);
 
         currentUser = (User) getIntent().getSerializableExtra("user");
-        lastfragment = 0;
 
         start_test = findViewById(R.id.start_test);
 

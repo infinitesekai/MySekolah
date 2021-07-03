@@ -219,6 +219,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
         image_btn = findViewById(R.id.imageButton);
 
+        //put all the counter into an array
         List<Integer> result = new ArrayList<Integer>();
 
         result.add(R_counter);
@@ -228,23 +229,23 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         result.add(E_counter);
         result.add(C_counter);
 
-        String R = "R";
-        String I = "I";
-        String A = "A";
-        String S = "S";
-        String E = "E";
-        String C = "C";
-
-
+        //get the total counter using for loop
         int totalscore = 0;
         for (int i = 0; i < result.size(); i++) {
-//            int firstMax= Collections.max(result);
             totalscore += result.get(i);
         }
 
         name.setText(currentUser.getName());
         testeric.setText(currentUser.getICNo());
         total.setText(String.valueOf(totalscore));
+
+
+        String R = "R";
+        String I = "I";
+        String A = "A";
+        String S = "S";
+        String E = "E";
+        String C = "C";
 
         //using hashmap to map the characters and counters
         HashMap<String, Integer> Character = new HashMap<String, Integer>();
@@ -256,18 +257,22 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         Character.put(E, E_counter);
         Character.put(C, C_counter);
 
+        //sort the value inside the hash map (high to low)
         Map<String, Integer> sortedCharacter = sortByValue(Character);
 
         System.out.println(sortedCharacter);
 
-
+        //initialize the array named "character"
         List<String> character = new ArrayList<String>();
 
+        //Optimizing Map Iteration using Map.entrySet
+        //add the key to "character" array
         for (Map.Entry<String, Integer> entry : sortedCharacter.entrySet()) {
             character.add(entry.getKey());
         }
 
 
+        //set the three characters
         String firstChar = character.get(0);
         String secondChar = character.get(1);
         String thirdChar = character.get(2);
@@ -380,11 +385,11 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         }
 
 
-        boolean insert;
+        boolean insertResult;
 
-        insert = dbAccess.insertPersonalityResult(currentUser.getICNo(), firstChar, secondChar, thirdChar);
+        insertResult = dbAccess.insertPersonalityResult(currentUser.getICNo(), firstChar, secondChar, thirdChar);
 
-        if (insert) {
+        if (insertResult) {
             Toast.makeText(ResultPersonalityTest.this, "Result stored", Toast.LENGTH_SHORT).show();
 
         } else {
@@ -527,7 +532,6 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
     private void createPdf() {
 
-
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 //          Display display = wm.getDefaultDisplay();
         DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -542,8 +546,7 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
         //start first page
         PdfDocument document = new PdfDocument();
-        int page_number = 1;
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHight, page_number).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHight, 1).create();
         PdfDocument.Page page = document.startPage(pageInfo);
 
         Canvas canvas = page.getCanvas();
@@ -567,7 +570,6 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
         // write the document content
         String targetPdf = "/sdcard/" + currentUser.getName() + "_" + formattedDate + ".pdf";
 
-//        String targetPdf = "/storage/emulated/0/Download/pdffromScroll.pdf";
         File filePath;
         filePath = new File(targetPdf);
         try {
@@ -586,19 +588,18 @@ public class ResultPersonalityTest extends AppCompatActivity implements View.OnC
 
 
     }
+//        File file = new File("/storage/emulated/0/Download/pdffromScroll.pdf");
 
     private void openGeneratedPDF() {
         File file = new File("/sdcard/" + currentUser.getName() + "_" + formattedDate + ".pdf");
-//        File file = new File("/storage/emulated/0/Download/pdffromScroll.pdf");
 
         if (file.exists()) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
-//            Uri uri = Uri.fromFile(file);
-//            Context context= Past_Test_Result.this;
-//            Uri uri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", file);
 
             Uri uri = FileProvider.getUriForFile(ResultPersonalityTest.this, BuildConfig.APPLICATION_ID + ".provider", file);
-
+            //            Uri uri = Uri.fromFile(file);
+//            Context context= Past_Test_Result.this;
+//            Uri uri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", file);
             intent.setDataAndType(uri, "application/pdf");
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

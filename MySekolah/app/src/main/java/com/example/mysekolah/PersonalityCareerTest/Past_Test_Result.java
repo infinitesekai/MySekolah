@@ -385,7 +385,6 @@ public class Past_Test_Result extends AppCompatActivity implements View.OnClickL
     }
 
 
-    ///////////////////////////////////////////////////////////////////////////////
     public static Bitmap loadBitmapFromView(View v, int width, int height) {
         Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);

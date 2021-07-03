@@ -541,11 +541,26 @@ public class DatabaseAccess<instance> {
         return arrayList;
     }
 
+    public Answer_Tracking getAnswerById(String quesID) {
+
+        Answer_Tracking answer_tracking_id = null;
+        Cursor cursor = database.rawQuery("SELECT * FROM " +
+                TestContract.AnswerTrackingTable.TABLE_NAME +
+                " WHERE " + TestContract.AnswerTrackingTable.COLUMN_QUESTION_ID +
+                " = ? ", new String[]{quesID});
+        if (cursor.moveToFirst()) {
+            answer_tracking_id = new Answer_Tracking(
+                    cursor.getString(cursor.getColumnIndex(TestContract.AnswerTrackingTable.COLUMN_QUESTION_ID)),
+                    cursor.getInt(cursor.getColumnIndex(TestContract.AnswerTrackingTable.COLUMN_ANSWER_OPTION)));
+        }
+        cursor.close();
+        return answer_tracking_id;
+    }
+
     public boolean deleteAnswerRecord() {
 
         String update_answer =
-                "DELETE FROM " + TestContract.AnswerTrackingTable.TABLE_NAME+
-                        " WHERE " + TestContract.AnswerTrackingTable.COLUMN_QUESTION_ID;
+                "DELETE FROM " + TestContract.AnswerTrackingTable.TABLE_NAME;
 
         try {
             database.execSQL(update_answer);
@@ -603,7 +618,10 @@ public class DatabaseAccess<instance> {
         Answer_Tracking answer_tracking = new Answer_Tracking();
         if (cursor.getCount() > 0) {
             cursor.moveToNext();
-            int ansOpt = Integer.parseInt(cursor.getString(cursor.getColumnIndex(TestContract.AnswerTrackingTable.COLUMN_ANSWER_OPTION)));
+            int ansOpt = Integer.parseInt(
+                    cursor.getString(
+                            cursor.getColumnIndex(
+                                    TestContract.AnswerTrackingTable.COLUMN_ANSWER_OPTION)));
             answer_tracking.setAnswerChoice(ansOpt);
             String ques_id= cursor.getString(cursor.getColumnIndex(TestContract.AnswerTrackingTable.COLUMN_QUESTION_ID));
             answer_tracking.setQuestionID(ques_id);
@@ -614,23 +632,22 @@ public class DatabaseAccess<instance> {
 
     //get selected answer for particular question
     //TestContract store all the information of table used in personality and career test.
-    public Question getpreAnswer(String quesNo) {
-//        String answer = "";
-        Question question = new Question();
-        Cursor cursor =
-                database.rawQuery(
-                        "SELECT " +
-                                TestContract.QuestionsTable.COLUMN_ANSWER_OPTION +
-                                " FROM " +
-                                TestContract.QuestionsTable.TABLE_NAME +
-                                " WHERE " + TestContract.QuestionsTable.COLUMN_ANSWER_OPTION + "=?",
-                        new String[]{quesNo});
-        if (cursor.moveToFirst()) {
-//            answer = cursor.getString(0);
-        }
-        cursor.close();
-        return question;
-    }
+//    public Question getpreAnswer(String quesNo) {
+//        Question question = new Question();
+//        Cursor cursor =
+//                database.rawQuery(
+//                        "SELECT " +
+//                                TestContract.QuestionsTable.COLUMN_ANSWER_OPTION +
+//                                " FROM " +
+//                                TestContract.QuestionsTable.TABLE_NAME +
+//                                " WHERE " + TestContract.QuestionsTable.COLUMN_ANSWER_OPTION + "=?",
+//                        new String[]{quesNo});
+//        if (cursor.moveToFirst()) {
+////            answer = cursor.getString(0);
+//        }
+//        cursor.close();
+//        return question;
+//    }
 
     //store the personality test question into list
     public List<Question> getAllQuestions() {

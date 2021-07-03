@@ -8,7 +8,8 @@ public class Question implements Serializable {
     private String option1;
     private String option2;
     private String category;
-    public Question(){
+
+    public Question() {
 
     }
 
@@ -20,12 +21,11 @@ public class Question implements Serializable {
         this.option2 = option2;
         this.category = category;
     }
-    public Question(String category) {
-        this.category = category;
-    }
+
     public String getQuestionID() {
         return questionID;
     }
+
     public String setQuestionID(String questionID) {
         return questionID;
     }

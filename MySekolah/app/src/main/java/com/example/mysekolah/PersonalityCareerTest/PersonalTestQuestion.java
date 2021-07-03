@@ -39,8 +39,8 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     DatabaseAccess dbAccess;
 
     String current_answer = "";
-    Question previousAns;
     Boolean chosenAns;
+    Answer_Tracking choseAnsByID;
     Boolean deleteRecord;
     Boolean updateAnswerRecord;
     Boolean added = false;
@@ -143,7 +143,6 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
                 }
                 break;
             case R.id.btn_back_qn:
-                answered = true;
 
                 //if the question is not the first question
                 if (questionCounter > 0) {
@@ -161,7 +160,9 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
                             Toast.LENGTH_SHORT
                     ).show();
                 }
+                answered = false;
                 break;
+
         }
     }
 
@@ -195,26 +196,51 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
     //make sure the user choose an option
     private void checkAnswer() {
         answered = true;
+
+        //get the answer record based on question ID
+        choseAnsByID = dbAccess.getAnswerById(currentQuestion.getQuestionID());
+
+        //select the question that only store the answer is stored into 1 means user agree
         Answer_Tracking answer_tracking =dbAccess.checkPreAnswer(currentQuestion.getQuestionID(), String.valueOf(1));
+
         //in the case of radio button of "agree" is chosen
         if (rb1.isChecked()) {
+            //1 equals to agree
             current_answer = "1";
             Log.d(TAG, "Selected Agree"); //text show in console to double check
+
+            //insert the id of the current question and current answer into db
             chosenAns = dbAccess.insertAnswer(currentQuestion.getQuestionID(), current_answer);
-            Log.d(TAG, "agree: getQuestionID= " + currentQuestion.getQuestionID()); //text show in console to double check
+            Log.d(TAG, "agree: get current Question ID= " + currentQuestion.getQuestionID());
+
+            //double check the agree is selected
             if (chosenAns) {
                 Log.d(TAG, "Updated"); //text show in console to double check
 
             } else {
                 Log.d(TAG, "Update failed"); //text show in console to double check
             }
+
+            //open the db
             dbAccess.open();
+
+            Log.d(TAG, "get  Answer tracking's Questionid: " + answer_tracking.getQuestionID());
+            Log.d(TAG, "get Answer tracking's AnswerChoice: " + answer_tracking.getAnswerChoice());
+
+            //if the current question is not select agree
             if (answer_tracking.getAnswerChoice() != 1) {
                 addCounter(currentQuestion.getQuestionID());
             }
-            if (answer_tracking.getQuestionID()!=null) {
-                if (answer_tracking.getQuestionID().equals(currentQuestion.getQuestionID()) && answer_tracking.getAnswerChoice()!=1){
-                    updateAnswerRecord = dbAccess.updateAnswer(currentQuestion.getQuestionID(), current_answer);
+
+            //checking the choseAnsByID
+            Log.d(TAG, "choseAnsByID: " + choseAnsByID);
+
+            //if not null, means there is record inside the table
+            //hence, update the current answer
+            if (choseAnsByID!=null) {
+                Log.d(TAG, "get  choseAnsByID's AnswerChoice: " + choseAnsByID.getAnswerChoice()); //text show in console to double check
+                if (choseAnsByID.getQuestionID().equals(currentQuestion.getQuestionID()) && choseAnsByID.getAnswerChoice()!=1){
+                    updateAnswerRecord = dbAccess.updateAnswer(currentQuestion.getQuestionID(), String.valueOf(1));
                 }
             }
 
@@ -229,24 +255,24 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
             } else {
                 Log.d(TAG, "Update failed"); //text show in console to double check
             }
-
             dbAccess.open();
-//            if(previousAns.equals("1"))
-//                minusCounter(questionCounter);
 
             //if the counter of the related alphabet's counter is greater than 0
             //      to prevent -ve counter which affect the final result
             int queCategory;
             queCategory = getCounterValue(currentQuestion.getQuestionID()).get(currentQuestion.getCategory());
-            Log.d(TAG, "getAnswerChoice= " + answer_tracking.getAnswerChoice()); //text show in console to double check
-            Log.d(TAG, "disagree getQuestionID= " + answer_tracking.getQuestionID()); //text show in console to double check
+            Log.d(TAG, "disagree, Answer tracking's getQuestionID= " + answer_tracking.getQuestionID());
+            Log.d(TAG, "Answer tracking's getAnswerChoice= " + answer_tracking.getAnswerChoice());
             if (queCategory > 0 && answer_tracking.getAnswerChoice() == 1) {
                 minusCounter(currentQuestion.getQuestionID());
-                Log.d(TAG, "queCategory:" + queCategory); //text show in console to double check
+                Log.d(TAG, "hash list's queCategory counter:" + queCategory); //text show in console to double check
             }
-            if (answer_tracking.getQuestionID()!=null) {
-                if (answer_tracking.getQuestionID().equals(currentQuestion.getQuestionID()) && answer_tracking.getAnswerChoice()!=2){
-                    updateAnswerRecord = dbAccess.updateAnswer(currentQuestion.getQuestionID(), current_answer);
+
+            Log.d(TAG, "choseAnsByID: " + choseAnsByID); //text show in console to double check
+            if (choseAnsByID!=null) {
+                Log.d(TAG, "choseAnsByID's getAnswerChoice: " + choseAnsByID.getAnswerChoice());
+                if (choseAnsByID.getQuestionID().equals(currentQuestion.getQuestionID()) && choseAnsByID.getAnswerChoice()!=2){
+                    updateAnswerRecord = dbAccess.updateAnswer(currentQuestion.getQuestionID(), String.valueOf(2));
                 }
             }
         }
@@ -275,7 +301,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         startActivity(i);
     }
 
-    private HashMap<String, Integer> getCounterValue(String sensorName) {
+    private HashMap<String, Integer> getCounterValue(String questionid) {
         HashMap<String, Integer> Character = new HashMap<String, Integer>();
 
         Character.put("R", R_counter);
@@ -288,7 +314,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         return Character;
     }
 
-    private void addCounter(String questionCounter) {
+    private void addCounter(String questionid) {
         //get the category from the database set
 //        String category=dbAccess.getCategory(String.valueOf(questionCounter));
         String category = currentQuestion.getCategory();
@@ -318,11 +344,11 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
                 Log.d(TAG, category +" : " + C_counter); //text show in console to double check
                 break;
         }
-        getCounterValue(questionCounter);
+        getCounterValue(questionid);
         added = true;
     }
 
-    private void minusCounter(String questionCounter) {
+    private void minusCounter(String questionid) {
 
 //        String category=dbAccess.getCategory(String.valueOf(questionCounter));
         String category = currentQuestion.getCategory();
@@ -353,7 +379,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
                 Log.d(TAG, category +" : " + C_counter); //text show in console to double check
                 break;
         }
-        getCounterValue(questionCounter);
+        getCounterValue(questionid);
         added = false;
     }
 
