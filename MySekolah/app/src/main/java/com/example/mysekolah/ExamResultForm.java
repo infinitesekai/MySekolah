@@ -162,6 +162,7 @@ public class ExamResultForm extends AppCompatActivity {
 
         // database handler
         DatabaseAccess db= DatabaseAccess.getInstance(this);
+        db.open();
 
         // Spinner Drop down elements
         List<String> school= db.getUserSchool(ic);
