@@ -21,5 +21,6 @@
     <color name="greyPurple">#4F4461</color>
     <color name="greyYellow">#988c31</color>
     <color name="transparent">#80000000</color>
+    <color name="darkPurple">#525CDD</color>
 
 </resources>
