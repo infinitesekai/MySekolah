@@ -231,7 +231,7 @@ public class Past_Child_Test_Result extends AppCompatActivity implements View.On
                     desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.investigative));
                     break;
                 case "A":
-                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyOrange));
+                    cardView2.setCardBackgroundColor(ContextCompat.getColor(this, R.color.greyYellow));
                     desc2.setText(getString(R.string.people) + testInfo2.getDesc() + "\n" + getString(R.string.artistic));
                     break;
                 case "S":

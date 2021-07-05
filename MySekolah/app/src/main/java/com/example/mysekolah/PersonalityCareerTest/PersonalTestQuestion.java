@@ -226,6 +226,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
 
             Log.d(TAG, "get  Answer tracking's Questionid: " + answer_tracking.getQuestionID());
             Log.d(TAG, "get Answer tracking's AnswerChoice: " + answer_tracking.getAnswerChoice());
+            getCounterValue(currentQuestion.getQuestionID());
 
             //if the current question is not select agree
             if (answer_tracking.getAnswerChoice() != 1) {
@@ -310,7 +311,7 @@ public class PersonalTestQuestion extends AppCompatActivity implements View.OnCl
         Character.put("S", S_counter);
         Character.put("E", E_counter);
         Character.put("C", C_counter);
-        Log.d(TAG, "previous value stored: " + Character); //text show in console to double check
+        Log.d(TAG, "Value stored: " + Character); //text show in console to double check
         return Character;
     }
 
