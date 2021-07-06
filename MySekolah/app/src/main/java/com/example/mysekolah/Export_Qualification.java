@@ -97,12 +97,12 @@ public class Export_Qualification extends AppCompatActivity {
                 "<table>\n" +
                 " \n" +
                 "  <tr>\n" +
-                "    <td>No IC</td>\n" +
-                "    <td >"+ic+ "</td>\n" +
+                "    <td>IC No</td>\n" +
+                "    <td colspan=\"2\">"+ic+ "</td>\n" +
                 "  </tr>\n" +
                         "  <tr>\n" +
                         "    <td>Name</td>\n" +
-                        "    <td >"+name+ "</td>\n" +
+                        "    <td colspan=\"2\">"+name+ "</td>\n" +
                         "  </tr>\n" +
                 "  <tr>\n" +
                 "    <td>Pre-School</td>\n" +
