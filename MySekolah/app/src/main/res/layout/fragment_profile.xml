@@ -329,7 +329,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/robotobold"
-                android:text="Phone No."
+                android:text="Phone No.:"
                 android:textColor="@color/black"
                 android:textSize="17dp" />
 

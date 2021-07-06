@@ -47,7 +47,7 @@
         android:layout_marginEnd="106dp"
         android:layout_marginBottom="208dp"
         android:fontFamily="sans-serif-light"
-        android:text="Find the right path for children"
+        android:text="Find the Right Path for Children"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="22sp"
