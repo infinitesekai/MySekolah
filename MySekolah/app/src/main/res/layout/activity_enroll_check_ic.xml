@@ -67,7 +67,7 @@
                     android:layout_marginStart="22dp"
                     android:layout_marginTop="28dp"
                     android:fontFamily="@font/robotobold"
-                    android:text="No IC :"
+                    android:text="IC No:"
                     android:textColor="@color/text_color"
                     android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="parent"

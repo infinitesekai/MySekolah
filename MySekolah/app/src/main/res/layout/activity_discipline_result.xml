@@ -53,7 +53,7 @@
             <TextView android:id="@+id/tv_leadership" tools:text="grade" style="@style/DisciplineTable"/>
         </TableRow>
         <TableRow >
-            <TextView android:text="Dedicate" style="@style/DisciplineTable"/>
+            <TextView android:text="Dedication" style="@style/DisciplineTable"/>
             <TextView android:id="@+id/tv_dedicate" tools:text="grade" style="@style/DisciplineTable"/>
         </TableRow>
         <TableRow >

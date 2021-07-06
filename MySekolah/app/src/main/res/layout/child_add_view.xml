@@ -8,7 +8,7 @@
         android:id="@+id/child_add_ic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="IC of your child" />
+        android:hint="IC No. of your child" />
 
     <EditText
         android:id="@+id/child_add_name"

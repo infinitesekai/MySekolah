@@ -60,7 +60,7 @@
                     android:layout_marginBottom="92dp"
                     android:fontFamily="@font/robotoregular"
                     android:gravity="center"
-                    android:text="For more detail please contact 03-32415986 "
+                    android:text="For more details, please contact 03-32415986 "
                     android:textColor="@color/text_color"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
